@@ -1,7 +1,0 @@
-# Paramètres du mineur d'épisodes (reference/episode_miner.py).
-window_days: 190
-step_days: 21
-publication_lag_days: {STATIC_TOTALCPICHANGE: 45, CPIAUCSL: 45, UNRATE: 35}
-full_mode_scenarios: 8
-demo_mode_scenarios: 4
-targeted_mode_scenarios: 3

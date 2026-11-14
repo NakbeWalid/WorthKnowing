@@ -1,9 +1,0 @@
-# HYPOTHÈSES : enquête automatique après trade (brief, section 15.1).
-window_hours: 72
-tau_hours: 12
-verdict_min: 0.25
-retention_days: 30
-relevance: {symbol: 1.0, sector: 0.5, macro: 0.3}
-exposure: {interaction: 1.0, followed: 0.6, public_news: 0.3, market: 0.4, history: 1.0}
-partial_coverage_factor: 0.7
-impulse_scores: {round_trip: 0.6, overtrading: 0.5, loss_chasing: 0.6}
