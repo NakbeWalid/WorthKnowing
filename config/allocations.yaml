@@ -1,0 +1,47 @@
+# HYPOTHÈSE de simulation : portefeuille fictif de départ (100 000 $) par persona.
+capital: 100000
+focus_weight_pct: 15        # poids de la position testée au début de chaque scénario
+cash_pct: 10
+position_limit_pct:         # limite de position déclarée selon le risque (trait DIV)
+  faible: 10
+  faible_modere: 12
+  modere: 15
+  eleve: 20
+  tres_eleve: 25
+personas:
+  amira:
+    nom: Amira
+    age: 26
+    resume: "Ingénieure logicielle. Risque élevé, horizon de 15 ans et plus. Aime l'IA et les cryptos, veut rester diversifiée."
+    risque: eleve
+    horizon_ans: 15
+    esg: false
+    exclusions: []
+    crypto: true
+    experience: intermediaire
+    auto_evaluation: {calme_baisses: 4, resiste_modes: 4, decide_vite: 3, nouvelles_stables: 4, respecte_limites: 4}
+    allocation: {"Actions de croissance et technologie": 45, "Cryptoactifs": 15, "FNB de marché large": 20, "Obligations": 10, "Liquidités": 10}
+  mateo:
+    nom: Mateo
+    age: 41
+    resume: "Gestionnaire des opérations. Risque modéré, horizon de 8 à 12 ans. Les critères ESG comptent beaucoup pour lui."
+    risque: modere
+    horizon_ans: 10
+    esg: true
+    exclusions: ["Energy"]
+    crypto: false
+    experience: intermediaire
+    auto_evaluation: {calme_baisses: 3, resiste_modes: 4, decide_vite: 2, nouvelles_stables: 3, respecte_limites: 4}
+    allocation: {"FNB à critères ESG": 40, "Actions défensives": 20, "Obligations": 30, "Liquidités": 10}
+  robert:
+    nom: Robert
+    age: 59
+    resume: "Professionnel de la santé. Risque faible à modéré, horizon de 3 à 5 ans. Veut préserver son capital, suit les marchés de près."
+    risque: faible_modere
+    horizon_ans: 4
+    esg: false
+    exclusions: []
+    crypto: false
+    experience: avancee
+    auto_evaluation: {calme_baisses: 4, resiste_modes: 5, decide_vite: 2, nouvelles_stables: 4, respecte_limites: 5}
+    allocation: {"Obligations et court terme": 50, "Actions établies": 30, "FNB or ou marché large": 10, "Liquidités": 10}

@@ -1,0 +1,13 @@
+# HYPOTHÈSES : indice de dérive et seuil de réévaluation personnel (brief, section 15).
+decay: 0.90
+growth: 0.35
+weights: {SOCIAL: 0.30, HYPE_MARCHE: 0.30, IMPULSION: 0.25, NOUVELLE: 0.10, rule_override: 0.30, size_vs_tolerance: 0.20}
+threshold: {base: 70, gap_factor: 0.3, min: 45, max: 80, drop_on_bad_trade: 2, raise_after_clean_streak: 1, clean_streak: 5, vigilance_factor: 0.6, rearm_gap: 20}
+bad_trade_severity: 0.5
+single_trade_alert: 0.85
+consecutive_bad_alert: 3
+resume_factor: 0.5
+hype: {ret_5d_equity_pct: 20, ret_5d_crypto_pct: 40, volume_z: 2}
+round_trip_hours: 24
+overtrading: {count: 3, days: 5}
+loss_chasing_hours: 24

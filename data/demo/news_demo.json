@@ -1,0 +1,37 @@
+[
+ {
+  "id": "n-1",
+  "published_at": "2026-11-10T12:05:00Z",
+  "source": "Fil de démonstration (fictif)",
+  "title": "Les titres liés à l'intelligence artificielle reculent fortement cette semaine",
+  "symbols": [
+   "NVDA"
+  ],
+  "sector": "Information Technology",
+  "importance": 0.8,
+  "url": null,
+  "etiquette": "Fictif (démonstration)"
+ },
+ {
+  "id": "n-2",
+  "published_at": "2026-11-09T14:00:00Z",
+  "source": "Fil de démonstration (fictif)",
+  "title": "Les marchés attendent la prochaine décision de taux",
+  "symbols": [],
+  "theme": "macro",
+  "importance": 0.5,
+  "url": null,
+  "etiquette": "Fictif (démonstration)"
+ },
+ {
+  "id": "n-3",
+  "published_at": "2026-11-11T13:00:00Z",
+  "source": "Fil de démonstration (fictif)",
+  "title": "Le secteur de l'énergie poursuit sa progression",
+  "symbols": [],
+  "sector": "Energy",
+  "importance": 0.6,
+  "url": null,
+  "etiquette": "Fictif (démonstration)"
+ }
+]

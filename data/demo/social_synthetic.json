@@ -1,0 +1,1222 @@
+{
+ "robert": [
+  {
+   "id": "rob-b0",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-05T21:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.46,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b1",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-08T10:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.4,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b2",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-07T04:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.35,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b3",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-05T13:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.1,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b4",
+   "platform": "linkedin",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T17:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.26,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b5",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-12T09:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.5,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b6",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T07:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.14,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b7",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-05T14:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.16,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b8",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-05T19:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.25,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b9",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-03T11:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.45,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b10",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-07T21:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.47,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b11",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-11T12:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.31,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b12",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-08T15:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.43,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b13",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-11T23:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.29,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b14",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-11T22:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.35,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b15",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T16:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.32,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b16",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-08T08:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.27,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b17",
+   "platform": "linkedin",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-11T08:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.11,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b18",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-07T09:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.47,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-b19",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T21:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.3,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-1",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-10T16:45:00Z",
+   "text": "NVDA a chuté, tout le monde en parle : je rachète massivement aujourd'hui.",
+   "symbols": [
+    "NVDA"
+   ],
+   "engagement": 0.95,
+   "user_interaction": "j'aime",
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-2",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-10T13:10:00Z",
+   "text": "Occasion de la décennie sur NVDA selon moi. À vous de voir.",
+   "symbols": [
+    "NVDA"
+   ],
+   "engagement": 0.8,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "rob-3",
+   "platform": "linkedin",
+   "account": "Julien (ami)",
+   "account_type": "proche",
+   "followed": true,
+   "published_at": "2026-11-09T21:00:00Z",
+   "text": "J'ai repris du NVDA ce matin, impossible de rater ça.",
+   "symbols": [
+    "NVDA"
+   ],
+   "engagement": 0.4,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  }
+ ],
+ "amira": [
+  {
+   "id": "ami-b0",
+   "platform": "linkedin",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-11T02:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.43,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b1",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-07T09:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.38,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b2",
+   "platform": "linkedin",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-05T06:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.49,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b3",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-12T12:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.46,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b4",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-03T12:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.16,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b5",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-03T11:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.33,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b6",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T00:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.15,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b7",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-10T12:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.16,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b8",
+   "platform": "linkedin",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T14:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.32,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b9",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-08T18:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.13,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b10",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-12T11:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.3,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b11",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-11T02:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.25,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b12",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-06T15:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.43,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b13",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-12T11:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.3,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b14",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T18:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.23,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b15",
+   "platform": "linkedin",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-07T19:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.16,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b16",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-04T16:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.28,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b17",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T17:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.11,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b18",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-02T23:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.45,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-b19",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-07T15:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.36,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-1",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-11T14:20:00Z",
+   "text": "Le Bitcoin va repartir, j'en remets une couche ce soir.",
+   "symbols": [
+    "BTC-USD"
+   ],
+   "engagement": 0.85,
+   "user_interaction": "commentaire",
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "ami-2",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-10T15:00:00Z",
+   "text": "Je vends mes NVDA, la baisse ne fait que commencer.",
+   "symbols": [
+    "NVDA"
+   ],
+   "engagement": 0.7,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  }
+ ],
+ "mateo": [
+  {
+   "id": "mat-b0",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-10T21:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.36,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b1",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-06T15:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.31,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b2",
+   "platform": "linkedin",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-06T14:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.24,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b3",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-07T10:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.22,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b4",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-05T23:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.15,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b5",
+   "platform": "linkedin",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-10T23:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.44,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b6",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-02T13:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.36,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b7",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-08T07:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.24,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b8",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-06T06:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.35,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b9",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-08T10:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.33,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b10",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-03T21:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.14,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b11",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-04T07:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.4,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b12",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T09:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.21,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b13",
+   "platform": "linkedin",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-05T14:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.2,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b14",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-02T15:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.27,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b15",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-03T02:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.11,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b16",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-03T12:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.41,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b17",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T04:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.23,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b18",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-08T20:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.49,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-b19",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T19:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.26,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "mat-1",
+   "platform": "linkedin",
+   "account": "Sophie (collègue)",
+   "account_type": "proche",
+   "followed": true,
+   "published_at": "2026-11-11T12:30:00Z",
+   "text": "Le pétrole rapporte gros en ce moment, j'ai pris du XOM.",
+   "symbols": [
+    "XOM"
+   ],
+   "engagement": 0.5,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  }
+ ],
+ "default": [
+  {
+   "id": "def-b0",
+   "platform": "linkedin",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-03T02:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.21,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b1",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-05T14:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.41,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b2",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-08T17:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.18,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b3",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-10T04:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.35,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b4",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-02T21:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.34,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b5",
+   "platform": "linkedin",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-02T19:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.24,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b6",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-06T12:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.37,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b7",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-04T10:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.46,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b8",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-04T22:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.21,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b9",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-06T22:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.16,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b10",
+   "platform": "instagram",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-03T10:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.36,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b11",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-11T05:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.35,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b12",
+   "platform": "instagram",
+   "account": "@MarieAnalyse",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-03T02:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.29,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b13",
+   "platform": "instagram",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T17:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.38,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b14",
+   "platform": "instagram",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-10T22:00:00Z",
+   "text": "Les banques canadiennes publient bientôt leurs résultats.",
+   "symbols": [
+    "RY.TO",
+    "TD.TO"
+   ],
+   "engagement": 0.24,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b15",
+   "platform": "linkedin",
+   "account": "@SamCroissance",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-06T11:00:00Z",
+   "text": "Retour sur ma semaine : rien à signaler.",
+   "symbols": [],
+   "engagement": 0.35,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b16",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-11T03:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.18,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b17",
+   "platform": "linkedin",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-04T03:00:00Z",
+   "text": "L'or reste un refuge pour certains investisseurs.",
+   "symbols": [
+    "GLD"
+   ],
+   "engagement": 0.48,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b18",
+   "platform": "linkedin",
+   "account": "@LeoFinances",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-09T23:00:00Z",
+   "text": "Photo de vacances, aucun rapport avec la bourse.",
+   "symbols": [],
+   "engagement": 0.36,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  },
+  {
+   "id": "def-b19",
+   "platform": "linkedin",
+   "account": "@NadiaInvestit",
+   "account_type": "influenceur",
+   "followed": true,
+   "published_at": "2026-11-05T16:00:00Z",
+   "text": "Cinq habitudes pour mieux épargner cette année.",
+   "symbols": [],
+   "engagement": 0.16,
+   "user_interaction": null,
+   "etiquette": "Fictif"
+  }
+ ]
+}
