@@ -1,5 +1,8 @@
 import { PARAMS, ParamScores } from '../domain/types';
 
+/** Pénalité ajoutée à la dérive pour chaque règle (garde-fou) outrepassée. */
+export const GUARDRAIL_BREACH_PENALTY = 8;
+
 /**
  * Score de dérive (0–100) : à quel point le comportement courant s'éloigne
  * de la référence fixée à la dernière évaluation.
@@ -11,10 +14,36 @@ import { PARAMS, ParamScores } from '../domain/types';
 export function computeDrift(baseline: ParamScores, current: ParamScores, overrides: number): number {
   const gaps = PARAMS.map((p) => Math.abs(current[p] - baseline[p]));
   const mean = gaps.reduce((a, b) => a + b, 0) / gaps.length;
-  return Math.min(100, Math.round(1.5 * Math.max(...gaps) + mean + 8 * overrides));
+  return Math.min(100, Math.round(1.5 * Math.max(...gaps) + mean + GUARDRAIL_BREACH_PENALTY * overrides));
 }
 
 /** Poids d'un nouveau constat dans la valeur courante d'un paramètre. */
 export const SIGNAL_WEIGHT = 0.35;
 /** Un trade sans écart rapproche les paramètres de la référence. */
 export const CALM_DECAY = 0.15;
+
+/** Calcule l'impact direct sur le facteur de dérive en cas de bris de garde-fou. */
+export function calculateDerivationImpact(
+  baseline: ParamScores,
+  current: ParamScores,
+  currentOverrides: number,
+  breachedCount: number,
+  threshold = 60,
+) {
+  const currentDriftScore = computeDrift(baseline, current, currentOverrides);
+  const projectedDriftScore = computeDrift(baseline, current, currentOverrides + breachedCount);
+  const addedDriftPoints = breachedCount * GUARDRAIL_BREACH_PENALTY;
+  const exceedsThreshold = projectedDriftScore >= threshold;
+  return {
+    guardrailsTriggered: breachedCount,
+    penaltyPerGuardrail: GUARDRAIL_BREACH_PENALTY,
+    addedDriftPoints,
+    currentDriftScore,
+    projectedDriftScore,
+    threshold,
+    exceedsThreshold,
+    warning: breachedCount > 0
+      ? `Attention : outrepasser ${breachedCount} garde-fou(s) ajoutera +${addedDriftPoints} points de pénalité à votre dérive (score projeté : ${projectedDriftScore}/${threshold}).`
+      : null,
+  };
+}

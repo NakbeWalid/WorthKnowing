@@ -5,3 +5,5 @@ data/bank-db.json
 .env
 *.tsbuildinfo
 *.tmp
+.next
+next-env.d.ts

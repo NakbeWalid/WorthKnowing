@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Miroir — Connexion</title>
+  <title>WorthKnowing — Connexion</title>
   <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
 <main class="narrow" style="max-width:460px; padding-top:8vh">
-  <a class="brand" data-word="Miroir" href="/" style="font-size:40px">Miroir</a>
+  <a class="brand" href="/" style="font-size:40px">WorthKnowing</a>
   <p class="muted" style="margin-top:8px">Ce que vous dites de vous comme investisseur, et ce que vous faites vraiment.</p>
 
   <div class="card partner hidden" id="partnerCard"></div>
@@ -21,7 +21,7 @@
     <div class="error" id="error" role="alert"></div>
     <button class="primary" style="width:100%" id="submit">Se connecter</button>
     <p class="small muted" style="margin:16px 0 0; text-align:center">
-      <span id="switchText">Pas encore de compte Miroir ?</span> <button type="button" class="link" id="switch">Créer un compte</button>
+      <span id="switchText">Pas encore de compte WorthKnowing ?</span> <button type="button" class="link" id="switch">Créer un compte</button>
     </p>
   </form>
   <p class="small muted hidden" id="demoHint">Démo locale. Admin : admin@miroir.local / admin123</p>
@@ -38,9 +38,9 @@
     $('#nameField').classList.toggle('hidden', !registering);
     $('#passwordHint').classList.toggle('hidden', !registering);
     $('#password').autocomplete = registering ? 'new-password' : 'current-password';
-    $('#title').textContent = registering ? 'Créer un compte Miroir' : 'Connexion';
+    $('#title').textContent = registering ? 'Créer un compte WorthKnowing' : 'Connexion';
     $('#submit').textContent = registering ? 'Créer mon compte et commencer' : 'Se connecter';
-    $('#switchText').textContent = registering ? 'Déjà un compte Miroir ?' : 'Pas encore de compte Miroir ?';
+    $('#switchText').textContent = registering ? 'Déjà un compte WorthKnowing ?' : 'Pas encore de compte WorthKnowing ?';
     $('#switch').textContent = registering ? 'Se connecter' : 'Créer un compte';
     $('#error').textContent = '';
   }

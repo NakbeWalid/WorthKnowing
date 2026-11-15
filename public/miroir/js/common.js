@@ -115,3 +115,113 @@ function lineChart(context, forward = []) {
       <text x="${cut + 6}" y="14" font-size="12" fill="#66647a">votre décision</text>` : ''}
   </svg>`;
 }
+
+/**
+ * Graphique Hexagonal (Radar Chart) à 6 critères :
+ * Compare « Ce que vous pensez » (Déclaré) vs « Ce que vous êtes » (Observé / Actuel).
+ */
+function hexagonChart(declared = {}, actual = {}, options = {}) {
+  const keys = ['riskTolerance', 'lossAversion', 'fomo', 'concentration', 'impulsivity', 'newsSensitivity'];
+  const labels = [
+    'Appétit risque',
+    'Réaction pertes',
+    'Attrait « hype »',
+    'Concentration',
+    'Impulsivité',
+    'Sensibilité infos',
+  ];
+
+  const W = options.width || 560;
+  const H = options.height || 420;
+  const cx = W / 2;
+  const cy = H / 2 - 12;
+  const R = options.radius || 125;
+
+  const angles = keys.map((_, i) => -Math.PI / 2 + (i * 2 * Math.PI) / 6);
+  const pt = (angle, dist) => ({
+    x: cx + dist * Math.cos(angle),
+    y: cy + dist * Math.sin(angle),
+  });
+
+  const gridLevels = [0.2, 0.4, 0.6, 0.8, 1.0];
+  const gridPolys = gridLevels
+    .map((lvl) => {
+      const pts = angles.map((a) => pt(a, R * lvl)).map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+      return `<polygon points="${pts}" fill="none" stroke="#e2e8f0" stroke-width="${lvl === 1.0 ? '1.5' : '1'}" stroke-dasharray="${lvl === 1.0 ? 'none' : '2,2'}" />`;
+    })
+    .join('');
+
+  const axes = angles
+    .map((a) => {
+      const p = pt(a, R);
+      return `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" stroke="#cbd5e1" stroke-width="1.2" />`;
+    })
+    .join('');
+
+  const labelElems = keys
+    .map((k, i) => {
+      const a = angles[i];
+      const lp = pt(a, R + 26);
+      const dVal = declared && declared[k] !== undefined ? declared[k] : 50;
+      const aVal = actual && actual[k] !== undefined ? actual[k] : 50;
+
+      let anchor = 'middle';
+      if (Math.cos(a) > 0.3) anchor = 'start';
+      else if (Math.cos(a) < -0.3) anchor = 'end';
+
+      const baseline = Math.sin(a) < -0.3 ? 'baseline' : Math.sin(a) > 0.3 ? 'hanging' : 'middle';
+
+      return `<g transform="translate(${lp.x.toFixed(1)}, ${lp.y.toFixed(1)})">
+      <text text-anchor="${anchor}" dominant-baseline="${baseline}" font-size="12" font-weight="600" fill="#1e293b">${esc(labels[i])}</text>
+      <text text-anchor="${anchor}" dominant-baseline="${baseline}" y="14" font-size="11" fill="#64748b">
+        <tspan fill="#2563eb" font-weight="700">${dVal}</tspan> vs <tspan fill="#d97706" font-weight="700">${aVal}</tspan>
+      </text>
+    </g>`;
+    })
+    .join('');
+
+  const declaredPts = keys.map((k, i) => {
+    const val = Math.max(0, Math.min(100, Number(declared?.[k] ?? 50)));
+    return pt(angles[i], R * (val / 100));
+  });
+  const declaredPoly = declaredPts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  const declaredDots = declaredPts
+    .map((p) => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" fill="#2563eb" stroke="#ffffff" stroke-width="1.5" />`)
+    .join('');
+
+  const actualPts = keys.map((k, i) => {
+    const val = Math.max(0, Math.min(100, Number(actual?.[k] ?? 50)));
+    return pt(angles[i], R * (val / 100));
+  });
+  const actualPoly = actualPts.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  const actualDots = actualPts
+    .map((p) => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4.5" fill="#d97706" stroke="#ffffff" stroke-width="1.5" />`)
+    .join('');
+
+  const legendY = H - 18;
+
+  return `<div class="hexagon-chart-card" style="margin:16px 0; background:var(--card-bg, #fff); border-radius:8px; padding:12px;">
+    <h3 style="margin:0 0 4px; text-align:center; font-size:15px;">Hexagone Comportemental : Ce que vous pensez vs Ce que vous êtes</h3>
+    <p class="small muted" style="margin:0 0 10px; text-align:center;">Comparaison des 6 critères psychologiques d'investisseur (0 à 100)</p>
+    <div style="text-align:center; overflow-x:auto;">
+      <svg viewBox="0 0 ${W} ${H}" style="width:100%; max-width:520px; height:auto; font-family:inherit;" role="img" aria-label="Hexagone 6 critères">
+        ${gridPolys}
+        ${axes}
+        <polygon points="${declaredPoly}" fill="rgba(37, 99, 235, 0.18)" stroke="#2563eb" stroke-width="2.2" stroke-dasharray="4,3" />
+        ${declaredDots}
+        <polygon points="${actualPoly}" fill="rgba(217, 119, 6, 0.22)" stroke="#d97706" stroke-width="2.5" />
+        ${actualDots}
+        ${labelElems}
+        <g transform="translate(${cx - 165}, ${legendY})">
+          <line x1="0" y1="0" x2="20" y2="0" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="4,3" />
+          <circle cx="10" cy="0" r="4" fill="#2563eb" />
+          <text x="26" y="4" font-size="12" font-weight="600" fill="#2563eb">Ce que vous pensez (Déclaré)</text>
+
+          <line x1="190" y1="0" x2="210" y2="0" stroke="#d97706" stroke-width="2.5" />
+          <circle cx="200" cy="0" r="4" fill="#d97706" />
+          <text x="216" y="4" font-size="12" font-weight="600" fill="#d97706">Ce que vous êtes (Comportement)</text>
+        </g>
+      </svg>
+    </div>
+  </div>`;
+}

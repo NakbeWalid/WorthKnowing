@@ -1,5 +1,5 @@
 import { BadRequestException, ConflictException, Injectable, OnModuleInit, UnauthorizedException } from '@nestjs/common';
-import { randomUUID } from 'crypto';
+import { createHmac, randomUUID } from 'crypto';
 import { checkPassword, hashPassword, signToken, verifyToken } from '../../shared/local-auth';
 import { config } from '../config';
 import { User } from '../domain/types';
@@ -8,6 +8,12 @@ import { Store } from '../storage/store';
 
 export interface TokenPayload { sub: string; role: 'user' | 'admin'; exp: number }
 export interface AuthResult { token: string; user: ReturnType<typeof publicUser> }
+
+/** Génère un jeton d'intégration bancaire direct (genre hash de l'id utilisateur). */
+export function generateBankIntegrationToken(userId: string): string {
+  const hash = createHmac('sha256', config.jwtSecret).update(`bank_integration:${userId}`).digest('hex');
+  return `wk_live_${hash.slice(0, 32)}`;
+}
 
 /**
  * Contrat d'authentification. Le navigateur envoie toujours `Authorization: Bearer <jeton>`.
@@ -37,6 +43,7 @@ export function newUser(id: string, email: string, name: string, role: 'user' | 
     drift: { score: 0, overrides: 0 },
     link: null,
     seenScenarios: [],
+    bankIntegrationToken: generateBankIntegrationToken(id),
   };
 }
 
@@ -86,7 +93,9 @@ export class LocalAuthService extends AuthService implements OnModuleInit {
 export function publicUser(user: User) {
   const { passwordHash, seenScenarios, link, ...rest } = user;
   return {
-    ...rest, driftThreshold: config.driftThreshold,
+    ...rest,
+    driftThreshold: config.driftThreshold,
+    bankIntegrationToken: user.bankIntegrationToken || generateBankIntegrationToken(user.id),
     // L'identifiant de liaison est un secret (il entre dans le code persona) : jamais envoyé au navigateur.
     link: link?.status === 'active' ? { partner: link.partner, linkedAt: link.linkedAt } : null,
   };
