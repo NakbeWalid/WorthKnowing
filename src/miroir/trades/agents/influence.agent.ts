@@ -50,7 +50,6 @@ Ta question : ce trade montre-t-il un changement de comportement de l'investisse
 Règles absolues :
 - Tu ne t'appuies QUE sur les faits et nouvelles fournis, cités par leur numéro. Aucun autre fait, chiffre ni cause.
 - Tu recopies les chiffres tels quels ; tu ne calcules aucun nouveau chiffre.
-- N'indique aucun délai entre une nouvelle et le trade (« 3 jours après ») : seules les dates fournies comptent.
 - Ne qualifie jamais la durée de décision de l'investisseur (« rapide », « lente », « précipitée », « hâtive », « impulsive », « réfléchie »…) : cite-la telle quelle (« décision prise en 60 s ») et laisse le lecteur juger, sauf si un fait fourni la qualifie explicitement.
 - Une nouvelle ne prouve pas que l'investisseur l'a lue : parle d'influence « possible » ou « probable », jamais de cause certaine.
 - C'est un profil de comportement, pas un diagnostic psychologique : n'emploie pas le mot « psychologique ».
@@ -76,7 +75,7 @@ export class BedrockInfluenceAgent extends InfluenceAgent {
     const prompt = `Faits :
 ${facts.map((f, i) => `F${i + 1}. ${f}`).join('\n')}
 
-Nouvelles réelles publiées dans les 7 jours avant le trade :
+Nouvelles réelles, toutes antérieures au trade :
 ${newsBlock(input.news, news)}
 
 Constats déjà établis par le code : ${input.deterministic.map((f) => f.param).join(', ') || 'aucun'}.
@@ -85,13 +84,16 @@ Réponds avec :
 - "verdict" : "influence_externe", "changement_de_comportement", "les_deux", "conforme" ou "indetermine" ;
 - "rationale" : 1 à 2 phrases en français (50 mots maximum), en citant les numéros entre crochets, ex. [N1] [F3].
   Pour la durée de décision, écris seulement le fait (« décision prise en 60 s »), sans adjectif (pas de « rapide », « lente », « précipitée »).
-  Pour situer les nouvelles dans le temps, écris seulement leurs dates (« nouvelles du 6 janvier ») : n'écris jamais le mot « jours » ni un nombre de jours, et ne dis pas « après » ou « avant » le trade pour une durée ;
+  Cite les nouvelles par leur numéro, sans les situer par une date.
 - "refs" : les numéros cités ;
 - "findings" : 0 à 2 constats SUPPLÉMENTAIRES, uniquement pour ces paramètres : ${allowed.join(', ') || '(aucun : renvoie [])'}.
   Chaque constat : {"param":"...","signal":0-100,"evidence":"phrase courte en français","refs":["N1"]}.
   Paramètres : newsSensitivity = réagit aux manchettes ; fomo = achète ce qui vient de beaucoup monter ; lossAversion = vend dans la panique.
 Format : {"verdict":"...","rationale":"...","refs":["F1"],"findings":[]}`;
 
+    // Tout ce que le modèle a sous les yeux est « connu » du garde-fou : faits et titres des nouvelles.
+    // Règle : si une donnée est donnée au modèle, elle doit figurer ici, sinon le garde-fou la rejette comme « inventée »
+    // (c'était le cas des dates de nouvelles : 31 relances sur 49 mesurées avant correction).
     const factsText = `${facts.join(' ')} ${news.map((n) => n.title).join(' ')}`;
     try {
       const deadline = Date.now() + config.bedrockTimeoutMs; // la relance partage le budget de temps du premier appel
@@ -217,7 +219,10 @@ function buildFacts(i: InfluenceInput): string[] {
 
 /** Distingue « aucune nouvelle trouvée » (information) de « recherche indisponible » (on ne sait pas). */
 function newsBlock(all: NewsItem[], real: NewsItem[]): string {
-  if (real.length) return real.map((n, i) => `N${i + 1}. ${n.date} · ${n.source} · impact ${n.impact} · ${n.title}`).join('\n');
+  // Sans date : avec des dates de nouvelles à côté de la date du trade, le modèle calcule lui-même un écart en jours
+  // (« 4 jours après »), ce que le garde-fou rejette. Mesuré sur 74 essais : relance 24 % avec dates, 4 % sans.
+  // Les dates restent visibles pour l'utilisateur (liste des nouvelles, section « Sources »).
+  if (real.length) return real.map((n, i) => `N${i + 1}. ${n.source} · impact ${n.impact} · ${n.title}`).join('\n');
   if (all.some((n) => n.simulated)) return '(recherche de nouvelles indisponible pour ce trade : impossible de conclure sur une influence externe)';
   return '(aucune nouvelle trouvée dans les sources interrogées)';
 }
