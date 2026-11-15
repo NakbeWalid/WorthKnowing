@@ -10,7 +10,7 @@ import { GovernanceAgent } from '../dist/miroir/trades/agents/governance.agent.j
 import { BehaviorAgent } from '../dist/miroir/trades/agents/behavior.agent.js';
 import { TemplateExplainer } from '../dist/miroir/trades/agents/explainer.js';
 import { NoInfluenceAgent } from '../dist/miroir/trades/agents/influence.agent.js';
-import { generateBankIntegrationToken, newUser } from '../dist/miroir/auth/auth.service.js';
+import { newUser } from '../dist/miroir/auth/auth.service.js';
 import { calculateDerivationImpact, GUARDRAIL_BREACH_PENALTY } from '../dist/miroir/trades/drift.js';
 import { ParserController } from '../dist/miroir/parser/parser.controller.js';
 
@@ -45,12 +45,7 @@ assert(parsedCv.cryptoAffinity === 'yes', 'Affinité crypto détectée');
 assert(parsedCv.suggestedAnswers.age !== '', 'Suggestion tranche d’âge');
 assert(parsedCv.inferredScores.riskTolerance > 50, 'Inférence prior riskTolerance > 50');
 
-console.log('\n--- 2. Test Bank Integration Token ---');
 const testUser = newUser('user-test-1234', 'test@worthknowing.local', 'Test User', 'user');
-assert(testUser.bankIntegrationToken.startsWith('wk_live_'), 'Jeton commence par wk_live_');
-const tokenCheck = generateBankIntegrationToken('user-test-1234');
-assert(testUser.bankIntegrationToken === tokenCheck, 'Génération déterministe / hashée du token bancaire');
-
 console.log('\n--- 3. Test Derivation Factor Impact & Guardrail Penalty ---');
 assert(GUARDRAIL_BREACH_PENALTY === 8, 'Pénalité de 8 points par garde-fou brisé');
 const baseline = { riskTolerance: 50, lossAversion: 40, fomo: 30, concentration: 30, impulsivity: 20, newsSensitivity: 30 };
@@ -111,17 +106,8 @@ assert(testUser.drift.score === 0, 'Score de dérive réinitialisé à 0');
 assert(testUser.drift.overrides === 0, 'Overrides remis à 0');
 assert(testUser.status === 'active', 'Statut repassé à active');
 
-console.log('\n--- 6. Test IntegrationController (API d’intégration directe) ---');
-import { IntegrationController } from '../dist/miroir/integration/integration.controller.js';
-const integrationController = new IntegrationController(trades);
-
-const reqMock = { user: testUser };
-const persona = integrationController.persona(reqMock);
-assert(persona.userId === testUser.id, 'Persona retourné pour le user');
-assert(persona.rules.length === 2, 'Règles incluses dans persona');
-assert(persona.criteriaHexagon !== undefined, 'Données hexagone incluses');
-
-const checkRes = await integrationController.checkTrade(reqMock, {
+console.log('\n--- 6. Test pré-contrôle : impact sur la dérive ---');
+const checkRes = await trades.check(testUser, {
   ticker: 'NVDA',
   side: 'buy',
   amount: 25000,

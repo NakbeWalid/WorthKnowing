@@ -76,34 +76,6 @@ async function refresh() {
     refresh();
   };
 
-  // Intégration Bancaire Directe & Token API
-  const token = me.bankIntegrationToken || 'wk_live_' + me.id.replace(/-/g, '').slice(0, 32);
-  $('#bankIntegrationContent').innerHTML = `
-    <p class="small muted" style="margin:0 0 6px;"><b>Bank Integration Token</b> (jeton direct pour institutions financières) :</p>
-    <div style="display:flex; gap:6px; align-items:center; margin-bottom:10px;">
-      <code id="bankTokenCode" style="font-size:11px; word-break:break-all; padding:6px; background:#f1f5f9; border-radius:4px; flex:1;">${esc(token)}</code>
-      <button class="mini" id="btnCopyBankToken">Copier</button>
-    </div>
-    <details class="small muted">
-      <summary style="cursor:pointer"><b>Documentation de l'API d'intégration</b></summary>
-      <div style="margin-top:6px; font-size:12px;">
-        <p style="margin:4px 0;"><b>Points d'accès disponibles :</b></p>
-        <ul style="margin:4px 0; padding-left:18px;">
-          <li><code>GET /api/integration/v1/persona</code> : État du profil, règles, radar 6 critères</li>
-          <li><code>POST /api/integration/v1/trades/check</code> : Vérification pré-ordre + Impact facteur de dérive</li>
-          <li><code>POST /api/integration/v1/trades</code> : Analyse et enregistrement de l'ordre bancaire</li>
-        </ul>
-        <p style="margin:6px 0 0;">En-tête d'authentification : <code>x-integration-token: ${esc(token)}</code></p>
-      </div>
-    </details>`;
-
-  $('#btnCopyBankToken').onclick = () => {
-    navigator.clipboard.writeText(token).then(() => {
-      $('#btnCopyBankToken').textContent = 'Copié !';
-      setTimeout(() => { $('#btnCopyBankToken').textContent = 'Copier'; }, 2000);
-    });
-  };
-
   // Hexagone 6 critères (Ce que vous pensez vs Ce que vous êtes)
   const { current, baseline, declared } = me.profile;
   $('#hexagonContainer').innerHTML = hexagonChart(declared || baseline, current || baseline);

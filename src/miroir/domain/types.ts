@@ -74,8 +74,6 @@ export interface User {
   /** Liaison avec la plateforme de courtage partenaire (null = aucune). */
   link: Link | null;
   seenScenarios: string[];
-  /** Jeton d'intégration bancaire direct (genre hash de l'id utilisateur). */
-  bankIntegrationToken?: string;
   /** Enrichissement de la caractérisation comportementale (CV, réseaux sociaux). */
   characterizationEnrichment?: any;
 }
