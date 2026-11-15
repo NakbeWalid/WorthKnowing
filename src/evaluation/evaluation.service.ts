@@ -1,7 +1,5 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 import { config } from '../config';
 import {
   Decision, Evaluation, PARAM_INFO, PARAMS, ParamKey, ParamScores, Rule, Scenario, ScenarioType, User,
@@ -9,6 +7,7 @@ import {
 import { MarketService } from '../market/market.service';
 import { NewsProvider } from '../news/news.provider';
 import { EventsService } from '../realtime/events.service';
+import { readDataFile } from '../storage/data-files';
 import { Store } from '../storage/store';
 import { QUESTIONS } from './questions';
 import { PARAM_CHECKS } from './rule-templates';
@@ -21,17 +20,20 @@ import { outcomeOf, SCENARIO_TYPES, STAKE } from './scenario-types';
  *   3. révélation     -> ce qui s'est vraiment passé + résultat de chaque décision
  *   4. règles         -> l'utilisateur encadre lui-même ses paramètres fragiles
  * La même mécanique sert à la réévaluation déclenchée par le score de dérive.
- *
- * ▶ POINT D'INTÉGRATION AWS (Kiro) : charger scenarios.json depuis S3.
+ * La bibliothèque de scénarios est lue au démarrage (S3 si DATA_BUCKET, sinon disque local).
  */
 @Injectable()
-export class EvaluationService {
-  private library: Scenario[] = JSON.parse(readFileSync(join(process.cwd(), 'data', 'scenarios.json'), 'utf-8'));
+export class EvaluationService implements OnModuleInit {
+  private library: Scenario[] = [];
 
   constructor(
     private store: Store, private events: EventsService,
     private market: MarketService, private news: NewsProvider,
   ) {}
+
+  async onModuleInit() {
+    this.library = JSON.parse(await readDataFile('data/scenarios.json'));
+  }
 
   questions() { return QUESTIONS; }
 

@@ -26,6 +26,8 @@ export const config = {
     userPoolId: process.env.COGNITO_USER_POOL_ID ?? '',
     clientId: process.env.COGNITO_CLIENT_ID ?? '',
   },
+  /** Bucket S3 des données (dataset/, data/, corpus de nouvelles). Vide = disque local seulement. */
+  dataBucket: process.env.DATA_BUCKET ?? '',
   /** json = data/db.json (local) ; dynamodb = tables DynamoDB ci-dessous. */
   storageDriver: (process.env.STORAGE_DRIVER ?? 'json') as 'json' | 'dynamodb',
   tables: {

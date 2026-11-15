@@ -1,7 +1,6 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { BadRequestException, Injectable, OnModuleInit } from '@nestjs/common';
 import { MarketContext } from '../domain/types';
+import { readDataFile } from '../storage/data-files';
 
 interface Asset { ticker: string; name: string; asset_class: string; currency: string; sector: string }
 interface Series { dates: string[]; close: number[]; adj: number[] }
@@ -9,18 +8,17 @@ interface Series { dates: string[]; close: number[]; adj: number[] }
 /**
  * Données de marché : charge dataset/prices_daily.csv en mémoire (≈ 40 000 lignes).
  * `close` sert de prix d'exécution, `adj_close` sert aux rendements (voir dataset/README.md).
- *
- * ▶ POINT D'INTÉGRATION AWS (Kiro) : lire les CSV depuis S3 (ou interroger Athena)
- *   au lieu du disque local.
+ * Lu au démarrage depuis S3 si DATA_BUCKET est défini (repli sur le disque local), voir storage/data-files.ts.
  */
 @Injectable()
-export class MarketService {
-  private assets: Asset[] = JSON.parse(readFileSync(join(process.cwd(), 'data', 'assets.json'), 'utf-8'));
+export class MarketService implements OnModuleInit {
+  private assets: Asset[] = [];
   private series = new Map<string, Series>();
-  readonly lastDate: string;
+  lastDate = '';
 
-  constructor() {
-    const lines = readFileSync(join(process.cwd(), 'dataset', 'prices_daily.csv'), 'utf-8').trim().split('\n');
+  async onModuleInit() {
+    this.assets = JSON.parse(await readDataFile('data/assets.json'));
+    const lines = (await readDataFile('dataset/prices_daily.csv')).trim().split('\n');
     for (const line of lines.slice(1)) {
       // date,ticker,open,high,low,close,adj_close,volume,currency
       const c = line.split(',');
