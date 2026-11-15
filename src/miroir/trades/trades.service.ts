@@ -141,6 +141,9 @@ export class TradesService {
       for (const p of PARAMS) {
         profile.current[p] = Math.round(profile.current[p] + (profile.baseline[p] - profile.current[p]) * CALM_DECAY);
       }
+      // Un trade conforme efface aussi, progressivement, les depassements de regles passes.
+      // Math.floor (et non Math.round) garantit une convergence reelle vers 0, sans rester bloque a 1.
+      user.drift.overrides = Math.floor(user.drift.overrides * (1 - CALM_DECAY));
     }
     user.drift.overrides += triggeredRules.length;
     user.drift.score = computeDrift(profile.baseline, profile.current, user.drift.overrides);
