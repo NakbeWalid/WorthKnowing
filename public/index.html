@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miroir — Connexion</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<main class="narrow" style="max-width:420px; padding-top:9vh">
+  <h1 style="font-size:34px">Miroir<span style="color:var(--accent)">.</span></h1>
+  <p class="muted">Ce que vous dites de vous comme investisseur, et ce que vous faites vraiment.</p>
+
+  <form class="card" id="form">
+    <h2 id="title">Connexion</h2>
+    <div id="nameField" class="hidden"><label for="name">Prénom</label><input id="name" autocomplete="given-name"></div>
+    <label for="email">Courriel</label><input id="email" type="email" autocomplete="email" required>
+    <label for="password">Mot de passe</label><input id="password" type="password" minlength="6" required>
+    <div class="error" id="error"></div>
+    <button class="primary" style="width:100%" id="submit">Se connecter</button>
+    <p class="small muted" style="margin:14px 0 0; text-align:center">
+      <span id="switchText">Pas encore de compte ?</span> <button type="button" class="link" id="switch">Créer un utilisateur</button>
+    </p>
+  </form>
+  <p class="small muted">Démo admin : admin@miroir.local / admin123</p>
+  <p class="disclaimer">Simulation uniquement — aucune transaction réelle, aucun conseil financier.</p>
+</main>
+<script src="/js/common.js"></script>
+<script>
+  let registering = false;
+  $('#switch').onclick = () => {
+    registering = !registering;
+    $('#nameField').classList.toggle('hidden', !registering);
+    $('#title').textContent = registering ? 'Créer un utilisateur' : 'Connexion';
+    $('#submit').textContent = registering ? 'Créer mon compte et commencer' : 'Se connecter';
+    $('#switchText').textContent = registering ? 'Déjà inscrit ?' : 'Pas encore de compte ?';
+    $('#switch').textContent = registering ? 'Se connecter' : 'Créer un utilisateur';
+    $('#error').textContent = '';
+  };
+  $('#form').onsubmit = async (e) => {
+    e.preventDefault();
+    const body = { email: $('#email').value, password: $('#password').value, name: $('#name').value };
+    try {
+      const data = await api('POST', registering ? '/auth/register' : '/auth/login', body);
+      session.save(data);
+      route(data.user);
+    } catch (err) { $('#error').textContent = err.message; }
+  };
+</script>
+</body>
+</html>
