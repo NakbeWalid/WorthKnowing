@@ -5,10 +5,8 @@ import { PARAM_CHECKS, TradeMetrics } from '../../evaluation/rule-templates';
 /**
  * Agent de comportement — cœur de l'enquête : quels paramètres du profil ce trade met-il en jeu ?
  * Chaque constat porte sa preuve chiffrée (issue des prix), jamais une justification inventée.
- *
- * ▶ POINT D'INTÉGRATION AWS (Kiro) : enrichir avec un agent Bedrock qui croise les vraies
- *   nouvelles (NewsProvider) et l'historique de l'utilisateur pour détecter une influence
- *   externe. Garder ces constats déterministes comme socle vérifiable.
+ * C'est le socle vérifiable ; l'agent d'influence (influence.agent.ts, Bedrock) ne peut qu'y ajouter
+ * des constats bornés sur les paramètres que ce socle n'a pas déjà relevés.
  */
 @Injectable()
 export class BehaviorAgent {
@@ -19,7 +17,7 @@ export class BehaviorAgent {
         const check = PARAM_CHECKS[param];
         const override = overridden.some((r) => r.param === param);
         return {
-          param,
+          param, origin: 'rules' as const,
           // Passer outre sa propre règle renforce le signal.
           signal: clamp(check.signal(m) + (override ? 10 : 0)),
           evidence: check.evidence(m) + (override ? ' Règle personnelle outrepassée.' : ''),

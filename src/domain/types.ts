@@ -95,11 +95,26 @@ export interface Evaluation {
 
 export interface NewsItem {
   date: string;
+  /** Manchette telle que publiée (vraie nouvelle) ou description du signal (simulé). */
   title: string;
+  /** Éditeur (domaine) pour une vraie nouvelle. */
   source: string;
   impact: 'faible' | 'moyen' | 'élevé';
   /** true = signal dérivé des prix, pas une vraie dépêche. Toujours affiché comme tel. */
   simulated: boolean;
+  /** Vraie nouvelle : lien vers l'article et date de récupération (traçabilité). */
+  url?: string;
+  retrievedAt?: string;
+  /** Reformulation en français par le modèle (étiquetée « IA ») — n'ajoute aucune information. */
+  summary?: string;
+}
+
+/** Contexte médiatique d'un actif à une date, rédigé par le modèle à partir de manchettes citées. */
+export interface HistoricalContext {
+  text: string;
+  sources: { title: string; source: string; url: string; date: string }[];
+  /** Mention affichée : qui a rédigé le texte et à partir de quoi. */
+  label: string;
 }
 
 /** Contexte de marché calculé à la date du trade (faits issus de prices_daily.csv). */
@@ -128,6 +143,17 @@ export interface Finding {
   /** Signal 0–100 qui tire le paramètre courant vers lui. */
   signal: number;
   evidence: string;
+  /** rules = seuil fixe vérifiable (socle) ; bedrock = constat de l'agent d'influence, borné. */
+  origin?: 'rules' | 'bedrock';
+}
+
+/** Réponse de l'agent d'influence : changement de comportement ou influence externe ? */
+export interface InfluenceVerdict {
+  verdict: 'influence_externe' | 'changement_de_comportement' | 'les_deux' | 'conforme' | 'indetermine';
+  rationale: string;
+  /** Références vérifiées vers les données d'entrée (N1 = nouvelle 1, F2 = fait 2). */
+  refs: string[];
+  model: string;
 }
 
 export interface TriggeredRule { ruleId: string; param: ParamKey; text: string; reason: string }
@@ -136,6 +162,8 @@ export interface Investigation {
   context: MarketContext;
   news: NewsItem[];
   findings: Finding[];
+  /** Absent si l'agent d'influence n'est pas activé ou n'a pas répondu. */
+  influence?: InfluenceVerdict | null;
   /** Tensions entre la demande et le profil déclaré (informatif, sans blocage). */
   warnings: string[];
   triggeredRules: TriggeredRule[];

@@ -1,15 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { MarketContext, NewsItem, pct } from '../domain/types';
+import { HistoricalContext, MarketContext, NewsItem, pct } from '../domain/types';
 
 /**
  * Contrat de l'agent de recherche de nouvelles utilisé pendant l'enquête d'un trade.
- *
- * ▶ POINT D'INTÉGRATION AWS (Kiro) : créer `BedrockNewsProvider` — un agent Amazon Bedrock
- *   qui cherche de VRAIES nouvelles datées (API de nouvelles / recherche web / base de
- *   connaissances) et retourne des NewsItem avec `simulated: false` et la source citée.
+ * Implémentation AWS : `BedrockNewsProvider` (bedrock-news.provider.ts), choisie par NEWS_DRIVER=bedrock.
  */
 export abstract class NewsProvider {
+  /** Nouvelles publiées avant la date du contexte (jamais après). */
   abstract getNews(context: MarketContext): Promise<NewsItem[]>;
+  /** Contexte médiatique sourcé pour la révélation des simulations ; null = rien de sourcé, ne rien afficher. */
+  async historicalContext(_context: MarketContext): Promise<HistoricalContext | null> {
+    return null;
+  }
 }
 
 /**

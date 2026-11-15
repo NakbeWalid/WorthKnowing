@@ -103,6 +103,7 @@ async function showReveal() {
         <p>Dans les 60 séances suivantes, le titre a fait <b>${pct(x.outcome.fwd60d)}</b>
           (pire creux en chemin : ${pct(x.outcome.maxDrawdown)} ; marché américain sur la même période : ${pct(x.outcome.marketFwd60d)}).
           Vous avez décidé en ${x.decisionSeconds} s.</p>
+        ${historicalContextHtml(x.historicalContext)}
         <table>
           <tr><th>Décision possible</th><th class="right">Résultat réel</th></tr>
           ${x.options.map((o) => `<tr class="${o.id === x.chosenId ? 'chosen' : ''} ${o.id === x.bestId ? 'best' : ''}">
@@ -172,3 +173,14 @@ function showRules() {
     showQuestion();
   }
 })();
+
+/** Ce que disaient les médias juste avant la décision (vraies manchettes citées). Rien de sourcé : rien d'affiché. */
+function historicalContextHtml(hc) {
+  if (!hc) return '';
+  return `<div class="quote">
+    <p style="margin:0 0 6px">${esc(hc.text)} <span class="badge grey">IA</span></p>
+    <p class="small muted" style="margin:0">${hc.sources.map((s) =>
+      `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.source)}</a> (${esc(s.date)})`).join(' · ')}</p>
+    <p class="small muted" style="margin:4px 0 0">${esc(hc.label)}</p>
+  </div>`;
+}

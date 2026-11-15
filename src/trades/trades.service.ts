@@ -10,6 +10,7 @@ import { Store } from '../storage/store';
 import { BehaviorAgent } from './agents/behavior.agent';
 import { Explainer } from './agents/explainer';
 import { GovernanceAgent } from './agents/governance.agent';
+import { InfluenceAgent } from './agents/influence.agent';
 import { CALM_DECAY, computeDrift, SIGNAL_WEIGHT } from './drift';
 
 export interface TradeRequest {
@@ -44,6 +45,7 @@ export class TradesService {
     private governance: GovernanceAgent,
     private behavior: BehaviorAgent,
     private explainer: Explainer,
+    private influence: InfluenceAgent,
     private events: EventsService,
   ) {}
 
@@ -90,9 +92,14 @@ export class TradesService {
       `${req.side === 'buy' ? 'Achat' : 'Vente'} ${req.ticker} — ${req.amount.toLocaleString('fr-CA')} $`);
     await pause();
 
-    // [3] Enquête : nouvelles + constats comportementaux.
+    // [3] Enquête : nouvelles + constats déterministes (socle) + agent d'influence (IA, borné).
     const news = await this.news.getNews(context);
-    const findings = this.behavior.analyse(metrics, triggeredRules);
+    const deterministic = this.behavior.analyse(metrics, triggeredRules);
+    const ai = await this.influence.analyse({
+      metrics, amount: req.amount, note: base.note, news, profile: user.profile!, deterministic,
+      recentTrades: (await this.store.listTrades(user.id)).slice(0, 10),
+    });
+    const findings = [...deterministic, ...ai.findings];
     const warnings = this.governance.coherenceWarnings(user, metrics);
     this.events.emit('investigation.completed', user,
       findings.length ? `Enquête : ${findings.length} paramètre(s) mis en jeu` : 'Enquête : trade conforme au profil');
@@ -117,7 +124,7 @@ export class TradesService {
 
     // [5] Explication (sources, hypothèses, limites).
     const draft: Omit<Investigation, 'explanation'> = {
-      context, news, findings, warnings, triggeredRules,
+      context, news, findings, influence: ai.verdict, warnings, triggeredRules,
       paramUpdates: PARAMS.filter((p) => before[p] !== profile.current[p])
         .map((p) => ({ param: p, before: before[p], after: profile.current[p] })),
       driftBefore, driftAfter: user.drift.score,

@@ -6,6 +6,8 @@ import { config } from '../config';
 import {
   Decision, Evaluation, PARAM_INFO, PARAMS, ParamKey, ParamScores, Rule, Scenario, ScenarioType, User,
 } from '../domain/types';
+import { MarketService } from '../market/market.service';
+import { NewsProvider } from '../news/news.provider';
 import { EventsService } from '../realtime/events.service';
 import { Store } from '../storage/store';
 import { QUESTIONS } from './questions';
@@ -26,7 +28,10 @@ import { outcomeOf, SCENARIO_TYPES, STAKE } from './scenario-types';
 export class EvaluationService {
   private library: Scenario[] = JSON.parse(readFileSync(join(process.cwd(), 'data', 'scenarios.json'), 'utf-8'));
 
-  constructor(private store: Store, private events: EventsService) {}
+  constructor(
+    private store: Store, private events: EventsService,
+    private market: MarketService, private news: NewsProvider,
+  ) {}
 
   questions() { return QUESTIONS; }
 
@@ -106,6 +111,9 @@ export class EvaluationService {
         decisionSeconds: Math.round(seconds),
       };
     });
+    // Contexte médiatique réel avant chaque décision (sourcé), seulement si l'agent de nouvelles en trouve.
+    const contexts = await Promise.all(reveals.map((r) => this.historicalContext(r.reveal.ticker, r.reveal.decisionDate)));
+    reveals.forEach((r, i) => Object.assign(r, { historicalContext: contexts[i] }));
     signals.impulsivity.push(avg(timeSignals));
 
     const observed = Object.fromEntries(PARAMS.map((p) =>
@@ -152,6 +160,16 @@ export class EvaluationService {
   }
 
   // ---------------------------------------------------------------- privé
+  /** Jamais bloquant : au-delà de 30 s ou en cas d'erreur, la révélation s'affiche sans contexte. */
+  private async historicalContext(ticker: string, date: string) {
+    try {
+      const timeout = new Promise<null>((resolve) => setTimeout(() => resolve(null), 30_000));
+      return await Promise.race([this.news.historicalContext(this.market.context(ticker, date)), timeout]);
+    } catch {
+      return null;
+    }
+  }
+
 
   private declaredFrom(answers: Record<string, string>): ParamScores {
     const scores = {} as ParamScores;
