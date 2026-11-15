@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { BedrockClient } from '../../ai/bedrock.client';
 import { inventedDurations, inventedNumbers } from '../../ai/guards';
+import { config } from '../../config';
 import {
   clamp, Finding, InfluenceVerdict, NewsItem, PARAM_INFO, ParamKey, pct, Profile, Trade,
 } from '../../domain/types';
@@ -91,9 +92,12 @@ Réponds avec :
   Paramètres : newsSensitivity = réagit aux manchettes ; fomo = achète ce qui vient de beaucoup monter ; lossAversion = vend dans la panique.
 Format : {"verdict":"...","rationale":"...","refs":["F1"],"findings":[]}`;
 
+    const factsText = `${facts.join(' ')} ${news.map((n) => n.title).join(' ')}`;
     try {
-      const out = await this.bedrock.json<any>(SYSTEM, prompt, 700);
-      const verdict = this.checkVerdict(out, known, `${facts.join(' ')} ${news.map((n) => n.title).join(' ')}`);
+      const deadline = Date.now() + config.bedrockTimeoutMs; // la relance partage le budget de temps du premier appel
+      let out = await this.bedrock.json<any>(SYSTEM, prompt, 700, config.bedrockTimeoutMs);
+      out = await this.retryRationale(out, prompt, factsText, deadline);
+      const verdict = this.checkVerdict(out, known, factsText);
       // Pas de constat supplémentaire si le modèle lui-même ne voit rien de particulier.
       const findings = ['conforme', 'indetermine'].includes(verdict.verdict)
         ? [] : this.checkFindings(out.findings, known, allowed, input, news);
@@ -103,7 +107,37 @@ Format : {"verdict":"...","rationale":"...","refs":["F1"],"findings":[]}`;
       return { findings: [], verdict: null };
     }
   }
+  /**
+   * Si la phrase du modèle viole le garde-fou (chiffre ou délai absent des faits), on le relance UNE fois en lui
+   * nommant la violation. Seule la phrase de la 2e réponse est reprise, et seulement si elle passe le même garde-fou :
+   * verdict, références et constats restent ceux de la 1re réponse. Sinon (2e échec, erreur, plus de temps),
+   * `checkVerdict` retombe sur la liste de références. Une phrase qui viole le garde-fou n'est jamais affichée.
+   */
+  private async retryRationale(out: any, prompt: string, factsText: string, deadline: number): Promise<any> {
+    const problems = rationaleProblems(out?.rationale, factsText);
+    if (!problems.length) return out;
+    const remaining = deadline - Date.now();
+    if (remaining < MIN_RETRY_MS) {
+      this.log.warn(`phrase rejetée (${problems.join(' ; ')}), pas assez de temps pour une relance`);
+      return out;
+    }
+    this.log.warn(`phrase rejetée (${problems.join(' ; ')}), relance unique`);
+    try {
+      const retry = await this.bedrock.json<any>(SYSTEM, `${prompt}
 
+Ta réponse précédente a été rejetée par le contrôle du code. Ta phrase "rationale" était : « ${String(out.rationale).trim()} »
+Problème : ${problems.join(' ; ')}.
+Réécris UNIQUEMENT la phrase "rationale", avec la même idée et sans cet élément (pour les nouvelles, n'indique que leurs dates). Réponds avec le même format JSON complet.`, 700, remaining);
+      const again = rationaleProblems(retry?.rationale, factsText);
+      if (typeof retry?.rationale === 'string' && retry.rationale.trim() && !again.length) {
+        return { ...out, rationale: retry.rationale };
+      }
+      this.log.warn(`la relance viole aussi le garde-fou (${again.join(' ; ') || 'phrase vide'}) : liste de références conservée`);
+    } catch (err) {
+      this.log.warn(`relance impossible : ${(err as Error).message}`);
+    }
+    return out;
+  }
   /** Une conclusion doit s'appuyer sur des références existantes ; « influence externe » exige une vraie nouvelle. */
   private checkVerdict(out: any, known: Set<string>, factsText: string): InfluenceVerdict {
     const refs = validRefs(out.refs, known);
@@ -114,7 +148,7 @@ Format : {"verdict":"...","rationale":"...","refs":["F1"],"findings":[]}`;
     }
     let rationale = typeof out.rationale === 'string' ? out.rationale.trim().slice(0, 400) : '';
     // Un chiffre ou un délai absent des faits = inventé ou recalculé : on ne montre que les références.
-    if (!rationale || inventedNumbers(rationale, factsText).length || inventedDurations(rationale, factsText).length) {
+    if (!rationale || rationaleProblems(rationale, factsText).length) {
       rationale = refs.length ? `Appuyé sur : ${refs.join(', ')}.` : 'Les données fournies ne permettent pas de conclure.';
     }
     return { verdict, rationale, refs, model: this.bedrock.modelId };
@@ -147,6 +181,19 @@ Format : {"verdict":"...","rationale":"...","refs":["F1"],"findings":[]}`;
   }
 }
 
+/** Temps minimal restant pour qu'une relance ait une chance d'aboutir (un appel Haiku dure 1 à 3 s). */
+const MIN_RETRY_MS = 3_000;
+/** Violations du garde-fou dans une phrase du modèle, formulées pour pouvoir être renvoyées au modèle. Vide = phrase acceptable. */
+function rationaleProblems(rationale: unknown, factsText: string): string[] {
+  if (typeof rationale !== 'string') return [];
+  const text = rationale.trim().slice(0, 400); // même troncature que celle appliquée à l'affichage
+  const problems: string[] = [];
+  const durations = inventedDurations(text, factsText);
+  if (durations.length) problems.push(`elle mentionne « ${durations.join(' », « ')} », un délai non confirmé par les faits fournis`);
+  const numbers = inventedNumbers(text, factsText);
+  if (numbers.length) problems.push(`elle contient le(s) chiffre(s) ${numbers.join(', ')}, absent(s) des faits fournis`);
+  return problems;
+}
 /** Faits fournis au modèle : uniquement ce que le code a calculé ou ce que l'utilisateur a écrit. */
 function buildFacts(i: InfluenceInput): string[] {
   const { context: c, side, positionWeight, speculativeWeight, decisionSeconds } = i.metrics;
