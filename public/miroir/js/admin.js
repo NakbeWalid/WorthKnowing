@@ -55,7 +55,7 @@ async function loadDetail() {
             <td class="right"><b class="${Math.abs(p.current[k] - p.baseline[k]) >= 10 ? 'neg' : ''}">${p.current[k]}</b></td></tr>`).join('')}
           </table>
           ${prefs ? `<h3 style="margin-top:20px">Ce que le persona a déclaré</h3><table>${prefs}</table>` : ''}
-          ${user.profile?.sources?.cv ? `<p class="small muted" style="margin-top:12px">Référence : simulations ${Math.round((1 - user.profile.sources.cvWeight) * 100)} % + CV ${Math.round(user.profile.sources.cvWeight * 100)} %.</p>` : ''}
+          ${user.cvProfile?.expertise ? `<p class="small muted" style="margin-top:12px">Expertise en trading détectée au CV : ${{ novice: 'novice', intermediate: 'intermédiaire', advanced: 'avancée' }[user.cvProfile.expertise]} (contexte d'enquête sur les trades, n'affecte pas ce profil de référence).</p>` : ''}
         </div>
         <div>
           <h3>Règles auto-définies</h3>

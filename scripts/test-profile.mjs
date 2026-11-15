@@ -1,4 +1,5 @@
-// Tests du profil (sans serveur ni AWS) : CV protégé par la session, CV comme source distincte,
+// Tests du profil (sans serveur ni AWS) : CV protégé par la session, CV sans effet sur le profil de référence
+// (seule l'expertise, utilisée plus tard par l'enquête sur les trades, en est tirée),
 // règles sans effet sur la dérive. Usage : npm run build && node scripts/test-profile.mjs
 import { createRequire } from 'module';
 
@@ -10,9 +11,10 @@ const { LocalAuthService, newUser } = require('../dist/miroir/auth/auth.service.
 const { AuthGuard } = require('../dist/miroir/auth/auth.guard.js');
 const { ParserController } = require('../dist/miroir/parser/parser.controller.js');
 const { CvParserService } = require('../dist/miroir/parser/cv-parser.service.js');
-const { EvaluationService, CV_WEIGHT } = require('../dist/miroir/evaluation/evaluation.service.js');
+const { EvaluationService } = require('../dist/miroir/evaluation/evaluation.service.js');
 const { RulesService } = require('../dist/miroir/rules/rules.service.js');
 const { QUESTIONS } = require('../dist/miroir/evaluation/questions.js');
+const { buildFacts } = require('../dist/miroir/trades/agents/influence.agent.js');
 
 let total = 0;
 const ok = (cond, msg) => {
@@ -37,7 +39,7 @@ const rejects = async (headers) => guard.canActivate(ctx(headers)).then(() => fa
 ok(await rejects({}), 'sans jeton : 401');
 ok(await rejects({ authorization: 'Bearer faux.jeton' }), 'jeton invalide : 401');
 
-// --- 2. Le CV est une source distincte : mêmes réponses, profils différents --------------------------
+// --- 2. Le CV n'entre JAMAIS dans le profil de référence : mêmes réponses -> même profil, avec ou sans CV --
 // Les deux utilisateurs répondent EXACTEMENT pareil au questionnaire et aux simulations.
 const answers = Object.fromEntries(QUESTIONS.map((q) => [q.id, q.options[1].id]));
 async function evaluate(user) {
@@ -54,17 +56,29 @@ const withoutCv = await evaluate(newUser(`sans-cv-${stamp}`, `sans-cv-${stamp}@t
 
 const withCvUser = newUser(`avec-cv-${stamp}`, `avec-cv-${stamp}@t.local`, 'Avec CV', 'user');
 const cvText = 'Senior quantitative trader, 9 years of experience in derivatives, crypto and Bitcoin trading, high-frequency strategies.';
-await new ParserController(new CvParserService(), store).analyse({ user: withCvUser }, { text: cvText, filename: 'cv.txt' });
+const cvResult = await new ParserController(new CvParserService(), store).analyse({ user: withCvUser }, { text: cvText, filename: 'cv.txt' });
 const withCv = await evaluate(withCvUser);
 
 ok(JSON.stringify(withCv.declared) === JSON.stringify(withoutCv.declared), 'profil déclaré identique (le CV ne touche pas aux réponses)');
-ok(JSON.stringify(withCv.sources.observed) === JSON.stringify(withoutCv.sources.observed), 'comportement observé en simulation identique');
-ok(withoutCv.sources.cv === null && withCv.sources.cv !== null && withCv.sources.cvWeight === CV_WEIGHT, `CV enregistré comme source distincte (poids ${CV_WEIGHT})`);
-const diff = Object.keys(withCv.baseline).filter((k) => withCv.baseline[k] !== withoutCv.baseline[k]);
-ok(diff.length > 0, `profil de référence différent avec CV (${diff.map((k) => `${k} ${withoutCv.baseline[k]} → ${withCv.baseline[k]}`).join(', ')})`);
-const k = diff[0];
-ok(withCv.baseline[k] === Math.round((1 - CV_WEIGHT) * withCv.sources.observed[k] + CV_WEIGHT * withCv.sources.cv[k]),
-  'référence = (1 − poids) × observé + poids × CV');
+ok(JSON.stringify(withCv.baseline) === JSON.stringify(withoutCv.baseline), 'profil de référence identique avec ou sans CV (le CV n’y entre jamais)');
+ok(!withCv.sources && !withoutCv.sources, 'le profil ne porte plus de mélange de sources (CV / observé) : il est uniquement observé');
+ok(cvResult.expertise === 'advanced', `expertise détectée au CV, conservée à part (${cvResult.expertise})`);
+ok(withCvUser.cvProfile.expertise === 'advanced' && !('inferredScores' in withCvUser.cvProfile),
+  'seule l’expertise est conservée sur le CV, aucun score de personnalité');
+
+// --- 2b. L'expertise CV influence bien l'enquête (InfluenceAgent), jamais le profil -------------------
+const fakeMetrics = {
+  side: 'buy',
+  context: { name: 'Actif test', ticker: 'TST', date: '2026-01-01', ret1d: 0.01, ret5d: 0.02, ret30d: 0.03, vol30d: 0.2, drawdown90d: -0.1, speculative: false },
+  positionWeight: 0.2, speculativeWeight: 0, decisionSeconds: 8,
+};
+const factsInput = { metrics: fakeMetrics, amount: 1000, note: '', news: [], recentTrades: [], profile: withCv, deterministic: [] };
+const factsWithExpertise = buildFacts({ ...factsInput, expertise: 'advanced' }).join(' ');
+const factsWithoutExpertise = buildFacts({ ...factsInput, expertise: null }).join(' ');
+ok(factsWithExpertise.includes('Expertise en trading déclarée au CV') && factsWithExpertise.includes('avancée'),
+  'l’enquête (InfluenceAgent) reçoit bien l’expertise CV comme fait numéroté');
+ok(!factsWithoutExpertise.includes('Expertise en trading déclarée au CV'),
+  'sans CV, aucun fait d’expertise n’est ajouté à l’enquête');
 
 // --- 3. Modifier ses règles ne remet pas la dérive à zéro ----------------------------------------------
 const rules = new RulesService(store, events);

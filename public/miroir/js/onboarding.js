@@ -53,9 +53,10 @@ function showQuestion() {
     ${state.index === 0 ? `
     <div class="card quiet">
       <h2>Votre CV (facultatif)</h2>
-      <p class="small muted">Vous pouvez passer cette étape. Si vous fournissez un CV, il ne remplit <b>aucune</b> de vos réponses :
-        il est analysé à part et compte pour 25 % de votre profil de référence, à côté de ce que vous ferez en simulation.
-        Le texte du CV n’est pas conservé.</p>
+      <p class="small muted">Vous pouvez passer cette étape. Si vous fournissez un CV, il ne remplit <b>aucune</b> de vos réponses et
+        n’entre <b>jamais</b> dans votre profil de référence, qui ne dépend que de vos réponses et de vos simulations.
+        Il sert uniquement à détecter votre niveau d’expertise en trading, utilisé plus tard pour mettre en contexte
+        l’analyse de vos trades. Le texte du CV n’est pas conservé.</p>
       <div id="cvBox">${cvBoxHtml(state.cv)}</div>
     </div>` : ''}
     <div class="card" id="questionCard">

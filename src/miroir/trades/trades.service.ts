@@ -44,6 +44,9 @@ export interface TradeRequest {
  *   Trade annulé     POST /api/partner/v1/trades/abandon -> « règle respectée »
  *
  * Le trade a déjà eu lieu quand Miroir le reçoit : toute règle concernée est comptée comme outrepassée.
+ *
+ * Expertise CV (user.cvProfile.expertise) : passée à l'étape [1] (InfluenceAgent) comme contexte pour lire
+ * un comportement, jamais utilisée en [2] — le profil et sa dérive ne dépendent que des simulations.
  */
 @Injectable()
 export class TradesService {
@@ -121,7 +124,7 @@ export class TradesService {
     const deterministic = this.behavior.analyse(metrics, triggeredRules);
     const ai = await this.influence.analyse({
       metrics, amount: base.amount, note: base.note, news, profile: user.profile!, deterministic,
-      recentTrades: history.slice(0, 10),
+      recentTrades: history.slice(0, 10), expertise: user.cvProfile?.expertise ?? null,
     });
     const findings = [...deterministic, ...ai.findings];
     const warnings = this.governance.coherenceWarnings(user, metrics);

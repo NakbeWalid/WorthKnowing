@@ -50,14 +50,19 @@ export class BankAuthService {
   }
 }
 
-/** Vérifie le jeton (en-tête Authorization) et attache le compte à `req.account`. */
+/**
+ * Vérifie le jeton et attache le compte à `req.account`.
+ * En-tête Authorization normalement ; en paramètre `?token=` pour le flux SSE (EventSource ne peut
+ * pas envoyer d'en-tête personnalisé), comme pour le flux admin de Miroir.
+ */
 @Injectable()
 export class BankAuthGuard implements CanActivate {
   constructor(private auth: BankAuthService) {}
 
   async canActivate(ctx: ExecutionContext) {
     const req = ctx.switchToHttp().getRequest();
-    req.account = await this.auth.accountFor(String(req.headers.authorization ?? '').replace('Bearer ', ''));
+    const token = String(req.headers.authorization ?? '').replace('Bearer ', '') || req.query?.token;
+    req.account = await this.auth.accountFor(String(token ?? ''));
     return true;
   }
 }

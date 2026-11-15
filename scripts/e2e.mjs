@@ -23,6 +23,19 @@ const step = (label, detail = '') => console.log(`✔ ${label}${detail ? ' — '
 const assert = (cond, msg) => { if (!cond) throw new Error('ÉCHEC : ' + msg); };
 const stamp = Date.now();
 
+/** L'enquête Miroir se termine en arrière-plan (voir TradingService.execute) : on attend qu'un trade
+ *  sorte de l'état « pending » avant de vérifier son résultat, au lieu de l'attendre dans la réponse. */
+async function awaitAnalysed(platform, tradeId, maxWaitMs = 60_000) {
+  const start = Date.now();
+  while (Date.now() - start < maxWaitMs) {
+    const trades = await platform.call('GET', '/api/trades');
+    const t = trades.find((x) => x.id === tradeId);
+    if (t && t.miroir.status !== 'pending') return t;
+    await new Promise((r) => setTimeout(r, 200));
+  }
+  throw new Error(`ÉCHEC : enquête jamais terminée pour le trade ${tradeId}`);
+}
+
 // --- Admin Miroir : ouvre le flux temps réel ------------------------------------------
 const admin = client(MIROIR);
 admin.token = (await admin.call('POST', '/api/auth/login',
@@ -47,7 +60,7 @@ await plain.call('POST', '/api/miroir/decline');
 let preview = await plain.call('POST', '/api/trades/preview', { ticker: 'NVDA', side: 'buy', amount: 30000, marketDate: '2023-05-30' });
 assert(preview.miroir.status === 'not_linked', 'aucun appel à Miroir pour un compte non lié');
 let out = await plain.call('POST', '/api/trades', { ticker: 'NVDA', side: 'buy', amount: 30000, marketDate: '2023-05-30', decisionTimeMs: 2000 });
-assert(out.trade.miroir.status === 'not_linked' && out.miroir === null, 'trade exécuté sans enquête');
+assert(out.trade.miroir.status === 'not_linked' && out.miroir === undefined, 'trade exécuté sans enquête, réponse immédiate');
 assert((await plain.call('GET', '/api/trades')).length === 1, 'historique conservé par la plateforme');
 await plain.call('POST', '/api/trades', { ticker: 'NVDA', side: 'sell', amount: 999999 }, [400]);
 await plain.call('POST', '/api/trades', { ticker: 'TSLA', side: 'buy', amount: 999999 }, [400]);
@@ -110,10 +123,12 @@ me = await bank.call('GET', '/api/me');
 assert(me.miroir.status === 'linked' && !JSON.stringify(me).includes('mir_'), 'le code persona ne sort jamais du serveur');
 step('Liaison', 'state vérifié, code à usage unique, clé partenaire exigée, code persona gardé côté serveur');
 
-// === 5. Trades : pré-contrôle des règles, puis enquête ====================================
+// === 5. Trades : pré-contrôle des règles, puis enquête (en arrière-plan) ====================
 out = await bank.call('POST', '/api/trades', { ticker: 'XBB.TO', side: 'buy', amount: 5000, marketDate: '2023-01-10', decisionTimeMs: 45000 });
-assert(out.trade.miroir.status === 'analysed' && out.miroir.drift.score === 0, 'trade conforme : enquête sans dérive');
-step('Trade conforme', out.miroir.investigation.explanation.summary);
+assert(out.trade.miroir.status === 'pending' && out.miroir === undefined, 'ordre confirmé immédiatement, enquête en arrière-plan');
+let analysed = await awaitAnalysed(bank, out.trade.id);
+assert(analysed.miroir.status === 'analysed' && analysed.miroir.driftAfter === 0, 'trade conforme : enquête sans dérive');
+step('Trade conforme', analysed.miroir.summary);
 
 const risky = { ticker: 'NVDA', side: 'buy', amount: 30000, marketDate: '2023-05-30', decisionTimeMs: 3000 };
 preview = await bank.call('POST', '/api/trades/preview', risky);
@@ -132,12 +147,13 @@ do {
   const req = { ticker: orders[n][0], side: 'buy', amount: 15000, marketDate: orders[n][1], decisionTimeMs: 3000 };
   const p = await bank.call('POST', '/api/trades/preview', req);
   out = await bank.call('POST', '/api/trades', { ...req, acknowledgedRuleIds: p.miroir.triggeredRules.map((r) => r.ruleId) });
-  step(`Trade risqué ${++n}`, `dérive ${out.miroir.drift.before} → ${out.miroir.drift.score}`);
-} while (!out.miroir.reevaluationRequired && n < orders.length);
-assert(out.miroir.reevaluationRequired, 'la dérive doit exiger une réévaluation');
+  analysed = await awaitAnalysed(bank, out.trade.id);
+  step(`Trade risqué ${++n}`, `dérive ${analysed.miroir.driftBefore} → ${analysed.miroir.driftAfter}`);
+} while (!analysed.miroir.reevaluationRequired && n < orders.length);
+assert(analysed.miroir.reevaluationRequired, 'la dérive doit exiger une réévaluation');
 const blocked = await bank.call('POST', '/api/trades', { ticker: 'SPY', side: 'buy', amount: 100 }, [409]);
 assert(blocked.reevaluationRequired, 'ordres suspendus jusqu’à la réévaluation');
-step('Seuil de dérive franchi', `score ${out.miroir.drift.score} : ordres suspendus côté plateforme`);
+step('Seuil de dérive franchi', `score ${analysed.miroir.driftAfter} : ordres suspendus côté plateforme`);
 
 // === 6. Réévaluation chez Miroir, puis reprise des ordres ================================
 const again = await miroir.call('POST', '/api/evaluation/start', {});
@@ -152,7 +168,8 @@ await miroir.call('POST', `/api/evaluation/${again.evaluationId}/rules`, {
 const profile = await miroir.call('GET', '/api/me');
 assert(profile.status === 'active' && profile.drift.score === 0 && profile.profile.evaluationCount === 2, 'dérive remise à zéro');
 assert(profile.link?.partner && !('id' in profile.link), 'liaison visible côté Miroir, sans son identifiant secret');
-await bank.call('POST', '/api/trades', { ticker: 'SPY', side: 'buy', amount: 100, decisionTimeMs: 30000 });
+const resumedOrder = await bank.call('POST', '/api/trades', { ticker: 'SPY', side: 'buy', amount: 100, decisionTimeMs: 30000 });
+await awaitAnalysed(bank, resumedOrder.trade.id);
 assert((await miroir.call('GET', '/api/trades')).length === n + 2, 'tous les trades enquêtés sont dans le profil Miroir');
 step('Réévaluation', 'dérive remise à 0, ordres de nouveau acceptés');
 

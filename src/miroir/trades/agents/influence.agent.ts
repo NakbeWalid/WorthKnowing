@@ -17,6 +17,8 @@ export interface InfluenceInput {
   profile: Profile;
   /** Constats déterministes déjà établis (le socle). */
   deterministic: Finding[];
+  /** Expertise en trading détectée dans le CV (facultatif) : contexte pour l'enquête, jamais pour le profil. */
+  expertise?: 'novice' | 'intermediate' | 'advanced' | null;
 }
 export interface InfluenceResult { findings: Finding[]; verdict: InfluenceVerdict | null }
 
@@ -55,6 +57,9 @@ Règles absolues :
 - C'est un profil de comportement, pas un diagnostic psychologique : n'emploie pas le mot « psychologique ».
 - Si la recherche de nouvelles était indisponible, tu ne peux rien conclure sur une influence externe.
 - Si les données ne permettent pas de conclure, réponds "indetermine". Dire qu'on ne sait pas est une bonne réponse.
+- Si un fait mentionne une expertise en trading déclarée au CV, utilise-la seulement pour nuancer ta lecture d'un
+  constat déjà fourni (ex. un trade concentré peut être volontaire chez un profil « avancé »), jamais pour en créer un
+  nouveau et jamais pour juger le profil de l'investisseur en général : ça ne concerne que ce trade précis.
 - Jamais de recommandation d'achat ou de vente.
 Tu réponds uniquement par un objet JSON, sans texte autour.`;
 
@@ -201,7 +206,7 @@ function rationaleProblems(rationale: unknown, factsText: string): string[] {
   return problems;
 }
 /** Faits fournis au modèle : uniquement ce que le code a calculé ou ce que l'utilisateur a écrit. */
-function buildFacts(i: InfluenceInput): string[] {
+export function buildFacts(i: InfluenceInput): string[] {
   const { context: c, side, positionWeight, speculativeWeight, decisionSeconds } = i.metrics;
   const p = i.profile;
   const facts = [
@@ -213,6 +218,12 @@ function buildFacts(i: InfluenceInput): string[] {
     `Profil actuel : ${Object.entries(p.current).map(([k, v]) => `${k} ${v}`).join(', ')}.`,
     i.note.trim() ? `Note écrite par l'investisseur : « ${i.note.trim()} »` : 'L’investisseur n’a écrit aucune note.',
   ];
+  // Expertise déclarée sur un CV fourni volontairement (facultatif) : un contexte pour juger un comportement,
+  // jamais un fait sur ce trade précis — l'agent reste lié aux mêmes règles (citer le numéro, ne rien inventer).
+  if (i.expertise) {
+    const label = i.expertise === 'advanced' ? 'avancée' : i.expertise === 'intermediate' ? 'intermédiaire' : 'novice';
+    facts.push(`Expertise en trading déclarée au CV (information déclarative, non vérifiée) : ${label}.`);
+  }
   if (!i.recentTrades.length) facts.push('Aucun trade précédent.');
   for (const t of i.recentTrades.slice(0, 10)) {
     const params = t.investigation.findings.map((f) => f.param).join(', ') || 'aucun constat';

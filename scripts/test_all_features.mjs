@@ -116,13 +116,14 @@ assert(checkRes.triggeredRules.length > 0, 'Règle d’impulsivité déclenchée
 assert(checkRes.derivationImpact !== undefined, 'Impact facteur de dérive calculé');
 assert(checkRes.derivationImpact.addedDriftPoints >= 8, 'Pénalité calculée (+8 points)');
 
-console.log('\n--- 7. Test ParserController : CV conservé à part, sans réponses suggérées ---');
+console.log('\n--- 7. Test ParserController : CV conservé à part, expertise seule, sans réponses suggérées ---');
 const parserCtrl = new ParserController(cvParser, store);
 const largeCvBase64 = 'data:application/pdf;base64,' + Buffer.alloc(260 * 1024, 'A').toString('base64');
 const cvRes = await parserCtrl.analyse({ user: testUser }, { base64: largeCvBase64, filename: 'mon_cv_260ko.pdf' });
-assert(cvRes.inferredScores !== undefined, 'CV 260 ko analysé sans crash');
+assert(cvRes.expertise !== undefined, 'CV 260 ko analysé sans crash');
 assert(!('suggestedAnswers' in cvRes), 'Aucune réponse suggérée renvoyée au questionnaire');
+assert(!('inferredScores' in cvRes), 'Aucun score de personnalité renvoyé (seule l’expertise est conservée)');
 await parserCtrl.analyse({ user: testUser }, { text: sampleCvText, filename: 'cv.txt' });
-assert(testUser.cvProfile?.inferredScores.riskTolerance > 0, 'Scores du CV conservés sur l’utilisateur');
+assert(['novice', 'intermediate', 'advanced'].includes(testUser.cvProfile?.expertise), 'Expertise du CV conservée sur l’utilisateur');
 assert(!JSON.stringify(testUser.cvProfile).includes('ALEXANDRE DUPONT'), 'Le texte du CV n’est pas conservé');
 console.log(`\n🎉 TOUS LES TESTS SONT PASSÉS AVEC SUCCÈS ! (${passed}/${total})\n`);

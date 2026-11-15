@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Headers, HttpCode, Post, Query, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Headers, HttpCode, MessageEvent, Post, Query, Req, Sse, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { filter, interval, map, merge, Observable } from 'rxjs';
 import { safeEqual } from '../shared/local-auth';
 import { MarketService } from '../shared/market.service';
 import { BankAuthGuard } from './auth';
 import { config } from './config';
+import { EventsService } from './events.service';
 import { MiroirLinkService } from './miroir-link.service';
 import { TradingService } from './trading.service';
 import { Account, TradeInput } from './types';
@@ -11,7 +13,10 @@ import { Account, TradeInput } from './types';
 @Controller('api')
 @UseGuards(BankAuthGuard)
 export class TradingController {
-  constructor(private trading: TradingService, private market: MarketService, private links: MiroirLinkService) {}
+  constructor(
+    private trading: TradingService, private market: MarketService, private links: MiroirLinkService,
+    private events: EventsService,
+  ) {}
 
   /** Tout ce dont la page principale a besoin : identité, portefeuille, état du service Miroir. */
   @Get('me')
@@ -50,6 +55,20 @@ export class TradingController {
   /** Exécute l'ordre, l'ajoute à l'historique et, si le compte est lié, l'envoie à Miroir. */
   @Post('trades')
   execute(@Req() req: { account: Account }, @Body() body: TradeInput) { return this.trading.execute(req.account, body); }
+
+  /**
+   * Flux SSE : notifie le navigateur quand l'enquête Miroir d'un trade (lancée en arrière-plan,
+   * voir TradingService.execute) se termine. Un seul flux par compte connecté (filtré par accountId).
+   * Un « ping » toutes les 20 s garde la connexion ouverte derrière CloudFront/l'équilibreur de charge.
+   */
+  @Sse('trades/stream')
+  stream(@Req() req: { account: Account }): Observable<MessageEvent> {
+    const accountId = req.account.id;
+    return merge(
+      this.events.stream$.pipe(filter((e) => e.accountId === accountId), map((e) => ({ data: e }))),
+      interval(20_000).pipe(map(() => ({ type: 'ping', data: '' }))),
+    );
+  }
 }
 
 /** Activation, refus et retrait du service Miroir pour le compte connecté. */

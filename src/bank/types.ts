@@ -33,12 +33,16 @@ export interface Account {
 
 /** Ce que Miroir a répondu pour un trade — la plateforme n'en garde qu'un résumé. */
 export interface TradeMiroirResult {
-  /** not_linked = compte sans Miroir ; analysed = enquête reçue ; unavailable = Miroir injoignable. */
-  status: 'not_linked' | 'analysed' | 'unavailable';
+  /**
+   * not_linked = compte sans Miroir ; pending = ordre exécuté, enquête en cours en arrière-plan ;
+   * analysed = enquête reçue ; unavailable = Miroir injoignable.
+   */
+  status: 'not_linked' | 'pending' | 'analysed' | 'unavailable';
   tradeId?: string;
   driftBefore?: number;
   driftAfter?: number;
   overrodeRules?: boolean;
+  reevaluationRequired?: boolean;
   summary?: string;
 }
 

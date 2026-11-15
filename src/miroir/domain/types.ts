@@ -35,13 +35,16 @@ export interface Profile {
   current: ParamScores;
   evaluatedAt: string;
   evaluationCount: number;
-  /** D'où vient la référence : simulations seules, ou simulations + CV (source distincte, pondérée). */
-  sources?: { observed: ParamScores; cv: ParamScores | null; cvWeight: number };
 }
 
-/** Ce qui est conservé d'un CV analysé : des scores et un résumé, jamais le texte du CV. */
+/**
+ * Ce qui est conservé d'un CV analysé : jamais le texte du CV, jamais des scores de personnalité.
+ * `expertise` ne sert JAMAIS à construire le profil comportemental (déclaré/observé/référence) :
+ * c'est un indicateur de maîtrise des marchés, utilisé uniquement par l'enquête sur les trades
+ * (TradesService → InfluenceAgent) pour mettre en contexte un comportement, pas pour le profiler.
+ */
 export interface CvProfile {
-  inferredScores: ParamScores;
+  expertise: 'novice' | 'intermediate' | 'advanced';
   summary: string;
   highlights: string[];
   analysedAt: string;

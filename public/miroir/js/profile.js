@@ -71,16 +71,15 @@ async function refresh() {
     + Object.keys(PARAM_LABELS).map((k) => mirror(PARAM_LABELS[k], baseline[k], current[k])).join('');
   $('#evaluated').textContent = `Dernière évaluation le ${day(me.profile.evaluatedAt)} (${me.profile.evaluationCount} au total).`;
 
-  // Enrichissement de la caractérisation (CV)
+  // Expertise détectée au CV : contexte pour l'analyse de vos futurs trades, n'entre pas dans ce profil.
   const enrichBox = $('#enrichmentProfileBox');
   if (enrichBox) {
-    const src = me.profile.sources;
-    if (src?.cv) {
-      enrichBox.innerHTML = `<p class="small muted">Référence : simulations (${Math.round((1 - src.cvWeight) * 100)} %)
-        et CV (${Math.round(src.cvWeight * 100)} %), source distincte de vos réponses au questionnaire.</p>`;
-    } else {
-      enrichBox.innerHTML = '';
-    }
+    const expertise = me.cvProfile?.expertise;
+    const label = { novice: 'novice', intermediate: 'intermédiaire', advanced: 'avancée' }[expertise];
+    enrichBox.innerHTML = label
+      ? `<p class="small muted">Expertise en trading détectée au CV : ${label}. Ce profil de référence n'en tient pas compte ;
+         elle sert uniquement à mettre en contexte l'analyse de vos futurs trades.</p>`
+      : '';
   }
 
   // Règles actives

@@ -68,6 +68,7 @@ function historyMiroir(m) {
     return `<span class="badge miroir">dérive ${m.driftBefore} → ${m.driftAfter}</span>`
       + (m.overrodeRules ? ' <span class="badge warn">règle outrepassée</span>' : '');
   }
+  if (m.status === 'pending') return '<span class="badge grey">analyse en cours…</span>';
   return m.status === 'unavailable' ? '<span class="badge grey">non analysé</span>' : '<span class="muted">—</span>';
 }
 
@@ -223,25 +224,56 @@ function confirmOrder(t, preview) {
   });
 }
 
-/** Ce que WorthKnowing a conclu de l'ordre, résumé pour le client (l'enquête complète reste chez WorthKnowing). */
-function verdictHtml(out) {
-  const t = out.trade;
+/**
+ * Ce que WorthKnowing a conclu de l'ordre, résumé pour le client (l'enquête complète reste chez
+ * WorthKnowing). L'ordre est confirmé tout de suite (quelques centaines de ms) ; l'enquête WorthKnowing
+ * se termine en arrière-plan (jusqu'à 50 s) et met ce bloc à jour via SSE une fois prête — voir connectMiroirStream().
+ */
+function verdictHtml(trade) {
   const head = `<h2>Ordre exécuté</h2>
-    <p><b>${t.side === 'buy' ? 'Achat' : 'Vente'} de ${money(t.amount, 2)} de ${esc(t.ticker)}</b>
-      à ${t.price.toFixed(2)} ${esc(t.currency)}, clôture du ${esc(t.marketDate)}.</p>`;
-  if (t.miroir.status === 'not_linked') return head;
-  if (t.miroir.status === 'unavailable' || !out.miroir) {
+    <p><b>${trade.side === 'buy' ? 'Achat' : 'Vente'} de ${money(trade.amount, 2)} de ${esc(trade.ticker)}</b>
+      à ${trade.price.toFixed(2)} ${esc(trade.currency)}, clôture du ${esc(trade.marketDate)}.</p>`;
+  const m = trade.miroir;
+  if (m.status === 'not_linked') return head;
+  if (m.status === 'pending') {
+    return head + `<div class="verdict" data-pending-trade="${esc(trade.id)}">
+      <h3>Analyse WorthKnowing</h3>
+      <p class="small muted"><span class="spinner" aria-hidden="true"></span> Analyse en cours…</p>
+    </div>`;
+  }
+  if (m.status === 'unavailable') {
     return head + '<div class="notice">WorthKnowing n’a pas répondu : cet ordre est exécuté mais n’a pas été analysé.</div>';
   }
-  const m = out.miroir;
   return head + `<div class="verdict">
     <h3>Analyse WorthKnowing</h3>
-    <p>${esc(m.investigation.explanation.summary)}</p>
-    <p class="small muted">Score de dérive : <b>${m.drift.before} → ${m.drift.score}</b> sur ${m.drift.threshold}.
+    <p>${esc(m.summary)}</p>
+    <p class="small muted">Score de dérive de cet ordre : <b>${m.driftBefore} → ${m.driftAfter}</b>.
       ${m.overrodeRules ? ' <span class="badge warn">garde-fou outrepassé</span>' : ''}
       ${m.reevaluationRequired ? ' <span class="badge danger">Seuil dépassé — réajustement des règles exigé</span>' : ''}</p>
     <a href="${esc(me.miroir.urls.profile)}" target="_blank" rel="noopener">Consulter l’enquête complète sur mon profil WorthKnowing</a>
   </div>`;
+}
+
+// ------------------------------------------------------------------ Analyse WorthKnowing en arrière-plan (SSE)
+
+let miroirStream = null;
+
+/** Un seul flux par session, ouvert une fois connecté. Notifie quand une enquête « pending » se termine. */
+function connectMiroirStream() {
+  miroirStream?.close();
+  miroirStream = new EventSource('/api/trades/stream?token=' + encodeURIComponent(session.token));
+  miroirStream.onmessage = (message) => {
+    let event;
+    try { event = JSON.parse(message.data); } catch { return; }
+    if (!event?.trade) return; // ligne « ping » de maintien de connexion : rien à faire
+    // Le bloc d'analyse affiché après la confirmation, s'il correspond à ce trade.
+    const pending = document.querySelector(`[data-pending-trade="${event.tradeId}"]`);
+    if (pending) $('#resultPanel').innerHTML = verdictHtml(event.trade);
+    refresh().catch(() => {}); // met aussi à jour l'historique et le bandeau de dérive
+  };
+  miroirStream.onerror = () => {
+    if (miroirStream.readyState === EventSource.CLOSED) setTimeout(connectMiroirStream, 5000);
+  };
 }
 
 $('#ticket').onsubmit = async (e) => {
@@ -263,13 +295,14 @@ $('#ticket').onsubmit = async (e) => {
       }
       return;
     }
-    // 3. Exécution, puis enquête WorthKnowing.
-    $('#orderButton').textContent = me.miroir.status === 'linked' ? 'Exécution et analyse WorthKnowing…' : 'Exécution…';
+    // 3. Exécution — confirmée tout de suite. L'enquête WorthKnowing, si le compte est lié, se
+    //    termine ensuite en arrière-plan et met le bloc ci-dessous à jour via SSE (connectMiroirStream).
+    $('#orderButton').textContent = 'Exécution…';
     const out = await api('POST', '/trades', {
       ...t, decisionTimeMs: Date.now() - ticketTouchedAt, acknowledgedRuleIds: rules.map((r) => r.ruleId),
     });
     $('#resultPanel').classList.remove('hidden');
-    $('#resultPanel').innerHTML = verdictHtml(out);
+    $('#resultPanel').innerHTML = verdictHtml(out.trade);
     $('#resultPanel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     $('#note').value = '';
   } catch (err) {
@@ -288,6 +321,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('#mod
 
 (async () => {
   if (!session.token) return (location.href = '/');
+  connectMiroirStream();
 
   // Retour de WorthKnowing après la création du profil : ?code=…&state=… -> on termine la liaison côté serveur.
   const query = new URLSearchParams(location.search);

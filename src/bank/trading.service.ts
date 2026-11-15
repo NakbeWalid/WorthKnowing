@@ -1,6 +1,7 @@
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { MarketService } from '../shared/market.service';
+import { EventsService } from './events.service';
 import { MiroirLinkService } from './miroir-link.service';
 import { MiroirCheck, MiroirClient, MiroirError, MiroirTradePayload, MiroirVerdict } from './miroir.client';
 import { BankStore } from './store';
@@ -29,6 +30,7 @@ export class TradingService {
     private market: MarketService,
     private miroir: MiroirClient,
     private links: MiroirLinkService,
+    private events: EventsService,
   ) {}
 
   /** Portefeuille valorisé à une date de marché (par défaut : celle du dernier ordre). */
@@ -83,30 +85,40 @@ export class TradingService {
       else account.positions[input.ticker] = { qty: remaining, invested: position.invested * (remaining / position.qty) };
     }
     account.asOf = quote.date;
+    const linked = account.miroir.status === 'linked';
     const trade: BankTrade = {
       id: randomUUID(), accountId: account.id, ticker: input.ticker, side: input.side, amount,
       price: quote.price, qty, currency: quote.currency, marketDate: quote.date, createdAt: new Date().toISOString(),
       decisionTimeMs: Math.max(0, Number(input.decisionTimeMs) || 0), note: String(input.note ?? '').slice(0, 280),
-      miroir: { status: 'not_linked' },
+      // « pending » : l'ordre est déjà exécuté, l'enquête Miroir se poursuit en arrière-plan (voir [3]).
+      miroir: { status: linked ? 'pending' : 'not_linked' },
     };
     await this.store.saveAccount(account);
+    await this.store.saveTrade(trade);
 
-    // [3] Envoi à Miroir pour enquête. L'ordre est déjà exécuté : un échec ici ne l'annule pas.
-    let verdict: MiroirVerdict | null = null;
-    if (account.miroir.status === 'linked') {
-      try {
-        verdict = await this.miroir.submit(account.miroir.personaCode!, { ...payload, externalId: trade.id });
-        trade.miroir = {
-          status: 'analysed', tradeId: verdict.tradeId, driftBefore: verdict.drift.before, driftAfter: verdict.drift.score,
-          overrodeRules: verdict.overrodeRules, summary: verdict.investigation.explanation.summary,
-        } satisfies TradeMiroirResult;
-      } catch (err) {
-        trade.miroir = { status: 'unavailable' };
-        await this.links.handleRevoked(account, err);
-      }
+    // [3] Envoi à Miroir pour enquête, SANS bloquer la réponse : l'ordre est déjà exécuté et confirmé
+    // au client (ci-dessous) ; l'enquête (jusqu'à 50 s) se termine en arrière-plan et le résultat est
+    // notifié par SSE (investigate() sauvegarde le trade mis à jour et émet l'événement correspondant).
+    if (linked) this.investigate(account, trade, { ...payload, externalId: trade.id });
+
+    return { trade, portfolio: this.portfolio(account) };
+  }
+
+  /** Enquête Miroir en arrière-plan : met à jour et sauvegarde le trade, puis notifie le navigateur (SSE). */
+  private async investigate(account: Account, trade: BankTrade, payload: MiroirTradePayload) {
+    try {
+      const verdict: MiroirVerdict = await this.miroir.submit(account.miroir.personaCode!, payload);
+      trade.miroir = {
+        status: 'analysed', tradeId: verdict.tradeId, driftBefore: verdict.drift.before, driftAfter: verdict.drift.score,
+        overrodeRules: verdict.overrodeRules, summary: verdict.investigation.explanation.summary,
+        reevaluationRequired: verdict.reevaluationRequired,
+      } satisfies TradeMiroirResult;
+    } catch (err) {
+      trade.miroir = { status: 'unavailable' };
+      await this.links.handleRevoked(account, err).catch(() => {});
     }
     await this.store.saveTrade(trade);
-    return { trade, portfolio: this.portfolio(account), miroir: verdict };
+    this.events.emit(trade);
   }
 
   history(account: Account) { return this.store.listTrades(account.id); }

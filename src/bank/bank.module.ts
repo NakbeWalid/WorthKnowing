@@ -6,6 +6,7 @@ import { BankAuthController, BankAuthGuard, BankAuthService } from './auth';
 import { config } from './config';
 import { BankHealthController, MiroirController, PartnerWebhookController, TradingController } from './controllers';
 import { DynamoBankStore } from './dynamo.store';
+import { EventsService } from './events.service';
 import { MiroirLinkService } from './miroir-link.service';
 import { MiroirClient } from './miroir.client';
 import { BankStore, JsonBankStore } from './store';
@@ -20,7 +21,7 @@ import { TradingService } from './trading.service';
   controllers: [BankHealthController, BankAuthController, TradingController, MiroirController, PartnerWebhookController],
   providers: [
     { provide: BankStore, useClass: config.storageDriver === 'dynamodb' ? DynamoBankStore : JsonBankStore },
-    BankAuthService, BankAuthGuard, MarketService, MiroirClient, MiroirLinkService, TradingService,
+    BankAuthService, BankAuthGuard, MarketService, MiroirClient, MiroirLinkService, TradingService, EventsService,
   ],
 })
 export class BankModule {}

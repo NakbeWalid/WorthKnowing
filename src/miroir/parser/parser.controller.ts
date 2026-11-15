@@ -9,8 +9,11 @@ const MAX_CV_CHARS = 7_000_000;
 
 /**
  * CV facultatif (utilisateur connecté uniquement, comme les autres routes de l'API).
- * Le CV n'est PAS une réponse au questionnaire : ses scores sont conservés à part (user.cvProfile) et
- * entrent comme source distincte dans la référence du profil à la fin de l'évaluation (EvaluationService.finalize).
+ * Le CV n'est PAS une réponse au questionnaire et ne sert JAMAIS à construire le profil comportemental
+ * (déclaré, observé ou de référence) : il n'entre dans aucun calcul d'EvaluationService.
+ * Il n'alimente qu'un seul signal, conservé à part (user.cvProfile.expertise) : le niveau d'expertise en
+ * trading détecté, utilisé plus tard par l'enquête sur chaque trade (TradesService → InfluenceAgent) pour
+ * mettre en contexte un comportement (ex. un trader expérimenté vs. un novice sur le même constat).
  * Le texte du CV n'est jamais conservé.
  */
 @Controller('api/parser')
@@ -28,7 +31,7 @@ export class ParserController {
     if (input.length > MAX_CV_CHARS) throw new BadRequestException('CV trop volumineux (5 Mo maximum).');
     const parsed = this.cvParser.parseCv(input, String(body?.filename ?? 'cv.pdf').slice(0, 120));
     const cvProfile: CvProfile = {
-      inferredScores: parsed.inferredScores, summary: parsed.summary, highlights: parsed.highlights,
+      expertise: parsed.financialLiteracy, summary: parsed.summary, highlights: parsed.highlights,
       analysedAt: new Date().toISOString(),
     };
     req.user.cvProfile = cvProfile;

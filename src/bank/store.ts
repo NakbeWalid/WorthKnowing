@@ -39,7 +39,13 @@ export class JsonBankStore extends BankStore {
   async listTrades(accountId: string) {
     return this.db.trades.filter((t) => t.accountId === accountId).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
   }
-  async saveTrade(trade: BankTrade) { this.db.trades.push(trade); this.persist(); }
+  // Un trade est sauvegardé deux fois (exécution immédiate « pending », puis résultat de l'enquête en
+  // arrière-plan) : on remplace l'entrée existante par id plutôt que de dupliquer (voir TradingService).
+  async saveTrade(trade: BankTrade) {
+    const i = this.db.trades.findIndex((t) => t.id === trade.id);
+    if (i === -1) this.db.trades.push(clone(trade)!); else this.db.trades[i] = clone(trade)!;
+    this.persist();
+  }
 }
 
 const clone = <T>(value: T | undefined): T | undefined => (value === undefined ? undefined : structuredClone(value));
