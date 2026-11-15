@@ -1,0 +1,26 @@
+{
+ "value": {
+  "text": "Le S&P 500 a atteint des records après des données d'inflation américaines rassurantes le 13 août. Les marchés ont ensuite oscillé face à des données mitigées, avec une hausse des prix de gros le 14 août.",
+  "sources": [
+   {
+    "title": "S & P 500, Nasdaq end at records after benign US inflation data",
+    "source": "straitstimes.com",
+    "url": "https://www.straitstimes.com/business/companies-markets/sp-500-nasdaq-end-at-records-after-benign-inflation-data",
+    "date": "2025-08-13"
+   },
+   {
+    "title": "U. S. stocks hold steady after wholesale prices jump",
+    "source": "tribune.net.ph",
+    "url": "https://tribune.net.ph/2025/08/14/us-stocks-hold-steady-after-wholesale-prices-jump",
+    "date": "2025-08-14"
+   },
+   {
+    "title": "Stocks waver on mixed US data, eyes on Trump - Putin summit",
+    "source": "guampdn.com",
+    "url": "https://www.guampdn.com/news/national/stocks-waver-on-mixed-us-data-eyes-on-trump-putin-summit/article_1119d371-7455-5408-a652-151a6007f679.html",
+    "date": "2025-08-15"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2025-08-18."
+ }
+}

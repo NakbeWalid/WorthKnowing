@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2025-08-13",
+  "title": "BoC officials considered whether interest rate already low enough to weather tariffs",
+  "source": "cbc.ca",
+  "url": "https://www.cbc.ca/news/business/boc-officials-summary-of-deliberations-aug-2025-1.7608128",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:09:41.741Z",
+  "summary": "Officiels de la Banque du Canada débattent si les taux d'intérêt sont déjà suffisamment bas pour affronter les tarifs."
+ },
+ {
+  "date": "2025-08-13",
+  "title": "Canada interest rate: Has the BoC already cut its rate enough?",
+  "source": "bnnbloomberg.ca",
+  "url": "https://www.bnnbloomberg.ca/business/economics/2025/08/13/some-boc-governors-wonder-has-the-central-bank-already-cut-its-rate-enough/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:09:41.741Z",
+  "summary": "La Banque du Canada s'interroge sur le niveau approprié des taux d'intérêt actuels face aux tarifs."
+ },
+ {
+  "date": "2025-08-13",
+  "title": "Bank of Canada unsure where rates should land",
+  "source": "financialpost.com",
+  "url": "https://financialpost.com/news/economy/policymakers-still-unsure-where-bank-of-canada-rate-should-land",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:09:41.741Z",
+  "summary": "La Banque du Canada demeure incertaine quant au niveau optimal des taux d'intérêt à maintenir."
+ },
+ {
+  "date": "2025-08-17",
+  "title": "Tariffs lifted food prices, inflation in July, economists expect",
+  "source": "bnnbloomberg.ca",
+  "url": "https://www.bnnbloomberg.ca/business/economics/2025/08/17/economists-expect-tariffs-lifted-food-prices-core-inflation-in-july/",
+  "impact": "faible",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:09:41.741Z",
+  "summary": "Les tarifs ont augmenté les prix alimentaires et l'inflation en juillet, selon les économistes."
+ },
+ {
+  "date": "2025-08-15",
+  "title": "Canada Existing Home Sales Rise 3. 8% in July",
+  "source": "marketscreener.com",
+  "url": "https://www.marketscreener.com/news/canada-existing-home-sales-rise-3-8-in-july-ce7c51dedc80f027",
+  "impact": "faible",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:09:41.741Z",
+  "summary": "Les ventes de maisons existantes au Canada ont augmenté de 3,8 % en juillet."
+ }
+]

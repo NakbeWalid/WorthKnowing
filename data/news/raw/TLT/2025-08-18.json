@@ -1,0 +1,393 @@
+{
+ "ticker": "TLT",
+ "query": "\"Treasury yields\"",
+ "from": "2025-08-11T20:00:00.000Z",
+ "to": "2025-08-18T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T03:06:05.466Z",
+ "articles": [
+  {
+   "title": "Indian bonds muted ahead of domestic, US CPI data",
+   "url": "https://economictimes.indiatimes.com/markets/bonds/indian-bonds-muted-ahead-of-domestic-us-cpi-data/articleshow/123249972.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-08-12T05:15:00.000Z"
+  },
+  {
+   "title": "Sensex Today | Stock Market LIVE Updates | Opening Bell: Sensex swings between gains and losses, Nifty above 24, 600; Infosys, ICICI Bank lead gainers",
+   "url": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-live-nifty-stock-market-updates-14-august-2025/liveblog/123293101.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-08-14T04:15:00.000Z"
+  },
+  {
+   "title": "Silver struggles for direction near $38. 00 amid rising yields and geopolitical jitters",
+   "url": "https://www.fxstreet.com/news/silver-stalls-near-3800-as-traders-await-trump-zelenskyy-talks-202508181541",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-18T16:15:00.000Z"
+  },
+  {
+   "title": "Treasury Yields Fall as Investors Anticipate Rate Cut",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-081425/card/treasury-yields-fall-as-investors-anticipate-rate-cut-46V1pKozWyA7ab6eGTd3",
+   "domain": "barrons.com",
+   "seenAt": "2025-08-15T14:30:00.000Z"
+  },
+  {
+   "title": "Gold rebounds from two - week low; Trump - Zelenskyy meeting in focus",
+   "url": "https://en.apa.az/bourse/gold-rebounds-from-two-week-low-trump-zelenskyy-meeting-in-focus-475309",
+   "domain": "en.apa.az",
+   "seenAt": "2025-08-18T09:15:00.000Z"
+  },
+  {
+   "title": "ASX set to lose ground as Wall Street slides; Qantas decision ahead",
+   "url": "https://www.theage.com.au/business/markets/asx-set-to-lose-ground-as-wall-street-slides-20250818-p5mnnn.html",
+   "domain": "theage.com.au",
+   "seenAt": "2025-08-17T19:45:00.000Z"
+  },
+  {
+   "title": "Global Markets Mixed; Treasury Yields Fall as Expectations for Interest - Rate Cut Mount",
+   "url": "https://www.marketscreener.com/news/global-markets-mixed-treasury-yields-fall-as-expectations-for-interest-rate-cut-mount-ce7c51d8d18ff627",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-14T09:00:00.000Z"
+  },
+  {
+   "title": "Global Equities Markets Rise After U. S. Inflation Data",
+   "url": "https://www.marketscreener.com/news/global-equities-markets-rise-after-u-s-inflation-data-ce7c51dbda88fe22",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-13T08:45:00.000Z"
+  },
+  {
+   "title": "Gold price today: MCX gold rate trades above ₹1, 00, 000 per 10 grams on US Fed rate cut hopes, silver prices rise",
+   "url": "https://www.livemint.com/market/commodities/gold-price-today-mcx-gold-rate-trades-above-rs-1-00-000-per-10-grams-on-us-fed-rate-cut-hopes-silver-prices-rise-11755142345427.html",
+   "domain": "livemint.com",
+   "seenAt": "2025-08-14T04:45:00.000Z"
+  },
+  {
+   "title": "How major US stock indexes fared Wednesday, 8 / 13 / 2025",
+   "url": "https://finance.yahoo.com/news/major-us-stock-indexes-fared-201817047.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-13T20:45:00.000Z"
+  },
+  {
+   "title": "Lazard, Inc. ( LAZ) Stock Forecasts",
+   "url": "https://finance.yahoo.com/research/reports/ARGUS_44385_TechnicalAnalysis_1755083061000",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-13T12:15:00.000Z"
+  },
+  {
+   "title": "Gold prices gain as markets await Trump - Zelensky talks",
+   "url": "https://news.az/news/gold-prices-gain-as-markets-await-trump-zelensky-talks",
+   "domain": "news.az",
+   "seenAt": "2025-08-18T12:00:00.000Z"
+  },
+  {
+   "title": "Japan Nikkei rises as yen weakens, economy shows resilience",
+   "url": "https://economictimes.indiatimes.com/markets/stocks/news/japans-nikkei-rises-as-yen-weakens-economy-shows-resilience/articleshow/123315422.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-08-15T03:00:00.000Z"
+  },
+  {
+   "title": "Japan Nikkei ends at record high as yen weakens, economy shows resilience",
+   "url": "https://www.thestar.com.my/business/business-news/2025/08/15/japan039s-nikkei-ends-at-record-high-as-yen-weakens-economy-shows-resilience",
+   "domain": "thestar.com.my",
+   "seenAt": "2025-08-15T09:00:00.000Z"
+  },
+  {
+   "title": "Gold recovers by Rs1, 500 per tola in Pakistan",
+   "url": "https://en.dailypakistan.com.pk/18-Aug-2025/gold-recovers-by-rs1500-per-tola-in-pakistan",
+   "domain": "en.dailypakistan.com.pk",
+   "seenAt": "2025-08-18T13:00:00.000Z"
+  },
+  {
+   "title": "Treasury yields rebound after data, Trump remarks",
+   "url": "https://biztoc.com/x/5f2634f8cde2817b",
+   "domain": "biztoc.com",
+   "seenAt": "2025-08-14T17:15:00.000Z"
+  },
+  {
+   "title": "Why 6, 500 can be a launching pad for the S & P 500, according to this trader",
+   "url": "https://www.morningstar.com/news/marketwatch/2025081225/why-6500-can-be-a-launching-pad-for-the-sp-500-according-to-this-trader",
+   "domain": "morningstar.com",
+   "seenAt": "2025-08-12T11:15:00.000Z"
+  },
+  {
+   "title": "Wall Street stocks ease, US yields rise after hot inflation data shakes confidence in Fed rate cut",
+   "url": "https://economictimes.indiatimes.com/markets/stocks/news/wall-street-stocks-ease-us-yields-rise-after-hot-inflation-data-shakes-confidence-in-fed-rate-cut/articleshow/123315459.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-08-15T03:00:00.000Z"
+  },
+  {
+   "title": "Wall Street drifts around its records following a worldwide rally",
+   "url": "https://www.sun-sentinel.com/2025/08/13/stock-market-fed-rate-hopes/",
+   "domain": "sun-sentinel.com",
+   "seenAt": "2025-08-13T17:15:00.000Z"
+  },
+  {
+   "title": "Wall Street climbs again as a worldwide rally comes back around",
+   "url": "https://www.bostonherald.com/2025/08/13/stock-market-fed-rate-hopes/",
+   "domain": "bostonherald.com",
+   "seenAt": "2025-08-13T15:30:00.000Z"
+  },
+  {
+   "title": "How Major US Stock Indexes Fared Aug. 15",
+   "url": "https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-aug-15-post-5902007",
+   "domain": "theepochtimes.com",
+   "seenAt": "2025-08-15T23:00:00.000Z"
+  },
+  {
+   "title": "EMEA Morning Briefing: Trump - Zelensky Meeting, Fed Jackson Hole Gathering in Focus",
+   "url": "https://www.marketscreener.com/news/emea-morning-briefing-trump-zelensky-meeting-fed-s-jackson-hole-gathering-in-focus-ce7c51dfdc8ff52d",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-18T04:45:00.000Z"
+  },
+  {
+   "title": "PPI inflation report July 2025:",
+   "url": "https://www.cnbc.com/2025/08/14/ppi-inflation-report-july-2025-.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-14T13:30:00.000Z"
+  },
+  {
+   "title": "How Major US Stock Indexes Fared Aug. 14",
+   "url": "https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-aug-14-post-5901515",
+   "domain": "theepochtimes.com",
+   "seenAt": "2025-08-14T23:30:00.000Z"
+  },
+  {
+   "title": "Gold steadies after touching one - week low as markets eye Trump - Zelenskiy meeting",
+   "url": "https://economictimes.indiatimes.com/markets/commodities/news/gold-steadies-after-touching-one-week-low-as-markets-eye-trump-zelenskiy-meeting/articleshow/123353597.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-08-18T03:15:00.000Z"
+  },
+  {
+   "title": "TSX futures fall as investors brace for action - packed week",
+   "url": "https://www.marketscreener.com/news/tsx-futures-fall-as-investors-brace-for-action-packed-week-ce7c51dfd18df621",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-18T10:45:00.000Z"
+  },
+  {
+   "title": "North American Morning Briefing: Stock Futures Mixed Ahead of More Inflation Data",
+   "url": "https://www.marketscreener.com/news/north-american-morning-briefing-stock-futures-mixed-ahead-of-more-inflation-data-ce7c51d9d989f423",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-14T10:45:00.000Z"
+  },
+  {
+   "title": "The bond market is signalling that a September cut from the Fed is no longer locked in",
+   "url": "https://biztoc.com/x/715d739ac3cfefc2",
+   "domain": "biztoc.com",
+   "seenAt": "2025-08-15T12:00:00.000Z"
+  },
+  {
+   "title": "Wall Street ticks higher after a rally wrapped around the world | The Asahi Shimbun: Breaking News, Japan News and Analysis",
+   "url": "https://www.asahi.com/ajw/articles/15965402",
+   "domain": "asahi.com",
+   "seenAt": "2025-08-14T06:45:00.000Z"
+  },
+  {
+   "title": "US Market Outlook: US Benchmark Indices Hit Record Highs - The Hindu BusinessLine",
+   "url": "https://www.thehindubusinessline.com/portfolio/technical-analysis/us-market-outlook-us-benchmark-indices-hit-record-highs/article69939565.ece",
+   "domain": "thehindubusinessline.com",
+   "seenAt": "2025-08-16T19:00:00.000Z"
+  },
+  {
+   "title": "Wall Street ticks higher after a rally wrapped around the world",
+   "url": "https://www.news-gazette.com/news/nation-world/wall-street-ticks-higher-after-a-rally-wrapped-around-the-world/article_128074e3-3eb1-51f5-8546-eeb39425d904.html",
+   "domain": "news-gazette.com",
+   "seenAt": "2025-08-13T21:45:00.000Z"
+  },
+  {
+   "title": "Wall Street ticks higher after a rally wrapped around the world | Chattanooga Times Free Press",
+   "url": "https://www.timesfreepress.com/news/2025/aug/13/wall-street-ticks-higher-after-a-rally-wrapped-around-the-world-tfp/",
+   "domain": "timesfreepress.com",
+   "seenAt": "2025-08-13T23:30:00.000Z"
+  },
+  {
+   "title": "Gold Steadies as Traders Look for Clues on Fed Rate Path",
+   "url": "https://finance.yahoo.com/news/gold-holds-gain-bessent-urges-071525905.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-14T13:30:00.000Z"
+  },
+  {
+   "title": "CPI report lifts Wall Street to new highs, September rate cut seen as likely",
+   "url": "https://www.moneycontrol.com/news/business/markets/cpi-report-lifts-wall-street-to-new-highs-september-rate-cut-seen-as-likely-13452810.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2025-08-13T14:45:00.000Z"
+  },
+  {
+   "title": "Gold rebounds from two - week low ahead of Trump - Zelenskyy talks",
+   "url": "https://www.fxstreet.com/news/gold-rebounds-as-safe-haven-demand-rises-ahead-of-trump-zelenskyy-meeting-202508181205",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-18T16:15:00.000Z"
+  },
+  {
+   "title": "The July Inflation Report Is Here",
+   "url": "https://townhall.com/tipsheet/dmitri-bolt/2025/08/12/cpi-for-june-lower-than-expected-n2661722",
+   "domain": "townhall.com",
+   "seenAt": "2025-08-12T16:00:00.000Z"
+  },
+  {
+   "title": "Gold steadies after touching one - week low as markets eye Trump - Zelensky meeting",
+   "url": "https://www.businesstimes.com.sg/companies-markets/energy-commodities/gold-steadies-after-touching-one-week-low-markets-eye-trump-zelensky-meeting",
+   "domain": "businesstimes.com.sg",
+   "seenAt": "2025-08-18T03:15:00.000Z"
+  },
+  {
+   "title": "Wall Street climbs again as worldwide rally comes back around",
+   "url": "https://www.naharnet.com/stories/en/314692-wall-street-climbs-again-as-worldwide-rally-comes-back-around",
+   "domain": "naharnet.com",
+   "seenAt": "2025-08-13T17:15:00.000Z"
+  },
+  {
+   "title": "Gold: Trump and Bessent Add Fuel to Bullish Setup",
+   "url": "https://www.investing.com/analysis/gold-trump-and-bessent-add-fuel-to-bullish-setup-200665301",
+   "domain": "investing.com",
+   "seenAt": "2025-08-14T07:30:00.000Z"
+  },
+  {
+   "title": "Indian Shares Climb As Softer US Inflation Lifts Rate Cut Hopes",
+   "url": "https://www.businessworld.in/article/indian-shares-climb-as-softer-us-inflation-lifts-rate-cut-hopes-567250",
+   "domain": "businessworld.in",
+   "seenAt": "2025-08-13T07:00:00.000Z"
+  },
+  {
+   "title": "Gold rises higher: Is a $3, 400 breakout next as dollar stumbles?",
+   "url": "https://gulfbusiness.com/gold-rises-higher-is-a-3400-breakout-next-as-dollar-stumbles/",
+   "domain": "gulfbusiness.com",
+   "seenAt": "2025-08-14T07:15:00.000Z"
+  },
+  {
+   "title": "US markets today: Wall Street climbs on global rally and Fed rate - cut hopes, Asia and Europe join upswing",
+   "url": "https://timesofindia.indiatimes.com/business/international-business/us-markets-today-wall-street-climbs-on-global-rally-and-fed-rate-cut-hopes-asia-and-europe-join-upswing/articleshow/123283103.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2025-08-13T15:15:00.000Z"
+  },
+  {
+   "title": "US market today: S & P 500, Nasdaq slip from peaks; Dow down 104 points after hot inflation data",
+   "url": "https://timesofindia.indiatimes.com/business/international-business/us-market-today-sp-500-nasdaq-slip-from-peaks-dow-down-104-points-after-hot-inflation-data/articleshow/123307028.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2025-08-14T14:45:00.000Z"
+  },
+  {
+   "title": "Gold rate today: Futures rise slightly on MCX; check the latest rates in your city on August 14",
+   "url": "https://www.moneycontrol.com/news/business/commodities/gold-rate-today-futures-rise-slightly-on-mcx-check-the-latest-rates-in-your-city-on-august-14-13457010.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2025-08-14T11:30:00.000Z"
+  },
+  {
+   "title": "Japan key stock indexes end at fresh record highs for 2nd straight day",
+   "url": "https://english.kyodonews.net:443/articles/-/59403",
+   "domain": "english.kyodonews.net",
+   "seenAt": "2025-08-18T11:00:00.000Z"
+  },
+  {
+   "title": "Stocks and Yields Slip as Ukraine Talks and Fed Outlook Drive Markets",
+   "url": "https://insurancenewsnet.com/oarticle/stocks-and-yields-slip-as-ukraine-talks-and-fed-outlook-drive-markets",
+   "domain": "insurancenewsnet.com",
+   "seenAt": "2025-08-18T14:15:00.000Z"
+  },
+  {
+   "title": "Why a Fed rate cut could lead to bad news for Big Tech stocks",
+   "url": "https://finance.yahoo.com/news/why-a-fed-rate-cut-could-lead-to-bad-news-for-big-tech-stocks-174611682.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-12T21:45:00.000Z"
+  },
+  {
+   "title": "Mortgage rates are at a 10 - month low. They probably wont last long.",
+   "url": "https://finance.yahoo.com/news/lower-mortgage-rates-good-housing-183752572.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-16T01:45:00.000Z"
+  },
+  {
+   "title": "Stock market gets kick in the pant from startling inflation report",
+   "url": "https://finance.yahoo.com/news/stock-market-gets-kick-pants-190801720.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-16T02:00:00.000Z"
+  },
+  {
+   "title": "Global Markets Muted Following Alaska Summit",
+   "url": "https://www.marketscreener.com/news/global-markets-muted-following-alaska-summit-ce7c51dfde8df722",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-18T08:45:00.000Z"
+  },
+  {
+   "title": "Clash of the titans: The hottest momentum stock meets the most notorious short seller",
+   "url": "https://www.morningstar.com/news/marketwatch/20250814129/clash-of-the-titans-the-hottest-momentum-stock-meets-the-most-notorious-short-seller",
+   "domain": "morningstar.com",
+   "seenAt": "2025-08-14T13:30:00.000Z"
+  },
+  {
+   "title": "Bessent says BOJ is behind the curve on inflation, likely to hike rates, in Bloomberg interview",
+   "url": "https://finance.yahoo.com/news/bessent-says-japan-behind-curve-002532552.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-15T09:45:00.000Z"
+  },
+  {
+   "title": "Morning Briefing: EUR / USD has the upside capped at 1. 1800",
+   "url": "https://www.fxstreet.com/analysis/morning-briefing-eur-usd-has-the-upside-capped-at-11800-202508130409",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-13T07:45:00.000Z"
+  },
+  {
+   "title": "Mortgage rates hit their lowest level so far this year",
+   "url": "https://www.mpamag.com/us/mortgage-industry/market-updates/mortgage-rates-hit-their-lowest-level-so-far-this-year/546246",
+   "domain": "mpamag.com",
+   "seenAt": "2025-08-14T21:00:00.000Z"
+  },
+  {
+   "title": "Gold Edges Up As Dollar Drops On Fed Rate Cut Expectations",
+   "url": "https://www.finanzen.ch/nachrichten/rohstoffe/gold-edges-up-as-dollar-drops-on-fed-rate-cut-expectations-1035032242",
+   "domain": "finanzen.ch",
+   "seenAt": "2025-08-14T00:30:00.000Z"
+  },
+  {
+   "title": "All InX Launches Next - Gen RWA Platform: Where Wall Street Meets Web3",
+   "url": "https://www.manilatimes.net/2025/08/16/tmt-newswire/pr-newswire/all-inx-launches-next-gen-rwa-platform-where-wall-street-meets-web3/2169026",
+   "domain": "manilatimes.net",
+   "seenAt": "2025-08-16T16:00:00.000Z"
+  },
+  {
+   "title": "Morning Bid: Stocks soar, volatility evaporates",
+   "url": "https://finance.yahoo.com/news/morning-bid-stocks-soar-volatility-104152621.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-13T11:30:00.000Z"
+  },
+  {
+   "title": "Morning Bid: Fed easing bets reach fever pitch",
+   "url": "https://finance.yahoo.com/news/morning-bid-fed-easing-bets-110022748.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-14T16:00:00.000Z"
+  },
+  {
+   "title": "US markets today: Dow up 141 points as Wall Street eyes record week finish, UnitedHealth jumps on Buffett stake",
+   "url": "https://timesofindia.indiatimes.com/business/international-business/us-stock-market-today-wall-street-nasdaq-dow-jones-sp-500-unitedhealth-buffett-stake/articleshow/123323329.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2025-08-15T15:15:00.000Z"
+  },
+  {
+   "title": "Santoli Thursday market wrap - up: Wholesale - inflation forces short detour",
+   "url": "https://www.cnbc.com/2025/08/14/santolis-thursday-market-wrap-up-wholesale-inflation-forces-short-detour-.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-14T21:00:00.000Z"
+  },
+  {
+   "title": "This Rare Signal Last Flashed In 1998 Then Stocks Took Off - iShares 20+ Year Treasury Bond ETF ( NASDAQ: TLT), iShares iBoxx $ Investment Grade Corporate Bond ETF ( ARCA: LQD)",
+   "url": "https://www.benzinga.com/markets/economic-data/25/08/47194910/corporate-bond-spread-treasury-stock-market-outlook",
+   "domain": "benzinga.com",
+   "seenAt": "2025-08-18T19:45:00.000Z"
+  },
+  {
+   "title": "Asian shares mixed after days of gains driven by hopes for US rate cuts",
+   "url": "https://www.arabtimesonline.com/news/asian-shares-mixed-after-days-of-gains-driven-by-hopes-for-us-rate-cuts/",
+   "domain": "arabtimesonline.com",
+   "seenAt": "2025-08-14T09:30:00.000Z"
+  },
+  {
+   "title": "Gold steadies as markets eye US CPI for Fed clues",
+   "url": "https://www.fxstreet.com/news/gold-steadies-near-3-350-as-traders-await-us-inflation-data-202508121204",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-12T13:15:00.000Z"
+  },
+  {
+   "title": "Trading Day: Tariffs, CPI nerves soften sentiment",
+   "url": "https://finance.yahoo.com/news/trading-day-tariffs-cpi-nerves-210515884.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-13T08:45:00.000Z"
+  }
+ ]
+}

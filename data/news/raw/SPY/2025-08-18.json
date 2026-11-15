@@ -1,0 +1,411 @@
+{
+ "ticker": "SPY",
+ "query": "(\"S&P 500\" OR \"Wall Street stocks\")",
+ "from": "2025-08-11T20:00:00.000Z",
+ "to": "2025-08-18T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T03:18:15.665Z",
+ "articles": [
+  {
+   "title": "S & P 500, Nasdaq end at records after benign US inflation data",
+   "url": "https://www.straitstimes.com/business/companies-markets/sp-500-nasdaq-end-at-records-after-benign-inflation-data",
+   "domain": "straitstimes.com",
+   "seenAt": "2025-08-13T02:15:00.000Z"
+  },
+  {
+   "title": "S & P 500, Nasdaq end at records after benign inflation data",
+   "url": "https://www.bssnews.net/business/301210",
+   "domain": "bssnews.net",
+   "seenAt": "2025-08-13T05:15:00.000Z"
+  },
+  {
+   "title": "Australian Market Slightly Higher",
+   "url": "https://www.finanznachrichten.de/nachrichten-2025-08/66199276-australian-market-slightly-higher-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2025-08-18T01:45:00.000Z"
+  },
+  {
+   "title": "Wall Street Stocks Decline Ahead of U. S. Inflation Data",
+   "url": "https://www.bgnes.com/economy/wall-street-stocks-decline-ahead-of-u-s-inflation-data",
+   "domain": "bgnes.com",
+   "seenAt": "2025-08-11T23:30:00.000Z"
+  },
+  {
+   "title": "Japanese Market Sharply Higher",
+   "url": "https://www.finanznachrichten.de/nachrichten-2025-08/66162713-japanese-market-sharply-higher-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2025-08-13T03:00:00.000Z"
+  },
+  {
+   "title": "U. S. stocks hold steady after wholesale prices jump",
+   "url": "https://tribune.net.ph/2025/08/14/us-stocks-hold-steady-after-wholesale-prices-jump",
+   "domain": "tribune.net.ph",
+   "seenAt": "2025-08-14T21:30:00.000Z"
+  },
+  {
+   "title": "Bank of America fund manager survey delivers worrisome news for investors",
+   "url": "https://finance.yahoo.com/news/bank-america-survey-pours-cold-201039462.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-13T07:45:00.000Z"
+  },
+  {
+   "title": "Wall Street ticks higher after a rally wrapped around the world | The Asahi Shimbun: Breaking News, Japan News and Analysis",
+   "url": "https://www.asahi.com/ajw/articles/15965402",
+   "domain": "asahi.com",
+   "seenAt": "2025-08-14T06:45:00.000Z"
+  },
+  {
+   "title": "Wall Street ticks higher after a rally wrapped around the world",
+   "url": "https://www.news-gazette.com/news/nation-world/wall-street-ticks-higher-after-a-rally-wrapped-around-the-world/article_128074e3-3eb1-51f5-8546-eeb39425d904.html",
+   "domain": "news-gazette.com",
+   "seenAt": "2025-08-13T21:45:00.000Z"
+  },
+  {
+   "title": "Wall Street ticks higher after a rally wrapped around the world | Chattanooga Times Free Press",
+   "url": "https://www.timesfreepress.com/news/2025/aug/13/wall-street-ticks-higher-after-a-rally-wrapped-around-the-world-tfp/",
+   "domain": "timesfreepress.com",
+   "seenAt": "2025-08-13T23:30:00.000Z"
+  },
+  {
+   "title": "Oil Prices Rise Ahead Of US - Russia Summit",
+   "url": "https://www.channelstv.com/2025/08/15/oil-prices-rise-ahead-of-us-russia-summit/",
+   "domain": "channelstv.com",
+   "seenAt": "2025-08-15T11:45:00.000Z"
+  },
+  {
+   "title": "Japanese Market Sharply Higher; Up 2%",
+   "url": "https://www.finanznachrichten.de/nachrichten-2025-08/66150975-japanese-market-sharply-higher-up-2-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2025-08-12T03:15:00.000Z"
+  },
+  {
+   "title": "Japanese Market Modestly Higher",
+   "url": "https://www.rttnews.com/story.aspx?Id=3566688",
+   "domain": "rttnews.com",
+   "seenAt": "2025-08-18T02:30:00.000Z"
+  },
+  {
+   "title": "Stocks waver on mixed US data, eyes on Trump - Putin summit",
+   "url": "https://www.guampdn.com/news/national/stocks-waver-on-mixed-us-data-eyes-on-trump-putin-summit/article_1119d371-7455-5408-a652-151a6007f679.html",
+   "domain": "guampdn.com",
+   "seenAt": "2025-08-15T23:15:00.000Z"
+  },
+  {
+   "title": "Oil prices rise ahead of US - Russia summit as stocks digest inflation data",
+   "url": "https://www.bssnews.net/business/301935",
+   "domain": "bssnews.net",
+   "seenAt": "2025-08-15T05:45:00.000Z"
+  },
+  {
+   "title": "Australian Market Notably Higher",
+   "url": "https://www.rttnews.com/story.aspx?Id=3565730",
+   "domain": "rttnews.com",
+   "seenAt": "2025-08-14T04:00:00.000Z"
+  },
+  {
+   "title": "Invesco S & P 500 Pure Growth ETF ( NYSE: RPG) Stock Quote",
+   "url": "https://markets.financialcontent.com/stocks/quote?Symbol=321:41906703",
+   "domain": "markets.financialcontent.com",
+   "seenAt": "2025-08-11T20:00:00.000Z"
+  },
+  {
+   "title": "Hot US inflation data rattles global bond markets",
+   "url": "https://www.ksl.com:443/article/51360485/hot-us-inflation-data-rattles-global-bond-markets",
+   "domain": "ksl.com",
+   "seenAt": "2025-08-14T18:00:00.000Z"
+  },
+  {
+   "title": "Even at an All - Time High, The Vanguard S & P 500 ETF Isnt as Expensive as It Seems",
+   "url": "https://www.fool.com/investing/2025/08/14/all-time-high-buy-sp-500-stocks/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-08-14T20:15:00.000Z"
+  },
+  {
+   "title": "Australian Market Modestly Lower",
+   "url": "https://www.rttnews.com/story.aspx?Id=3565213",
+   "domain": "rttnews.com",
+   "seenAt": "2025-08-13T05:15:00.000Z"
+  },
+  {
+   "title": "Investors: This Is Warren Buffett No. 1 Index Fund Recommendation -- and It Could Potentially Make You a Millionaire",
+   "url": "https://finance.yahoo.com/news/investors-warren-buffetts-no-1-140000878.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-18T01:00:00.000Z"
+  },
+  {
+   "title": "Rich BFF Says the S & P 500 Fund Isnt as Diverse as You Think Where To Invest Beyond That",
+   "url": "https://finance.yahoo.com/news/rich-bff-says-p-500-120449803.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-17T14:15:00.000Z"
+  },
+  {
+   "title": "Nvidia share price: Market cap tops $4. 47 trillion, commands over 8% of S & P 500",
+   "url": "https://www.livemint.com/market/stock-market-news/nvidia-share-price-market-cap-tops-4-47-trillion-commands-over-8-of-s-p-500-11755048721395.html",
+   "domain": "livemint.com",
+   "seenAt": "2025-08-13T03:30:00.000Z"
+  },
+  {
+   "title": "Japanese Market Notably Higher",
+   "url": "https://www.finanznachrichten.de/nachrichten-2025-08/66187143-japanese-market-notably-higher-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2025-08-15T02:45:00.000Z"
+  },
+  {
+   "title": "S & P 500: Here The Most You Could Have Made On A Single Stock",
+   "url": "https://www.investors.com/etfs-and-funds/sectors/sp500-heres-the-most-you-could-have-made-on-a-single-stock-this-year/",
+   "domain": "investors.com",
+   "seenAt": "2025-08-13T12:30:00.000Z"
+  },
+  {
+   "title": "Want Decades of Passive Income? Buy This ETF and Hold It Forever.",
+   "url": "https://finance.yahoo.com/news/want-decades-passive-income-buy-110000609.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-15T21:00:00.000Z"
+  },
+  {
+   "title": "Amundi S & P 500 II UCITS ETF Acc: Net Asset Value ( s)",
+   "url": "https://www.finanznachrichten.de/nachrichten-2025-08/66188929-amundi-s-p-500-ii-ucits-etf-acc-net-asset-value-s-015.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2025-08-15T08:00:00.000Z"
+  },
+  {
+   "title": "S & P 500 Ekes Out Record, Brushing Aside Hot Inflation Report",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-081425/card/s-p-500-ekes-out-record-brushing-aside-hot-inflation-report-5dBYRkfPoTtQK5Yj4ZGL",
+   "domain": "barrons.com",
+   "seenAt": "2025-08-16T02:15:00.000Z"
+  },
+  {
+   "title": "Asian Markets Track Wall Street Higher",
+   "url": "https://www.finanznachrichten.de/nachrichten-2025-08/66162921-asian-markets-track-wall-street-higher-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2025-08-13T04:00:00.000Z"
+  },
+  {
+   "title": "Stock market today: Live updates",
+   "url": "https://www.cnbc.com/2025/08/17/stock-market-today-live-updates.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-17T22:45:00.000Z"
+  },
+  {
+   "title": "S & P 500 Earnings Revisions Turn Positive A Rare Market Tailwind",
+   "url": "https://www.investing.com/analysis/sp-500-earnings-revisions-turn-positive--a-rare-market-tailwind-200665272",
+   "domain": "investing.com",
+   "seenAt": "2025-08-13T20:15:00.000Z"
+  },
+  {
+   "title": "Best Equal - Weight Index Funds",
+   "url": "https://www.bankrate.com/investing/best-equal-weight-index-funds/",
+   "domain": "bankrate.com",
+   "seenAt": "2025-08-15T18:00:00.000Z"
+  },
+  {
+   "title": "How major US stock indexes fared Wednesday, 8 / 13 / 2025",
+   "url": "https://finance.yahoo.com/news/major-us-stock-indexes-fared-201817047.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-13T20:45:00.000Z"
+  },
+  {
+   "title": "Dow heads for a record as traders look beyond tech to blue chips",
+   "url": "https://www.spokesman.com/stories/2025/aug/15/dow-heads-for-a-record-as-traders-look-beyond-tech/",
+   "domain": "spokesman.com",
+   "seenAt": "2025-08-15T22:45:00.000Z"
+  },
+  {
+   "title": "3 Investments That Equal the Perfect Portfolio and How Anyone Can Invest in Them",
+   "url": "https://finance.yahoo.com/news/3-investments-equal-perfect-portfolio-160300129.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-12T16:45:00.000Z"
+  },
+  {
+   "title": "If Youd Invested $1, 000 in Interactive Brokers ( IBKR) Stock 5 Years Ago, Here How Much Youd Have Today",
+   "url": "https://www.fool.com/investing/2025/08/11/if-you-invested-1000-in-interactive-brokers-ibkr/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-08-11T21:00:00.000Z"
+  },
+  {
+   "title": "Wall Street movers: 15 S & P 500 stocks leading the market rally",
+   "url": "https://seekingalpha.com/news/4485577-wall-street-movers-15-s-and-p-500-stocks-leading-the-market-rally",
+   "domain": "seekingalpha.com",
+   "seenAt": "2025-08-14T18:15:00.000Z"
+  },
+  {
+   "title": "Dow Jones Futures: Is Stock Market Rotating? Cathie Wood, Nancy Pelosi Pick Is A Buy",
+   "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-rotation-cisco-earnings-cathie-wood-nancy-pelosi-tempus-ai/",
+   "domain": "investors.com",
+   "seenAt": "2025-08-13T23:45:00.000Z"
+  },
+  {
+   "title": "Dow Jones Futures: Stock Market Runs On Fed Green Light; Nvidia - Backed CoreWeave Tumbles Late",
+   "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-fed-green-light-meta-buys-nvidia-coreweave-earnings/",
+   "domain": "investors.com",
+   "seenAt": "2025-08-12T22:15:00.000Z"
+  },
+  {
+   "title": "How Major US Stock Indexes Fared Aug. 12",
+   "url": "https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-aug-12-post-5900462",
+   "domain": "theepochtimes.com",
+   "seenAt": "2025-08-12T22:45:00.000Z"
+  },
+  {
+   "title": "How Major US Stock Indexes Fared Aug. 15",
+   "url": "https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-aug-15-post-5902007",
+   "domain": "theepochtimes.com",
+   "seenAt": "2025-08-15T23:00:00.000Z"
+  },
+  {
+   "title": "Dow Jones Index Falls On Hot Inflation Data; Micron, Netflix Among Best Stocks To Watch",
+   "url": "https://www.investors.com:443/market-trend/the-big-picture/dow-jones-inflation-data-micron-netflix-best-stocks-to-watch/",
+   "domain": "investors.com",
+   "seenAt": "2025-08-15T00:30:00.000Z"
+  },
+  {
+   "title": "U. S. stocks grab onto gains as post - CPI rally continues ( DJI: Dow Jones Indices)",
+   "url": "https://seekingalpha.com/news/4484662-sp500-nasdaq-composite-dow-jones-stock-news-today",
+   "domain": "seekingalpha.com",
+   "seenAt": "2025-08-13T15:15:00.000Z"
+  },
+  {
+   "title": "How Major US Stock Indexes Fared Aug. 14",
+   "url": "https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-aug-14-post-5901515",
+   "domain": "theepochtimes.com",
+   "seenAt": "2025-08-14T23:30:00.000Z"
+  },
+  {
+   "title": "Trump Says Nancy Pelosi Traded On Inside Information Her 2025 Portfolio Outperforms S & P 500 Thanks To These 4 Stocks - NVIDIA ( NASDAQ: NVDA), Broadcom ( NASDAQ: AVGO)",
+   "url": "https://www.benzinga.com/markets/equities/25/08/47172701/trump-says-nancy-pelosi-traded-on-inside-information-her-2025-portfolio-outperforms-sp-500-thanks-to-these-4-stocks",
+   "domain": "benzinga.com",
+   "seenAt": "2025-08-16T14:30:00.000Z"
+  },
+  {
+   "title": "Major companies reframing, not abandoning, DEI: report",
+   "url": "https://finance.yahoo.com/news/major-companies-reframing-not-abandoning-105800613.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-13T20:15:00.000Z"
+  },
+  {
+   "title": "Stocks Are Rising on Hopes for Fed Rate Cut",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-081325/card/stocks-are-rising-on-hopes-for-fed-rate-cut-MJyIupvXoKWPi3PSiP3j",
+   "domain": "barrons.com",
+   "seenAt": "2025-08-14T21:30:00.000Z"
+  },
+  {
+   "title": "S & P 500 Gains & Losses Today: UnitedHealth Stock Climbs After News of Berkshire Stake",
+   "url": "https://finance.yahoo.com/news/p-500-gains-losses-today-205906833.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-17T04:30:00.000Z"
+  },
+  {
+   "title": "S & P Dow Jones Plans to Put Wall Street Indexes on Blockchain",
+   "url": "https://bravenewcoin.com/insights/sp-dow-jones-plans-to-put-wall-street-indexes-on-blockchain",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-08-16T22:30:00.000Z"
+  },
+  {
+   "title": "S & P 500, Nasdaq Back on Record Track",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-081225/card/s-p-500-nasdaq-back-on-record-track-OExatSpN4ONrfHoHhVY1",
+   "domain": "barrons.com",
+   "seenAt": "2025-08-12T15:30:00.000Z"
+  },
+  {
+   "title": "Stocks are headed into their weakest stretch of the year. Here how much top forecasters think the market could fall.",
+   "url": "https://finance.yahoo.com/news/stocks-headed-weakest-stretch-heres-230638590.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-14T10:45:00.000Z"
+  },
+  {
+   "title": "How major US stock indexes fared Monday, 8 / 11 / 2025",
+   "url": "https://www.seattletimes.com/business/how-major-us-stock-indexes-fared-monday-8-11-2025/",
+   "domain": "seattletimes.com",
+   "seenAt": "2025-08-12T01:15:00.000Z"
+  },
+  {
+   "title": "This Is the 3rd Priciest Stock Market in 154 Years, Which Makes This High - Yield ETF a Genius Buy Right Now",
+   "url": "https://www.fool.com/investing/2025/08/15/3rd-priciest-stock-market-high-yield-etf-smart-buy/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-08-15T08:45:00.000Z"
+  },
+  {
+   "title": "Why the stock market has been shocked this summer",
+   "url": "https://finance.yahoo.com/news/why-the-stock-market-has-been-shocked-this-summer-123019291.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-17T15:30:00.000Z"
+  },
+  {
+   "title": "Wall Street forecasters keep raising the S & P 500 targets. Should investors buy the hype?",
+   "url": "https://www.morningstar.com/news/marketwatch/20250815151/wall-street-forecasters-keep-raising-the-sp-500s-targets-should-investors-buy-the-hype",
+   "domain": "morningstar.com",
+   "seenAt": "2025-08-15T11:30:00.000Z"
+  },
+  {
+   "title": "US: S & P 500, Nasdaq hit record highs at open on September rate cut hopes",
+   "url": "https://www.businesstimes.com.sg/companies-markets/us-sp-500-nasdaq-hit-record-highs-open-september-rate-cut-hopes",
+   "domain": "businesstimes.com.sg",
+   "seenAt": "2025-08-13T15:15:00.000Z"
+  },
+  {
+   "title": "US: S & P 500, Nasdaq retreat from record rally after hot producer inflation data",
+   "url": "https://www.businesstimes.com.sg/companies-markets/us-sp-500-nasdaq-retreat-record-rally-after-hot-producer-inflation-data",
+   "domain": "businesstimes.com.sg",
+   "seenAt": "2025-08-14T14:15:00.000Z"
+  },
+  {
+   "title": "1 Reason to Buy the Vanguard 500 Index ( VFIAX) Index Fund Admiral Shares",
+   "url": "https://www.fool.com/investing/2025/08/14/1-reason-to-buy-vfiax-vanguard-s-p-500-index-fund/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-08-14T10:30:00.000Z"
+  },
+  {
+   "title": "Wall Street ends flat, but S & P hits another closing high as rate - cut bets waver",
+   "url": "https://finance.yahoo.com/news/futures-pause-steady-gains-wall-100851038.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-15T19:15:00.000Z"
+  },
+  {
+   "title": "U. S. stocks close higher",
+   "url": "https://www.thestar.com.my/news/world/2025/08/14/us-stocks-close-higher",
+   "domain": "thestar.com.my",
+   "seenAt": "2025-08-13T22:15:00.000Z"
+  },
+  {
+   "title": "U. S. stocks close lower",
+   "url": "https://www.thestar.com.my/news/world/2025/08/12/us-stocks-close-lower",
+   "domain": "thestar.com.my",
+   "seenAt": "2025-08-11T21:30:00.000Z"
+  },
+  {
+   "title": "U. S. stocks close mixed",
+   "url": "https://www.thestar.com.my/news/world/2025/08/15/us-stocks-close-mixed",
+   "domain": "thestar.com.my",
+   "seenAt": "2025-08-14T22:30:00.000Z"
+  },
+  {
+   "title": "US stock market: How has S & P 500 managed to beat Donald Trump tariffs and climbed historic highs? Check forecast for 2025",
+   "url": "https://economictimes.indiatimes.com/news/international/us/us-stock-market-how-has-sp-500-managed-to-beat-donald-trump-tariffs-and-climbed-historic-highs-check-forecast-for-2025/articleshow/123339109.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-08-16T20:30:00.000Z"
+  },
+  {
+   "title": "Stock Market Outlook: How Much S & P 500 Will Drop During Weakest Time of the Year",
+   "url": "https://www.businessinsider.com/stock-market-outlook-sp500-prediction-correction-worst-months-august-september-2025-8",
+   "domain": "businessinsider.com",
+   "seenAt": "2025-08-12T17:00:00.000Z"
+  },
+  {
+   "title": "The Market Not Crazy Invest Like It 2026",
+   "url": "https://www.zerohedge.com/news/2025-08-15/markets-not-crazy-invest-its-2026",
+   "domain": "zerohedge.com",
+   "seenAt": "2025-08-15T17:15:00.000Z"
+  },
+  {
+   "title": "This Red - Hot Vanguard ETF Just Hit an All - Time High. Here Why It Still Worth Buying in August.",
+   "url": "https://finance.yahoo.com/news/red-hot-vanguard-etf-just-112000364.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-17T13:15:00.000Z"
+  },
+  {
+   "title": "How major US stock indexes fared Tuesday, 8 / 12 / 2025",
+   "url": "https://insurancenewsnet.com/oarticle/how-major-us-stock-indexes-fared-tuesday-8-12-2025",
+   "domain": "insurancenewsnet.com",
+   "seenAt": "2025-08-13T00:30:00.000Z"
+  }
+ ]
+}

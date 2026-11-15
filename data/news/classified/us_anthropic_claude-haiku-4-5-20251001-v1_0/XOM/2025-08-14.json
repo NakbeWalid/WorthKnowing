@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2025-08-13",
+  "title": "Exxon Hits Major Milestone in Guyana with Early Startup of Fourth Oil Vessel",
+  "source": "finance.yahoo.com",
+  "url": "https://finance.yahoo.com/news/exxon-hits-major-milestone-guyana-163439923.html",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:10:40.933Z",
+  "summary": "ExxonMobil atteint un jalon majeur en Guyane avec le démarrage anticipé de son quatrième navire pétrolier."
+ },
+ {
+  "date": "2025-08-12",
+  "title": "Venezuela rejects start of Exxon operations in disputed area offshore Guyana ( XOM: NYSE)",
+  "source": "seekingalpha.com",
+  "url": "https://seekingalpha.com/news/4484208-venezuela-rejects-start-of-exxon-operations-in-disputed-area-offshore-guyana",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:10:40.933Z",
+  "summary": "Le Venezuela rejette le démarrage des opérations ExxonMobil dans une zone disputée au large de la Guyane."
+ },
+ {
+  "date": "2025-08-13",
+  "title": "ExxonMobil signs exploration deal for offshore Trinidad",
+  "source": "worldoil.com",
+  "url": "https://worldoil.com/news/2025/8/13/exxonmobil-signs-exploration-deal-for-offshore-trinidad/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:10:40.933Z",
+  "summary": "ExxonMobil signe un accord d'exploration pétrolière au large de la Trinité."
+ },
+ {
+  "date": "2025-08-11",
+  "title": "ExxonMobil, Partners Start Producing Oil at Yellowtail",
+  "source": "rigzone.com",
+  "url": "https://www.rigzone.com/news/exxonmobil_partners_start_producing_oil_at_yellowtail-11-aug-2025-181424-article/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:10:40.933Z",
+  "summary": "ExxonMobil et ses partenaires commencent la production pétrolière au champ Yellowtail."
+ },
+ {
+  "date": "2025-08-10",
+  "title": "Exxon Mobil Corporation ( XOM) Releases Second - Quarter 2025 Results",
+  "source": "insidermonkey.com",
+  "url": "https://www.insidermonkey.com/blog/exxon-mobil-corporation-xom-releases-second-quarter-2025-results-1587532/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:10:40.933Z",
+  "summary": "ExxonMobil publie ses résultats du deuxième trimestre 2025."
+ }
+]

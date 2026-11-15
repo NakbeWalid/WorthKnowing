@@ -1,0 +1,375 @@
+{
+ "ticker": "XBB.TO",
+ "query": "(\"Bank of Canada\" OR \"Canadian bonds\")",
+ "from": "2025-08-11T20:00:00.000Z",
+ "to": "2025-08-18T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T03:09:41.741Z",
+ "articles": [
+  {
+   "title": "Canadians are holding more cash in their wallets, Bank of Canada finds – Winnipeg Free Press",
+   "url": "https://www.winnipegfreepress.com/business/2025/08/14/canadians-are-holding-more-cash-in-their-wallets-bank-of-canada-finds",
+   "domain": "winnipegfreepress.com",
+   "seenAt": "2025-08-14T18:45:00.000Z"
+  },
+  {
+   "title": "BoC officials considered whether interest rate already low enough to weather tariffs",
+   "url": "https://www.cbc.ca/news/business/boc-officials-summary-of-deliberations-aug-2025-1.7608128",
+   "domain": "cbc.ca",
+   "seenAt": "2025-08-13T22:15:00.000Z"
+  },
+  {
+   "title": "BoC survey: Canadians are holding more cash in their wallets",
+   "url": "https://www.bnnbloomberg.ca/business/economics/2025/08/14/canadians-are-holding-more-cash-in-their-wallets-bank-of-canada-finds/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2025-08-14T20:00:00.000Z"
+  },
+  {
+   "title": "Canada interest rate: Has the BoC already cut its rate enough?",
+   "url": "https://www.bnnbloomberg.ca/business/economics/2025/08/13/some-boc-governors-wonder-has-the-central-bank-already-cut-its-rate-enough/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2025-08-13T20:45:00.000Z"
+  },
+  {
+   "title": "July 2025 Investor Report | Company Announcement",
+   "url": "https://www.investegate.co.uk/announcement/rns/royal-bank-of-canada--17tz/july-2025-investor-report/9061864",
+   "domain": "investegate.co.uk",
+   "seenAt": "2025-08-18T14:00:00.000Z"
+  },
+  {
+   "title": "USD / CAD remains limited below 1. 3800, Loonie lacks bullish momentum",
+   "url": "https://www.fxstreet.com/news/usd-cad-remains-limited-below-13800-loonie-lacks-bullish-momentum-202508131126",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-13T11:45:00.000Z"
+  },
+  {
+   "title": "USD / CAD firms as Greenback steady, Canada CPI in focus",
+   "url": "https://www.fxstreet.com/news/canadian-dollar-retreats-as-us-dollar-firms-ahead-of-trump-zelenskyy-talks-202508181425",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-18T16:15:00.000Z"
+  },
+  {
+   "title": "Canadian Dollar churns the waters near key averages",
+   "url": "https://www.fxstreet.com/news/canadian-dollar-churns-the-waters-near-key-averages-202508132114",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-13T23:45:00.000Z"
+  },
+  {
+   "title": "Evelyn Partners targets NatWest and RBC as potential buyers – report",
+   "url": "https://finance.yahoo.com/news/evelyn-partners-targets-natwest-rbc-120152810.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-18T12:45:00.000Z"
+  },
+  {
+   "title": "Canadians are holding more cash in their wallets, Bank of Canada finds",
+   "url": "https://www.stcatharinesstandard.ca/business/canadians-are-holding-more-cash-in-their-wallets-bank-of-canada-finds/article_cecb8dcd-61cc-553f-90ad-b80c7caaabaf.html",
+   "domain": "stcatharinesstandard.ca",
+   "seenAt": "2025-08-14T19:45:00.000Z"
+  },
+  {
+   "title": "Policymakers unsure where Bank of Canada rate should land",
+   "url": "https://windsorstar.com:443/news/economy/policymakers-still-unsure-where-bank-of-canada-rate-should-land",
+   "domain": "windsorstar.com",
+   "seenAt": "2025-08-13T18:30:00.000Z"
+  },
+  {
+   "title": "USD / CAD remains subdued near 1. 3800 ahead of US economic data",
+   "url": "https://www.fxstreet.com/news/usd-cad-remains-subdued-13800-ahead-of-us-economic-data-202508150702",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-15T07:45:00.000Z"
+  },
+  {
+   "title": "Bank of Canada unsure where rates should land",
+   "url": "https://financialpost.com/news/economy/policymakers-still-unsure-where-bank-of-canada-rate-should-land",
+   "domain": "financialpost.com",
+   "seenAt": "2025-08-13T22:30:00.000Z"
+  },
+  {
+   "title": "Tariffs lifted food prices, inflation in July, economists expect",
+   "url": "https://www.bnnbloomberg.ca/business/economics/2025/08/17/economists-expect-tariffs-lifted-food-prices-core-inflation-in-july/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2025-08-17T14:00:00.000Z"
+  },
+  {
+   "title": "Bank of Canada still unsure where interest rates should land",
+   "url": "https://calgaryherald.com:443/news/economy/policymakers-still-unsure-where-bank-of-canada-rate-should-land/wcm/18f6f0f8-a4c2-4f83-baa9-7abd01697c6b",
+   "domain": "calgaryherald.com",
+   "seenAt": "2025-08-14T02:00:00.000Z"
+  },
+  {
+   "title": "Canada Existing Home Sales Rise 3. 8% in July",
+   "url": "https://www.marketscreener.com/news/canada-existing-home-sales-rise-3-8-in-july-ce7c51dedc80f027",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-15T12:45:00.000Z"
+  },
+  {
+   "title": "Some BoC governors wonder, has the central bank already cut its rate enough?",
+   "url": "https://www.advisor.ca/economy/policy/some-boc-governors-wonder-has-the-central-bank-already-cut-its-rate-enough/",
+   "domain": "advisor.ca",
+   "seenAt": "2025-08-13T20:00:00.000Z"
+  },
+  {
+   "title": "USD / CAD weakens to near 1. 3750 as expectations mount of Fed rate cut",
+   "url": "https://www.fxstreet.com/news/usd-cad-weakens-to-near-13750-as-expectations-mount-of-fed-rate-cut-202508132317",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-13T23:45:00.000Z"
+  },
+  {
+   "title": "Economists expect tariffs lifted food prices, core inflation in July – Winnipeg Free Press",
+   "url": "https://www.winnipegfreepress.com/business/2025/08/17/economists-expect-tariffs-lifted-food-prices-core-inflation-in-july",
+   "domain": "winnipegfreepress.com",
+   "seenAt": "2025-08-17T11:00:00.000Z"
+  },
+  {
+   "title": "Economists expect tariffs lifted food prices, core inflation in July",
+   "url": "https://www.stcatharinesstandard.ca/business/economists-expect-tariffs-lifted-food-prices-core-inflation-in-july/article_9839f114-9777-5050-8b3e-82c9e5a7b3de.html",
+   "domain": "stcatharinesstandard.ca",
+   "seenAt": "2025-08-17T13:00:00.000Z"
+  },
+  {
+   "title": "Canadian Payments Processor Moneris May Be up for Sale",
+   "url": "https://www.pymnts.com/news/partnerships-acquisitions/2025/canadian-payments-processor-moneris-valued-at-2-billion-may-be-up-for-sale/",
+   "domain": "pymnts.com",
+   "seenAt": "2025-08-15T06:00:00.000Z"
+  },
+  {
+   "title": "Canadian Dollar flat lines above 1. 3800 as traders await US Retail Sales release",
+   "url": "https://www.fxstreet.com/news/usd-cad-flat-lines-above-13800-as-traders-await-us-retail-sales-release-202508142308",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-08-15T02:45:00.000Z"
+  },
+  {
+   "title": "Sienna Gestion Lowers Stock Position in Royal Bank Of Canada ( NYSE: RY)",
+   "url": "https://www.tickerreport.com/banking-finance/13103366/sienna-gestion-lowers-stock-position-in-royal-bank-of-canada-nysery.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2025-08-15T10:00:00.000Z"
+  },
+  {
+   "title": "Ford heading to Ottawa to meet with Carney, urge lower taxes",
+   "url": "https://torontosun.com/news/provincial/ford-heading-to-ottawa-to-meet-with-carney-urge-lower-taxes",
+   "domain": "torontosun.com",
+   "seenAt": "2025-08-13T00:00:00.000Z"
+  },
+  {
+   "title": "Five things to watch for in the Canadian business world in the coming week",
+   "url": "https://www.niagarafallsreview.ca/business/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_10e2fc61-8325-5d48-af4e-eb3522d33313.html",
+   "domain": "niagarafallsreview.ca",
+   "seenAt": "2025-08-13T03:00:00.000Z"
+  },
+  {
+   "title": "Laurentian Bank of Canada ( TSE: LB) Given New C$27. 00 Price Target at National Bankshares",
+   "url": "https://www.etfdailynews.com/2025/08/18/laurentian-bank-of-canada-tselb-given-new-c27-00-price-target-at-national-bankshares/",
+   "domain": "etfdailynews.com",
+   "seenAt": "2025-08-18T06:30:00.000Z"
+  },
+  {
+   "title": "Financial market expects Bank of Canada interest rate to fall to 2. 25% by year - end",
+   "url": "https://vancouversun.com:443/news/financial-market-bank-of-canada-policy-rate-survey/wcm/5929848e-7238-489f-a0f6-c2ca4cdb5440",
+   "domain": "vancouversun.com",
+   "seenAt": "2025-08-11T22:30:00.000Z"
+  },
+  {
+   "title": "Artemis Gold Inc. Announces $700 Million Revolving Credit Facility",
+   "url": "https://www.marketscreener.com/news/artemis-gold-inc-announces-700-million-revolving-credit-facility-ce7c51dbda8af427",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-13T09:00:00.000Z"
+  },
+  {
+   "title": "The most oversold and overbought stocks on the TSX",
+   "url": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-the-most-oversold-and-overbought-stocks-on-the-tsx-144/",
+   "domain": "theglobeandmail.com",
+   "seenAt": "2025-08-18T13:00:00.000Z"
+  },
+  {
+   "title": "Buy, Hold, or Sell: Is TD Bank a Good Investment in August 2025?",
+   "url": "https://www.fool.ca/2025/08/15/buy-hold-or-sell-is-td-bank-a-good-investment-in-august-2025/",
+   "domain": "fool.ca",
+   "seenAt": "2025-08-15T21:15:00.000Z"
+  },
+  {
+   "title": "3 Canadian Value Stocks to Buy When Everyone Else Is Selling",
+   "url": "https://www.fool.ca/2025/08/15/3-canadian-value-stocks-to-buy-when-everyone-else-is-selling/",
+   "domain": "fool.ca",
+   "seenAt": "2025-08-16T02:00:00.000Z"
+  },
+  {
+   "title": "National Bank of Canada FI discloses $16. 81 million stake in Alibaba ( NYSE: BABA)",
+   "url": "https://paginasiete.bo/national-bank-of-canada-fi-discloses-16-81-million-stake-in-alibaba-nysebaba-baba-stock-price/",
+   "domain": "paginasiete.bo",
+   "seenAt": "2025-08-12T14:45:00.000Z"
+  },
+  {
+   "title": "Ford heading to Ottawa to meet with Carney, urge lower taxes – Winnipeg Free Press",
+   "url": "https://www.winnipegfreepress.com/business/2025/08/12/ford-heading-to-ottawa-to-meet-with-carney-urge-lower-taxes",
+   "domain": "winnipegfreepress.com",
+   "seenAt": "2025-08-12T19:15:00.000Z"
+  },
+  {
+   "title": "Canada economic collapse an omen for Australia",
+   "url": "https://www.macrobusiness.com.au/2025/08/canadas-economic-collapse-an-omen-for-australia/",
+   "domain": "macrobusiness.com.au",
+   "seenAt": "2025-08-12T05:00:00.000Z"
+  },
+  {
+   "title": "TSX futures fall as investors brace for action - packed week",
+   "url": "https://www.marketscreener.com/news/tsx-futures-fall-as-investors-brace-for-action-packed-week-ce7c51dfd18df621",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-18T10:45:00.000Z"
+  },
+  {
+   "title": "Finance Minister to meet banks over US$ credit card limit - Trinidad and Tobago Newsday",
+   "url": "https://newsday.co.tt/2025/08/17/finance-minister-to-meet-banks-over-us-credit-card-limit/",
+   "domain": "newsday.co.tt",
+   "seenAt": "2025-08-17T19:30:00.000Z"
+  },
+  {
+   "title": "Amber Kanwar Weekly Setup: Canadian inflation and big box retail earnings",
+   "url": "https://www.theglobeandmail.com/investing/markets/inside-the-market/article-amber-kanwars-weekly-setup-canadian-inflation-big-box-retail-earnings/",
+   "domain": "theglobeandmail.com",
+   "seenAt": "2025-08-17T23:30:00.000Z"
+  },
+  {
+   "title": "Opinion - Trump tariffs are forcing Canada to address its money laundering problem",
+   "url": "https://www.yahoo.com/news/articles/opinion-trump-tariffs-forcing-canada-173000248.html",
+   "domain": "yahoo.com",
+   "seenAt": "2025-08-13T19:30:00.000Z"
+  },
+  {
+   "title": "Toronto withdraws invitation for Canadian doc The Road Between Us: The Ultimate Rescue | News",
+   "url": "https://www.screendaily.com/news/toronto-withdraws-invitation-for-canadian-doc-the-road-between-us-the-ultimate-rescue/5207801.article",
+   "domain": "screendaily.com",
+   "seenAt": "2025-08-13T15:30:00.000Z"
+  },
+  {
+   "title": "Wealthsimple asks Ottawa to review rising bank transfer fees",
+   "url": "https://www.theglobeandmail.com/business/article-wealthsimple-asks-ottawa-to-review-rising-bank-transfer-fees/",
+   "domain": "theglobeandmail.com",
+   "seenAt": "2025-08-14T15:15:00.000Z"
+  },
+  {
+   "title": "Wealthsimple wants Canada to review bank transfer fees",
+   "url": "https://www.bnnbloomberg.ca/business/company-news/2025/08/14/wealthsimple-asks-canada-to-review-rising-bank-transfer-fees/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2025-08-14T15:15:00.000Z"
+  },
+  {
+   "title": "Toronto Home Sales Reach Year High",
+   "url": "https://therealdeal.com/international/2025/08/13/toronto-home-sales-reach-year-high/",
+   "domain": "therealdeal.com",
+   "seenAt": "2025-08-13T20:00:00.000Z"
+  },
+  {
+   "title": "Here where Canada effective U. S. tariff rate might stand after the carve - outs",
+   "url": "https://cheknews.ca/heres-where-canadas-effective-u-s-tariff-rate-might-stand-after-the-carve-outs-1271946/",
+   "domain": "cheknews.ca",
+   "seenAt": "2025-08-12T21:45:00.000Z"
+  },
+  {
+   "title": "Yellowknife businessman ordered to pay back fraudulent loan, serve 18 months house arrest",
+   "url": "https://www.cbc.ca/news/canada/north/yellowknife-business-man-ordered-to-pay-back-fraudulent-loan-serve-18-months-house-arrest-1.7610745",
+   "domain": "cbc.ca",
+   "seenAt": "2025-08-16T01:30:00.000Z"
+  },
+  {
+   "title": "Canadian Payments Processor Moneris, Valued at $2 Billion, May Be up for Sale",
+   "url": "https://biztoc.com/x/d8fd4de3fe5d8669",
+   "domain": "biztoc.com",
+   "seenAt": "2025-08-15T04:30:00.000Z"
+  },
+  {
+   "title": "Doug Ford says he will ask PM for tax cuts amid ongoing trade war",
+   "url": "https://www.bnnbloomberg.ca/business/politics/2025/08/12/we-are-taxed-to-death-doug-ford-says-he-will-ask-pm-for-tax-cuts-amid-ongoing-trade-war/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2025-08-12T20:15:00.000Z"
+  },
+  {
+   "title": "Bank of Canada governing council split on need for more rate relief, summary says",
+   "url": "https://biztoc.com/x/866867d854e5abb3",
+   "domain": "biztoc.com",
+   "seenAt": "2025-08-13T20:00:00.000Z"
+  },
+  {
+   "title": "Canadians are holding more cash in their wallets, BoC survey finds",
+   "url": "https://biztoc.com/x/68db415cbead6a65",
+   "domain": "biztoc.com",
+   "seenAt": "2025-08-14T20:45:00.000Z"
+  },
+  {
+   "title": "Startup Cohere Raises $500 Million for Its AI Model for Enterprises",
+   "url": "https://www.pymnts.com/news/investment-tracker/2025/ai-startup-cohere-raises-500-million-hires-former-meta-and-uber-executives/",
+   "domain": "pymnts.com",
+   "seenAt": "2025-08-14T20:45:00.000Z"
+  },
+  {
+   "title": "Housing market rebounded in July, CREA says, but prices could soon spike - National",
+   "url": "https://globalnews.ca/news/11336257/housing-market-july-crea/",
+   "domain": "globalnews.ca",
+   "seenAt": "2025-08-15T18:45:00.000Z"
+  },
+  {
+   "title": "Inflation Gauge in Focus as Investors Eye Rate - Cut Clues",
+   "url": "https://www.marketscreener.com/news/inflation-gauge-in-focus-as-investors-eye-rate-cut-clues-ce7c51d9d980f120",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-08-14T11:45:00.000Z"
+  },
+  {
+   "title": "Why America cant shake off inflation - Hindustan Times",
+   "url": "https://www.hindustantimes.com/world-news/us-news/why-america-can-t-shake-off-inflation-101755460044027.html",
+   "domain": "hindustantimes.com",
+   "seenAt": "2025-08-17T20:15:00.000Z"
+  },
+  {
+   "title": "Home resales in Canada will drop 3. 5% by next year, forecast says - National",
+   "url": "https://globalnews.ca/news/11331521/home-resales-canada-drop-forecast/",
+   "domain": "globalnews.ca",
+   "seenAt": "2025-08-12T19:15:00.000Z"
+  },
+  {
+   "title": "Cohere Raises $500M, Hires Ex Meta Exec Joelle Pineau as AI Chief",
+   "url": "https://observer.com/2025/08/ai-startup-cohere-raises-500m-meta-joelle-pineau/",
+   "domain": "observer.com",
+   "seenAt": "2025-08-14T23:30:00.000Z"
+  },
+  {
+   "title": "Dow Jones Top Markets Headlines at 3 AM ET: U. S. Stocks Amble to Fresh Records on Optimism for a September Rate Cut | U. K....",
+   "url": "https://www.morningstar.com/news/dow-jones/202508142336/dow-jones-top-markets-headlines-at-3-am-et-us-stocks-amble-to-fresh-records-on-optimism-for-a-september-rate-cut-uk",
+   "domain": "morningstar.com",
+   "seenAt": "2025-08-14T08:30:00.000Z"
+  },
+  {
+   "title": "BizClik Announces Finalists for the 2025 Global FinTech Awards",
+   "url": "https://www.manilatimes.net/2025/08/13/tmt-newswire/globenewswire/bizclik-announces-finalists-for-the-2025-global-fintech-awards/2167047",
+   "domain": "manilatimes.net",
+   "seenAt": "2025-08-13T09:30:00.000Z"
+  },
+  {
+   "title": "Rogers sells data centres to InfraRed Capital to pay down debt",
+   "url": "https://www.theglobeandmail.com/business/article-rogers-debt-data-centres-infrared-capital-tariffs/",
+   "domain": "theglobeandmail.com",
+   "seenAt": "2025-08-14T17:15:00.000Z"
+  },
+  {
+   "title": "Weekly Stock Grader Analysis: Upgrades & Downgrades on Top Blue - Chip Stocks",
+   "url": "https://investorplace.com/market360/2025/08/20250818-blue-chip-upgrades-downgrades/",
+   "domain": "investorplace.com",
+   "seenAt": "2025-08-18T16:45:00.000Z"
+  },
+  {
+   "title": "Real estate: RBC foresees challenges in Ontario housing market",
+   "url": "https://www.cp24.com/news/2025/08/13/as-real-estate-market-across-canada-sees-gradual-recovery-prices-in-ontario-will-remain-under-pressure-report/",
+   "domain": "cp24.com",
+   "seenAt": "2025-08-13T17:15:00.000Z"
+  },
+  {
+   "title": "Here what Canada effective U. S. tariff rate might look like after the carve - outs",
+   "url": "https://www.thepeterboroughexaminer.com/business/heres-what-canadas-effective-u-s-tariff-rate-might-look-like-after-the-carve-outs/article_5c0b482e-d607-5c0a-a088-70664cc457f9.html",
+   "domain": "thepeterboroughexaminer.com",
+   "seenAt": "2025-08-12T22:15:00.000Z"
+  },
+  {
+   "title": "1 Canadian Stock in the Sweet Spot to Reel in Outsized Returns",
+   "url": "https://www.fool.ca/2025/08/15/1-canadian-stock-in-the-sweet-spot-to-reel-in-outsized-returns/",
+   "domain": "fool.ca",
+   "seenAt": "2025-08-16T01:30:00.000Z"
+  }
+ ]
+}

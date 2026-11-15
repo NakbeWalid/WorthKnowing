@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2025-08-14",
+  "title": "Hot US inflation data rattles global bond markets",
+  "source": "ksl.com",
+  "url": "https://www.ksl.com:443/article/51360485/hot-us-inflation-data-rattles-global-bond-markets",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:18:15.665Z",
+  "summary": "Les données d'inflation américaines élevées perturbent les marchés obligataires mondiaux."
+ },
+ {
+  "date": "2025-08-15",
+  "title": "Stocks waver on mixed US data, eyes on Trump - Putin summit",
+  "source": "guampdn.com",
+  "url": "https://www.guampdn.com/news/national/stocks-waver-on-mixed-us-data-eyes-on-trump-putin-summit/article_1119d371-7455-5408-a652-151a6007f679.html",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:18:15.665Z",
+  "summary": "Les actions fluctuent sur des données américaines mitigées, attention au sommet Trump-Poutine."
+ },
+ {
+  "date": "2025-08-14",
+  "title": "U. S. stocks hold steady after wholesale prices jump",
+  "source": "tribune.net.ph",
+  "url": "https://tribune.net.ph/2025/08/14/us-stocks-hold-steady-after-wholesale-prices-jump",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:18:15.665Z",
+  "summary": "Les actions américaines se maintiennent après une hausse des prix de gros."
+ },
+ {
+  "date": "2025-08-13",
+  "title": "S & P 500, Nasdaq end at records after benign US inflation data",
+  "source": "straitstimes.com",
+  "url": "https://www.straitstimes.com/business/companies-markets/sp-500-nasdaq-end-at-records-after-benign-inflation-data",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:18:15.665Z",
+  "summary": "S&P 500 et Nasdaq atteignent des records après des données d'inflation américaine rassurantes."
+ },
+ {
+  "date": "2025-08-14",
+  "title": "Even at an All - Time High, The Vanguard S & P 500 ETF Isnt as Expensive as It Seems",
+  "source": "fool.com",
+  "url": "https://www.fool.com/investing/2025/08/14/all-time-high-buy-sp-500-stocks/?source=iedfolrf0000001",
+  "impact": "faible",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:18:15.665Z",
+  "summary": "Le Vanguard S&P 500 ETF, même à un sommet historique, n'est pas aussi cher qu'il semble."
+ }
+]

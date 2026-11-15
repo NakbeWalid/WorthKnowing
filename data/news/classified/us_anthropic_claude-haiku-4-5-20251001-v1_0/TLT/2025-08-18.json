@@ -1,0 +1,42 @@
+[
+ {
+  "date": "2025-08-15",
+  "title": "Treasury Yields Fall as Investors Anticipate Rate Cut",
+  "source": "barrons.com",
+  "url": "https://www.barrons.com/livecoverage/stock-market-news-today-081425/card/treasury-yields-fall-as-investors-anticipate-rate-cut-46V1pKozWyA7ab6eGTd3",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:06:05.466Z",
+  "summary": "Les rendements des bons du Trésor baissent alors que les investisseurs anticipent une réduction des taux d'intérêt."
+ },
+ {
+  "date": "2025-08-15",
+  "title": "Wall Street stocks ease, US yields rise after hot inflation data shakes confidence in Fed rate cut",
+  "source": "economictimes.indiatimes.com",
+  "url": "https://economictimes.indiatimes.com/markets/stocks/news/wall-street-stocks-ease-us-yields-rise-after-hot-inflation-data-shakes-confidence-in-fed-rate-cut/articleshow/123315459.cms",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:06:05.466Z",
+  "summary": "Les rendements américains augmentent après des données d'inflation élevées, réduisant les espoirs de baisse de taux."
+ },
+ {
+  "date": "2025-08-14",
+  "title": "Global Markets Mixed; Treasury Yields Fall as Expectations for Interest - Rate Cut Mount",
+  "source": "marketscreener.com",
+  "url": "https://www.marketscreener.com/news/global-markets-mixed-treasury-yields-fall-as-expectations-for-interest-rate-cut-mount-ce7c51d8d18ff627",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:06:05.466Z",
+  "summary": "Les rendements des bons du Trésor chutent avec les attentes croissantes d'une baisse des taux d'intérêt."
+ },
+ {
+  "date": "2025-08-14",
+  "title": "Treasury yields rebound after data, Trump remarks",
+  "source": "biztoc.com",
+  "url": "https://biztoc.com/x/5f2634f8cde2817b",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:06:05.466Z",
+  "summary": "Les rendements des bons du Trésor rebondissent après les données économiques et les remarques de Trump."
+ }
+]

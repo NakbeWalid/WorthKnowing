@@ -1,0 +1,26 @@
+{
+ "value": {
+  "text": "Les médias discutaient de l'orientation des taux d'intérêt de la Banque du Canada, notamment si les réductions déjà effectuées suffisaient face aux tarifs et à l'inflation. L'incertitude demeurait quant au niveau approprié des taux.",
+  "sources": [
+   {
+    "title": "BoC officials considered whether interest rate already low enough to weather tariffs",
+    "source": "cbc.ca",
+    "url": "https://www.cbc.ca/news/business/boc-officials-summary-of-deliberations-aug-2025-1.7608128",
+    "date": "2025-08-13"
+   },
+   {
+    "title": "Canada interest rate: Has the BoC already cut its rate enough?",
+    "source": "bnnbloomberg.ca",
+    "url": "https://www.bnnbloomberg.ca/business/economics/2025/08/13/some-boc-governors-wonder-has-the-central-bank-already-cut-its-rate-enough/",
+    "date": "2025-08-13"
+   },
+   {
+    "title": "Bank of Canada unsure where rates should land",
+    "source": "financialpost.com",
+    "url": "https://financialpost.com/news/economy/policymakers-still-unsure-where-bank-of-canada-rate-should-land",
+    "date": "2025-08-13"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2025-08-18."
+ }
+}

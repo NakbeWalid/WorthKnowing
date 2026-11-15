@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2024-12-06",
+  "title": "BlackRock, MARA Holdings, whale buy nearly 10K Bitcoin as price retreats",
+  "source": "cointelegraph.com",
+  "url": "https://cointelegraph.com/news/blackrock-mara-holdings-buy-more-bitcoin-amid-price-drop",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:13:39.023Z",
+  "summary": "BlackRock, MARA Holdings et des baleines achètent près de 10 000 Bitcoin alors que le prix recule."
+ },
+ {
+  "date": "2024-12-06",
+  "title": "US Bitcoin ETFs now hold more BTC than Satoshi Nakamoto",
+  "source": "cointelegraph.com",
+  "url": "https://cointelegraph.com/news/bitcoin-etfs-flip-satoshi-nakamoto-total-held-btc",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:13:39.023Z",
+  "summary": "Les ETF Bitcoin américains détiennent désormais plus de BTC que Satoshi Nakamoto."
+ },
+ {
+  "date": "2024-12-05",
+  "title": "Bitcoin Reaches $100K, Fulfilling Anton Kharitonov Prediction",
+  "source": "newsbtc.com",
+  "url": "https://www.newsbtc.com/press-releases/bitcoin-reaches-100k-fulfilling-anton-kharitonovs-prediction/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:13:39.023Z",
+  "summary": "Bitcoin atteint 100 000 dollars, réalisant la prédiction d'Anton Kharitonov."
+ },
+ {
+  "date": "2024-12-05",
+  "title": "Elon Musk Quietly Fuels U. S. Bitcoin Reserve Bets As Price Breaks $100, 000",
+  "source": "forbes.com",
+  "url": "https://www.forbes.com/sites/digital-assets/2024/12/05/elon-musk-quietly-fuels-us-bitcoin-reserve-bets-as-price-breaks-100000/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:13:39.023Z",
+  "summary": "Elon Musk alimente discrètement les paris sur une réserve Bitcoin américaine alors que le prix dépasse 100 000 dollars."
+ },
+ {
+  "date": "2024-11-30",
+  "title": "Bitcoin Flows To Binance Hit Historic Lows Is Market Confidence Soaring?",
+  "source": "newsbtc.com",
+  "url": "https://www.newsbtc.com/bitcoin-news/bitcoin-flows-to-binance-hit-historic-lows-is-market-confidence-soaring/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T03:13:39.023Z",
+  "summary": "Les flux de Bitcoin vers Binance atteignent des creux historiques. La confiance du marché augmente-t-elle?"
+ }
+]

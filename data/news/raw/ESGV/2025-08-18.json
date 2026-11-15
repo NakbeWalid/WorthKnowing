@@ -1,0 +1,33 @@
+{
+ "ticker": "ESGV",
+ "query": "\"ESG investing\"",
+ "from": "2025-08-11T20:00:00.000Z",
+ "to": "2025-08-18T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T03:17:41.126Z",
+ "articles": [
+  {
+   "title": "Blue State Dems Are Having an Overdue Reckoning With Their Own Power",
+   "url": "https://talkingpointsmemo.com/cafe/blue-state-dems-are-having-an-overdue-reckoning-with-their-own-power",
+   "domain": "talkingpointsmemo.com",
+   "seenAt": "2025-08-12T14:45:00.000Z"
+  },
+  {
+   "title": "OpenAI $3. 7B 2025 Loss Fuels AI and Fintech Innovations",
+   "url": "https://www.webpronews.com/openais-3-7b-2025-loss-fuels-ai-and-fintech-innovations/",
+   "domain": "webpronews.com",
+   "seenAt": "2025-08-17T15:00:00.000Z"
+  },
+  {
+   "title": "Engineered Confusion: The $100 Million Threat To Business Integrity",
+   "url": "https://www.forbes.com/sites/feliciajackson/2025/08/13/engineered-confusion-the-100-million-threat-to-business-integrity/",
+   "domain": "forbes.com",
+   "seenAt": "2025-08-13T07:30:00.000Z"
+  },
+  {
+   "title": "Trump Acts To Protect Conservatives",
+   "url": "https://conservativehq.com/post/trump-acts-to-protect-conservatives",
+   "domain": "conservativehq.com",
+   "seenAt": "2025-08-13T09:30:00.000Z"
+  }
+ ]
+}

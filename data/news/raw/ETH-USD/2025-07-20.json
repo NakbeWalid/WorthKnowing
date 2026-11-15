@@ -1,0 +1,429 @@
+{
+ "ticker": "ETH-USD",
+ "query": "(Ethereum OR Ether)",
+ "from": "2025-07-13T20:00:00.000Z",
+ "to": "2025-07-20T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T03:13:21.643Z",
+ "articles": [
+  {
+   "title": "Ethereum Heats Up With Record ETF Inflows And 6 - Month Price Peak",
+   "url": "https://www.newsbtc.com/altcoin/ethereum-heats-up-with-record-etf-inflows-and-6-month-price-peak/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-17T23:45:00.000Z"
+  },
+  {
+   "title": "Ethereum Treasuries Boom as Companies Look Beyond Bitcoin",
+   "url": "https://finance.yahoo.com/news/ethereum-treasuries-boom-companies-look-103000363.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-18T19:30:00.000Z"
+  },
+  {
+   "title": "Prediction: SharpLink Ethereum Move Is Just the Beginning",
+   "url": "https://www.fool.com/investing/2025/07/20/prediction-sharplinks-ethereum-move-is-just-the-be/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-07-20T10:00:00.000Z"
+  },
+  {
+   "title": "Ethereum Shines Bright As BOA Begins Digital Asset Tracking",
+   "url": "https://www.newsbtc.com/news/ethereum/ethereum-shines-bright-as-bank-of-america-begins-digital-asset-tracking/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-15T18:15:00.000Z"
+  },
+  {
+   "title": "ETH Ready to Blast Higher Against BTC as GENIUS Act Puts Spotlight on Yield - Bearing Stablecoins: Analyst",
+   "url": "https://www.coindesk.com/markets/2025/07/16/ether-races-6-against-bitcoin-as-genuis-act-puts-spotlight-on-yield-bearing-stablecoins-analyst",
+   "domain": "coindesk.com",
+   "seenAt": "2025-07-16T11:00:00.000Z"
+  },
+  {
+   "title": "ethereum vs bitcoin ethereum price prediction: Is Ethereum the new king? Peter Thiel just backed this crypto pivot, and it all about ETH, not Bitcoin",
+   "url": "https://economictimes.indiatimes.com/news/international/us/is-ethereum-the-new-king-peter-thiel-just-backed-this-crypto-pivot-and-its-all-about-eth-not-bitcoin/articleshow/122765556.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-07-18T13:00:00.000Z"
+  },
+  {
+   "title": "Ether - linked stocks jump as crypto coin hits 6 - month high",
+   "url": "https://www.thestar.com.my/tech/tech-news/2025/07/18/ether-linked-stocks-jump-as-crypto-coin-hits-6-month-high",
+   "domain": "thestar.com.my",
+   "seenAt": "2025-07-18T11:30:00.000Z"
+  },
+  {
+   "title": "Crypto: Ether - linked stocks jump as coin hits 6 - month high",
+   "url": "https://www.bnnbloomberg.ca/business/2025/07/18/ether-linked-stocks-jump-as-crypto-coin-hits-6-month-high/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2025-07-18T14:00:00.000Z"
+  },
+  {
+   "title": "Ether Prices Reach A Fresh, 6 - Month High Near $3, 700",
+   "url": "https://www.forbes.com/sites/digital-assets/2025/07/18/ether-prices-reach-a-fresh-6-month-high-near-3700/",
+   "domain": "forbes.com",
+   "seenAt": "2025-07-18T23:45:00.000Z"
+  },
+  {
+   "title": "Crypto stocks jump as ether scales six - month high",
+   "url": "https://finance.yahoo.com/news/ether-linked-stocks-jump-crypto-103945013.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-19T12:30:00.000Z"
+  },
+  {
+   "title": "Ethereum price prediction 1. 5 million $ surge: Ethereum to hit $1. 5 million? Top investor predicts mind - blowing 100x surge with new ETFs",
+   "url": "https://economictimes.indiatimes.com/articleshow/122443029.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-07-14T15:45:00.000Z"
+  },
+  {
+   "title": "Ethereum Is Quietly Soaring. What Comes Next?",
+   "url": "https://gizmodo.com/ethereum-is-quietly-soaring-what-comes-next-2000631839",
+   "domain": "gizmodo.com",
+   "seenAt": "2025-07-20T16:00:00.000Z"
+  },
+  {
+   "title": "Peter Thiel just bought a big stake in Tom Lee ether company and the shares are surging",
+   "url": "https://www.nbcdfw.com/news/business/money-report/peter-thiel-just-bought-a-big-stake-in-the-tom-lees-ether-company-and-the-shares-are-surging/3886627/",
+   "domain": "nbcdfw.com",
+   "seenAt": "2025-07-16T14:45:00.000Z"
+  },
+  {
+   "title": "Crypto Treasury Companies Explode Bitcoin and Ethereum Higher",
+   "url": "https://finance.yahoo.com/news/crypto-treasury-companies-explode-bitcoin-194422052.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-16T07:30:00.000Z"
+  },
+  {
+   "title": "ETH Demand Surges as Institutions Double Down",
+   "url": "https://www.coinspeaker.com/ethereum-institutional-bets-bit-digital-bitmine/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2025-07-15T13:00:00.000Z"
+  },
+  {
+   "title": "BitMine Holding $500 Million of Ether in Treasury",
+   "url": "https://www.marketscreener.com/quote/cryptocurrency/ETHEREUM-ETH-USD-45554109/news/BitMine-Holding-500-Million-of-Ether-in-Treasury-50502484/",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-07-14T13:45:00.000Z"
+  },
+  {
+   "title": "Another BTC Mining Firm Moves Into Ethereum Reserve, Hailing ETH as Digital Gold",
+   "url": "https://finance.yahoo.com/news/another-btc-mining-firm-moves-164814175.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-14T03:45:00.000Z"
+  },
+  {
+   "title": "Ethereum Institutional Edge: Corporate Treasuries Fuel Ether Ascent",
+   "url": "https://bravenewcoin.com/insights/ethereums-institutional-edge-corporate-treasuries-fuel-ethers-ascent",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-20T03:00:00.000Z"
+  },
+  {
+   "title": "Altcoins Use Growing as Part of Corporate Strategies",
+   "url": "https://www.pymnts.com/cryptocurrency/2025/altcoins-use-growing-as-part-of-corporate-strategies/",
+   "domain": "pymnts.com",
+   "seenAt": "2025-07-14T03:30:00.000Z"
+  },
+  {
+   "title": "Ethereum ETFs Fuel Price Surge: Bullish Outlook Despite Profit - Taking",
+   "url": "http://www.econotimes.com/Ethereum-ETFs-Fuel-Price-Surge-Bullish-Outlook-Despite-Profit-Taking-1716092",
+   "domain": "econotimes.com",
+   "seenAt": "2025-07-15T12:00:00.000Z"
+  },
+  {
+   "title": "Tom Lee Predicts $30, 000 Ethereum As Treasury Frenzy Begins",
+   "url": "https://www.newsbtc.com/news/ethereum/tom-lee-30000-ethereum-treasury-frenzy-begins/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-18T23:00:00.000Z"
+  },
+  {
+   "title": "Bitmine Immersion Soars 25% After Peter Thiel Reveals 9% Stake",
+   "url": "https://wallstreetpit.com/128090-bitmine-immersion-soars-25-after-peter-thiel-reveals-9-stake/",
+   "domain": "wallstreetpit.com",
+   "seenAt": "2025-07-16T20:30:00.000Z"
+  },
+  {
+   "title": "Ethereum Outperforms Bitcoin In Crypto Rebound",
+   "url": "https://www.finanznachrichten.de/nachrichten-2025-07/65922522-ethereum-outperforms-bitcoin-in-crypto-rebound-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2025-07-16T15:30:00.000Z"
+  },
+  {
+   "title": "Bitmine Immersion Stock Price Pops After Peter Thiel Bets on Ether Strategy",
+   "url": "https://www.businessinsider.com/bitmine-immersion-stock-price-peter-thiel-ethereum-reserve-bitcoin-stablecoin-2025-7",
+   "domain": "businessinsider.com",
+   "seenAt": "2025-07-16T16:45:00.000Z"
+  },
+  {
+   "title": "SharpLink extends YTD surge after becoming largest corporate ether holder ( SBET: NASDAQ)",
+   "url": "https://seekingalpha.com/news/4467993-sharplink-extends-surge-after-becoming-largest-corporate-ether-holder",
+   "domain": "seekingalpha.com",
+   "seenAt": "2025-07-16T16:15:00.000Z"
+  },
+  {
+   "title": "Ether and trading stocks take the crypto spotlight as Congress passes historic stablecoin bill",
+   "url": "https://www.nbcsandiego.com/news/business/money-report/ether-and-trading-stocks-take-the-crypto-spotlight-as-congress-passes-historic-stablecoin-bill/3871391/",
+   "domain": "nbcsandiego.com",
+   "seenAt": "2025-07-18T17:15:00.000Z"
+  },
+  {
+   "title": "Ethereum Binance Reserves At New High As Dominance Grows What This Means For Price",
+   "url": "https://www.newsbtc.com/news/ethereum/ethereum-reserves-at-a-new-high-as-dominance-grows/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-20T17:30:00.000Z"
+  },
+  {
+   "title": "ether. fi Price Tops $1. 35 on Top Exchanges ( ETHFI)",
+   "url": "https://www.themarketsdaily.com/2025/07/20/ether-fi-price-tops-1-35-on-top-exchanges-ethfi.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2025-07-20T12:45:00.000Z"
+  },
+  {
+   "title": "Ethereum Price Breaks Out: Smashes $3, 400 Mark in Bullish Run",
+   "url": "https://www.newsbtc.com/analysis/eth/ethereum-price-breaks-out-3400/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-17T07:00:00.000Z"
+  },
+  {
+   "title": "Ether surges 20% this week, eyes the $4k psychological level",
+   "url": "https://invezz.com/news/2025/07/18/ether-surges-20-this-week-eyes-the-4000-psychological-level/",
+   "domain": "invezz.com",
+   "seenAt": "2025-07-18T10:15:00.000Z"
+  },
+  {
+   "title": "Ethereum ETFs Emerge as the Preferred Bet for Crypto Investors",
+   "url": "https://bravenewcoin.com/insights/ethereum-etfs-emerge-as-the-preferred-bet-for-crypto-investors",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-16T00:00:00.000Z"
+  },
+  {
+   "title": "From Bitcoin To Ethereum: The Rise Of Crypto Treasury Strategies",
+   "url": "https://www.forbes.com/sites/clorischen/2025/07/19/from-bitcoin-to-ethereum-the-rise-of-crypto-treasury-strategies/",
+   "domain": "forbes.com",
+   "seenAt": "2025-07-20T03:15:00.000Z"
+  },
+  {
+   "title": "Ethereum Price Fails to Hold Momentum Above $3K Correction Ahead?",
+   "url": "https://www.newsbtc.com/analysis/eth/ethereum-price-3k-correction/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-15T05:15:00.000Z"
+  },
+  {
+   "title": "Ethereum Price Keeps Climbing $4K in Sight as Bulls Take Charge",
+   "url": "https://www.newsbtc.com/analysis/eth/ethereum-price-keeps-climbing-3650/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-18T04:00:00.000Z"
+  },
+  {
+   "title": "This Just Happened: Ethereum Overtook Bitcoin Futures Volumes as SUBBD Token Stands to Gain",
+   "url": "https://bravenewcoin.com/sponsored/presale/this-just-happened-ethereum-overtook-bitcoins-futures-volumes-as-subbd-token-stands-to-gain",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-14T01:00:00.000Z"
+  },
+  {
+   "title": "Ethereum rally boosts outlook for crypto firms",
+   "url": "https://www.proactiveinvestors.com/companies/news/1074960/ethereum-rally-boosts-outlook-for-crypto-firms-1074960.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2025-07-17T20:30:00.000Z"
+  },
+  {
+   "title": "Ether Races 6% Against Bitcoin as GENUIS Act Puts Spotlight on Yield - Bearing Stablecoins: Analyst",
+   "url": "https://biztoc.com/x/79ab0e90d80627f5",
+   "domain": "biztoc.com",
+   "seenAt": "2025-07-16T08:45:00.000Z"
+  },
+  {
+   "title": "Ethereum Boom Or Bust? Daniel Yan Sounds Alarm On SBET",
+   "url": "https://www.newsbtc.com/news/ethereum/ethereum-boom-or-bust-daniel-sounds-alarm-sbet/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-18T04:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin Rises To A Higher Orbit, Breaches $123k",
+   "url": "https://www.finanznachrichten.de/nachrichten-2025-07/65897299-bitcoin-rises-to-a-higher-orbit-breaches-dollar-123k-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2025-07-14T11:15:00.000Z"
+  },
+  {
+   "title": "Ethereum Price Forecast: ETH extends rally as ETFs eye record weekly inflows, Bit Digital treasury tops 120, 000 ETH",
+   "url": "https://www.fxstreet.com/cryptocurrencies/news/ethereum-price-forecast-eth-extends-rally-as-etfs-eye-record-weekly-inflows-bit-digital-treasury-tops-120-000-eth-202507182225",
+   "domain": "fxstreet.com",
+   "seenAt": "2025-07-18T22:45:00.000Z"
+  },
+  {
+   "title": "SharpLink Gaming adds $118 million worth of Ethereum, extending lead as largest corporate ether holder",
+   "url": "https://biztoc.com/x/deb09d738d8658f2",
+   "domain": "biztoc.com",
+   "seenAt": "2025-07-18T04:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin, Ethereum, Dogecoin Climb Amid Trump - Powell Turbulence: Analyst Says BTC Could Reach $3 Trillion Market Cap By Year - End If This Happens - Grayscale Bitcoin Mini Trust ( BTC) Common units of fractional undivided beneficial interest ( A...",
+   "url": "https://www.benzinga.com/crypto/25/07/46458867/bitcoin-ethereum-dogecoin-climb-amid-trump-powell-turbulence-analyst-says-btc-could-reach-3-trillion-market-cap-by-year-end-if-this-happens",
+   "domain": "benzinga.com",
+   "seenAt": "2025-07-17T05:15:00.000Z"
+  },
+  {
+   "title": "99% Of Bitcoin Holders Are In Profit: Is BTC Dipping Because Some Are Cashing Out?",
+   "url": "https://www.benzinga.com/crypto/cryptocurrency/25/07/46414002/99-of-bitcoin-holders-are-in-profit-is-btc-dipping-because-some-are-cashing-out",
+   "domain": "benzinga.com",
+   "seenAt": "2025-07-15T14:15:00.000Z"
+  },
+  {
+   "title": "iShares Ethereum Trust ETF Sees Unusually High Options Volume ( NASDAQ: ETHA)",
+   "url": "https://www.themarketsdaily.com/2025/07/20/ishares-ethereum-trust-etf-sees-unusually-high-options-volume-nasdaqetha.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2025-07-20T05:30:00.000Z"
+  },
+  {
+   "title": "Peter Thiel Is Betting Big on This Ethereum Treasury Stock. Should You Buy Shares Now?",
+   "url": "https://finance.yahoo.com/news/peter-thiel-betting-big-ethereum-171546293.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-18T05:00:00.000Z"
+  },
+  {
+   "title": "Crypto market value tops US$4 trillion as stablecoin bill passes",
+   "url": "https://www.taipeitimes.com/News/biz/archives/2025/07/19/2003840525",
+   "domain": "taipeitimes.com",
+   "seenAt": "2025-07-18T17:30:00.000Z"
+  },
+  {
+   "title": "Crypto accumulator DeFi Development to franchise its Solana treasury model",
+   "url": "https://www.cnbc.com/2025/07/17/crypto-accumulator-defi-development-to-franchise-its-solana-treasury-model.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-07-17T13:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin Treasury News: Cantor Fitzgerald SPAC May Buy 30, 000 BTC From Adam Back, FT Reports",
+   "url": "https://www.coindesk.com/business/2025/07/15/early-bitcoiner-adam-back-nears-35b-btc-deal-with-brandon-lutnick-led-cantor-spac-ft",
+   "domain": "coindesk.com",
+   "seenAt": "2025-07-15T21:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin spikes nearly 3% to cross $121, 000 - mark for first time ever",
+   "url": "https://www.thestatesman.com/business/bitcoin-spikes-nearly-3-to-cross-121000-mark-for-first-time-ever-1503457576.html",
+   "domain": "thestatesman.com",
+   "seenAt": "2025-07-14T13:00:00.000Z"
+  },
+  {
+   "title": "Ethereum Technical Analysis ( opinion: do not short still applies)",
+   "url": "https://investinglive.com/Cryptocurrency/ethereum-technical-analysis-opinion-do-not-short-still-applies-20250720/",
+   "domain": "investinglive.com",
+   "seenAt": "2025-07-20T14:00:00.000Z"
+  },
+  {
+   "title": "Ahead of Thailand launching crypto for tourists, here are six countries where visitors already use bitcoin, Ether, and...",
+   "url": "https://www.dnaindia.com/business/photo-gallery-as-ahead-of-thailand-launching-crypto-for-tourists-here-are-six-countries-where-visitors-already-use-bitcoin-ether-and-3169706",
+   "domain": "dnaindia.com",
+   "seenAt": "2025-07-18T17:30:00.000Z"
+  },
+  {
+   "title": "Ethereum Takes the Hand as Bitcoin Finds its Local Top",
+   "url": "https://www.investing.com/analysis/ethereum-takes-the-hand-as-bitcoin-finds-its-local-top-200663828",
+   "domain": "investing.com",
+   "seenAt": "2025-07-17T08:00:00.000Z"
+  },
+  {
+   "title": "Crypto payments for Thailand tourists: US, UAE, Japan and other countries that let you pay with Bitcoin, Ether, more",
+   "url": "https://www.livemint.com/market/cryptocurrency/crypto-payments-for-thailand-tourists-us-uae-japan-and-other-countries-that-let-you-pay-with-bitcoin-ether-more-11752816299809.html",
+   "domain": "livemint.com",
+   "seenAt": "2025-07-18T07:15:00.000Z"
+  },
+  {
+   "title": "Is it Altcoin Season? The Charts Say It Almost Time",
+   "url": "https://bravenewcoin.com/insights/is-it-altcoin-season-the-charts-say-its-almost-time",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-17T19:30:00.000Z"
+  },
+  {
+   "title": "Ethereum ( ETH) Price Prediction: Is Ethereum on Track for $10K as Bulls Regain Control and Daily Inflows Hit All - Time High?",
+   "url": "https://bravenewcoin.com/insights/ethereum-eth-price-prediction-is-ethereum-on-track-for-10k-as-bulls-regain-control-and-daily-inflows-hit-all-time-high",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-19T22:00:00.000Z"
+  },
+  {
+   "title": "Tom Lee $250M Ethereum Bet: Why Wall Street Crypto Prophet Says This Is the ChatGPT Moment For Blockchain",
+   "url": "https://finance.yahoo.com/news/tom-lees-250m-ethereum-bet-123117531.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-19T13:30:00.000Z"
+  },
+  {
+   "title": "Ethereum ( ETH) Price Prediction: Why Ethereum $8K Target Is No Longer a Dream Top Analysts Weigh In",
+   "url": "https://bravenewcoin.com/insights/ethereum-eth-price-prediction-why-ethereums-8k-target-is-no-longer-a-dream-top-analysts-weigh-in",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-18T22:45:00.000Z"
+  },
+  {
+   "title": "Ethereum Surges to $3, 400 as ALL4 Mining Fuels a New Era of",
+   "url": "https://www.globenewswire.com/news-release/2025/07/18/3118227/0/en/Ethereum-Surges-to-3-400-as-ALL4-Mining-Fuels-a-New-Era-of-Crypto-Investors-in-2025.html",
+   "domain": "globenewswire.com",
+   "seenAt": "2025-07-18T23:30:00.000Z"
+  },
+  {
+   "title": "Ethereum ( ETH) Price Prediction: Ethereum Climbs Past $3K, Analysts Say $3. 4K Is the Next Stop",
+   "url": "https://bravenewcoin.com/insights/ethereum-eth-price-prediction-ethereum-climbs-past-3k-analysts-say-3-4k-is-the-next-stop",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-16T14:15:00.000Z"
+  },
+  {
+   "title": "Shiba ( SHIB) Price Prediction for July & August 2025: Can Shiba Inu Double?",
+   "url": "https://bravenewcoin.com/insights/shiba-shib-price-prediction-for-july-august-2025-can-shiba-inu-double",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-15T14:45:00.000Z"
+  },
+  {
+   "title": "SharpLink Gaming Becomes World Largest Corporate Ethereum Holder",
+   "url": "https://bravenewcoin.com/insights/sharplink-gaming-becomes-worlds-largest-corporate-ethereum-holder",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-16T14:15:00.000Z"
+  },
+  {
+   "title": "Ethereum Surges to $3, 400 as ALL4 Mining Fuels a New Era of Crypto Investors in 2025",
+   "url": "https://www.manilatimes.net/2025/07/19/tmt-newswire/globenewswire/ethereum-surges-to-3400-as-all4-mining-fuels-a-new-era-of-crypto-investors-in-2025/2152365",
+   "domain": "manilatimes.net",
+   "seenAt": "2025-07-19T00:00:00.000Z"
+  },
+  {
+   "title": "Ethereum ( ETH) Price Prediction: Will Ethereum Hit $4, 000? Whale Accumulation and ETF Inflows Signal Immediate Breakout",
+   "url": "https://bravenewcoin.com/insights/ethereum-eth-price-prediction-will-ethereum-hit-4000-whale-accumulation-and-etf-inflows-signal-immediate-breakout",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2025-07-15T19:15:00.000Z"
+  },
+  {
+   "title": "Ethereum ETF Hype Drives ETH Toward $4, 000 Will It Break Records?",
+   "url": "https://dailystar.com.lb/ethereum-etf-hype-4000/",
+   "domain": "dailystar.com.lb",
+   "seenAt": "2025-07-20T01:00:00.000Z"
+  },
+  {
+   "title": "Tom Lee Says Ethereum Set For Breakout As Stablecoins Become ChatGPT Moment For Wall Street And Crypto - BitMine Immersion Techs ( AMEX: BMNR), Grayscale Ethereum Mini Trust ( ETH) Common units of fractional undivided beneficial interest ( ARCA...",
+   "url": "https://www.benzinga.com/crypto/25/07/46434516/tom-lee-says-ethereum-set-for-breakout-as-stablecoins-become-chatgpt-moment-for-wall-street-and-crypto",
+   "domain": "benzinga.com",
+   "seenAt": "2025-07-16T05:45:00.000Z"
+  },
+  {
+   "title": "Ethereum Set To Hit $10, 000, Elliott Wave Analysis Predicts",
+   "url": "https://www.newsbtc.com/news/ethereum/ethereum-set-to-hit-10000-elliott-wave-analysis-predicts/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-20T12:45:00.000Z"
+  },
+  {
+   "title": "SharpLink unlocks $6B in new capital to supercharge Ethereum buys",
+   "url": "https://invezz.com/news/2025/07/18/sharplink-unlocks-6b-in-new-capital-to-supercharge-ethereum-buys/",
+   "domain": "invezz.com",
+   "seenAt": "2025-07-18T10:15:00.000Z"
+  },
+  {
+   "title": "Ethereum Rips Through Thin Zone: A Loud Move After Weeks of Silence",
+   "url": "https://www.newsbtc.com/news/ethereum/ethereum-rips-through-thin-zone/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-16T18:30:00.000Z"
+  },
+  {
+   "title": "This Bitcoin Thesis Will Retire Your Bloodline, Says Expert",
+   "url": "https://www.newsbtc.com/bitcoin-news/this-bitcoin-thesis-will-retire-your-bloodline/",
+   "domain": "newsbtc.com",
+   "seenAt": "2025-07-16T15:45:00.000Z"
+  },
+  {
+   "title": "Which Cryptocurrency Is More Likely to Be a Millionaire Maker? Bitcoin vs. Ethereum",
+   "url": "https://finance.yahoo.com/news/cryptocurrency-more-likely-millionaire-maker-084500557.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-20T11:15:00.000Z"
+  }
+ ]
+}

@@ -1,0 +1,63 @@
+{
+ "ticker": "CSU.TO",
+ "query": "\"Constellation Software\"",
+ "from": "2025-08-11T20:00:00.000Z",
+ "to": "2025-08-18T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T03:02:39.966Z",
+ "articles": [
+  {
+   "title": "Is Constellation Software a Buy?",
+   "url": "https://www.fool.ca/2025/08/15/is-constellation-software-a-buy/",
+   "domain": "fool.ca",
+   "seenAt": "2025-08-15T16:15:00.000Z"
+  },
+  {
+   "title": "Constellation Software ( TSE: CSU) Price Target Raised to C$5, 700. 00",
+   "url": "https://www.dailypolitical.com/2025/08/13/constellation-software-tsecsu-price-target-raised-to-c5700-00.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2025-08-14T07:00:00.000Z"
+  },
+  {
+   "title": "The TSX Is Soaring: 3 No - Brainer ETFs to Buy Right Now",
+   "url": "https://www.fool.ca/2025/08/13/the-tsx-is-soaring-3-no-brainer-etfs-to-buy-right-now/",
+   "domain": "fool.ca",
+   "seenAt": "2025-08-14T02:45:00.000Z"
+  },
+  {
+   "title": "Fleet software provider acquired by Canadian group",
+   "url": "https://www.thebusinessdesk.com/eastmidlands/news/2100852-fleet-software-provider-acquired-by-canadian-group/",
+   "domain": "thebusinessdesk.com",
+   "seenAt": "2025-08-15T11:30:00.000Z"
+  },
+  {
+   "title": "Optimal Blue introduces new logo, tag line",
+   "url": "https://www.nationalmortgagenews.com/news/optimal-blue-introduces-new-logo-tag-line",
+   "domain": "nationalmortgagenews.com",
+   "seenAt": "2025-08-14T17:15:00.000Z"
+  },
+  {
+   "title": "S & P / TSX composite closes slightly higher, U. S. markets slip ahead of inflation data",
+   "url": "https://www.stcatharinesstandard.ca/business/s-p-tsx-composite-closes-slightly-higher-u-s-markets-slip-ahead-of-inflation-data/article_78dcc595-67dc-5217-a81c-691c45acbdc7.html",
+   "domain": "stcatharinesstandard.ca",
+   "seenAt": "2025-08-11T22:45:00.000Z"
+  },
+  {
+   "title": "Baystreet. ca - TSX Survives Wild Day with Gains",
+   "url": "http://baystreet.ca/marketupdates/14338/TSX-Survives-Wild-Day-with-Gains",
+   "domain": "baystreet.ca",
+   "seenAt": "2025-08-11T21:45:00.000Z"
+  },
+  {
+   "title": "Baystreet. ca - Smaller Gains, But TSX Still Up Wednesday",
+   "url": "http://baystreet.ca/marketupdates/14346/Smaller-Gains-But-TSX-Still-Up-Wednesday",
+   "domain": "baystreet.ca",
+   "seenAt": "2025-08-13T21:45:00.000Z"
+  },
+  {
+   "title": "Baystreet. ca - Soaring Stocks Take Breather Thursday",
+   "url": "http://baystreet.ca/marketupdates/14350/Soaring-Stocks-Take-Breather-Thursday",
+   "domain": "baystreet.ca",
+   "seenAt": "2025-08-14T21:30:00.000Z"
+  }
+ ]
+}

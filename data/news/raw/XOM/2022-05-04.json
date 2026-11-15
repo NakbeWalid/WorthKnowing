@@ -1,0 +1,387 @@
+{
+ "ticker": "XOM",
+ "query": "(ExxonMobil OR \"Exxon Mobil\")",
+ "from": "2022-04-27T20:00:00.000Z",
+ "to": "2022-05-04T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T03:16:28.087Z",
+ "articles": [
+  {
+   "title": "Exxon Mobil: Great Stock For High Inflation Environment ( NYSE: XOM)",
+   "url": "https://seekingalpha.com/article/4505501-exxon-mobil-is-great-stock-for-high-inflation-environment",
+   "domain": "seekingalpha.com",
+   "seenAt": "2022-04-30T13:45:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil to sell Romania - based affiliate for more than $1 billion",
+   "url": "https://www.marketwatch.com/story/exxon-mobil-to-sell-romania-based-affiliate-for-more-than-1-billion-2022-05-03",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-03T14:30:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil Corporation: ExxonMobil to Sell Romanian Affiliate for More Than $1 Billion",
+   "url": "https://www.finanznachrichten.de/nachrichten-2022-05/55943851-exxon-mobil-corporation-exxonmobil-to-sell-romanian-affiliate-for-more-than-dollar-1-billion-004.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2022-05-03T14:15:00.000Z"
+  },
+  {
+   "title": "ExxonMobil to Sell Romanian Affiliate for More Than $1 Billion",
+   "url": "https://www.joplinglobe.com/region/national_business/exxonmobil-to-sell-romanian-affiliate-for-more-than-1-billion/article_827bc318-a511-5362-943c-bd4026b95254.html",
+   "domain": "joplinglobe.com",
+   "seenAt": "2022-05-03T14:45:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil to Sell Romanian Affiliate for More Than $1 Billion >XOM",
+   "url": "https://www.marketwatch.com/story/exxon-mobil-to-sell-romanian-affiliate-for-more-than-1-billion-xom-271651586984",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-03T14:30:00.000Z"
+  },
+  {
+   "title": "ExxonMobil to divest Romanian upstream unit for more than $1bn",
+   "url": "https://www.offshore-technology.com/news/exxonmobil-upstream-1bn/",
+   "domain": "offshore-technology.com",
+   "seenAt": "2022-05-04T11:00:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil Shade Of Green Is What Investors Want",
+   "url": "https://www.livemint.com/companies/news/exxon-mobil-s-shade-of-green-is-what-investors-want-11651577660581.html",
+   "domain": "livemint.com",
+   "seenAt": "2022-05-03T12:45:00.000Z"
+  },
+  {
+   "title": "California Subpoenas Exxon for Details on Role in Global Plastic Pollution",
+   "url": "https://www.nbcdfw.com/news/business/money-report/california-subpoenas-exxon-for-details-on-role-in-global-plastic-pollution/2953383/",
+   "domain": "nbcdfw.com",
+   "seenAt": "2022-04-28T21:00:00.000Z"
+  },
+  {
+   "title": "Oil Stocks To Watch: Knowing When Enough Is Enough",
+   "url": "https://www.investors.com/stock-lists/stock-spotlight/oil-stocks-to-watch-knowing-when-enough-is-enough-pdc-energy-stock-pioneer-natural-resources-viper-energy-ecopetrol/",
+   "domain": "investors.com",
+   "seenAt": "2022-04-30T00:45:00.000Z"
+  },
+  {
+   "title": "Walmart offers discounts on gas to gain more customer sign - ups, retain Walmart+ membership",
+   "url": "http://www.econotimes.com/Walmart-offers-discounts-on-gas-to-gain-more-customer-sign-ups-retain-Walmart-membership-1632301",
+   "domain": "econotimes.com",
+   "seenAt": "2022-04-28T08:45:00.000Z"
+  },
+  {
+   "title": "5 Stocks Tumbling Today - Insider Monkey",
+   "url": "https://www.insidermonkey.com/blog/5-stocks-tumbling-today-1040389/",
+   "domain": "insidermonkey.com",
+   "seenAt": "2022-04-29T20:30:00.000Z"
+  },
+  {
+   "title": "TotalEnergies joins Shell, others, looks to exit Nigeria onshore oilfields – Igbere TV",
+   "url": "https://igberetvnews.com/1419113/totalenergies-joins-shell-others-looks-exit-nigerias-onshore-oilfields/",
+   "domain": "igberetvnews.com",
+   "seenAt": "2022-04-29T09:45:00.000Z"
+  },
+  {
+   "title": "Exxon to sell Romanian affiliate for more than $1B ( NYSE: XOM)",
+   "url": "https://seekingalpha.com/news/3831024-exxon-to-sell-romanian-affiliate-for-more-than-1b",
+   "domain": "seekingalpha.com",
+   "seenAt": "2022-05-03T15:00:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil to sell Romanian affiliate for over $1 billion to Romgaz By Reuters",
+   "url": "https://www.investing.com/news/stock-market-news/exxon-mobil-to-sell-romanian-affiliate-for-over-1-billion-2816102",
+   "domain": "investing.com",
+   "seenAt": "2022-05-03T14:30:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil to sell its Romanian upstream unit",
+   "url": "https://www.stiripesurse.ro/exxon-mobil-to-sell-its-romanian-upstream-unit_2365875.html",
+   "domain": "stiripesurse.ro",
+   "seenAt": "2022-05-03T16:15:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil Muruk - 1 sidetrack well encounters sandstone reservoirs in PNG",
+   "url": "https://www.hydrocarbons-technology.com/news/newsexxon-mobils-muruk-1-sidetrack-well-encounters-sandstone-reservoirs-in-png-5815523/",
+   "domain": "hydrocarbons-technology.com",
+   "seenAt": "2022-04-29T06:45:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil ( NYSE: XOM) Downgraded to Hold at StockNews. com",
+   "url": "https://www.etfdailynews.com/2022/05/03/exxon-mobil-nysexom-downgraded-to-hold-at-stocknews-com/",
+   "domain": "etfdailynews.com",
+   "seenAt": "2022-05-03T09:45:00.000Z"
+  },
+  {
+   "title": "Exxon estimates losses from planned Sakhalin - 1 exit at $3. 4 bln",
+   "url": "https://interfax.com/newsroom/top-stories/78819/",
+   "domain": "interfax.com",
+   "seenAt": "2022-04-29T17:00:00.000Z"
+  },
+  {
+   "title": "XLE: Energy Fund Set To Deliver Inflation - Adjusted Returns ( NYSEARCA: XLE)",
+   "url": "https://seekingalpha.com/article/4505188-xle-a-solid-energy-fund-likely-to-deliver-inflation-adjusted-returns",
+   "domain": "seekingalpha.com",
+   "seenAt": "2022-04-29T18:15:00.000Z"
+  },
+  {
+   "title": "TechnipFMC wins contract, gets notice to proceed for Yellowtail project ( NYSE: FTI)",
+   "url": "https://seekingalpha.com/news/3830626-technipfmc-wins-contract-gets-notice-to-proceed-for-yellowtail-project",
+   "domain": "seekingalpha.com",
+   "seenAt": "2022-05-03T05:00:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil Corp. Q1 Profit Increases, but misses estimates",
+   "url": "https://www.finanznachrichten.de/nachrichten-2022-04/55914766-exxon-mobil-corp-q1-profit-increases-but-misses-estimates-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2022-04-29T11:30:00.000Z"
+  },
+  {
+   "title": "Oil Stocks: Exxon, Chevron Earnings Due With Crude Oil Above $100",
+   "url": "https://www.investors.com/news/oil-stocks-exxon-chevron-earnings-crude-oil-prices/",
+   "domain": "investors.com",
+   "seenAt": "2022-04-29T00:30:00.000Z"
+  },
+  {
+   "title": "Exxon, Chevron earnings surge on high oil, gas prices",
+   "url": "https://www.foxbusiness.com/markets/exxon-chevron-earnings-oil-gas-prices",
+   "domain": "foxbusiness.com",
+   "seenAt": "2022-04-29T14:15:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil reports $5. 5B in profits despite losing $3B on Russia exit",
+   "url": "https://www.houstonchronicle.com/business/fuelfix/business/energy/article/Exxon-Mobil-reports-5-5-billion-in-profits-says-17136020.php",
+   "domain": "houstonchronicle.com",
+   "seenAt": "2022-04-29T13:00:00.000Z"
+  },
+  {
+   "title": "India requesting companies consider purchasing BP stake in Rosneft, Exxon stake in Sakhalin - 1 project",
+   "url": "https://interfax.com/newsroom/top-stories/78772/",
+   "domain": "interfax.com",
+   "seenAt": "2022-04-28T17:30:00.000Z"
+  },
+  {
+   "title": "Romania Romgaz signs $1. 06 bln takeover contract for Exxon stake in Neptun Deep",
+   "url": "https://seenews.com/news/romanias-romgaz-signs-106-bln-takeover-contract-for-exxons-stake-in-neptun-deep-783209",
+   "domain": "seenews.com",
+   "seenAt": "2022-05-03T15:30:00.000Z"
+  },
+  {
+   "title": "Exxon 2022 profits doubled in the first quarter to hit $5. 48 billion",
+   "url": "https://www.usatoday.com/story/money/2022/04/30/exxon-profits-2022-double-first-quarter/9598018002/",
+   "domain": "usatoday.com",
+   "seenAt": "2022-04-30T13:30:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil reports $5. 48 billion in net income",
+   "url": "https://www.fox4news.com/news/exxon-mobil-5-48-billion-net-income",
+   "domain": "fox4news.com",
+   "seenAt": "2022-04-29T22:00:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil Still Firmly In Black, Despite Russian Charge",
+   "url": "https://menafn.com/1104132639/Exxon-Mobil-Still-Firmly-In-Black-Despite-Russian-Charge&source=138",
+   "domain": "menafn.com",
+   "seenAt": "2022-05-01T06:00:00.000Z"
+  },
+  {
+   "title": "Walmart pumps up fuel discount for Walmart+ subscribers",
+   "url": "https://www.supermarketnews.com/retail-financial/walmart-pumps-fuel-discount-walmart-members",
+   "domain": "supermarketnews.com",
+   "seenAt": "2022-04-27T23:30:00.000Z"
+  },
+  {
+   "title": "Exxon bans Pride flags from its properties",
+   "url": "https://dallasvoice.com/exxon-bans-pride-flags-from-its-properties/",
+   "domain": "dallasvoice.com",
+   "seenAt": "2022-05-02T23:30:00.000Z"
+  },
+  {
+   "title": "Ticker",
+   "url": "https://ticker.com/Exxon-Mobil-Corporation/earnings-news/2022-04-29/T-21704",
+   "domain": "ticker.com",
+   "seenAt": "2022-04-29T19:30:00.000Z"
+  },
+  {
+   "title": "123 jump",
+   "url": "https://123jump.com/Exxon-Mobil-Corporation/earnings-news/2022-04-29/T-21704",
+   "domain": "123jump.com",
+   "seenAt": "2022-04-29T21:45:00.000Z"
+  },
+  {
+   "title": "CORRECTING and REPLACING ExxonMobil Announces First - Quarter 2022 Results",
+   "url": "https://apnews.com/press-release/BusinessWire/russia-ukraine-technology-business-europe-texas-7c1ce7f6fc734aa9a0a6255f59651525",
+   "domain": "apnews.com",
+   "seenAt": "2022-04-29T19:45:00.000Z"
+  },
+  {
+   "title": "ExxonMobil Announces First - Quarter 2022 Results",
+   "url": "https://apnews.com/press-release/business-wire/russia-ukraine-technology-business-earnings-exxon-mobil-corp-5301f6b3b23343738c40b9e3657211b5",
+   "domain": "apnews.com",
+   "seenAt": "2022-04-29T11:45:00.000Z"
+  },
+  {
+   "title": "New Docuseries Uncovers What the Oil Industry Knew Decades Ago about Climate Change",
+   "url": "https://www.msnbc.com/ali-velshi/watch/new-docuseries-uncovers-what-the-oil-industry-knew-decades-ago-about-climate-change-139045957792",
+   "domain": "msnbc.com",
+   "seenAt": "2022-05-01T17:30:00.000Z"
+  },
+  {
+   "title": "Stocks Making the Biggest Moves Premarket: Robinhood, Amazon, Apple, Roku and More",
+   "url": "https://www.nbcconnecticut.com/news/business/money-report/stocks-making-the-biggest-moves-premarket-robinhood-amazon-apple-roku-and-more/2773182/",
+   "domain": "nbcconnecticut.com",
+   "seenAt": "2022-04-29T12:45:00.000Z"
+  },
+  {
+   "title": "Exxon profits surge; loses billions in Russian exit",
+   "url": "https://abcnews.go.com/Business/wireStory/exxon-profits-surge-loses-billions-russian-exit-84393566",
+   "domain": "abcnews.go.com",
+   "seenAt": "2022-04-29T11:45:00.000Z"
+  },
+  {
+   "title": "Exxon Gets Subpoena From California Over Plastics Pollution Rise",
+   "url": "https://www.bnnbloomberg.ca/exxon-gets-subpoena-from-california-over-plastics-pollution-rise-1.1758609",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2022-04-28T20:30:00.000Z"
+  },
+  {
+   "title": "Stock futures are lower ahead of inflation data, with tech under pressure after Apple, Amazon disappointment",
+   "url": "https://www.marketwatch.com/story/stock-futures-lower-ahead-of-inflation-data-with-tech-under-pressure-after-apple-amazon-disappointment-11651220738",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-04-29T09:00:00.000Z"
+  },
+  {
+   "title": "Exxon: Q1 Earnings Snapshot",
+   "url": "https://www.chron.com/business/article/Exxon-Q1-Earnings-Snapshot-17135977.php",
+   "domain": "chron.com",
+   "seenAt": "2022-04-29T11:30:00.000Z"
+  },
+  {
+   "title": "State accuses Exxon Mobil of deceiving public, perpetuating myth of plastics recycling",
+   "url": "https://www.aol.com/news/state-accuses-exxon-mobil-deceiving-183501516.html",
+   "domain": "aol.com",
+   "seenAt": "2022-04-28T19:30:00.000Z"
+  },
+  {
+   "title": "Chevron and Exxon Mobil Fall Following Earnings By Investing. com",
+   "url": "https://www.investing.com/news/stock-market-news/chevron-and-exxon-mobil-fall-following-earnings-2814357",
+   "domain": "investing.com",
+   "seenAt": "2022-04-29T23:15:00.000Z"
+  },
+  {
+   "title": "Conductive Gold Paste Market Potential Growth, Share, Demand",
+   "url": "https://www.openpr.com/news/2617254/conductive-gold-paste-market-potential-growth-share-demand",
+   "domain": "openpr.com",
+   "seenAt": "2022-05-04T18:00:00.000Z"
+  },
+  {
+   "title": "Romania: Creditors file claims worth EUR 1. 8 bln against bankrupt Romanian (...)",
+   "url": "http://www.romaniapress.com/news=141600",
+   "domain": "romaniapress.com",
+   "seenAt": "2022-05-03T23:00:00.000Z"
+  },
+  {
+   "title": "Romania: Bucharest to finance investments by more bond issues, possibly (...)",
+   "url": "http://www.romaniapress.com/news=141598",
+   "domain": "romaniapress.com",
+   "seenAt": "2022-05-03T23:00:00.000Z"
+  },
+  {
+   "title": "Romania: CEC Bank becomes primary dealer in the government securities (...)",
+   "url": "http://www.romaniapress.com/news=141597",
+   "domain": "romaniapress.com",
+   "seenAt": "2022-05-03T23:00:00.000Z"
+  },
+  {
+   "title": "Romania: Romania BCR Group reports 12. 5% higher profit in Q1",
+   "url": "http://www.romaniapress.com/news=141599",
+   "domain": "romaniapress.com",
+   "seenAt": "2022-05-03T23:00:00.000Z"
+  },
+  {
+   "title": "Romania: DefMin Dincu rewards Invictus Games team Romania",
+   "url": "http://www.romaniapress.com/news=141702",
+   "domain": "romaniapress.com",
+   "seenAt": "2022-05-03T23:00:00.000Z"
+  },
+  {
+   "title": "Romania: Posta Romana promises higher wages and investments in technology (...)",
+   "url": "http://www.romaniapress.com/news=141596",
+   "domain": "romaniapress.com",
+   "seenAt": "2022-05-03T23:00:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil to sell Romanian affiliate for over $1 billion to Romgaz",
+   "url": "https://wsau.com/2022/05/03/exxon-mobil-to-sell-romanian-affiliate-for-over-1-billion-to-romgaz/",
+   "domain": "wsau.com",
+   "seenAt": "2022-05-03T19:45:00.000Z"
+  },
+  {
+   "title": "Biofuel Market Present Scenario and Growth Prospects",
+   "url": "https://www.openpr.com/news/2615626/biofuel-market-present-scenario-and-growth-prospects",
+   "domain": "openpr.com",
+   "seenAt": "2022-05-02T12:00:00.000Z"
+  },
+  {
+   "title": "Local Market Size, Share, Trends, Global Industry Overview,",
+   "url": "https://www.openpr.com/news/2617234/local-market-size-share-trends-global-industry-overview",
+   "domain": "openpr.com",
+   "seenAt": "2022-05-04T16:30:00.000Z"
+  },
+  {
+   "title": "Walmart+ Members Can Now Save 10 - Cents Per Gallon at 14, 000 Gas Stations",
+   "url": "https://www.newsweek.com/walmart-members-can-now-save-10-cents-per-gallon-14000-gas-stations-1701584",
+   "domain": "newsweek.com",
+   "seenAt": "2022-04-28T13:00:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil doubled its profit from last year to $5. 5 billion",
+   "url": "https://www.cbsnews.com/news/exxon-mobil-double-profit-gas-prices/",
+   "domain": "cbsnews.com",
+   "seenAt": "2022-04-29T16:45:00.000Z"
+  },
+  {
+   "title": "Exxon profits surge despite $3. 4B hit from Russian exit",
+   "url": "https://www.abqjournal.com/2494140/exxon-profits-surge-3-4-billion-hit-from-russian-exit.html",
+   "domain": "abqjournal.com",
+   "seenAt": "2022-04-29T16:00:00.000Z"
+  },
+  {
+   "title": "California AG subpoenas Exxon for details on role in plastic pollution",
+   "url": "https://www.marketwatch.com/story/california-attorney-general-sends-subpoena-to-exxons-for-role-in-plastic-pollution-2022-04-28",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-04-28T20:30:00.000Z"
+  },
+  {
+   "title": "Stock Market | Daily Herald",
+   "url": "https://finance.dailyherald.com/dailyherald/article/bizwire-2022-4-29-exxonmobil-announces-first-quarter-2022-results",
+   "domain": "finance.dailyherald.com",
+   "seenAt": "2022-04-29T11:00:00.000Z"
+  },
+  {
+   "title": "Exxon profits surge; $3. 4 billion hit from Russian exit",
+   "url": "https://www.wfmz.com/news/ap/ap-business/exxon-profits-surge-3-4-billion-hit-from-russian-exit/article_cca90373-5c07-5cf0-9590-82553f5881cf.html",
+   "domain": "wfmz.com",
+   "seenAt": "2022-04-29T13:30:00.000Z"
+  },
+  {
+   "title": "Oil stocks in broad rally as crude futures surge after EU proposes Russian oil ban",
+   "url": "https://www.marketwatch.com/story/oil-stocks-in-broad-rally-as-crude-futures-surge-after-eu-proposes-russian-oil-ban-2022-05-04",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-04T13:00:00.000Z"
+  },
+  {
+   "title": "Biden Approves More Gas Export Projects as Russia Cuts Supply to Europe",
+   "url": "https://www.bloomberg.com/news/articles/2022-04-27/biden-approves-more-lng-export-projects-as-russia-cuts-supply",
+   "domain": "bloomberg.com",
+   "seenAt": "2022-04-28T03:00:00.000Z"
+  },
+  {
+   "title": "Marathon Oil Corp. stock rises Monday, still underperforms market",
+   "url": "https://www.marketwatch.com/story/marathon-oil-corp-stock-rises-monday-still-underperforms-market-01651525830-d99e0869631c",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-03T01:00:00.000Z"
+  },
+  {
+   "title": "Exxon rejects California AG allegations on role in plastic pollution",
+   "url": "https://www.aol.com/exxon-rejects-california-ag-allegations-141514174-143157711.html",
+   "domain": "aol.com",
+   "seenAt": "2022-04-29T17:30:00.000Z"
+  }
+ ]
+}
