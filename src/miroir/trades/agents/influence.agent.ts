@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { BedrockClient } from '../../ai/bedrock.client';
-import { inventedDurations, inventedNumbers } from '../../ai/guards';
+import { inventedDurations, inventedNumbers, inventedQualifiers } from '../../ai/guards';
 import { config } from '../../config';
 import {
   clamp, Finding, InfluenceVerdict, NewsItem, PARAM_INFO, ParamKey, pct, Profile, Trade,
@@ -194,6 +194,10 @@ function rationaleProblems(rationale: unknown, factsText: string): string[] {
   if (durations.length) problems.push(`elle mentionne « ${durations.join(' », « ')} », un délai non confirmé par les faits fournis`);
   const numbers = inventedNumbers(text, factsText);
   if (numbers.length) problems.push(`elle contient le(s) chiffre(s) ${numbers.join(', ')}, absent(s) des faits fournis`);
+  const qualifiers = inventedQualifiers(text, factsText);
+  if (qualifiers.length) {
+    problems.push(`elle utilise ${qualifiers.length > 1 ? 'les mots' : 'le mot'} « ${qualifiers.join(' », « ')} » alors que rien dans les faits fournis ne qualifie la vitesse de la décision`);
+  }
   return problems;
 }
 /** Faits fournis au modèle : uniquement ce que le code a calculé ou ce que l'utilisateur a écrit. */

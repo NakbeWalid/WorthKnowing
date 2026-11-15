@@ -17,6 +17,7 @@ Ce dépôt contient **deux applications web distinctes** qui ne se parlent que p
 npm install
 npm run build
 npm start            # lance les deux applications (3000 et 3001)
+npm run test:unit    # garde-fous de l'agent d'influence et relance, sans AWS (après npm run build)
 npm run test:e2e     # dans un autre terminal : rejoue tout le parcours par les API
 ```
 
@@ -156,6 +157,11 @@ Si Miroir est injoignable, l'ordre passe quand même et est marqué « non analy
 - **Rien d'inventé** : le modèle cite des manchettes et des faits par numéro (`N1`, `F3`) ; le code rejette toute
   référence inexistante. Un verdict « influence externe » sans nouvelle citée devient « impossible de conclure ».
   Un résumé contenant un chiffre absent des faits est remplacé par le résumé gabarit.
+- **Phrase de l'agent d'influence vérifiée par le code** : un chiffre, un délai (« 4 jours après ») ou un qualificatif de
+  vitesse (« rapide », « précipitée »…) absent des faits est rejeté. Le modèle est alors relancé une seule fois en
+  nommant la violation ; si la relance échoue aussi, la phrase est remplacée par la liste des références
+  (« Appuyé sur : F1, N1 »). Limites : un mot déjà présent dans les faits n'est pas rejeté, et la liste de
+  qualificatifs est lexicale (une formulation hors liste passe).
 - **Effet borné** : l'agent d'influence n'agit que sur 3 paramètres (nouvelles, « hype », pertes), seulement s'ils
   ne sont pas déjà relevés par le socle et si son propre verdict signale quelque chose ; un constat ne peut que
   renforcer un paramètre, et son signal reste à ±15 points du signal calculé par le code.
