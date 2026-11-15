@@ -193,9 +193,6 @@ function showScenario() {
   const s = state.session.scenarios[state.index];
   const total = state.session.scenarios.length;
   state.shownAt = Date.now(); // sert à mesurer le temps de décision
-
-  let currentChoiceIdx = 0;
-
   view.innerHTML = `
     <div class="card">
       <div class="progress"><i style="width:${(state.index / total) * 100}%"></i></div>
@@ -205,82 +202,28 @@ function showScenario() {
       <p class="small muted">Prix sur les 90 dernières séances (base 100).</p>
       <div class="quote">${esc(s.headline)} <span class="badge grey">manchette fictive</span></div>
       <p><b>${esc(s.situation)}</b></p>
-
-      <!-- Slider interactif dans la mise en situation -->
-      <div class="slider-box" style="margin:20px 0; padding:16px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <span style="font-weight:600; font-size:14px; color:#1e293b;">Curseur de décision (Slider) :</span>
-          <span class="badge" id="sliderChoiceBadge" style="background:#2563eb; color:white;">Option 1 / ${s.choices.length}</span>
-        </div>
-        <input type="range" id="scenarioSlider" min="0" max="${s.choices.length - 1}" step="1" value="0" style="width:100%; cursor:pointer;">
-        <div style="display:flex; justify-content:space-between; font-size:11px; color:#64748b; margin-top:4px;">
-          <span>Prudent / Vente</span>
-          <span>Neutre</span>
-          <span>Agressif / Achat</span>
-        </div>
-        <div style="margin-top:12px; padding:10px; background:white; border:1px solid #e2e8f0; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            <span class="small muted">Option sélectionnée avec le curseur :</span><br>
-            <b id="activeChoiceText" style="font-size:14px; color:#0f172a;">${esc(s.choices[0].label)}</b>
-          </div>
-          <button class="primary" id="sliderConfirmBtn" style="flex:none; margin-left:12px;">Confirmer avec le curseur</button>
-        </div>
-      </div>
-
-      <p class="small muted" style="margin:16px 0 6px;">Ou cliquez directement sur l'une des options :</p>
-      <div class="choices">${s.choices.map((c, i) => `<button data-id="${c.id}" data-idx="${i}">${esc(c.label)}</button>`).join('')}</div>
+      <p>Que faites-vous ?</p>
+      <div class="choices trio">${s.choices.map((c) => `<button data-id="${esc(c.id)}">${esc(c.label)}</button>`).join('')}</div>
+      <p class="small muted" style="margin:10px 0 0">Vendre : tout vendre · Garder : ne rien changer · Acheter : ajouter 50 % de plus.</p>
       <div class="error" id="error" role="alert"></div>
     </div>`;
-
-  const slider = $('#scenarioSlider');
-  const badge = $('#sliderChoiceBadge');
-  const activeText = $('#activeChoiceText');
-  const buttons = view.querySelectorAll('.choices button');
-
-  const updateSelection = (idx) => {
-    currentChoiceIdx = idx;
-    slider.value = idx;
-    badge.textContent = `Option ${idx + 1} / ${s.choices.length}`;
-    activeText.textContent = s.choices[idx].label;
-    buttons.forEach((btn, i) => {
-      btn.style.outline = i === idx ? '2px solid #2563eb' : '';
-      btn.style.background = i === idx ? '#eff6ff' : '';
-    });
-  };
-
-  slider.oninput = (e) => updateSelection(Number(e.target.value));
-
-  const submitDecision = async (choiceId) => {
+  view.querySelectorAll('.choices button').forEach((b) => (b.onclick = async () => {
     view.querySelectorAll('button').forEach((x) => (x.disabled = true));
-    slider.disabled = true;
     $('#error').textContent = '';
-    s.decisionTimeMs ??= Date.now() - state.shownAt;
+    s.decisionTimeMs ??= Date.now() - state.shownAt; // mesuré au premier clic, pas faussé par un renvoi
     try {
       await api('POST', `/evaluation/${state.session.evaluationId}/decisions`, {
-        scenarioId: s.id,
-        choiceId,
-        decisionTimeMs: s.decisionTimeMs,
+        scenarioId: s.id, choiceId: b.dataset.id, decisionTimeMs: s.decisionTimeMs,
       });
     } catch (err) {
-      $('#error').textContent = err.message;
+      $('#error').textContent = err.message; // le choix peut être renvoyé : le serveur remplace la décision
       view.querySelectorAll('button').forEach((x) => (x.disabled = false));
-      slider.disabled = false;
       return;
     }
     state.index++;
     state.index < total ? showScenario() : showReveal();
-  };
-
-  $('#sliderConfirmBtn').onclick = () => submitDecision(s.choices[currentChoiceIdx].id);
-
-  buttons.forEach((b) => (b.onclick = () => {
-    updateSelection(Number(b.dataset.idx));
-    submitDecision(b.dataset.id);
   }));
-
-  updateSelection(0);
 }
-
 // ------------------------------------------------------------------ Étape 3 : révélation
 async function showReveal() {
   setStep(3);

@@ -21,6 +21,16 @@ interface ScenarioTypeDef {
 
 /** Mise fictive utilisée pour chiffrer le résultat de chaque décision. */
 export const STAKE = 10_000;
+/**
+ * Les trois seuls choix, identiques pour les 5 situations : Vendre (tout), Garder (ne rien changer), Acheter (+50 %).
+ * Seul l'effet de chaque choix sur le profil (`signals`) dépend de la situation.
+ */
+export const EXPOSURE = { sell: 0, keep: 1, buy: 1.5 } as const;
+const trio = (signals: { sell: Choice['signals']; keep: Choice['signals']; buy: Choice['signals'] }): Choice[] => [
+  { id: 'sell', label: 'Vendre', exposure: EXPOSURE.sell, signals: signals.sell },
+  { id: 'keep', label: 'Garder', exposure: EXPOSURE.keep, signals: signals.keep },
+  { id: 'buy', label: 'Acheter', exposure: EXPOSURE.buy, signals: signals.buy },
+];
 
 /**
  * Les 5 mises en situation. Le décor (nom, manchette) est fictif pour que l'utilisateur
@@ -32,59 +42,55 @@ export const SCENARIO_TYPES: Record<ScenarioType, ScenarioTypeDef> = {
     tests: 'lossAversion',
     headline: '« Les vendeurs dominent : les analystes abaissent leurs cibles les uns après les autres. »',
     situation: (s) => `Vous détenez ${STAKE.toLocaleString('fr-CA')} $ de ce titre. Il vient de perdre ${(-s.stats.ret30d * 100).toFixed(1)} % en 30 séances.`,
-    choices: [
-      { id: 'sell_all', label: 'Je vends tout', exposure: 0, signals: { lossAversion: 90, riskTolerance: 15 } },
-      { id: 'sell_half', label: 'Je vends la moitié', exposure: 0.5, signals: { lossAversion: 65, riskTolerance: 35 } },
-      { id: 'hold', label: 'Je ne touche à rien', exposure: 1, signals: { lossAversion: 35, riskTolerance: 60 } },
-      { id: 'buy_more', label: 'J’en rachète (+50 %)', exposure: 1.5, signals: { lossAversion: 15, riskTolerance: 85 } },
-    ],
+    choices: trio({
+      sell: { lossAversion: 90, riskTolerance: 15 },
+      keep: { lossAversion: 35, riskTolerance: 60 },
+      buy: { lossAversion: 15, riskTolerance: 85 },
+    }),
   },
   hype: {
     title: 'L’emballement',
     tests: 'fomo',
     headline: '« Tout le monde en parle : le titre enchaîne les records et envahit les réseaux sociaux. »',
-    situation: (s) => `Vous avez ${STAKE.toLocaleString('fr-CA')} $ en liquidités. Ce titre, que vous ne détenez pas, a pris ${pct(s.stats.ret60d)} en 60 séances.`,
-    choices: [
-      { id: 'all_in', label: 'J’investis tout', exposure: 1, signals: { fomo: 90, riskTolerance: 90 } },
-      { id: 'half', label: 'J’investis la moitié', exposure: 0.5, signals: { fomo: 65, riskTolerance: 70 } },
-      { id: 'small', label: 'Une petite position (10 %)', exposure: 0.1, signals: { fomo: 35, riskTolerance: 45 } },
-      { id: 'none', label: 'Je passe mon tour', exposure: 0, signals: { fomo: 15, riskTolerance: 25 } },
-    ],
+    situation: (s) => `Vous détenez ${STAKE.toLocaleString('fr-CA')} $ de ce titre. Il a pris ${pct(s.stats.ret60d)} en 60 séances et tout le monde en parle.`,
+    choices: trio({
+      sell: { fomo: 15, riskTolerance: 25 },
+      keep: { fomo: 35, riskTolerance: 45 },
+      buy: { fomo: 90, riskTolerance: 90 },
+    }),
   },
   shock: {
     title: 'La mauvaise nouvelle',
     tests: 'newsSensitivity',
     headline: '« Dernière heure : une annonce inattendue fait décrocher le titre à l’ouverture. »',
     situation: (s) => `Vous détenez ${STAKE.toLocaleString('fr-CA')} $ de ce titre. Il vient de chuter de ${(-s.stats.ret1d * 100).toFixed(1)} % en une seule séance.`,
-    choices: [
-      { id: 'sell_all', label: 'Je vends tout, tout de suite', exposure: 0, signals: { newsSensitivity: 90, lossAversion: 75 } },
-      { id: 'sell_half', label: 'Je réduis de moitié', exposure: 0.5, signals: { newsSensitivity: 65 } },
-      { id: 'hold', label: 'J’attends d’y voir clair', exposure: 1, signals: { newsSensitivity: 30 } },
-      { id: 'buy_more', label: 'J’en profite pour acheter (+50 %)', exposure: 1.5, signals: { newsSensitivity: 20 } },
-    ],
+    choices: trio({
+      sell: { newsSensitivity: 90, lossAversion: 75 },
+      keep: { newsSensitivity: 30 },
+      buy: { newsSensitivity: 20 },
+    }),
   },
   flat: {
     title: 'L’impatience',
     tests: 'impulsivity',
     headline: '« Pendant que le marché grimpe, certains titres font du surplace. Faut-il changer de cheval ? »',
     situation: (s) => `Vous détenez ${STAKE.toLocaleString('fr-CA')} $ de ce titre. En 90 séances il a fait ${pct(s.stats.ret90d)}, pendant que le marché montait nettement.`,
-    choices: [
-      { id: 'switch_all', label: 'Je vends tout pour suivre le marché', exposure: 0, signals: { impulsivity: 85, fomo: 70 } },
-      { id: 'switch_half', label: 'Je bascule la moitié vers le marché', exposure: 0.5, signals: { impulsivity: 60 } },
-      { id: 'hold', label: 'Je garde mon plan', exposure: 1, signals: { impulsivity: 25 } },
-    ],
+    choices: trio({
+      sell: { impulsivity: 85, fomo: 70 },
+      keep: { impulsivity: 25 },
+      buy: { impulsivity: 35 },
+    }),
   },
   winner: {
     title: 'Le gagnant',
     tests: 'concentration',
     headline: '« La vedette de l’année ne s’arrête plus de monter. »',
     situation: (s) => `Ce titre a pris ${pct(s.stats.ret90d)} en 90 séances. Votre position vaut ${STAKE.toLocaleString('fr-CA')} $ et pèse maintenant 60 % de votre portefeuille.`,
-    choices: [
-      { id: 'add', label: 'J’en rajoute (+30 %)', exposure: 1.3, signals: { concentration: 90, fomo: 70 } },
-      { id: 'hold', label: 'Je laisse courir', exposure: 1, signals: { concentration: 70 } },
-      { id: 'trim', label: 'Je réduis de moitié pour rééquilibrer', exposure: 0.5, signals: { concentration: 35 } },
-      { id: 'sell_all', label: 'Je vends tout et j’encaisse', exposure: 0, signals: { concentration: 15 } },
-    ],
+    choices: trio({
+      sell: { concentration: 15 },
+      keep: { concentration: 70 },
+      buy: { concentration: 90, fomo: 70 },
+    }),
   },
 };
 
@@ -92,7 +98,7 @@ export const SCENARIO_TYPES: Record<ScenarioType, ScenarioTypeDef> = {
 export function outcomeOf(s: Scenario, choice: Choice): number {
   let pnl = STAKE * choice.exposure * s.outcome.fwd60d;
   // « L'impatience » : la partie vendue est réinvestie dans le marché (SPY).
-  if (s.type === 'flat') pnl += STAKE * (1 - choice.exposure) * s.outcome.marketFwd60d;
+  if (s.type === 'flat') pnl += STAKE * Math.max(0, 1 - choice.exposure) * s.outcome.marketFwd60d;
   return Math.round(pnl);
 }
 const abs = (n: number) => `${(Math.abs(n) * 100).toFixed(1)} %`;

@@ -135,6 +135,19 @@ Déployé avec `./deploy.sh` (image en ligne : `e91ec23`, étiquette = commit) ;
 - Les comptes de test (`@test.local`) laissés par les e2e ont été supprimés de Cognito et de DynamoDB (comptes, ordres, évaluations). Restent `admin@miroir.local` et `zkr@faudrasyfaire.com`. Chaque e2e en recrée : à nettoyer avant la démo finale.
 - GDELT limite le débit depuis ces adresses (429) : un ordre à une date absente du corpus retombe sur des signaux simulés (étiquetés). Les dates de la démo sont toutes dans le corpus.
 
+## 5 bis. Les trois choix des simulations
+
+Chaque situation propose exactement **Vendre / Garder / Acheter** (ids `sell` / `keep` / `buy`), sans curseur
+(`scenario-types.ts`, `trio()`) : Vendre = tout vendre (exposition 0), Garder = ne rien changer (1), Acheter = +50 % (1,5).
+Seul l'effet de chaque choix sur le profil (`signals`) dépend de la situation.
+- **« L'emballement » reformulée** : le titre était auparavant *non détenu* (« vous avez 10 000 $ en liquidités ») ; « Vendre » n'aurait
+  rien voulu dire. On détient maintenant 10 000 $ du titre qui a monté ; Acheter = courir après la hausse (signal `fomo` 90).
+- **Profils plus polarisés** : les options intermédiaires (« vendre la moitié », « investir 10 % »…) n'existent plus, donc chaque
+  paramètre est mesuré sur trois niveaux au lieu de quatre. Les barèmes `signals` n'ont pas été recalibrés (réglage à la main :
+  `flat`/Acheter = impulsivité 35, jugement à valider).
+- **Évaluations en cours à la mise en ligne** : leurs réponses aux anciens choix (`sell_all`, `hold`…) sont ignorées (`validDecisions`) ;
+  la personne les refait au lieu d'obtenir une erreur 500.
+
 ## 6. Limites connues, par ordre d'intérêt
 0. **Agent d'influence : relance unique, devenue rare (≈ 4 %).** Quand la phrase du modèle viole le garde-fou (chiffre ou délai absent des faits), `retryRationale` le relance une fois en nommant la violation ; seule la nouvelle phrase est reprise, et seulement si elle passe le même garde-fou. Si elle échoue aussi, plante ou manque de temps (la relance partage le budget de 15 s du 1er appel), la liste « Appuyé sur : F1, N1… » est affichée : une phrase fautive n'est jamais montrée.
    **Cause racine de la relance quasi systématique** (mesurée sur le vrai modèle, 74 à 111 essais par variante, 37 situations réelles du corpus × 2 à 3 durées de décision) : le taux était de **66 %**, et ce n'était pas un biais du modèle. (1) **31 des 49 relances** venaient du garde-fou lui-même : le prompt donnait les dates des nouvelles au modèle, mais pas au garde-fou, qui rejetait « nouvelles du 15 juillet » comme chiffre inventé (24 % après correction). (2) Le reste venait des délais que le modèle calculait en voyant la date de chaque nouvelle à côté de celle du trade. **Retirer les dates de nouvelles du prompt** (elles restent affichées à l'utilisateur) : **4 % de relance**, sans effet sur les qualificatifs de durée.

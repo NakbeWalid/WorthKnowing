@@ -33,7 +33,8 @@ npm run test:e2e     # dans un autre terminal : rejoue tout le parcours par les 
    - **Non merci** : compte de courtage ordinaire. Ses ordres sont exécutés et conservés dans son historique ; rien ne sort de la plateforme. L'option « Activer Miroir » reste dans son compte.
    - **Activer Miroir** (à l'ouverture du compte ou plus tard) : il est envoyé chez Miroir.
 2. Chez **Miroir**, il crée un compte Miroir (distinct de son compte de courtage) et passe l'évaluation :
-   13 questions (profil **déclaré**), 5 mises en situation tirées de prix réels masqués (profil **observé**),
+   13 questions (profil **déclaré**), 5 mises en situation tirées de prix réels masqués (profil **observé**), chacune avec
+   les mêmes trois choix : **Vendre** (tout), **Garder** (ne rien changer), **Acheter** (+50 %), sans curseur,
    la révélation de ce qui s'est vraiment passé, puis ses propres règles sur ses paramètres fragiles.
 3. Il est **ramené chez Boréal** avec un code à usage unique, que le serveur de Boréal échange contre un
    **code persona**. Ce code accompagne ensuite chaque requête vers Miroir : c'est lui qui dit à quel profil appartient un ordre.

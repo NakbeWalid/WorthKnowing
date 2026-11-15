@@ -64,12 +64,23 @@ export class EvaluationService implements OnModuleInit {
     if (evaluation.completedAt) throw new NotFoundException('Cette évaluation est déjà terminée.');
     return {
       ...this.masked(evaluation),
-      answered: evaluation.decisions.map((d) => d.scenarioId),
+      answered: this.validDecisions(evaluation).map((d) => d.scenarioId),
       result: evaluation.result,
     };
   }
 
   /** Vue masquée : ni le titre réel, ni les dates, ni la suite ne quittent le serveur. */
+  /**
+   * Réponses dont le choix existe encore. Une évaluation commencée avant le passage aux trois choix
+   * (Vendre / Garder / Acheter) contient d'anciens identifiants (`sell_all`, `hold`…) : ces réponses sont
+   * ignorées, la personne les refait, au lieu de faire échouer la révélation.
+   */
+  private validDecisions(evaluation: Evaluation) {
+    return evaluation.decisions.filter((d) => {
+      const s = this.library.find((x) => x.id === d.scenarioId);
+      return !!s && SCENARIO_TYPES[s.type].choices.some((c) => c.id === d.choiceId);
+    });
+  }
   private masked(evaluation: Evaluation) {
     return {
       evaluationId: evaluation.id, kind: evaluation.kind, stake: STAKE,
@@ -99,14 +110,14 @@ export class EvaluationService implements OnModuleInit {
       scenarioId: scenario.id, choiceId: decision.choiceId, decisionTimeMs: Number(decision.decisionTimeMs) || 0,
     });
     await this.store.saveEvaluation(evaluation);
-    return { answered: evaluation.decisions.length, total: evaluation.scenarioIds.length };
+    return { answered: this.validDecisions(evaluation).length, total: evaluation.scenarioIds.length };
   }
 
   /** Fin des simulations : révèle l'histoire réelle, chiffre chaque décision et bâtit le profil observé. */
   async complete(user: User, evaluationId: string) {
     const evaluation = await this.load(user, evaluationId);
     if (evaluation.result) return evaluation.result; // déjà calculée : même révélation à chaque appel
-    if (evaluation.decisions.length < evaluation.scenarioIds.length) {
+    if (this.validDecisions(evaluation).length < evaluation.scenarioIds.length) {
       throw new BadRequestException('Toutes les simulations doivent être complétées.');
     }
     const signals: Record<ParamKey, number[]> = Object.fromEntries(PARAMS.map((p) => [p, []])) as any;
