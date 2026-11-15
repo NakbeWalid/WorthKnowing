@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/analyze-cv/route": "app/api/analyze-cv/route.js",
+  "/api/analyze-social/route": "app/api/analyze-social/route.js",
+  "/api/profile/route": "app/api/profile/route.js",
+  "/api/compliance-report/route": "app/api/compliance-report/route.js",
+  "/api/evaluate-trade/route": "app/api/evaluate-trade/route.js",
+  "/api/v1/intercept/route": "app/api/v1/intercept/route.js",
+  "/page": "app/page.js",
+  "/bank/page": "app/bank/page.js"
+}

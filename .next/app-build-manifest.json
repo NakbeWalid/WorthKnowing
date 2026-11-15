@@ -1,0 +1,38 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-e08da262b32814b6.js",
+      "static/chunks/fd9d1056-718dbd210081a0c8.js",
+      "static/chunks/117-02bdfe4d487852ac.js",
+      "static/chunks/main-app-ce814eb84fed114c.js",
+      "static/chunks/app/_not-found/page-14128a560986e4be.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-e08da262b32814b6.js",
+      "static/chunks/fd9d1056-718dbd210081a0c8.js",
+      "static/chunks/117-02bdfe4d487852ac.js",
+      "static/chunks/main-app-ce814eb84fed114c.js",
+      "static/css/32d0e3ffa7b77aa8.css",
+      "static/chunks/743-c2a72e99c42b2851.js",
+      "static/chunks/app/layout-c43bb39472598b28.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-e08da262b32814b6.js",
+      "static/chunks/fd9d1056-718dbd210081a0c8.js",
+      "static/chunks/117-02bdfe4d487852ac.js",
+      "static/chunks/main-app-ce814eb84fed114c.js",
+      "static/chunks/561-a1e9eef176d5f862.js",
+      "static/chunks/745-019df6f56c08b26f.js",
+      "static/chunks/app/page-be7a006f0a75457a.js"
+    ],
+    "/bank/page": [
+      "static/chunks/webpack-e08da262b32814b6.js",
+      "static/chunks/fd9d1056-718dbd210081a0c8.js",
+      "static/chunks/117-02bdfe4d487852ac.js",
+      "static/chunks/main-app-ce814eb84fed114c.js",
+      "static/chunks/561-a1e9eef176d5f862.js",
+      "static/chunks/743-c2a72e99c42b2851.js",
+      "static/chunks/app/bank/page-2f6e4f047082e6c9.js"
+    ]
+  }
+}

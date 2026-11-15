@@ -26,6 +26,17 @@ export interface MiroirCheck {
   warnings: string[];
   reevaluationRequired: boolean;
   drift: { score: number; threshold: number };
+  derivationImpact?: {
+    guardrailsTriggered: number;
+    penaltyPerGuardrail: number;
+    addedDriftPoints: number;
+    currentDriftScore: number;
+    projectedDriftScore: number;
+    threshold: number;
+    exceedsThreshold: boolean;
+    warning?: string | null;
+  };
+  derivationFactorImpact?: MiroirCheck['derivationImpact'];
 }
 export interface MiroirPersona {
   status: 'onboarding' | 'active' | 'reevaluation_required';
@@ -38,6 +49,11 @@ export interface MiroirVerdict {
   reevaluationRequired: boolean;
   drift: { score: number; before: number; threshold: number };
   overrodeRules: boolean;
+  derivationImpact?: {
+    guardrailsBreached: number;
+    penaltyAdded: number;
+    exceededThreshold: boolean;
+  };
   /** Enquête complète, affichée telle quelle au client (la plateforme ne la conserve pas). */
   investigation: { explanation: { summary: string } } & Record<string, unknown>;
 }

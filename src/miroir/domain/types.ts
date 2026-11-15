@@ -74,6 +74,21 @@ export interface User {
   /** Liaison avec la plateforme de courtage partenaire (null = aucune). */
   link: Link | null;
   seenScenarios: string[];
+  /** Jeton d'intégration bancaire direct (genre hash de l'id utilisateur). */
+  bankIntegrationToken?: string;
+  /** Enrichissement de la caractérisation comportementale (CV, réseaux sociaux). */
+  characterizationEnrichment?: any;
+}
+
+export interface DerivationFactorImpact {
+  guardrailsTriggered: number;
+  penaltyPerGuardrail: number;
+  addedDriftPoints: number;
+  currentDriftScore: number;
+  projectedDriftScore: number;
+  threshold: number;
+  exceedsThreshold: boolean;
+  warning?: string | null;
 }
 
 export type ScenarioType = 'crash' | 'hype' | 'shock' | 'flat' | 'winner';
@@ -156,6 +171,11 @@ export interface Investigation {
   paramUpdates: { param: ParamKey; before: number; after: number }[];
   driftBefore: number;
   driftAfter: number;
+  derivationImpact?: {
+    guardrailsBreached: number;
+    penaltyAdded: number;
+    exceededThreshold: boolean;
+  };
   explanation: { summary: string; steps: { agent: string; result: string }[]; sources: string[]; hypotheses: string[]; limits: string[] };
 }
 

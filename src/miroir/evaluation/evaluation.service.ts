@@ -33,13 +33,16 @@ export class EvaluationService implements OnModuleInit {
   questions() { return QUESTIONS; }
 
   /** Démarre une évaluation : enregistre le profil déclaré et tire 5 scénarios. */
-  async start(user: User, answers?: Record<string, string>) {
+  async start(user: User, answers?: Record<string, string>, enrichment?: any) {
     const kind = user.profile ? 'reevaluation' : 'initial';
     let declared = user.profile?.declared;
     if (answers) {
       declared = this.declaredFrom(answers);
       user.preferences = Object.fromEntries(
         QUESTIONS.filter((q) => q.kind === 'info').map((q) => [q.id, answers[q.id]]));
+      if (enrichment) {
+        user.characterizationEnrichment = enrichment;
+      }
       await this.store.saveUser(user);
     }
     if (!declared) throw new BadRequestException('Le questionnaire est requis pour la première évaluation.');

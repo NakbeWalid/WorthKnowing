@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Miroir — Mon profil</title>
+  <title>WorthKnowing — Mon profil</title>
   <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
 <header class="top">
-  <a class="brand" data-word="Miroir" href="/profile.html">Miroir</a>
+  <a class="brand" href="/profile.html">WorthKnowing</a>
   <span class="muted" id="hello"></span><div class="spacer"></div>
   <button class="link" onclick="session.clear()">Déconnexion</button>
 </header>
@@ -20,22 +20,33 @@
         <div class="drift"><span class="score num" id="driftScore">0</span><span class="muted">sur 100</span></div>
         <div class="gauge"><i id="driftNeedle"></i><b id="driftLimit"></b></div>
         <p class="small muted" id="driftText" style="margin:0"></p>
+        <div id="driftResetAction" style="margin-top:12px;"></div>
       </div>
       <div class="card">
         <h2>Compte de courtage</h2>
         <div id="link"></div>
       </div>
+      <div class="card" id="bankIntegrationCard">
+        <h2>Intégration bancaire & API</h2>
+        <div id="bankIntegrationContent"></div>
+      </div>
     </div>
     <div>
       <div class="card">
         <h2>Mon profil</h2>
+        <div id="hexagonContainer"></div>
         <div id="params"></div>
         <p class="small muted" id="evaluated"></p>
-        <button onclick="location.href='/onboarding.html'">Refaire une évaluation</button>
+        <div id="enrichmentProfileBox" style="margin-top:14px;"></div>
+        <button onclick="location.href='/onboarding.html'">Refaire une évaluation complète</button>
       </div>
       <div class="card">
-        <h2>Mes règles</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <h2 style="margin:0;">Mes règles</h2>
+          <button class="mini primary" id="btnToggleRuleEditor">✏️ Gérer / Modifier mes règles</button>
+        </div>
         <div id="rules"></div>
+        <div id="ruleEditor" class="hidden" style="margin-top:16px; padding:14px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px;"></div>
       </div>
       <div class="card">
         <h2>Mes ordres analysés</h2>

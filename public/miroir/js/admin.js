@@ -43,7 +43,10 @@ async function loadDetail() {
       <p class="small muted">${esc(user.email)}, inscrit le ${esc(day(user.createdAt))}.
         ${p ? `${p.evaluationCount} évaluation(s), la dernière le ${esc(day(p.evaluatedAt))}.` : ''}
         ${user.drift.overrides ? `Règles outrepassées depuis : ${user.drift.overrides}.` : ''}</p>
-      ${p ? `<div class="grid">
+      ${p ? `
+      <!-- Graphique Hexagonal 6 critères : what you think vs what you are -->
+      ${hexagonChart(p.declared, p.current)}
+      <div class="grid">
         <div>
           <h3>Paramètres du profil</h3>
           <table><tr><th>Paramètre</th><th class="right">Déclaré</th><th class="right">Référence</th><th class="right">Actuel</th></tr>
@@ -52,6 +55,12 @@ async function loadDetail() {
             <td class="right"><b class="${Math.abs(p.current[k] - p.baseline[k]) >= 10 ? 'neg' : ''}">${p.current[k]}</b></td></tr>`).join('')}
           </table>
           ${prefs ? `<h3 style="margin-top:20px">Ce que le persona a déclaré</h3><table>${prefs}</table>` : ''}
+          ${user.characterizationEnrichment ? `
+            <h3 style="margin-top:20px">Caractérisation enrichie (CV)</h3>
+            <div class="card" style="background:#f8fafc; font-size:12px; padding:10px;">
+              ${user.characterizationEnrichment.summary ? `<p style="margin:0 0 6px; white-space:pre-line;">${esc(user.characterizationEnrichment.summary)}</p>` : ''}
+              ${user.characterizationEnrichment.highlights?.length ? `<ul style="margin:0; padding-left:18px;">${user.characterizationEnrichment.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
+            </div>` : ''}
         </div>
         <div>
           <h3>Règles auto-définies</h3>

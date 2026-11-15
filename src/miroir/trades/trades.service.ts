@@ -11,7 +11,7 @@ import { BehaviorAgent } from './agents/behavior.agent';
 import { Explainer } from './agents/explainer';
 import { GovernanceAgent } from './agents/governance.agent';
 import { InfluenceAgent } from './agents/influence.agent';
-import { CALM_DECAY, computeDrift, SIGNAL_WEIGHT } from './drift';
+import { CALM_DECAY, calculateDerivationImpact, computeDrift, GUARDRAIL_BREACH_PENALTY, SIGNAL_WEIGHT } from './drift';
 
 /** Portefeuille du client AVANT le trade, valorisé par la plateforme de courtage à la date de marché. */
 export interface PortfolioSnapshot {
@@ -61,11 +61,21 @@ export class TradesService {
   /** Pré-contrôle sans effet : quelles règles rappeler au client AVANT qu'il confirme ? */
   async check(user: User, req: TradeRequest) {
     const metrics = this.metrics(user, req);
+    const triggeredRules = this.governance.triggeredRules(user, metrics);
+    const derivationImpact = calculateDerivationImpact(
+      user.profile!.baseline,
+      user.profile!.current,
+      user.drift.overrides,
+      triggeredRules.length,
+      config.driftThreshold,
+    );
     return {
-      triggeredRules: this.governance.triggeredRules(user, metrics),
+      triggeredRules,
       warnings: this.governance.coherenceWarnings(user, metrics),
       reevaluationRequired: user.status === 'reevaluation_required',
       drift: { score: user.drift.score, threshold: config.driftThreshold },
+      derivationImpact,
+      derivationFactorImpact: derivationImpact,
     };
   }
 
@@ -142,6 +152,11 @@ export class TradesService {
       paramUpdates: PARAMS.filter((p) => before[p] !== profile.current[p])
         .map((p) => ({ param: p, before: before[p], after: profile.current[p] })),
       driftBefore, driftAfter: user.drift.score,
+      derivationImpact: {
+        guardrailsBreached: triggeredRules.length,
+        penaltyAdded: triggeredRules.length * GUARDRAIL_BREACH_PENALTY,
+        exceededThreshold: user.drift.score >= config.driftThreshold,
+      },
     };
     const trade: Trade = { ...base, investigation: { ...draft, explanation: await this.explainer.explain(base, draft) } };
 
@@ -150,6 +165,18 @@ export class TradesService {
     this.events.emit('profile.updated', user,
       `Dérive ${driftBefore} → ${user.drift.score}${user.status === 'reevaluation_required' ? ' — réévaluation requise' : ''}`);
     return { trade, status: user.status, drift: user.drift };
+  }
+
+  /** Quand on dépasse le seuil de dérive ou que l'utilisateur refait ses règles : reset à 0. */
+  async resetDrift(user: User) {
+    user.drift = { score: 0, overrides: 0 };
+    user.status = 'active';
+    if (user.profile) {
+      user.profile.baseline = { ...user.profile.current };
+    }
+    await this.store.saveUser(user);
+    this.events.emit('drift.reset', user, 'Score de dérive réinitialisé à 0 suite au réajustement des règles');
+    return { ok: true, drift: user.drift, status: user.status };
   }
 
   history(user: User) { return this.store.listTrades(user.id); }

@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 
 export interface AppEvent {
   type: 'user.registered' | 'evaluation.completed' | 'link.created' | 'link.revoked' | 'rule.respected'
-    | 'trade.received' | 'investigation.completed' | 'profile.updated';
+    | 'trade.received' | 'investigation.completed' | 'profile.updated' | 'drift.reset' | 'rules.updated';
   userId: string;
   userName: string;
   at: string;

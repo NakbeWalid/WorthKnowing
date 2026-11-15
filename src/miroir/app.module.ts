@@ -11,15 +11,21 @@ import { CognitoAuthService } from './auth/cognito-auth.service';
 import { config } from './config';
 import { EvaluationController } from './evaluation/evaluation.controller';
 import { EvaluationService } from './evaluation/evaluation.service';
+import { IntegrationController } from './integration/integration.controller';
+import { IntegrationGuard } from './integration/integration.guard';
 import { BedrockNewsProvider } from './news/bedrock-news.provider';
 import { GdeltClient } from './news/gdelt.client';
 import { NewsCache } from './news/news-cache';
 import { MockNewsProvider, NewsProvider } from './news/news.provider';
+import { ParserController } from './parser/parser.controller';
+import { CvParserService } from './parser/cv-parser.service';
 import { LinkController } from './partner/link.controller';
 import { LinkService } from './partner/link.service';
 import { PartnerController } from './partner/partner.controller';
 import { PartnerGuard, PersonaGuard } from './partner/partner.guard';
 import { EventsService } from './realtime/events.service';
+import { RulesController } from './rules/rules.controller';
+import { RulesService } from './rules/rules.service';
 import { DynamoStore } from './storage/dynamo.store';
 import { JsonStore, Store } from './storage/store';
 import { BehaviorAgent } from './trades/agents/behavior.agent';
@@ -33,19 +39,20 @@ import { TradesService } from './trades/trades.service';
 @Controller('api/health')
 class HealthController {
   @Get()
-  health() { return { app: 'miroir', ok: true }; }
+  health() { return { app: 'worthknowing', ok: true }; }
 }
 
 /**
- * Miroir — le service de profil comportemental.
- *   navigateur  : /api/auth, /api/evaluation, /api/link, /api/trades (lecture), /api/admin
+ * WorthKnowing — le service de profil comportemental.
+ *   navigateur  : /api/auth, /api/evaluation, /api/rules, /api/parser, /api/link, /api/trades (lecture), /api/admin
  *   partenaire  : /api/partner/v1 (clé d'API + code persona) — seule entrée des trades
+ *   intégration : /api/integration/v1 (token d'intégration bancaire direct)
  */
 @Module({
   imports: [ServeStaticModule.forRoot({ rootPath: join(process.cwd(), 'public', 'miroir'), exclude: ['/api/(.*)'] })],
   controllers: [
     HealthController, AuthController, EvaluationController, LinkController, TradesController,
-    PartnerController, AdminController,
+    PartnerController, AdminController, RulesController, ParserController, IntegrationController,
   ],
   providers: [
     // ▶ Points de branchement AWS, choisis par variable d'environnement (voir README).
@@ -55,8 +62,8 @@ class HealthController {
     { provide: InfluenceAgent, useClass: config.influenceDriver === 'bedrock' ? BedrockInfluenceAgent : NoInfluenceAgent },
     { provide: AuthService, useClass: config.authDriver === 'cognito' ? CognitoAuthService : LocalAuthService },
     BedrockClient, GdeltClient, NewsCache,
-    AuthGuard, AdminGuard, PartnerGuard, PersonaGuard, EventsService, LinkService,
-    MarketService, EvaluationService,
+    AuthGuard, AdminGuard, PartnerGuard, PersonaGuard, IntegrationGuard, EventsService, LinkService,
+    MarketService, EvaluationService, RulesService, CvParserService,
     GovernanceAgent, BehaviorAgent, TradesService,
   ],
 })

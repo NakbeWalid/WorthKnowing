@@ -14,8 +14,8 @@ export class EvaluationController {
 
   /** Étape 2 — démarre les simulations (answers facultatif lors d'une réévaluation). */
   @Post('start')
-  start(@Req() req: any, @Body() body: { answers?: Record<string, string> }) {
-    return this.evaluation.start(req.user, body?.answers);
+  start(@Req() req: any, @Body() body: { answers?: Record<string, string>; enrichment?: any }) {
+    return this.evaluation.start(req.user, body?.answers, body?.enrichment);
   }
 
   /** Reprise d'une évaluation en cours (rechargement de la page). */

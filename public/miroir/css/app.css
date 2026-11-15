@@ -22,8 +22,7 @@ a { color: var(--accent); }
 header.top { display: flex; align-items: center; gap: 14px; padding: 14px 28px; background: var(--card); border-bottom: 1px solid var(--line); }
 /* nowrap : le reflet reste toujours à côté du mot */
 .brand { white-space: nowrap; font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: -.01em; color: var(--ink); text-decoration: none; }
-/* Le logotype se reflète : même mot, retourné, estompé. */
-.brand::after { content: attr(data-word); display: inline-block; transform: scaleX(-1); color: var(--silver); margin-left: 3px; }
+.brand::after { display: none; }
 header.top .spacer { flex: 1; }
 main { max-width: 1080px; margin: 0 auto; padding: 32px 28px; }
 main.narrow { max-width: 760px; }
