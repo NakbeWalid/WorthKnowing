@@ -1,4 +1,4 @@
-# Conteneur unique de Miroir (Node 22). Construit par AWS CodeBuild (voir infra/), exécuté sur ECS Fargate.
+# Image unique (Node 22) pour Miroir et pour Boréal Courtage. Construit par AWS CodeBuild (voir infra/), exécuté sur ECS Fargate.
 # Images Node tirées de la galerie publique ECR (pas de limite de téléchargement Docker Hub dans CodeBuild).
 FROM public.ecr.aws/docker/library/node:22-slim AS build
 WORKDIR /app
@@ -22,4 +22,6 @@ COPY scripts ./scripts
 COPY --chown=node:node data ./data
 USER node
 EXPOSE 3000
-CMD ["node", "dist/main.js"]
+# Même image pour les deux applications : Miroir par défaut ; le conteneur de la plateforme de courtage
+# remplace la commande par « node dist/bank/main.js ».
+CMD ["node", "dist/miroir/main.js"]

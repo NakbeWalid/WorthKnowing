@@ -1,12 +1,15 @@
 {
-  "name": "alphaforge-mirror",
+  "name": "miroir-et-boreal",
   "version": "0.1.0",
   "private": true,
-  "description": "Miroir — profil comportemental d'investisseur, règles auto-définies et score de dérive (simulation uniquement)",
+  "description": "Miroir (profil comportemental d'investisseur) + Boréal Courtage (plateforme de courtage fictive qui l'utilise) — simulation uniquement",
   "scripts": {
     "build": "nest build",
-    "start": "node dist/main.js",
-    "start:dev": "nest start --watch",
+    "start": "node scripts/start-all.mjs",
+    "start:miroir": "node dist/miroir/main.js",
+    "start:bank": "node dist/bank/main.js",
+    "start:dev:miroir": "nest start --watch --entryFile miroir/main",
+    "start:dev:bank": "nest start --watch --entryFile bank/main",
     "scenarios": "python3 scripts/build_scenarios.py",
     "test:e2e": "node scripts/e2e.mjs"
   },
