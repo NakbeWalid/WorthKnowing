@@ -79,8 +79,11 @@ const answers = Object.fromEntries(questions.map((q) => [q.id, q.options[0].id])
 Object.assign(answers, { age: '45-59', horizon: '3-5', crypto: 'no' });
 const session = await miroir.call('POST', '/api/evaluation/start', { answers });
 assert(session.scenarios.length === 10 && !JSON.stringify(session).includes('reveal'), '10 scénarios masqués (2 par type)');
+await miroir.call('POST', `/api/evaluation/${session.evaluationId}/decisions`,
+  { scenarioId: session.scenarios[0].id, choiceId: session.scenarios[0].choices[0].id, decisionTimeMs: 2000, confidence: 'certain' }, [400]);
+// Les 2 premières réponses portent une confiance ; les suivantes n'en ont pas (ancien client) : les deux doivent fonctionner.
 for (const s of session.scenarios.slice(0, 2)) {
-  await miroir.call('POST', `/api/evaluation/${session.evaluationId}/decisions`, { scenarioId: s.id, choiceId: s.choices[0].id, decisionTimeMs: 2000 });
+  await miroir.call('POST', `/api/evaluation/${session.evaluationId}/decisions`, { scenarioId: s.id, choiceId: s.choices[0].id, decisionTimeMs: 2000, confidence: 'high' });
 }
 const resumed = await miroir.call('GET', `/api/evaluation/${session.evaluationId}`);
 assert(resumed.answered.length === 2 && resumed.result === null, 'reprise après rechargement : 2 réponses conservées');
@@ -92,6 +95,8 @@ await miroir.call('POST', `/api/evaluation/${session.evaluationId}/decisions`,
   { scenarioId: session.scenarios[0].id, choiceId: session.scenarios[0].choices[1].id, decisionTimeMs: 1 }, [400]);
 const weak = result.params.filter((p) => p.atRisk);
 assert(weak.length >= 2, 'paramètres fragiles détectés');
+assert(result.params.every((p) => p.reliability?.label) && result.reliability?.summary, 'fiabilité fournie pour chaque paramètre et pour l’ensemble');
+step('Fiabilité du profil', `${result.reliability.label} — ${result.reliability.summary}`);
 await miroir.call('POST', `/api/evaluation/${session.evaluationId}/rules`,
   { rules: weak.map((p) => ({ param: p.param, text: p.suggestedRule.text, threshold: p.suggestedRule.threshold })) });
 step('Évaluation', `${result.reveals.map((r) => r.reveal.ticker).join(', ')} révélés ; ${weak.length} règles ; réponses figées après la révélation`);

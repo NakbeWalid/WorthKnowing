@@ -188,11 +188,15 @@ async function startSimulations(answers) {
   $('#go').onclick = showScenario;
 }
 
+/** Les trois niveaux de confiance proposés après chaque réponse (ids attendus par le serveur). */
+const CONFIDENCES = [['high', 'Sûr'], ['medium', 'Plutôt sûr'], ['low', 'Hésitant']];
 function showScenario() {
   setStep(2);
   const s = state.session.scenarios[state.index];
   const total = state.session.scenarios.length;
   state.shownAt = Date.now(); // sert à mesurer le temps de décision
+  s.decisionTimeMs = undefined;
+  let chosen = null;
   view.innerHTML = `
     <div class="card">
       <div class="progress"><i style="width:${(state.index / total) * 100}%"></i></div>
@@ -203,21 +207,40 @@ function showScenario() {
       <div class="quote">${esc(s.headline)} <span class="badge grey">manchette fictive</span></div>
       <p><b>${esc(s.situation)}</b></p>
       <p>Que faites-vous ?</p>
-      <div class="choices trio">${s.choices.map((c) => `<button data-id="${esc(c.id)}">${esc(c.label)}</button>`).join('')}</div>
+      <div class="choices trio" id="choiceRow">${s.choices.map((c) => `<button data-id="${esc(c.id)}" aria-pressed="false">${esc(c.label)}</button>`).join('')}</div>
       <p class="small muted" style="margin:10px 0 0">Vendre : tout vendre · Garder : ne rien changer · Acheter : ajouter 50 % de plus.</p>
+      <div id="confidenceBox" class="hidden">
+        <p style="margin-top:18px">Quel est votre niveau de confiance dans cette décision ?</p>
+        <div class="choices trio" id="confidenceRow">${CONFIDENCES.map(([id, label]) => `<button data-confidence="${id}">${esc(label)}</button>`).join('')}</div>
+      </div>
       <div class="error" id="error" role="alert"></div>
     </div>`;
-  view.querySelectorAll('.choices button').forEach((b) => (b.onclick = async () => {
-    view.querySelectorAll('button').forEach((x) => (x.disabled = true));
+  const choiceButtons = [...view.querySelectorAll('#choiceRow button')];
+  const confidenceButtons = [...view.querySelectorAll('#confidenceRow button')];
+  const lock = (disabled) => [...choiceButtons, ...confidenceButtons].forEach((x) => (x.disabled = disabled));
+  // 1. Le choix : on peut en changer tant que la confiance n'est pas donnée. Le temps de décision est celui du DERNIER choix.
+  choiceButtons.forEach((b) => (b.onclick = () => {
+    chosen = b.dataset.id;
+    s.decisionTimeMs = Date.now() - state.shownAt;
+    choiceButtons.forEach((x) => {
+      const on = x === b;
+      x.setAttribute('aria-pressed', String(on));
+      x.style.background = on ? 'var(--accent-soft)' : '';
+      x.style.borderColor = on ? 'var(--accent)' : '';
+    });
+    $('#confidenceBox').classList.remove('hidden');
+  }));
+  // 2. La confiance : envoie la réponse. En cas d'échec réseau, on peut renvoyer sans fausser le temps de décision.
+  confidenceButtons.forEach((b) => (b.onclick = async () => {
+    lock(true);
     $('#error').textContent = '';
-    s.decisionTimeMs ??= Date.now() - state.shownAt; // mesuré au premier clic, pas faussé par un renvoi
     try {
       await api('POST', `/evaluation/${state.session.evaluationId}/decisions`, {
-        scenarioId: s.id, choiceId: b.dataset.id, decisionTimeMs: s.decisionTimeMs,
+        scenarioId: s.id, choiceId: chosen, decisionTimeMs: s.decisionTimeMs, confidence: b.dataset.confidence,
       });
     } catch (err) {
-      $('#error').textContent = err.message; // le choix peut être renvoyé : le serveur remplace la décision
-      view.querySelectorAll('button').forEach((x) => (x.disabled = false));
+      $('#error').textContent = err.message; // le serveur remplace la décision : on peut renvoyer
+      lock(false);
       return;
     }
     state.index++;
@@ -258,6 +281,11 @@ async function showReveal() {
 }
 
 // ------------------------------------------------------------------ Étape 4 : règles auto-définies
+/** Lecture d'ensemble de la fiabilité du profil (les évaluations d'avant la confiance n'en ont pas : rien n'est affiché). */
+function reliabilityHtml(r) {
+  if (!r) return '';
+  return `<p class="small" style="margin:0 0 10px"><b>Fiabilité de ce profil : ${esc(r.label)}.</b> <span class="muted">${esc(r.summary)}</span></p>`;
+}
 function showRules() {
   setStep(4);
   const params = state.result.params;
@@ -272,8 +300,10 @@ function showRules() {
       <!-- Graphique Hexagonal à 6 critères : what you think vs what you are -->
       ${hexagonChart(declaredScores, observedScores)}
 
+      ${reliabilityHtml(state.result.reliability)}
       ${mirrorHead('Vous disiez', 'Vous avez fait')}
-      ${params.map((p) => mirror(esc(p.label), p.declared, p.observed)).join('')}
+      ${params.map((p) => mirror(esc(p.label), p.declared, p.observed, p.reliability ? `fiabilité ${esc(p.reliability.label)}` : '')).join('')}
+      ${params.some((p) => p.reliability) ? '<p class="small muted" style="margin:8px 0 0">La fiabilité dit si vos réponses se recoupent et si vous étiez sûr de vous. Elle ne mesure pas la justesse du score : seuls vos vrais ordres, un par un, l’affineront.</p>' : ''}
     </div>
     <div class="card">
       <h2>Vos règles</h2>

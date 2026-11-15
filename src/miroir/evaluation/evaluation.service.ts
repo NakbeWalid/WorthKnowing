@@ -9,6 +9,7 @@ import { readDataFile } from '../../shared/data-files';
 import { Store } from '../storage/store';
 import { QUESTIONS } from './questions';
 import { PARAM_CHECKS } from './rule-templates';
+import { overallReliability, Reading, Reliability, reliabilityOf, CONFIDENCE_LEVELS } from './reliability';
 import { eventSentence, outcomeOf, SCENARIO_TYPES, STAKE } from './scenario-types';
 
 /**
@@ -106,8 +107,12 @@ export class EvaluationService implements OnModuleInit {
       throw new BadRequestException('Choix invalide.');
     }
     evaluation.decisions = evaluation.decisions.filter((d) => d.scenarioId !== scenario.id);
+    if (decision.confidence !== undefined && !CONFIDENCE_LEVELS.includes(decision.confidence)) {
+      throw new BadRequestException('Niveau de confiance invalide.');
+    }
     evaluation.decisions.push({
       scenarioId: scenario.id, choiceId: decision.choiceId, decisionTimeMs: Number(decision.decisionTimeMs) || 0,
+      ...(decision.confidence ? { confidence: decision.confidence } : {}),
     });
     await this.store.saveEvaluation(evaluation);
     return { answered: this.validDecisions(evaluation).length, total: evaluation.scenarioIds.length };
@@ -122,6 +127,8 @@ export class EvaluationService implements OnModuleInit {
     }
     const signals: Record<ParamKey, number[]> = Object.fromEntries(PARAMS.map((p) => [p, []])) as any;
     const timeSignals: number[] = [];
+    // Toutes les mesures de chaque paramètre (réponses + temps de décision), pour en juger la fiabilité.
+    const readings = Object.fromEntries(PARAMS.map((p) => [p, [] as Reading[]])) as Record<ParamKey, Reading[]>;
 
     // Dans l'ordre où les situations ont été présentées (et non l'ordre d'arrivée des réponses).
     const reveals = evaluation.scenarioIds.map((id, i) => {
@@ -129,7 +136,10 @@ export class EvaluationService implements OnModuleInit {
       const s = this.scenario(id);
       const def = SCENARIO_TYPES[s.type];
       const chosen = def.choices.find((c) => c.id === d.choiceId)!;
-      for (const [param, value] of Object.entries(chosen.signals)) signals[param as ParamKey].push(value);
+      for (const [param, value] of Object.entries(chosen.signals)) {
+        signals[param as ParamKey].push(value);
+        readings[param as ParamKey].push({ value, confidence: d.confidence, source: 'answer' });
+      }
       const seconds = d.decisionTimeMs / 1000;
       timeSignals.push(seconds < 5 ? 85 : seconds < 12 ? 55 : 25);
 
@@ -145,15 +155,19 @@ export class EvaluationService implements OnModuleInit {
       };
     });
     signals.impulsivity.push(avg(timeSignals));
+    readings.impulsivity.push({ value: avg(timeSignals), source: 'time' });
 
     const observed = Object.fromEntries(PARAMS.map((p) =>
       [p, signals[p].length ? Math.round(avg(signals[p])) : evaluation.declared[p]])) as ParamScores;
 
+    // Fiabilité de chaque paramètre. La confiance déclarée n'entre PAS dans le score : voir reliability.ts.
+    const reliability = Object.fromEntries(PARAMS.map((p) => [p, reliabilityOf(readings[p])])) as Record<ParamKey, Reliability>;
     const result = {
       reveals,
       totalPnl: reveals.reduce((sum, r) => sum + r.pnl, 0),
       observed,
-      params: this.diagnose(evaluation.declared, observed, user.rules),
+      params: this.diagnose(evaluation.declared, observed, user.rules).map((row) => ({ ...row, reliability: reliability[row.param] })),
+      reliability: overallReliability(reliability),
       note: 'Le profil mesure votre comportement, pas votre rendement : une décision risquée peut bien tourner par chance.',
     };
     evaluation.result = result;

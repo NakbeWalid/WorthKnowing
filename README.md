@@ -34,7 +34,8 @@ npm run test:e2e     # dans un autre terminal : rejoue tout le parcours par les 
    - **Activer Miroir** (à l'ouverture du compte ou plus tard) : il est envoyé chez Miroir.
 2. Chez **Miroir**, il crée un compte Miroir (distinct de son compte de courtage) et passe l'évaluation :
    13 questions (profil **déclaré**), 10 mises en situation (2 par comportement, sur des actifs différents) tirées de prix réels masqués (profil **observé**), chacune avec
-   les mêmes trois choix : **Vendre** (tout), **Garder** (ne rien changer), **Acheter** (+50 %), sans curseur,
+   les mêmes trois choix : **Vendre** (tout), **Garder** (ne rien changer), **Acheter** (+50 %), sans curseur, suivie d'un niveau de
+   confiance (**Sûr**, **Plutôt sûr**, **Hésitant**) qui sert à calculer la fiabilité de chaque paramètre,
    la révélation de ce qui s'est vraiment passé, puis ses propres règles sur ses paramètres fragiles.
 3. Il est **ramené chez Boréal** avec un code à usage unique, que le serveur de Boréal échange contre un
    **code persona**. Ce code accompagne ensuite chaque requête vers Miroir : c'est lui qui dit à quel profil appartient un ordre.
@@ -298,3 +299,13 @@ dans `KIRO_HANDOFF.md`, section 6.
    rôle. Boréal a ainsi, en théorie, accès à Bedrock, à Cognito et aux tables `miroir-*`, dont elle n'a pas besoin.
    Le code de Boréal ne les utilise pas, mais l'isolation est faite par le code et non par les droits.
    *Piste : deux services ECS, un rôle chacun.*
+
+### Précision de l'évaluation (estimée, pas démontrée)
+- **Ce qu'on peut chiffrer** : par simulation (`node scripts/measure-precision.mjs`), pour une personne dont on connaît le vrai niveau et qui répond
+  avec un peu de bruit, l'écart moyen entre le score calculé et ce vrai niveau est d'environ **12 points sur 100** (réponses moyennement bruitées),
+  contre 13,5 avec 5 situations et 4 choix, et 15,4 avec 5 situations et 3 choix. Cette mesure **suppose que les barèmes traduisent bien un trait** : ce n'est pas démontré.
+- **Ce qu'on ne peut pas chiffrer** : la validité (le score reflète-t-il le vrai comportement ?). Il faudrait comparer à des comportements réels de référence.
+- **Fiabilité affichée à la personne** : par paramètre, *élevée / moyenne / faible*, selon le nombre de mesures, leur cohérence et la confiance déclarée.
+  C'est un indice de cohérence des réponses, pas une marge d'erreur : quelqu'un qui clique « Garder » partout avec assurance paraît très fiable.
+  La confiance ne modifie pas le score du profil.
+- « Appétit pour le risque » n'a aucune situation à lui : il est déduit des réponses données pour d'autres comportements.

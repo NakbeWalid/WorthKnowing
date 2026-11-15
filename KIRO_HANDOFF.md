@@ -163,6 +163,23 @@ Tests : `scripts/test-simulations.mjs` (tirage sur 2000 tirages aléatoires, bib
 Quand une bibliothèque en grande partie vue n'offre plus assez de situations nouvelles aux actifs distincts, le tirage garde les actifs
 distincts (sinon on révèle l'épisode) et accepte de réutiliser une situation déjà vue.
 
+## 5 quater. Niveau de confiance et fiabilité du profil
+
+Après chaque choix, la personne indique son niveau de confiance : **Sûr / Plutôt sûr / Hésitant** (`high` / `medium` / `low`, champ facultatif
+`confidence` de la décision, validé par le serveur). Le choix peut être changé tant que la confiance n'est pas donnée ; le temps de décision est celui du
+**dernier choix**, pas celui de la confiance.
+- **La confiance ne modifie pas le score du profil** (décision délibérée) : pondérer le score demanderait des poids que rien ne permet de valider. Elle
+  alimente seulement la **fiabilité** par paramètre (`src/miroir/evaluation/reliability.ts`) : élevée / moyenne / faible selon (1) le nombre de mesures,
+  (2) l'écart entre elles (≤ 30 cohérentes, > 50 contradictoires), (3) la confiance moyenne (≥ 0,8 / < 0,55). Une seule mesure ou des réponses
+  contradictoires donnent « faible » quelle que soit la confiance. Sans confiance indiquée (anciennes évaluations), jamais « élevée ».
+- **Limite de cet indice** : il mesure la cohérence des réponses, pas leur justesse.
+- **Précision estimée** (`scripts/measure-precision.mjs`, simulation, hypothèses écrites en tête du fichier) : écart moyen au vrai niveau, bruit moyen :
+  13,5 points (5 situations, 4 choix) ; 15,4 (5 situations, 3 choix) ; **11,9 (10 situations, 3 choix, version actuelle)**. Sans aucun bruit, il reste 10,2 points
+  d'écart : le plancher vient des barèmes à 3 valeurs irrégulières (par exemple concentration 15 / 70 / 90), pas du nombre de questions.
+- **Piste non appliquée** : un barème à écarts réguliers (15 / 50 / 85) ramènerait l'écart à 11,0 (bruit moyen) et 8,2 (sans bruit). Changer les barèmes
+  modifie tous les profils et les seuils de dérive qui s'y appuient : décision métier à valider avec l'équipe.
+- Tests : `scripts/test-reliability.mjs` (27 contrôles, dans `npm run test:unit`).
+
 ## 6. Limites connues, par ordre d'intérêt
 0. **Agent d'influence : relance unique, devenue rare (≈ 4 %).** Quand la phrase du modèle viole le garde-fou (chiffre ou délai absent des faits), `retryRationale` le relance une fois en nommant la violation ; seule la nouvelle phrase est reprise, et seulement si elle passe le même garde-fou. Si elle échoue aussi, plante ou manque de temps (la relance partage le budget de 15 s du 1er appel), la liste « Appuyé sur : F1, N1… » est affichée : une phrase fautive n'est jamais montrée.
    **Cause racine de la relance quasi systématique** (mesurée sur le vrai modèle, 74 à 111 essais par variante, 37 situations réelles du corpus × 2 à 3 durées de décision) : le taux était de **66 %**, et ce n'était pas un biais du modèle. (1) **31 des 49 relances** venaient du garde-fou lui-même : le prompt donnait les dates des nouvelles au modèle, mais pas au garde-fou, qui rejetait « nouvelles du 15 juillet » comme chiffre inventé (24 % après correction). (2) Le reste venait des délais que le modèle calculait en voyant la date de chaque nouvelle à côté de celle du trade. **Retirer les dates de nouvelles du prompt** (elles restent affichées à l'utilisateur) : **4 % de relance**, sans effet sur les qualificatifs de durée.

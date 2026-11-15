@@ -137,7 +137,9 @@ export interface Scenario {
   reveal: { ticker: string; name: string; sector: string; decisionDate: string; startDate: string; endDate: string };
 }
 
-export interface Decision { scenarioId: string; choiceId: string; decisionTimeMs: number }
+/** Confiance déclarée par la personne dans sa réponse. Facultative : les anciennes évaluations n'en ont pas. */
+export type Confidence = 'high' | 'medium' | 'low';
+export interface Decision { scenarioId: string; choiceId: string; decisionTimeMs: number; confidence?: Confidence }
 
 export interface Evaluation {
   id: string;
