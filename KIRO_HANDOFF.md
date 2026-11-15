@@ -114,7 +114,7 @@ Fais-les **dans cet ordre** (du plus visible pour le jury au moins critique). In
   rédige que `summary` en langage clair à partir des faits. `steps`, `sources`, `hypotheses`, `limits`
   restent produits par le code (repris de `TemplateExplainer`). Sélection : `EXPLAINER_DRIVER=template|bedrock`.
 - Mets à jour la limite « Les nouvelles sont des signaux simulés » : elle est déjà conditionnelle à `simulated`.
-- Bonus à forte valeur pour le jury : à la **révélation** des simulations (`EvaluationService.complete`),
+- ~~Bonus : contexte historique à la **révélation**~~ — **abandonné** (lenteur, erreurs réseau) : la révélation affiche seulement l'événement, le graphique et une phrase calculée à partir des prix. Ancien texte : à la **révélation** des simulations (`EvaluationService.complete`),
   ajouter à chaque scénario un champ `historicalContext` (1–2 phrases + source) produit par le même agent de
   nouvelles pour `reveal.ticker` autour de `reveal.decisionDate`. Si rien de sourcé : ne rien afficher.
 

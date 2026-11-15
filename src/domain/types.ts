@@ -109,14 +109,6 @@ export interface NewsItem {
   summary?: string;
 }
 
-/** Contexte médiatique d'un actif à une date, rédigé par le modèle à partir de manchettes citées. */
-export interface HistoricalContext {
-  text: string;
-  sources: { title: string; source: string; url: string; date: string }[];
-  /** Mention affichée : qui a rédigé le texte et à partir de quoi. */
-  label: string;
-}
-
 /** Contexte de marché calculé à la date du trade (faits issus de prices_daily.csv). */
 export interface MarketContext {
   ticker: string;

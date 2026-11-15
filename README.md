@@ -49,8 +49,8 @@ BASE_URL=https://<distribution>.cloudfront.net \
 2. **Évaluation** (`/onboarding.html`)
    1. 13 questions : faits (âge, horizon, objectif, ESG, crypto…) + comment il se voit → **profil déclaré**
    2. 5 mises en situation tirées des prix réels 2021-2026, masquées (nom et manchette fictifs, prix en base 100) → **profil observé**
-   3. Révélation : l'actif réel, la date, ce qui s'est passé ensuite, le résultat en $ de chaque décision possible,
-      et **ce que disaient les médias juste avant la décision** (vraies manchettes citées, résumé étiqueté IA)
+   3. Révélation : l'actif réel et la date, le graphique avec la suite réelle, une phrase factuelle (calculée à partir
+      des prix, sans appel externe) et le résultat en $ de chaque décision possible
    4. Règles : pour chaque paramètre fragile, l'utilisateur écrit sa propre règle (texte + seuil)
 3. **Tableau de bord** (`/dashboard.html`) : profil, score de dérive, règles, simulation de trades.
    Si un trade touche une règle, elle lui est rappelée avant qu'il puisse poursuivre.
@@ -120,8 +120,7 @@ POST /api/trades
 ### Garde-fous sur les sorties du modèle
 
 - **Aucune fuite du futur** : la fenêtre de recherche (7 jours avant la date, jusqu'à 20 h UTC le jour même) est
-  fixée par le code et revérifiée sur chaque article ; à la révélation, le modèle ne voit que les manchettes
-  antérieures à la décision, pour ne jamais justifier une décision après coup.
+  fixée par le code et revérifiée sur chaque article.
 - **Rien d'inventé** : le modèle cite des manchettes et des faits par numéro (`N1`, `F3`) ; le code rejette toute
   référence inexistante. Un verdict « influence externe » sans nouvelle citée devient « impossible de conclure ».
   Un résumé contenant un chiffre absent des faits est remplacé par le résumé gabarit.
@@ -144,6 +143,7 @@ POST /api/trades
 | `EXPLAINER_DRIVER` | **template** · bedrock | Résumé de l'enquête : gabarit ou Bedrock |
 | `AWS_REGION` | **us-east-1** | Région de tous les services (ca-central-1 est bloquée dans le compte de l'atelier) |
 | `BEDROCK_MODEL_ID` | **us.anthropic.claude-haiku-4-5-20251001-v1:0** | Profil d'inférence Bedrock |
+| `NEWS_TIMEOUT_MS` | **30000** | Attente maximale des nouvelles pendant l'enquête d'un trade ; au-delà, signaux simulés étiquetés |
 | `DATA_BUCKET` | (vide) | Bucket S3 des données ; vide = disque local |
 | `COGNITO_USER_POOL_ID`, `COGNITO_CLIENT_ID` | | Sorties de la pile `MiroirData` |
 | `USERS_TABLE`, `EVALUATIONS_TABLE`, `TRADES_TABLE` | **miroir-users**, **miroir-evaluations**, **miroir-trades** | Noms des tables |
@@ -177,7 +177,7 @@ seul User Pool.
 données) et filtre par date. Les API de nouvelles gratuites courantes ne remontent qu'à un mois. GDELT est une base
 ouverte, réutilisable avec citation ; Miroir ne conserve que le titre, le lien, l'éditeur et la date, jamais le texte
 des articles. GDELT limite le débit (une requête toutes les 5 s, souvent davantage depuis les adresses AWS) : le
-corpus des dates de démonstration et des 60 simulations est donc constitué à l'avance par
+corpus des dates de démonstration est donc constitué à l'avance par
 `node scripts/prefetch_news.mjs` (après `npm run build`), puis servi depuis S3. Un trade à une autre date interroge
 GDELT en direct ; si GDELT ne répond pas à temps, l'enquête retombe sur des signaux simulés étiquetés comme tels.
 
@@ -193,7 +193,7 @@ src/
   ai/           client Bedrock (Converse) et garde-fous sur les sorties du modèle
   auth/         contrat AuthService : LocalAuthService · CognitoAuthService ; gardes
   storage/      contrat Store : JsonStore · DynamoStore ; lecture des fichiers (S3 ou disque)
-  evaluation/   questionnaire, scénarios, diagnostic, règles, contexte historique à la révélation
+  evaluation/   questionnaire, scénarios, diagnostic, règles, phrase de révélation
   market/       prix et indicateurs factuels
   news/         contrat NewsProvider : MockNewsProvider · BedrockNewsProvider ; client GDELT ; corpus
   trades/       pipeline du trade + agents (gouvernance, comportement, influence, explicabilité)
@@ -209,7 +209,7 @@ KIRO_HANDOFF.md passation pour l'intégration AWS
 
 - Prix : Yahoo Finance via `yfinance`, 2021-11-12 → 2026-11-12, extraction du 2026-11-13 (`dataset/README.md`, `dataset/sources_metadata.csv`).
 - Rendements calculés sur `adj_close` ; prix d'exécution = `close`. Calendriers alignés par report de la dernière valeur connue.
-- Les scénarios sont détectés par des seuils fixes (ex. « chute » = −25 % en 30 séances). Les manchettes affichées pendant les simulations sont fictives et étiquetées comme telles ; le contexte historique de la révélation ne s'appuie que sur des manchettes réelles antérieures à la décision.
+- Les scénarios sont détectés par des seuils fixes (ex. « chute » = −25 % en 30 séances). Les manchettes affichées pendant les simulations sont fictives et étiquetées comme telles . La révélation n'utilise aucune nouvelle : sa phrase vient uniquement des prix du jeu de données.
 - Seuils des constats fixés à la main (`PARAM_CHECKS`) ; « spéculatif » = crypto ou volatilité annualisée ≥ 45 % ; poids d'un constat = 35 %.
 - Le profil mesure un comportement, pas un rendement. Cinq situations donnent un signal, pas un diagnostic psychologique.
 - Nouvelles : anglais uniquement, couverture inégale selon les actifs (meilleure pour les grandes capitalisations américaines et les cryptos que pour les titres de la TSX) ; pour un FNB, la recherche porte sur le marché suivi. Une nouvelle publiée avant le trade ne prouve pas que l'investisseur l'a lue.

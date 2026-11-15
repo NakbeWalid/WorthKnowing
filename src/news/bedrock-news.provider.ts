@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { BedrockClient } from '../ai/bedrock.client';
-import { HistoricalContext, MarketContext, NewsItem } from '../domain/types';
+import { config } from '../config';
+import { MarketContext, NewsItem } from '../domain/types';
 import { Article, GdeltClient } from './gdelt.client';
 import { NewsCache } from './news-cache';
 import { MockNewsProvider, NewsProvider } from './news.provider';
@@ -32,18 +33,30 @@ export class BedrockNewsProvider extends NewsProvider {
     super();
   }
 
+  /** Requêtes en cours par clé : deux trades simultanés sur le même actif ne lancent qu'une recherche. */
+  private inFlight = new Map<string, Promise<NewsItem[]>>();
   async getNews(c: MarketContext): Promise<NewsItem[]> {
     try {
-      return await this.realNews(c);
+      return await withTimeout(this.realNews(c), config.newsTimeoutMs);
     } catch (err) {
       this.log.warn(`${c.ticker} ${c.date} : ${(err as Error).message} — repli sur les signaux simulés`);
       return this.fallback.getNews(c);
     }
   }
-
-  /** Vraies nouvelles uniquement ; lève une erreur si GDELT ou Bedrock échoue (rien n'est alors mis en cache). */
-  private async realNews(c: MarketContext): Promise<NewsItem[]> {
+  /**
+   * Vraies nouvelles uniquement ; lève une erreur si GDELT ou Bedrock échoue (rien n'est alors mis en cache).
+   * Si l'utilisateur n'attend plus (délai dépassé), la recherche se termine en arrière-plan et alimente le cache.
+   */
+  private realNews(c: MarketContext): Promise<NewsItem[]> {
     const key = `classified/${slug(this.bedrock.modelId)}/${c.ticker}/${c.date}.json`;
+    let pending = this.inFlight.get(key);
+    if (!pending) {
+      pending = this.fetchNews(c, key).finally(() => this.inFlight.delete(key));
+      this.inFlight.set(key, pending);
+    }
+    return pending;
+  }
+  private async fetchNews(c: MarketContext, key: string): Promise<NewsItem[]> {
     const cached = await this.cache.get<NewsItem[]>(key);
     if (cached) return cached;
     const search = await this.gdelt.search(c.ticker, c.date);
@@ -52,23 +65,6 @@ export class BedrockNewsProvider extends NewsProvider {
     await this.cache.put(key, items);
     return items;
   }
-
-  /** Révélation : 1–2 phrases sur le climat médiatique AVANT la décision, chaque phrase appuyée sur des manchettes citées. */
-  async historicalContext(c: MarketContext): Promise<HistoricalContext | null> {
-    const key = `context/${slug(this.bedrock.modelId)}/${c.ticker}/${c.date}.json`;
-    try {
-      const cached = await this.cache.get<{ value: HistoricalContext | null }>(key);
-      if (cached) return cached.value;
-      const news = await this.realNews(c);
-      const value = news.length ? await this.summarize(c, news) : null;
-      await this.cache.put(key, { value });
-      return value;
-    } catch (err) {
-      this.log.warn(`contexte ${c.ticker} ${c.date} : ${(err as Error).message}`);
-      return null; // rien de sourcé : on n'affiche rien
-    }
-  }
-
   private async classify(c: MarketContext, articles: Article[], retrievedAt: string): Promise<NewsItem[]> {
     const list = articles.map((a, i) => `[${i + 1}] ${a.seenAt.slice(0, 10)} · ${a.domain} · ${a.title}`).join('\n');
     const prompt = `Actif : ${c.name} (${c.ticker}), classe ${c.assetClass}, secteur ${c.sector}.
@@ -102,27 +98,16 @@ Format : {"items":[{"id":1,"impact":"moyen","resume":"..."}]}`;
     const rank = (n: NewsItem) => IMPACTS.indexOf(n.impact);
     return items.sort((a, b) => rank(b) - rank(a) || b.date.localeCompare(a.date)).slice(0, MAX_ITEMS);
   }
-
-  private async summarize(c: MarketContext, news: NewsItem[]): Promise<HistoricalContext | null> {
-    const list = news.map((n, i) => `[${i + 1}] ${n.date} · ${n.source} · ${n.title}`).join('\n');
-    const prompt = `Actif : ${c.name} (${c.ticker}). Date de la décision : ${c.date}.
-Manchettes publiées dans les 7 jours précédents :
-${list}
-
-Écris 1 ou 2 phrases en français (45 mots maximum) décrivant ce dont parlaient les médias à propos de cet actif juste avant cette date.
-N'explique PAS ce qui s'est passé ensuite et n'avance aucune cause qui ne figure pas dans les manchettes.
-Indique les numéros des manchettes utilisées. Si les manchettes ne permettent rien de fiable, réponds {"text":"","ids":[]}.
-Format : {"text":"...","ids":[1,2]}`;
-    const out = await this.bedrock.json<{ text?: unknown; ids?: unknown[] }>(SYSTEM, prompt, 400);
-    const ids = [...new Set((out.ids ?? []).map(Number))].filter((i) => Number.isInteger(i) && news[i - 1]);
-    const text = typeof out.text === 'string' ? out.text.trim() : '';
-    if (!text || !ids.length) return null; // rien de sourcé
-    return {
-      text: text.slice(0, 400),
-      sources: ids.map((i) => news[i - 1]).map((n) => ({ title: n.title, source: n.source, url: n.url!, date: n.date })),
-      label: `Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le ${c.date}.`,
-    };
-  }
 }
 
 const slug = (s: string) => s.replace(/[^a-zA-Z0-9-]/g, '_');
+/** Abandonne l'attente après `ms` (la promesse d'origine continue, son échec éventuel est déjà journalisé par l'appelant). */
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  let timer: NodeJS.Timeout;
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`délai de ${Math.round(ms / 1000)} s dépassé`)), ms);
+  });
+  // Évite un « unhandledRejection » si la recherche échoue après l'abandon de l'attente.
+  promise.catch(() => undefined);
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}

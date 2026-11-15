@@ -58,6 +58,7 @@ export class GdeltClient {
     });
     const body = await this.fetchThrottled(url, Date.now() + patienceMs);
     const articles = dedupe((body.articles ?? [])
+      .filter((a: any) => /^\d{8}T\d{6}Z$/.test(String(a?.seendate)) && a.url) // ignore les entrées incomplètes
       .map((a: any): Article => ({ title: clean(a.title), url: a.url, domain: a.domain, seenAt: isoFromGdelt(a.seendate) }))
       // Double vérification de la fenêtre : jamais d'article postérieur à la décision.
       .filter((a: Article) => a.title && a.seenAt >= from.toISOString() && a.seenAt <= to.toISOString()));
@@ -84,18 +85,24 @@ export class GdeltClient {
       const wait = Math.max(0, nextSlot - Date.now());
       nextSlot = Date.now() + wait + MIN_INTERVAL_MS;
       if (wait) await new Promise((r) => setTimeout(r, wait));
-      const res = await fetch(url, { signal: AbortSignal.timeout(20_000) });
-      const text = (await res.text()).trim();
-      if (res.ok && text.startsWith('{')) return JSON.parse(text);
-      if (res.ok && text === '') return { articles: [] }; // aucun résultat
+      let status = 0;
+      try {
+        const res = await fetch(url, { signal: AbortSignal.timeout(20_000) });
+        status = res.status;
+        const text = (await res.text()).trim();
+        if (res.ok && text.startsWith('{')) return JSON.parse(text);
+        if (res.ok && text === '') return { articles: [] }; // aucun résultat
+      } catch (err) {
+        status = 0; // réseau coupé, délai dépassé ou JSON tronqué : on réessaie comme pour un 429
+        this.log.warn(`GDELT injoignable : ${(err as Error).message}`);
+      }
       const backoff = Math.min(45_000, 10_000 * attempt);
-      if (Date.now() + backoff > deadline) throw new Error(`GDELT indisponible (${res.status})`);
-      this.log.warn(`GDELT ${res.status}, nouvel essai dans ${backoff / 1000} s`);
-      nextSlot = Date.now() + backoff;
+      if (Date.now() + backoff > deadline) throw new Error(`GDELT indisponible (${status || 'réseau'})`);
+      this.log.warn(`GDELT ${status || 'sans réponse'}, nouvel essai dans ${backoff / 1000} s`);
+      nextSlot = Math.max(nextSlot, Date.now() + backoff);
     }
   }
 }
-
 const stamp = (d: Date) => d.toISOString().replace(/[-:T]/g, '').slice(0, 14);
 const isoFromGdelt = (s: string) => // 20230525T000000Z -> 2023-05-25T00:00:00.000Z
   `${s.slice(0, 4)}-${s.slice(4, 6)}-${s.slice(6, 8)}T${s.slice(9, 11)}:${s.slice(11, 13)}:${s.slice(13, 15)}.000Z`;

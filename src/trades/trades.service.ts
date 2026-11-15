@@ -93,7 +93,8 @@ export class TradesService {
     await pause();
 
     // [3] Enquête : nouvelles + constats déterministes (socle) + agent d'influence (IA, borné).
-    const news = await this.news.getNews(context);
+    // Filet de sécurité : une panne de la recherche de nouvelles ne doit jamais faire échouer le trade.
+    const news = await this.news.getNews(context).catch(() => []);
     const deterministic = this.behavior.analyse(metrics, triggeredRules);
     const ai = await this.influence.analyse({
       metrics, amount: req.amount, note: base.note, news, profile: user.profile!, deterministic,

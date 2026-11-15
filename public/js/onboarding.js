@@ -14,6 +14,13 @@ const PERSONAS = {
     riskTolerance: '1', lossAversion: '1', fomo: '1', concentration: '0', impulsivity: '0', newsSensitivity: '1' },
 };
 
+/** Écran d'erreur avec bouton « Réessayer » : une panne réseau ne laisse jamais la page figée. */
+function showError(err, retry) {
+  view.innerHTML = `<div class="card"><h1>Un problème est survenu</h1>
+    <p class="error">${esc(err.message)}</p>
+    <button class="primary" id="retry">Réessayer</button></div>`;
+  $('#retry').onclick = retry;
+}
 function setStep(n) {
   document.querySelectorAll('#steps div').forEach((el, i) => el.classList.toggle('on', i === n - 1));
   window.scrollTo(0, 0);
@@ -44,7 +51,9 @@ function showQuestion() {
 
 // ------------------------------------------------------------------ Étape 2 : simulations
 async function startSimulations(answers) {
-  state.session = await api('POST', '/evaluation/start', answers ? { answers } : {});
+  try {
+    state.session = await api('POST', '/evaluation/start', answers ? { answers } : {});
+  } catch (err) { return showError(err, () => startSimulations(answers)); }
   state.index = 0;
   setStep(2);
   view.innerHTML = `
@@ -74,11 +83,20 @@ function showScenario() {
       <p><b>${esc(s.situation)}</b></p>
       <p>Que faites-vous ?</p>
       <div class="choices">${s.choices.map((c) => `<button data-id="${c.id}">${esc(c.label)}</button>`).join('')}</div>
+      <div class="error" id="error"></div>
     </div>`;
   view.querySelectorAll('.choices button').forEach((b) => (b.onclick = async () => {
     view.querySelectorAll('button').forEach((x) => (x.disabled = true));
-    await api('POST', `/evaluation/${state.session.evaluationId}/decisions`,
-      { scenarioId: s.id, choiceId: b.dataset.id, decisionTimeMs: Date.now() - state.shownAt });
+    $('#error').textContent = '';
+    s.decisionTimeMs ??= Date.now() - state.shownAt; // mesuré au premier clic, pas faussé par un renvoi
+    try {
+      await api('POST', `/evaluation/${state.session.evaluationId}/decisions`,
+        { scenarioId: s.id, choiceId: b.dataset.id, decisionTimeMs: s.decisionTimeMs });
+    } catch (err) {
+      $('#error').textContent = err.message; // le choix peut être renvoyé : le serveur remplace la décision
+      view.querySelectorAll('button').forEach((x) => (x.disabled = false));
+      return;
+    }
     state.index++;
     state.index < total ? showScenario() : showReveal();
   }));
@@ -86,7 +104,10 @@ function showScenario() {
 
 // ------------------------------------------------------------------ Étape 3 : révélation
 async function showReveal() {
-  state.result = await api('POST', `/evaluation/${state.session.evaluationId}/complete`);
+  view.innerHTML = '<div class="card"><p class="muted">Calcul de la révélation…</p></div>';
+  try {
+    state.result = await api('POST', `/evaluation/${state.session.evaluationId}/complete`);
+  } catch (err) { return showError(err, showReveal); }
   setStep(3);
   const r = state.result;
   view.innerHTML = `
@@ -97,13 +118,10 @@ async function showReveal() {
     </div>
     ${r.reveals.map((x, i) => `
       <div class="card">
-        <p class="small muted">${esc(state.session.scenarios[i].alias)} · ${esc(x.title)} · teste : ${esc(x.testsLabel)}</p>
-        <h2>C’était ${esc(x.reveal.name)} (${esc(x.reveal.ticker)}), le ${x.reveal.decisionDate}</h2>
+        <p class="small muted">${esc(state.session.scenarios[i]?.alias ?? '')} · ${esc(x.title)} · teste : ${esc(x.testsLabel)} · décidé en ${x.decisionSeconds} s</p>
+        <h2>C’était ${esc(x.reveal.name)} (${esc(x.reveal.ticker)}), le ${esc(x.reveal.decisionDate)}</h2>
         ${lineChart(x.context, x.forward)}
-        <p>Dans les 60 séances suivantes, le titre a fait <b>${pct(x.outcome.fwd60d)}</b>
-          (pire creux en chemin : ${pct(x.outcome.maxDrawdown)} ; marché américain sur la même période : ${pct(x.outcome.marketFwd60d)}).
-          Vous avez décidé en ${x.decisionSeconds} s.</p>
-        ${historicalContextHtml(x.historicalContext)}
+        <p>${esc(x.sentence)}</p>
         <table>
           <tr><th>Décision possible</th><th class="right">Résultat réel</th></tr>
           ${x.options.map((o) => `<tr class="${o.id === x.chosenId ? 'chosen' : ''} ${o.id === x.bestId ? 'best' : ''}">
@@ -113,7 +131,6 @@ async function showReveal() {
     <button class="primary" id="next">Voir mon profil et définir mes règles →</button>`;
   $('#next').onclick = showRules;
 }
-
 // ------------------------------------------------------------------ Étape 4 : règles auto-définies
 function showRules() {
   setStep(4);
@@ -148,18 +165,27 @@ function showRules() {
     const rules = [...view.querySelectorAll('.rule')]
       .filter((el) => el.querySelector('input[type=checkbox]').checked)
       .map((el) => ({ param: el.dataset.param, text: el.querySelector('.text').value, threshold: Number(el.querySelector('.threshold').value) }));
+    $('#save').disabled = true; // évite le double envoi
+    $('#error').textContent = '';
     try {
       await api('POST', `/evaluation/${state.session.evaluationId}/rules`, { rules });
       location.href = '/dashboard.html';
-    } catch (err) { $('#error').textContent = err.message; }
+    } catch (err) {
+      $('#error').textContent = err.message;
+      $('#save').disabled = false;
+    }
   };
 }
 
 // ------------------------------------------------------------------ Démarrage
-(async () => {
+async function init() {
   if (!session.token) return (location.href = '/');
-  const me = await api('GET', '/me');
-  if (me.role === 'admin') return route(me);
+  let me;
+  try {
+    me = await api('GET', '/me');
+    if (me.role === 'admin') return route(me);
+    if (!me.profile) state.questions = await api('GET', '/evaluation/questions');
+  } catch (err) { return showError(err, init); }
   if (me.profile) {
     // Réévaluation : le profil déclaré est conservé, on repasse directement des simulations inédites.
     setStep(2);
@@ -169,18 +195,7 @@ function showRules() {
       <button class="primary" id="go">Continuer</button></div>`;
     $('#go').onclick = () => startSimulations(null);
   } else {
-    state.questions = await api('GET', '/evaluation/questions');
     showQuestion();
   }
-})();
-
-/** Ce que disaient les médias juste avant la décision (vraies manchettes citées). Rien de sourcé : rien d'affiché. */
-function historicalContextHtml(hc) {
-  if (!hc) return '';
-  return `<div class="quote">
-    <p style="margin:0 0 6px">${esc(hc.text)} <span class="badge grey">IA</span></p>
-    <p class="small muted" style="margin:0">${hc.sources.map((s) =>
-      `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.source)}</a> (${esc(s.date)})`).join(' · ')}</p>
-    <p class="small muted" style="margin:4px 0 0">${esc(hc.label)}</p>
-  </div>`;
 }
+init();

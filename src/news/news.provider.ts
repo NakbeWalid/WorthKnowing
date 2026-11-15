@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { HistoricalContext, MarketContext, NewsItem, pct } from '../domain/types';
+import { MarketContext, NewsItem, pct } from '../domain/types';
 
 /**
  * Contrat de l'agent de recherche de nouvelles utilisé pendant l'enquête d'un trade.
@@ -8,10 +8,6 @@ import { HistoricalContext, MarketContext, NewsItem, pct } from '../domain/types
 export abstract class NewsProvider {
   /** Nouvelles publiées avant la date du contexte (jamais après). */
   abstract getNews(context: MarketContext): Promise<NewsItem[]>;
-  /** Contexte médiatique sourcé pour la révélation des simulations ; null = rien de sourcé, ne rien afficher. */
-  async historicalContext(_context: MarketContext): Promise<HistoricalContext | null> {
-    return null;
-  }
 }
 
 /**

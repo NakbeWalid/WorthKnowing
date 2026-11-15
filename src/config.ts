@@ -45,4 +45,6 @@ export const config = {
   bedrockModelId: process.env.BEDROCK_MODEL_ID ?? 'us.anthropic.claude-haiku-4-5-20251001-v1:0',
   /** Fenêtre de recherche des nouvelles avant la date du trade (jamais après : pas de fuite du futur). */
   newsWindowDays: 7,
+  /** Attente maximale des nouvelles pendant l'enquête d'un trade ; au-delà, repli sur les signaux simulés. */
+  newsTimeoutMs: Number(process.env.NEWS_TIMEOUT_MS ?? 30_000),
 };

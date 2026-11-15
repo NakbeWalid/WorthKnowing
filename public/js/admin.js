@@ -12,13 +12,17 @@ async function loadUsers(flashId) {
     </tr>`).join('') : '<tr><td colspan="5" class="muted">Aucun utilisateur inscrit.</td></tr>';
   document.querySelectorAll('#users tr.clickable').forEach((row) => (row.onclick = () => {
     selectedId = row.dataset.id;
-    loadUsers(); loadDetail();
+    refreshAll();
   }));
 }
 
+let detailCall = 0;
 async function loadDetail() {
   if (!selectedId) return;
-  const { user, portfolio, trades } = await api('GET', '/admin/users/' + selectedId);
+  const call = ++detailCall;
+  const id = selectedId;
+  const { user, portfolio, trades } = await api('GET', '/admin/users/' + id);
+  if (call !== detailCall || id !== selectedId) return; // une réponse plus récente (ou un autre utilisateur) a pris le relais
   const p = user.profile;
   $('#detail').innerHTML = `
     <div class="card">
@@ -58,26 +62,61 @@ async function loadDetail() {
     </div>`;
 }
 
+/** Rafraîchit la liste et le détail ; une erreur réseau ne casse pas le flux temps réel. */
+function refreshAll(flashId, detailConcerned = true) {
+  Promise.all([loadUsers(flashId), detailConcerned ? loadDetail() : null]).catch((err) => {
+    $('#live').className = 'badge danger';
+    $('#live').textContent = '● ' + err.message;
+  });
+}
+/** Un trade émet 3 événements en quelques centaines de ms : on regroupe les rafraîchissements. */
+let reloadTimer = null;
+const flashIds = new Set();
+function scheduleReload(flashId) {
+  if (flashId) flashIds.add(flashId);
+  clearTimeout(reloadTimer);
+  reloadTimer = setTimeout(() => {
+    const ids = [...flashIds];
+    flashIds.clear();
+    // Le détail n'est rechargé que si l'événement concerne l'utilisateur affiché (ou après une reconnexion).
+    refreshAll(ids.at(-1), !ids.length || ids.includes(selectedId));
+  }, 150);
+}
 /** Chaque étape du pipeline (trade → enquête → profil) arrive ici et rafraîchit la vue. */
+let source = null;
 function connect() {
-  const source = new EventSource('/api/admin/stream?token=' + session.token);
-  source.onopen = () => { $('#live').className = 'badge'; $('#live').textContent = '● en direct'; };
-  source.onerror = () => { $('#live').className = 'badge danger'; $('#live').textContent = '● déconnecté'; };
+  source?.close();
+  source = new EventSource('/api/admin/stream?token=' + encodeURIComponent(session.token));
+  source.onopen = () => {
+    $('#live').className = 'badge'; $('#live').textContent = '● en direct';
+    scheduleReload(); // rattrape les événements manqués pendant une coupure
+  };
+  source.onerror = async () => {
+    $('#live').className = 'badge danger'; $('#live').textContent = '● déconnecté';
+    // EventSource se reconnecte seul, sauf si le serveur a refusé (jeton expiré) : on vérifie, puis on relance.
+    if (source.readyState !== EventSource.CLOSED) return;
+    try { await api('GET', '/me'); } catch (err) { if (err.status !== 0) return; } // 401 : api() renvoie à la connexion
+    setTimeout(connect, 5000);
+  };
   source.onmessage = (message) => {
-    const event = JSON.parse(message.data);
+    let event;
+    try { event = JSON.parse(message.data); } catch { return; }
     const feed = $('#feed');
     if (feed.querySelector('p')) feed.innerHTML = '';
     feed.insertAdjacentHTML('afterbegin',
       `<div class="flash"><time>${new Date(event.at).toLocaleTimeString('fr-CA')}</time><b>${esc(event.userName)}</b> — ${esc(event.message)}</div>`);
-    loadUsers(event.userId);
-    if (event.userId === selectedId) loadDetail();
+    while (feed.children.length > 100) feed.lastElementChild.remove(); // le fil ne grossit pas sans fin
+    scheduleReload(event.userId);
   };
 }
-
 (async () => {
   if (!session.token) return (location.href = '/');
-  const me = await api('GET', '/me');
-  if (me.role !== 'admin') return route(me);
-  await loadUsers();
+  try {
+    const me = await api('GET', '/me');
+    if (me.role !== 'admin') return route(me);
+    await loadUsers();
+  } catch (err) {
+    $('#live').className = 'badge danger'; $('#live').textContent = '● ' + err.message;
+  }
   connect();
 })();

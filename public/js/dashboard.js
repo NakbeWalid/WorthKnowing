@@ -50,13 +50,20 @@ async function refresh() {
 }
 
 /** Affiche le contexte de marché de l'actif choisi (faits tirés des prix). */
+let contextCall = 0;
 async function showContext() {
+  const ticker = $('#ticker').value;
+  if (!ticker) return;
+  const call = ++contextCall; // une réponse plus ancienne que la dernière demande est ignorée
+  $('#context').textContent = 'Chargement…';
   try {
-    const c = await api('GET', `/market/context?ticker=${encodeURIComponent($('#ticker').value)}&date=${$('#date').value}`);
-    $('#context').innerHTML = `${esc(c.name)} · ${c.price.toFixed(2)} ${c.currency} au ${c.date} · 30 séances : ${pct(c.ret30d)} · volatilité : ${(c.vol30d * 100).toFixed(0)} %/an`;
-  } catch (err) { $('#context').textContent = err.message; }
+    const c = await api('GET', `/market/context?ticker=${encodeURIComponent(ticker)}&date=${encodeURIComponent($('#date').value)}`);
+    if (call !== contextCall) return;
+    $('#context').innerHTML = `${esc(c.name)} · ${c.price.toFixed(2)} ${esc(c.currency)} au ${esc(c.date)} · 30 séances : ${pct(c.ret30d)} · volatilité : ${(c.vol30d * 100).toFixed(0)} %/an`;
+  } catch (err) {
+    if (call === contextCall) $('#context').textContent = err.message;
+  }
 }
-
 /** Fenêtre de rappel : la règle que l'utilisateur s'est fixée, avant de le laisser poursuivre. */
 function confirmRules(check) {
   return new Promise((resolve) => {
@@ -79,7 +86,9 @@ function confirmRules(check) {
 
 $('#tradeForm').onsubmit = async (e) => {
   e.preventDefault();
+  if ($('#tradeButton').disabled) return; // double clic ou envoi déjà en cours
   $('#tradeError').textContent = '';
+  $('#tradeButton').disabled = true;
   const request = {
     ticker: $('#ticker').value, side: $('#side').value, amount: Number($('#amount').value),
     marketDate: $('#date').value, note: $('#note').value,
@@ -91,7 +100,6 @@ $('#tradeForm').onsubmit = async (e) => {
       if (!(await confirmRules(check))) { formTouchedAt = Date.now(); return; }
     }
     // 2. Envoi du trade : le backend exécute, enquête, met à jour le profil et la dérive.
-    $('#tradeButton').disabled = true;
     $('#tradeButton').textContent = 'Enquête en cours…';
     const out = await api('POST', '/trades', {
       ...request, decisionTimeMs: Date.now() - formTouchedAt,
@@ -105,17 +113,23 @@ $('#tradeForm').onsubmit = async (e) => {
     $('#tradeError').textContent = err.message;
   } finally {
     $('#tradeButton').textContent = 'Envoyer le trade';
+    $('#tradeButton').disabled = false; // refresh() le verrouille de nouveau si une réévaluation est requise
     formTouchedAt = Date.now();
-    await refresh();
+    await refresh().catch((err) => { $('#tradeError').textContent ||= err.message; });
   }
 };
 
 (async () => {
   if (!session.token) return (location.href = '/');
-  await refresh();
-  const { assets, lastDate } = await api('GET', '/market/assets');
-  $('#ticker').innerHTML = assets.map((a) => `<option value="${esc(a.ticker)}">${esc(a.ticker)} — ${esc(a.name)}</option>`).join('');
-  $('#date').max = lastDate; $('#date').value = lastDate;
-  $('#ticker').onchange = $('#date').onchange = () => { formTouchedAt = Date.now(); showContext(); };
-  showContext();
+  // Le formulaire doit fonctionner même si le rafraîchissement du tableau échoue (et inversement).
+  const [dash, market] = await Promise.allSettled([refresh(), api('GET', '/market/assets')]);
+  if (market.status === 'fulfilled') {
+    const { assets, lastDate } = market.value;
+    $('#ticker').innerHTML = assets.map((a) => `<option value="${esc(a.ticker)}">${esc(a.ticker)} — ${esc(a.name)}</option>`).join('');
+    $('#date').max = lastDate; $('#date').value = lastDate;
+    $('#ticker').onchange = $('#date').onchange = () => { formTouchedAt = Date.now(); showContext(); };
+    showContext();
+  }
+  const failure = [dash, market].find((r) => r.status === 'rejected');
+  if (failure) $('#tradeError').textContent = failure.reason.message;
 })();

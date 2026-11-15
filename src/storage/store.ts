@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { Evaluation, Trade, User } from '../domain/types';
 
@@ -32,7 +32,9 @@ export class JsonStore extends Store {
 
   private persist() {
     mkdirSync(dirname(this.file), { recursive: true });
-    writeFileSync(this.file, JSON.stringify(this.db));
+    // Écriture atomique : un arrêt en plein milieu ne laisse jamais un db.json tronqué.
+    writeFileSync(`${this.file}.tmp`, JSON.stringify(this.db));
+    renameSync(`${this.file}.tmp`, this.file);
   }
 
   async listUsers() { return Object.values(this.db.users); }

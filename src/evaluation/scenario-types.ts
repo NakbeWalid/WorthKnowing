@@ -95,3 +95,23 @@ export function outcomeOf(s: Scenario, choice: Choice): number {
   if (s.type === 'flat') pnl += STAKE * (1 - choice.exposure) * s.outcome.marketFwd60d;
   return Math.round(pnl);
 }
+const abs = (n: number) => `${(Math.abs(n) * 100).toFixed(1)} %`;
+/** Ce qui précédait la décision, selon le type de situation (faits tirés des prix, rien d'extérieur). */
+const LEAD: Record<ScenarioType, (s: Scenario) => string> = {
+  crash: (s) => `venait de perdre ${abs(s.stats.ret30d)} en 30 séances`,
+  hype: (s) => `venait de prendre ${abs(s.stats.ret60d)} en 60 séances`,
+  shock: (s) => `venait de chuter de ${abs(s.stats.ret1d)} en une séance`,
+  flat: (s) => `avait fait ${pct(s.stats.ret90d)} en 90 séances pendant que le marché montait`,
+  winner: (s) => `avait pris ${abs(s.stats.ret90d)} en 90 séances`,
+};
+/**
+ * Une phrase pour la révélation : ce qui précédait la décision et ce qui s'est passé ensuite.
+ * Construite uniquement à partir des prix du jeu de données : aucune nouvelle, aucun appel externe.
+ */
+export function eventSentence(s: Scenario): string {
+  const o = s.outcome;
+  // SPY est lui-même le marché américain : inutile de le comparer à lui-même.
+  const versus = s.reveal.ticker === 'SPY' ? '' : `, contre ${pct(o.marketFwd60d)} pour le marché américain`;
+  return `Avant votre décision, le titre ${LEAD[s.type](s)}. Dans les 60 séances suivantes, il a fait ${pct(o.fwd60d)} `
+    + `(pire creux en chemin : ${pct(o.maxDrawdown)})${versus}.`;
+}

@@ -7,19 +7,34 @@ const session = {
   clear() { localStorage.removeItem('token'); localStorage.removeItem('role'); location.href = '/'; },
 };
 
-/** Appel JSON à l'API. Lève une Error portant `status` et `data` en cas d'échec. */
-async function api(method, path, body) {
-  const res = await fetch('/api' + path, {
-    method,
-    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.token },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  const data = await res.json().catch(() => ({}));
-  if (res.status === 401 && path !== '/auth/login') session.clear();
-  if (!res.ok) throw Object.assign(new Error(data.message || 'Erreur ' + res.status), { status: res.status, data });
+/**
+ * Appel JSON à l'API. Lève toujours une Error avec un message lisible : `status` = 0 si le serveur est
+ * injoignable ou trop lent, sinon le code HTTP ; `data` = corps de la réponse.
+ */
+async function api(method, path, body, timeoutMs = 90_000) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (session.token) headers.Authorization = 'Bearer ' + session.token;
+  let res;
+  try {
+    res = await fetch('/api' + path, {
+      method, headers, body: body ? JSON.stringify(body) : undefined, signal: AbortSignal.timeout(timeoutMs),
+    });
+  } catch (err) {
+    throw Object.assign(new Error(err.name === 'TimeoutError'
+      ? 'Le serveur met trop de temps à répondre. Réessayez.'
+      : 'Connexion au serveur impossible. Vérifiez votre réseau et réessayez.'), { status: 0, data: {} });
+  }
+  // Un proxy (CloudFront, ALB) peut répondre en HTML ou sans corps : on ne suppose jamais du JSON.
+  const text = await res.text().catch(() => '');
+  let data = {};
+  try { data = text ? JSON.parse(text) : {}; } catch { /* corps non JSON */ }
+  if (res.status === 401 && path !== '/auth/login' && path !== '/auth/register') session.clear();
+  if (!res.ok) {
+    const message = Array.isArray(data.message) ? data.message.join(' ') : data.message;
+    throw Object.assign(new Error(message || 'Erreur ' + res.status), { status: res.status, data });
+  }
   return data;
 }
-
 /** Envoie l'utilisateur sur la bonne page selon son rôle et son statut. */
 function route(user) {
   if (user.role === 'admin') location.href = '/admin.html';
@@ -56,6 +71,7 @@ function paramBar(label, value, mark, note = '') {
  */
 function lineChart(context, forward = []) {
   const all = context.concat(forward.slice(1));
+  if (all.length < 2) return '';
   const W = 640, H = 200, pad = 8;
   const min = Math.min(...all), max = Math.max(...all);
   const x = (i) => pad + (i / (all.length - 1)) * (W - 2 * pad);
