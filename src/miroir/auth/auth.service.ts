@@ -85,7 +85,7 @@ export class LocalAuthService extends AuthService implements OnModuleInit {
 /** Ce que le navigateur a le droit de voir (jamais le hash du mot de passe). */
 export function publicUser(user: User) {
   // bankIntegrationToken : ancien champ (API d'intégration retirée), présent sur les comptes déjà créés.
-  const { passwordHash, seenScenarios, link, bankIntegrationToken, ...rest } = user as User & { bankIntegrationToken?: string };
+  const { passwordHash, seenScenarios, link, bankIntegrationToken, accessToken, ...rest } = user as User & { bankIntegrationToken?: string };
   return {
     ...rest,
     driftThreshold: config.driftThreshold,

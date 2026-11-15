@@ -9,6 +9,8 @@ import { AdminGuard, AuthGuard } from './auth/auth.guard';
 import { AuthService, LocalAuthService } from './auth/auth.service';
 import { CognitoAuthService } from './auth/cognito-auth.service';
 import { config } from './config';
+import { ConnectApiController, ConnectController, ConnectGuard } from './connect/connect.controller';
+import { ConnectService } from './connect/connect.service';
 import { EvaluationController } from './evaluation/evaluation.controller';
 import { EvaluationService } from './evaluation/evaluation.service';
 import { BedrockNewsProvider } from './news/bedrock-news.provider';
@@ -43,6 +45,8 @@ class HealthController {
 /**
  * WorthKnowing — le service de profil comportemental.
  *   navigateur  : /api/auth, /api/evaluation, /api/rules, /api/parser, /api/link, /api/trades (lecture), /api/admin
+ *   utilisateur : /api/connect (jeton personnel, comptes sur d'autres plateformes)
+ *   plateforme  : /api/connect/v1 (jeton personnel + compte déclaré)
  *   partenaire  : /api/partner/v1 (clé d'API + code persona) — seule entrée des trades
  */
 @Module({
@@ -50,6 +54,7 @@ class HealthController {
   controllers: [
     HealthController, AuthController, EvaluationController, LinkController, TradesController,
     PartnerController, AdminController, RulesController, ParserController,
+    ConnectController, ConnectApiController,
   ],
   providers: [
     // ▶ Points de branchement AWS, choisis par variable d'environnement (voir README).
@@ -59,7 +64,7 @@ class HealthController {
     { provide: InfluenceAgent, useClass: config.influenceDriver === 'bedrock' ? BedrockInfluenceAgent : NoInfluenceAgent },
     { provide: AuthService, useClass: config.authDriver === 'cognito' ? CognitoAuthService : LocalAuthService },
     BedrockClient, GdeltClient, NewsCache,
-    AuthGuard, AdminGuard, PartnerGuard, PersonaGuard, EventsService, LinkService,
+    AuthGuard, AdminGuard, PartnerGuard, PersonaGuard, ConnectGuard, ConnectService, EventsService, LinkService,
     MarketService, EvaluationService, RulesService, CvParserService,
     GovernanceAgent, BehaviorAgent, TradesService,
   ],

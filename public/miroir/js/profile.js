@@ -274,3 +274,61 @@ async function loadAndRenderRuleEditor(focusReset = false) {
     $('#top').innerHTML = `<div class="banner"><div>${esc(err.message)}</div><button onclick="location.reload()">Réessayer</button></div>`;
   });
 })();
+
+// ------------------------------------------------------------------ Jeton personnel et autres plateformes
+// Le jeton permet d'utiliser WorthKnowing depuis une plateforme non partenaire. Il ne sert qu'avec un
+// compte déclaré ci-dessous : une plateforme doit présenter le jeton ET l'identifiant de compte.
+let newToken = null; // jeton en clair, gardé seulement le temps de l'affichage qui suit sa création
+
+async function renderConnect() {
+  const c = await api('GET', '/connect');
+  const t = c.token;
+  $('#token').innerHTML = newToken
+    ? `<div class="notice">Copiez votre jeton maintenant : pour votre sécurité, il ne sera plus affiché en entier.</div>
+       <div class="row"><code style="flex:1; word-break:break-all">${esc(newToken)}</code><button class="mini" id="copyToken">Copier</button><button class="mini" id="doneToken">C’est noté</button></div>`
+    : t
+      ? `<p><span class="badge ok">Actif</span> <code>${esc(t.hint)}</code>, créé le ${esc(day(t.createdAt))}.</p>
+         <p class="small muted">${t.lastUsedAt ? `Dernière utilisation : ${esc(day(t.lastUsedAt))}.` : 'Jamais utilisé.'}</p>`
+      : `<p class="muted">Aucun jeton. Créez-en un pour utiliser WorthKnowing depuis une autre plateforme de courtage.</p>`;
+  $('#token').insertAdjacentHTML('beforeend', `<p class="small muted">Ce jeton vous représente : ne le donnez qu'aux plateformes que vous avez ajoutées ci-dessous.</p>
+    <div class="row ${newToken ? 'hidden' : ''}"><button class="mini primary" id="createToken">${t ? 'Régénérer' : 'Créer mon jeton'}</button>
+    ${t ? '<button class="mini" id="revokeToken">Révoquer</button>' : ''}</div>`);
+  if ($('#copyToken')) $('#copyToken').onclick = () => navigator.clipboard.writeText(newToken).then(() => { $('#copyToken').textContent = 'Copié'; });
+  $('#createToken').onclick = async () => {
+    if (t && !confirm('Régénérer le jeton ? L’ancien cessera aussitôt de fonctionner sur toutes vos plateformes.')) return;
+    try { newToken = (await api('POST', '/connect/token')).token.value; } catch (err) { return alert(err.message); }
+    renderConnect();
+  };
+  if ($('#revokeToken')) $('#revokeToken').onclick = async () => {
+    if (!confirm('Révoquer le jeton ? Plus aucune autre plateforme ne pourra utiliser vos services.')) return;
+    newToken = null;
+    await api('DELETE', '/connect/token').catch((err) => alert(err.message));
+    renderConnect();
+  };
+  if ($('#doneToken')) $('#doneToken').onclick = () => { newToken = null; renderConnect(); }; // affiché une seule fois
+
+  $('#platforms').innerHTML = `
+    ${c.platforms.length ? `<ul>${c.platforms.map((p) => `<li><b>${esc(p.name)}</b> — compte <code>${esc(p.accountId)}</code>
+        <span class="small muted">${p.lastUsedAt ? `utilisé le ${esc(day(p.lastUsedAt))}` : 'jamais utilisé'}</span>
+        <button class="mini" data-remove="${esc(p.id)}">Retirer</button></li>`).join('')}</ul>`
+      : '<p class="muted">Aucune autre plateforme.</p>'}
+    <form id="addPlatform">
+      <label for="pfName">Plateforme</label><input id="pfName" maxlength="60" placeholder="ex. Wealthsimple" required>
+      <label for="pfAccount">Mon identifiant sur cette plateforme</label><input id="pfAccount" maxlength="100" required>
+      <div class="error" id="pfError"></div>
+      <button class="mini primary">Ajouter</button>
+    </form>`;
+  $('#platforms').querySelectorAll('[data-remove]').forEach((b) => (b.onclick = async () => {
+    if (!confirm('Retirer cette plateforme ? Elle ne pourra plus utiliser votre jeton.')) return;
+    await api('DELETE', `/connect/platforms/${encodeURIComponent(b.dataset.remove)}`).catch((err) => alert(err.message));
+    renderConnect();
+  }));
+  $('#addPlatform').onsubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await api('POST', '/connect/platforms', { name: $('#pfName').value, accountId: $('#pfAccount').value });
+      renderConnect();
+    } catch (err) { $('#pfError').textContent = err.message; }
+  };
+}
+renderConnect().catch(() => {});

@@ -7,7 +7,7 @@ import { PartnerGuard, PersonaGuard } from './partner.guard';
 /**
  * API partenaire v1 — appelée de serveur à serveur par la plateforme de courtage.
  *   En-têtes : x-partner-key (toujours) et x-persona-code (toutes les routes sauf l'échange du code).
- * C'est la seule porte d'entrée des trades dans Miroir.
+ * Avec /api/connect/v1 (jeton personnel), ce sont les deux seules portes d'entrée des trades.
  */
 @Controller('api/partner/v1')
 export class PartnerController {
