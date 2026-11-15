@@ -22,7 +22,7 @@ interface ScenarioTypeDef {
 /** Mise fictive utilisée pour chiffrer le résultat de chaque décision. */
 export const STAKE = 10_000;
 /**
- * Les trois seuls choix, identiques pour les 5 situations : Vendre (tout), Garder (ne rien changer), Acheter (+50 %).
+ * Les trois seuls choix, identiques pour toutes les situations : Vendre (tout), Garder (ne rien changer), Acheter (+50 %).
  * Seul l'effet de chaque choix sur le profil (`signals`) dépend de la situation.
  */
 export const EXPOSURE = { sell: 0, keep: 1, buy: 1.5 } as const;
@@ -33,7 +33,7 @@ const trio = (signals: { sell: Choice['signals']; keep: Choice['signals']; buy: 
 ];
 
 /**
- * Les 5 mises en situation. Le décor (nom, manchette) est fictif pour que l'utilisateur
+ * Les 5 types de mise en situation (chacun posé deux fois par évaluation). Le décor (nom, manchette) est fictif pour que l'utilisateur
  * ne reconnaisse pas l'épisode ; la courbe de prix et la suite sont réelles.
  */
 export const SCENARIO_TYPES: Record<ScenarioType, ScenarioTypeDef> = {

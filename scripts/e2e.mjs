@@ -78,7 +78,7 @@ const questions = await miroir.call('GET', '/api/evaluation/questions');
 const answers = Object.fromEntries(questions.map((q) => [q.id, q.options[0].id]));
 Object.assign(answers, { age: '45-59', horizon: '3-5', crypto: 'no' });
 const session = await miroir.call('POST', '/api/evaluation/start', { answers });
-assert(session.scenarios.length === 5 && !JSON.stringify(session).includes('reveal'), '5 scénarios masqués');
+assert(session.scenarios.length === 10 && !JSON.stringify(session).includes('reveal'), '10 scénarios masqués (2 par type)');
 for (const s of session.scenarios.slice(0, 2)) {
   await miroir.call('POST', `/api/evaluation/${session.evaluationId}/decisions`, { scenarioId: s.id, choiceId: s.choices[0].id, decisionTimeMs: 2000 });
 }

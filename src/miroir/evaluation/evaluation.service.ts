@@ -32,7 +32,7 @@ export class EvaluationService implements OnModuleInit {
 
   questions() { return QUESTIONS; }
 
-  /** Démarre une évaluation : enregistre le profil déclaré et tire 5 scénarios. */
+  /** Démarre une évaluation : enregistre le profil déclaré et tire les mises en situation (2 par type de comportement). */
   async start(user: User, answers?: Record<string, string>) {
     const kind = user.profile ? 'reevaluation' : 'initial';
     let declared = user.profile?.declared;
@@ -87,7 +87,7 @@ export class EvaluationService implements OnModuleInit {
       scenarios: evaluation.scenarioIds.map((id) => this.scenario(id)).map((s, i) => {
         const def = SCENARIO_TYPES[s.type];
         return {
-          id: s.id, title: def.title, alias: `Titre ${'ABCDEFGH'[i]}`, maskLabel: s.maskLabel,
+          id: s.id, title: def.title, alias: aliasOf(i), maskLabel: s.maskLabel,
           headline: def.headline, situation: def.situation(s), context: s.context,
           choices: def.choices.map(({ id, label }) => ({ id, label })),
         };
@@ -136,7 +136,7 @@ export class EvaluationService implements OnModuleInit {
       const options = def.choices.map((c) => ({ id: c.id, label: c.label, pnl: outcomeOf(s, c) }));
       const best = options.reduce((a, b) => (b.pnl > a.pnl ? b : a));
       return {
-        scenarioId: s.id, alias: `Titre ${'ABCDEFGH'[i]}`, title: def.title, tests: def.tests, testsLabel: PARAM_INFO[def.tests].label,
+        scenarioId: s.id, alias: aliasOf(i), title: def.title, tests: def.tests, testsLabel: PARAM_INFO[def.tests].label,
         reveal: s.reveal, context: s.context, forward: s.forward, stats: s.stats, outcome: s.outcome,
         sentence: eventSentence(s),
         chosenId: chosen.id, bestId: best.id, options,
@@ -206,18 +206,27 @@ export class EvaluationService implements OnModuleInit {
     return scores;
   }
 
-  /** Un scénario par type de biais, sur des actifs différents, jamais déjà vus si possible. */
+  /**
+   * `scenariosPerType` situations par type de biais, sur des actifs tous différents, jamais déjà vues si possible.
+   * Elles sont données par « tours » (un exemplaire de chaque type par tour, dans un ordre mélangé) : deux situations
+   * du même type ne se suivent jamais.
+   */
   private pickScenarios(seen: string[]): Scenario[] {
-    const types = shuffle<ScenarioType>(['crash', 'hype', 'shock', 'flat', 'winner']).slice(0, config.scenariosPerEvaluation);
+    const types: ScenarioType[] = ['crash', 'hype', 'shock', 'flat', 'winner'];
     const picked: Scenario[] = [];
-    for (const type of types) {
-      const pool = shuffle(this.library.filter((s) => s.type === type));
-      const distinct = (s: Scenario) => !picked.some((p) => p.reveal.ticker === s.reveal.ticker);
-      picked.push(pool.find((s) => distinct(s) && !seen.includes(s.id)) ?? pool.find(distinct) ?? pool[0]);
+    for (let round = 0; round < config.scenariosPerType; round++) {
+      const order = shuffle(types);
+      if (picked.length && order[0] === picked[picked.length - 1].type) order.push(order.shift()!); // pas deux fois le même type d'affilée
+      for (const type of order) {
+        const pool = shuffle(this.library.filter((s) => s.type === type && !picked.some((p) => p.id === s.id)));
+        const newAsset = (s: Scenario) => !picked.some((p) => p.reveal.ticker === s.reveal.ticker);
+        const unseen = (s: Scenario) => !seen.includes(s.id);
+        // Par ordre de préférence : actif nouveau et situation jamais vue, puis actif nouveau, puis jamais vue, puis n'importe laquelle.
+        picked.push(pool.find((s) => newAsset(s) && unseen(s)) ?? pool.find(newAsset) ?? pool.find(unseen) ?? pool[0]);
+      }
     }
     return picked;
   }
-
   /** Compare déclaré et observé, repère les paramètres fragiles et propose une règle pour chacun. */
   private diagnose(declared: ParamScores, observed: ParamScores, existingRules: Rule[]) {
     const rows = PARAMS.map((param) => {
@@ -275,6 +284,8 @@ export function referenceProfile(observed: ParamScores, cv: ParamScores | null):
   })) as ParamScores;
 }
 
+/** « Titre A », « Titre B »… (assez de lettres pour toutes les situations d'une évaluation). */
+export const aliasOf = (i: number) => `Titre ${String.fromCharCode(65 + i)}`;
 const avg = (values: number[]) => values.reduce((a, b) => a + b, 0) / values.length;
 function shuffle<T>(items: T[]): T[] {
   return items.map((v) => [Math.random(), v] as const).sort((a, b) => a[0] - b[0]).map(([, v]) => v);
