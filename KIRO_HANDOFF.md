@@ -132,7 +132,7 @@ Déployé avec `./deploy.sh` (image `0833e69`) ; `npm run test:e2e` **vert contr
 **Autres constats**
 - L'ALB n'est pas joignable directement (ports 80 et 8080 fermés hors CloudFront).
 - `data/bank-db.json` (comptes de test locaux) n'était exclu ni de l'envoi vers S3, ni de l'archive CodeBuild : corrigé dans `data-stack.ts` et `build-stack.ts`.
-- Les tests e2e laissent des comptes dans Cognito (`robert+…@test.local`) et dans les tables `miroir-*` et `boreal-*`. À supprimer avant la démo finale si l'on veut une vue admin propre.
+- Les comptes de test (`@test.local`) laissés par les e2e ont été supprimés de Cognito et de DynamoDB (comptes, ordres, évaluations). Restent `admin@miroir.local` et `zkr@faudrasyfaire.com`. Chaque e2e en recrée : à nettoyer avant la démo finale.
 - GDELT limite le débit depuis ces adresses (429) : un ordre à une date absente du corpus retombe sur des signaux simulés (étiquetés). Les dates de la démo sont toutes dans le corpus.
 
 ## 6. Limites connues, par ordre d'intérêt
