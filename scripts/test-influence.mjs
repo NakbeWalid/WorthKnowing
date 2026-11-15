@@ -5,6 +5,7 @@ const require = createRequire(import.meta.url);
 require('reflect-metadata');
 const guards = require('../dist/miroir/ai/guards.js');
 const { BedrockInfluenceAgent } = require('../dist/miroir/trades/agents/influence.agent.js');
+const { BedrockExplainer } = require('../dist/miroir/trades/agents/explainer.js');
 const { MarketService } = require('../dist/shared/market.service.js');
 const { Logger } = require('@nestjs/common');
 Logger.overrideLogger(false); // les avertissements de relance sont attendus : on ne pollue pas la sortie
@@ -97,6 +98,27 @@ await run('mot déjà dans les faits (titre de manchette) : aucun rejet', [{ ...
   (r) => /rapide/.test(r.verdict.rationale), input(newsFast));
 await run('même mot, absent des faits : rejeté', [{ ...base, rationale: 'Une hausse rapide citée par [N1] précède le trade.' }, { ...base, rationale: GOOD }], 2,
   (r) => r.verdict.rationale === GOOD);
+
+// ============================================================ Agent explicateur : même garde-fou lexical
+// L'explicateur a son propre appel Bedrock (un résumé distinct de celui de l'agent d'influence) : le garde-fou
+// contre les chiffres et délais inventés était déjà branché dessus, mais pas celui contre les qualificatifs de
+// vitesse — un oubli de propagation. Sans lui, « achat rapide » pouvait s'afficher en gras en tête de l'enquête.
+console.log('\n# Agent explicateur');
+const draft = {
+  context, news: [], findings: [], influence: null, warnings: [], triggeredRules: [], paramUpdates: [],
+  driftBefore: 0, driftAfter: 0,
+};
+const tradeStub = { id: 't1', userId: 'u1', ticker: 'XBB.TO', side: 'buy', amount: 2000, marketDate: '2023-01-10', decisionTimeMs: 60_000, note: '', createdAt: '' };
+
+async function runExplainer(name, summaryOut, verify) {
+  const fake = { modelId: 'fake', json: async () => summaryOut };
+  const r = await new BedrockExplainer(fake).explain(tradeStub, draft);
+  check(verify(r), name, `« ${r.summary.slice(0, 70)} »`);
+}
+await runExplainer('qualificatif non fondé : résumé gabarit conservé', { summary: 'Achat rapide, comportement conforme au profil.' },
+  (r) => !/rapide/i.test(r.summary) && !r.summary.includes('Résumé rédigé par IA'));
+await runExplainer('résumé propre : repris tel quel', { summary: 'Cet achat ne montre aucun écart par rapport à votre profil habituel.' },
+  (r) => r.summary.includes('Résumé rédigé par IA'));
 
 console.log(failures ? `\n${failures} ÉCHEC(S)` : '\nTous les tests passent.');
 process.exit(failures ? 1 : 0);
