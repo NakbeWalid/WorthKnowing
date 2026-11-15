@@ -26,7 +26,7 @@ export class MiroirBuildStack extends Stack {
 
     const source = new Asset(this, 'Source', {
       path: join(__dirname, '..', '..'),
-      exclude: ['node_modules', '**/node_modules', 'dist', '.git', 'infra/cdk.out', 'data/db.json', '.env'],
+      exclude: ['node_modules', '**/node_modules', 'dist', '.git', 'infra/cdk.out', 'data/db.json', 'data/bank-db.json', '.env'],
     });
 
     const project = new codebuild.Project(this, 'ImageBuild', {

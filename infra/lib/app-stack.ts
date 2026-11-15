@@ -107,14 +107,20 @@ export class MiroirAppStack extends Stack {
     service.targetGroup.setAttribute('deregistration_delay.timeout_seconds', '15');
     service.loadBalancer.setAttribute('idle_timeout.timeout_seconds', '120');
 
-    // L'ALB n'accepte que CloudFront.
+    // L'ALB n'accepte que CloudFront. La liste de préfixes CloudFront compte pour 55 règles dans un groupe de
+    // sécurité (quota par défaut : 60) : une seule règle par groupe. Le port de la plateforme de courtage a donc
+    // son propre groupe de sécurité, attaché au même ALB (sinon : RulesPerSecurityGroupLimitExceeded au déploiement).
     const cloudfrontPrefixList = ec2.PrefixList.fromLookup(this, 'CloudFrontPrefixList', {
       prefixListName: 'com.amazonaws.global.cloudfront.origin-facing',
     });
     const fromCloudFront = ec2.Peer.prefixList(cloudfrontPrefixList.prefixListId);
-    service.loadBalancer.connections.allowFrom(fromCloudFront, ec2.Port.tcp(80), 'CloudFront vers Miroir');
-    service.loadBalancer.connections.allowFrom(fromCloudFront, ec2.Port.tcp(BANK_ALB_PORT), 'CloudFront vers Boreal');
-
+    // Règle posée directement sur le groupe : `connections.allowFrom` la recopierait sur tout groupe ajouté ensuite.
+    service.loadBalancer.connections.securityGroups[0].addIngressRule(fromCloudFront, ec2.Port.tcp(80), 'CloudFront vers Miroir');
+    const bankLbSecurityGroup = new ec2.SecurityGroup(this, 'BankLbSecurityGroup', {
+      vpc, description: 'ALB : CloudFront vers Boreal (port 8080)',
+    });
+    bankLbSecurityGroup.addIngressRule(fromCloudFront, ec2.Port.tcp(BANK_ALB_PORT), 'CloudFront vers Boreal');
+    service.loadBalancer.addSecurityGroup(bankLbSecurityGroup);
     // --- Second conteneur : la plateforme de courtage (même image, autre commande) ----------
     const bank = service.taskDefinition.addContainer('bank', {
       image,

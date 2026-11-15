@@ -94,7 +94,7 @@ export class MiroirDataStack extends Stack {
     });
     new s3deploy.BucketDeployment(this, 'AppData', {
       destinationBucket: this.bucket, destinationKeyPrefix: 'data/', prune: false,
-      sources: [s3deploy.Source.asset(join(root, 'data'), { exclude: ['db.json'] })],
+      sources: [s3deploy.Source.asset(join(root, 'data'), { exclude: ['db.json', 'bank-db.json'] })],
     });
 
     new CfnOutput(this, 'UserPoolId', { value: this.userPool.userPoolId });
