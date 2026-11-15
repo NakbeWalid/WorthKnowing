@@ -10,10 +10,11 @@ export class AuthGuard implements CanActivate {
   async canActivate(ctx: ExecutionContext) {
     const req = ctx.switchToHttp().getRequest();
     const token = (req.headers.authorization ?? '').replace('Bearer ', '') || req.query.token;
-    const payload = this.auth.verify(token);
+    const payload = await this.auth.verify(token);
     const user = await this.store.getUser(payload.sub);
     if (!user) throw new UnauthorizedException('Utilisateur introuvable.');
-    req.user = user;
+    // Le rôle fait foi depuis le jeton (groupe Cognito « admin » en mode cognito).
+    req.user = { ...user, role: payload.role };
     return true;
   }
 }

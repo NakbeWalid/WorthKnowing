@@ -14,7 +14,8 @@ const step = (label, detail = '') => console.log(`✔ ${label}${detail ? ' — '
 const assert = (cond, msg) => { if (!cond) throw new Error('ÉCHEC : ' + msg); };
 
 // --- Admin : ouvre le flux temps réel -------------------------------------------------
-const admin = await call('POST', '/api/auth/login', { email: 'admin@miroir.local', password: 'admin123' });
+const admin = await call('POST', '/api/auth/login',
+  { email: process.env.ADMIN_EMAIL ?? 'admin@miroir.local', password: process.env.ADMIN_PASSWORD ?? 'admin123' });
 const events = [];
 const sse = await fetch(`${BASE}/api/admin/stream?token=${admin.token}`);
 (async () => {
@@ -28,7 +29,7 @@ const sse = await fetch(`${BASE}/api/admin/stream?token=${admin.token}`);
 
 // --- 1. Inscription ---------------------------------------------------------------
 const email = `robert+${Date.now()}@test.local`;
-const reg = await call('POST', '/api/auth/register', { email, password: 'secret1', name: 'Robert (test)' });
+const reg = await call('POST', '/api/auth/register', { email, password: 'secret123', name: 'Robert (test)' });
 token = reg.token;
 assert(reg.user.status === 'onboarding', 'statut initial');
 step('Inscription', email);

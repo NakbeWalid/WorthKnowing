@@ -4,7 +4,8 @@ import { join } from 'path';
 import { AdminController } from './admin/admin.controller';
 import { AuthController } from './auth/auth.controller';
 import { AdminGuard, AuthGuard } from './auth/auth.guard';
-import { AuthService } from './auth/auth.service';
+import { AuthService, LocalAuthService } from './auth/auth.service';
+import { CognitoAuthService } from './auth/cognito-auth.service';
 import { EvaluationController } from './evaluation/evaluation.controller';
 import { EvaluationService } from './evaluation/evaluation.service';
 import { MarketController } from './market/market.controller';
@@ -35,7 +36,8 @@ import { TradesService } from './trades/trades.service';
     { provide: Explainer, useClass: config.explainerDriver === 'bedrock' ? BedrockExplainer : TemplateExplainer },
     { provide: InfluenceAgent, useClass: config.influenceDriver === 'bedrock' ? BedrockInfluenceAgent : NoInfluenceAgent },
     BedrockClient, GdeltClient, NewsCache,
-    AuthService, AuthGuard, AdminGuard, EventsService,
+    { provide: AuthService, useClass: config.authDriver === 'cognito' ? CognitoAuthService : LocalAuthService },
+    AuthGuard, AdminGuard, EventsService,
     MarketService, EvaluationService,
     GovernanceAgent, BehaviorAgent, TradesService,
   ],

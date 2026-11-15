@@ -20,6 +20,12 @@ export const config = {
 
   // --- AWS ---------------------------------------------------------------------
   awsRegion: process.env.AWS_REGION ?? 'us-east-1',
+  /** local = mot de passe scrypt + jeton HMAC ; cognito = Amazon Cognito User Pool. */
+  authDriver: (process.env.AUTH_DRIVER ?? 'local') as 'local' | 'cognito',
+  cognito: {
+    userPoolId: process.env.COGNITO_USER_POOL_ID ?? '',
+    clientId: process.env.COGNITO_CLIENT_ID ?? '',
+  },
   /** json = data/db.json (local) ; dynamodb = tables DynamoDB ci-dessous. */
   storageDriver: (process.env.STORAGE_DRIVER ?? 'json') as 'json' | 'dynamodb',
   tables: {
