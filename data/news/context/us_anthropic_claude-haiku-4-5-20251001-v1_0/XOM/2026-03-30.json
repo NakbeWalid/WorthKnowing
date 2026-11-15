@@ -1,0 +1,32 @@
+{
+ "value": {
+  "text": "Exxon Mobil a atteint un nouveau sommet sur 12 mois suite à des upgrades d'analystes. Morgan Stanley et Bernstein ont relevé leurs objectifs de cours, Morgan Stanley fixant un prix cible à 172 dollars.",
+  "sources": [
+   {
+    "title": "Exxon Mobil ( NYSE: XOM) Reaches New 12 - Month High Following Analyst Upgrade",
+    "source": "dailypolitical.com",
+    "url": "https://www.dailypolitical.com/2026/03/30/exxon-mobil-nysexom-reaches-new-12-month-high-following-analyst-upgrade.html",
+    "date": "2026-03-30"
+   },
+   {
+    "title": "Exxon Mobil ( NYSE: XOM) Price Target Raised to $172. 00 at Morgan Stanley",
+    "source": "dailypolitical.com",
+    "url": "https://www.dailypolitical.com/2026/03/28/exxon-mobil-nysexom-price-target-raised-to-172-00-at-morgan-stanley.html",
+    "date": "2026-03-28"
+   },
+   {
+    "title": "Bernstein Analyst Sees Right Tail Risk, Raises Exxon Mobil ( XOM) Price Target",
+    "source": "finance.yahoo.com",
+    "url": "https://finance.yahoo.com/sectors/energy/articles/bernstein-analyst-sees-tail-risk-174723701.html",
+    "date": "2026-03-28"
+   },
+   {
+    "title": "Exxon Mobil ( NYSE: XOM) Stock Price Expected to Rise, Morgan Stanley Analyst Says",
+    "source": "themarketsdaily.com",
+    "url": "https://www.themarketsdaily.com/2026/03/27/exxon-mobil-nysexom-stock-price-expected-to-rise-morgan-stanley-analyst-says.html",
+    "date": "2026-03-27"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2026-03-30."
+ }
+}

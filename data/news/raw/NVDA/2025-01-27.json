@@ -1,0 +1,447 @@
+{
+ "ticker": "NVDA",
+ "query": "Nvidia",
+ "from": "2025-01-20T20:00:00.000Z",
+ "to": "2025-01-27T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T02:54:16.228Z",
+ "articles": [
+  {
+   "title": "Nvidia GeForce RTX 5090 unboxing: Up close and personal with the new gaming GPU",
+   "url": "https://www.pcgamesn.com/nvidia/geforce-rtx-5090-unboxing",
+   "domain": "pcgamesn.com",
+   "seenAt": "2025-01-20T21:15:00.000Z"
+  },
+  {
+   "title": "Could Nvidia Stock Be Due for a Crash in 2025? Here What History Says.",
+   "url": "https://www.fool.com/investing/2025/01/23/could-nvidia-stock-be-due-for-a-crash-in-2025-here/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-01-23T13:15:00.000Z"
+  },
+  {
+   "title": "Nvidia Stock Investors Just Got Great News From Wall Street That Could Send Shares Soaring",
+   "url": "https://www.fool.com/investing/2025/01/20/nvidia-stock-investors-great-news-from-wall-street/",
+   "domain": "fool.com",
+   "seenAt": "2025-01-21T11:15:00.000Z"
+  },
+  {
+   "title": "Could Investing $1, 000 in Nvidia Make You a Millionaire?",
+   "url": "https://www.fool.com/investing/2025/01/22/could-investing-x-in-hot-ticker-make-you-a-million/",
+   "domain": "fool.com",
+   "seenAt": "2025-01-22T16:30:00.000Z"
+  },
+  {
+   "title": "Why Nvidia New Graphics Cards Could Be Bad News for AMD and Intel",
+   "url": "https://www.fool.com/investing/2025/01/24/why-nvidias-new-graphics-cards-could-be-bad-news-f/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-01-24T22:45:00.000Z"
+  },
+  {
+   "title": "NVIDIA GeForce RTX 5090 Founders Edition Review: Blackwell Cometh",
+   "url": "https://www.lowyat.net/2025/341098/nvidia-geforce-rtx-5090-review/",
+   "domain": "lowyat.net",
+   "seenAt": "2025-01-23T14:30:00.000Z"
+  },
+  {
+   "title": "Nvidia mightve just given you a reason to skip RTX 50 - series",
+   "url": "https://www.digitaltrends.com/computing/nvidia-dlss-4-backport-possible/",
+   "domain": "digitaltrends.com",
+   "seenAt": "2025-01-21T19:00:00.000Z"
+  },
+  {
+   "title": "Prediction: This Stock Will be the Biggest Winner of the U. S. New $500 Billion AI Project.",
+   "url": "https://www.fool.com/investing/2025/01/25/prediction-biggest-winner-of-stargate-ai-project/",
+   "domain": "fool.com",
+   "seenAt": "2025-01-25T11:45:00.000Z"
+  },
+  {
+   "title": "Better artificial intelligence ( AI) stock for 2025: Nvidia vs. Microsoft",
+   "url": "https://www.fool.com.au/2025/01/21/better-artificial-intelligence-ai-stock-for-2025-nvidia-vs-microsoft-usfeed/",
+   "domain": "fool.com.au",
+   "seenAt": "2025-01-21T10:45:00.000Z"
+  },
+  {
+   "title": "Nvidia RTX 5080 is reportedly available in Vietnam RTX 5080 build on hold without driver support",
+   "url": "https://www.tomshardware.com/pc-components/gpus/nvidia-rtx-5080-is-reportedly-available-in-vietnam-rtx-5080-build-on-hold-without-driver-support",
+   "domain": "tomshardware.com",
+   "seenAt": "2025-01-23T22:15:00.000Z"
+  },
+  {
+   "title": "Nvidia GeForce RTX 5090 review: The fastest gaming GPU ever, but with a catch",
+   "url": "https://www.pcgamesn.com/nvidia/geforce-rtx-5090-review",
+   "domain": "pcgamesn.com",
+   "seenAt": "2025-01-23T16:30:00.000Z"
+  },
+  {
+   "title": "Nvidia starts phasing out Maxwell, Pascal, and Volta GPUs GeForce driver support status unclear",
+   "url": "https://www.tomshardware.com/pc-components/gpu-drivers/nvidia-starts-phasing-out-maxwell-pascal-and-volta-gpus-geforce-driver-support-status-unclear",
+   "domain": "tomshardware.com",
+   "seenAt": "2025-01-24T21:45:00.000Z"
+  },
+  {
+   "title": "Nvidia Just Became the World Most Valuable Company. Is It Too Late to Buy the Stock?",
+   "url": "https://www.fool.com/investing/2025/01/22/nvidia-just-became-the-worlds-most-valuable-compan/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-01-22T20:15:00.000Z"
+  },
+  {
+   "title": "Reliance Big Bet: Mukesh Ambani Plans World Biggest Data Centre In THIS City",
+   "url": "https://www.timesnownews.com/business-economy/companies/reliances-big-bet-mukesh-ambani-partners-with-nvidia-plans-worlds-biggest-data-centre-in-gujarat-jamnagar-article-117504478",
+   "domain": "timesnownews.com",
+   "seenAt": "2025-01-24T06:15:00.000Z"
+  },
+  {
+   "title": "Nvidia passes Apple again to become world most valuable company",
+   "url": "https://www.nbcnewyork.com/news/business/money-report/nvidia-passes-apple-again-to-become-worlds-most-valuable-company/6116143/",
+   "domain": "nbcnewyork.com",
+   "seenAt": "2025-01-21T19:00:00.000Z"
+  },
+  {
+   "title": "NVIDIA Blackwell GB202 GPU & GDDR7 Memory Pictured In Beautiful Die Shots, ASUS GeForce RTX 5090 Astral Overclocked To 3. 4 GHz With LN2 & Consumes Almost 1000W",
+   "url": "https://wccftech.com/nvidia-blackwell-gb202-gpu-gddr7-die-shots-asus-geforce-rtx-5090-astral-overclock-3-4-ghz-ln2-consumes-1000w/",
+   "domain": "wccftech.com",
+   "seenAt": "2025-01-25T15:30:00.000Z"
+  },
+  {
+   "title": "Nvidia Stock Option Trade Offers 8% Discount As Stock Tries To Firm Up",
+   "url": "https://www.investors.com/research/options/nvidia-stock-option-trading-volatility/",
+   "domain": "investors.com",
+   "seenAt": "2025-01-23T21:30:00.000Z"
+  },
+  {
+   "title": "Big blow to Apple from China, Nvidia leaves behind iPhone maker in … who is leading USD 5 trillion race?",
+   "url": "https://www.india.com/business/big-blow-to-apple-from-china-nvidia-leaves-behind-iphone-maker-in-smartphone-selling-who-is-leading-usd-5-trillion-race-7562279/",
+   "domain": "india.com",
+   "seenAt": "2025-01-24T06:00:00.000Z"
+  },
+  {
+   "title": "Nvidia GeForce RTX 5090 and 5080 Availability Concerns Surface",
+   "url": "https://www.extremetech.com/computing/nvidia-geforce-rtx-5090-and-5080-availability-concerns-surface",
+   "domain": "extremetech.com",
+   "seenAt": "2025-01-22T21:00:00.000Z"
+  },
+  {
+   "title": "If I Could Buy Only 1 Stock to Bet on the AI Boom in 2025, It Would Be This One",
+   "url": "https://www.fool.com/investing/2025/01/24/if-i-could-only-buy-1-ai-stock-would-be-this/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-01-24T11:00:00.000Z"
+  },
+  {
+   "title": "The RTX 5090 is absolutely stunning but Nvidia made one annoying change",
+   "url": "https://www.digitaltrends.com/computing/nvidia-rtx-5090-unboxing-first-look/",
+   "domain": "digitaltrends.com",
+   "seenAt": "2025-01-22T18:00:00.000Z"
+  },
+  {
+   "title": "Nvidia Stock: ByteDance Investment Boosts AI Chip Demand",
+   "url": "https://www.finanznachrichten.de/nachrichten-2025-01/64371734-nvidia-stock-bytedance-investment-boosts-ai-chip-demand-660.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2025-01-24T02:45:00.000Z"
+  },
+  {
+   "title": "Nvidia says melting power connectors are a thing of the past",
+   "url": "https://www.digitaltrends.com/computing/nvidia-says-melting-power-connectors-are-a-thing-of-the-past/",
+   "domain": "digitaltrends.com",
+   "seenAt": "2025-01-22T18:00:00.000Z"
+  },
+  {
+   "title": "Check out these beautiful die shots of NVIDIA new Blackwell GB202 GPU and GDDR7 memory",
+   "url": "https://www.tweaktown.com/news/102794/check-out-these-beautiful-die-shots-of-nvidias-new-blackwell-gb202-gpu-and-gddr7-memory/",
+   "domain": "tweaktown.com",
+   "seenAt": "2025-01-25T19:45:00.000Z"
+  },
+  {
+   "title": "SA Asks: Will Nvidia see major growth from robotics? ( NVDA: NASDAQ)",
+   "url": "https://seekingalpha.com/news/4396492-sa-asks-will-nvidia-see-major-growth-from-robotics",
+   "domain": "seekingalpha.com",
+   "seenAt": "2025-01-21T01:15:00.000Z"
+  },
+  {
+   "title": "Nvidia Stock vs. Palantir Stock: Wall Street Billionaires Buy One and Sell the Other",
+   "url": "https://www.fool.com/investing/2025/01/21/nvidia-stock-palantir-stock-billionaires-buy-sell/",
+   "domain": "fool.com",
+   "seenAt": "2025-01-21T16:00:00.000Z"
+  },
+  {
+   "title": "Nvidia Rides On High On Greater - Than - Expected Projected Revenue From New Blackwell Chips",
+   "url": "https://www.freepressjournal.in/business/nvidia-rides-on-high-on-greater-than-expected-projected-revenue-from-new-blackwell-chips",
+   "domain": "freepressjournal.in",
+   "seenAt": "2025-01-22T05:00:00.000Z"
+  },
+  {
+   "title": "NVIDIA Explains The Marvelous Design Of The GeForce RTX 5090 Founders Edition; Revealing How They Shrank The Size By More Than 40%",
+   "url": "https://wccftech.com/nvidia-explains-the-marvelous-design-of-the-geforce-rtx-5090-founders-edition/",
+   "domain": "wccftech.com",
+   "seenAt": "2025-01-23T15:15:00.000Z"
+  },
+  {
+   "title": "Assassin Creed Shadows PC Requirements Revealed - RTX 4090 for 4K @ 60 with Max Ray Tracing",
+   "url": "https://wccftech.com/assassins-creed-shadows-pc-requirements-revealed-rtx-4090-for-4k60-with-max-ray-tracing/",
+   "domain": "wccftech.com",
+   "seenAt": "2025-01-23T19:45:00.000Z"
+  },
+  {
+   "title": "Nvidia Self - Driving AI Tech Makes Gains With Toyota, Aurora Deals.",
+   "url": "https://www.businessinsider.com/nvidia-gains-self-driving-cars-automotive-ai-technology-toyota-aurora-2025-1",
+   "domain": "businessinsider.com",
+   "seenAt": "2025-01-21T10:00:00.000Z"
+  },
+  {
+   "title": "Assassin Creed Shadows PC Requirements Revealed",
+   "url": "https://www.dualshockers.com/assassins-creed-shadows-pc-requirements-ray-tracing-info/",
+   "domain": "dualshockers.com",
+   "seenAt": "2025-01-25T00:00:00.000Z"
+  },
+  {
+   "title": "NVIDIA Brings AI To The Physical World At CES 2025",
+   "url": "https://www.forbes.com/sites/moorinsights/2025/01/24/nvidia-brings-ai-to-the-physical-world-at-ces-2025/",
+   "domain": "forbes.com",
+   "seenAt": "2025-01-24T20:00:00.000Z"
+  },
+  {
+   "title": "5 Pros & 5 Cons Of Upgrading To Nvidia New RTX 50 Series Graphics Cards",
+   "url": "https://www.slashgear.com/1763086/nvidia-rtx-50-series-graphics-cards-pros-cons-upgrading/",
+   "domain": "slashgear.com",
+   "seenAt": "2025-01-22T02:15:00.000Z"
+  },
+  {
+   "title": "Hands - On With the RTX 5090, Nvidia Big, New GPU",
+   "url": "https://gizmodo.com/the-nvidia-rtx-5090-is-a-thick-slab-of-graphics-processing-promise-2000552978",
+   "domain": "gizmodo.com",
+   "seenAt": "2025-01-21T23:15:00.000Z"
+  },
+  {
+   "title": "Assassin Creed Shadows PC system requirements ask for a lot of ray tracing horsepower",
+   "url": "https://www.neowin.net/news/assassins-creed-shadows-pc-system-requirements-ask-for-a-lot-of-ray-tracing-horsepower/",
+   "domain": "neowin.net",
+   "seenAt": "2025-01-24T01:00:00.000Z"
+  },
+  {
+   "title": "Nvidia GeForce RTX 5090 costs as much as a whole gaming PC but it sure is fast",
+   "url": "https://arstechnica.com/gadgets/2025/01/review-nvidias-geforce-rtx-5090-is-the-first-gpu-that-can-beat-the-rtx-4090/",
+   "domain": "arstechnica.com",
+   "seenAt": "2025-01-24T17:00:00.000Z"
+  },
+  {
+   "title": "Nvidia Stock Investors Just Got Fantastic Artificial Intelligence ( AI) News From President Trump",
+   "url": "https://www.fool.com/investing/2025/01/22/trump-ai-infrastructure-nvidia-oracle-openai/",
+   "domain": "fool.com",
+   "seenAt": "2025-01-22T20:45:00.000Z"
+  },
+  {
+   "title": "Masterstroke by Mukesh Ambani, Reliance Industries to build world largest data centre in THIS state",
+   "url": "https://www.dnaindia.com/business/report-masterstroke-by-mukesh-ambani-reliance-industries-to-build-world-largest-data-centre-in-this-state-jamnagar-gujarat-3128704",
+   "domain": "dnaindia.com",
+   "seenAt": "2025-01-24T06:30:00.000Z"
+  },
+  {
+   "title": "Nvidia removes GPU hot spot temperature from RTX 5090, says it isnt relevant",
+   "url": "https://www.pcgamesn.com/nvidia/rtx-5090-hot-spot-data-removed",
+   "domain": "pcgamesn.com",
+   "seenAt": "2025-01-24T21:30:00.000Z"
+  },
+  {
+   "title": "Nvidia DLSS 4 is so much more than just fake frames",
+   "url": "https://www.pcworld.com/article/2583939/nvidias-dlss-4-is-so-much-more-than-just-fake-frames.html",
+   "domain": "pcworld.com",
+   "seenAt": "2025-01-23T15:00:00.000Z"
+  },
+  {
+   "title": "TikTok - Parent ByteDance Plans $12 Billion AI Chip Investment In 2025 To Bolster Global AI Ambitions Amid US Export Controls: Report - Microsoft ( NASDAQ: MSFT), Meta Platforms ( NASDAQ: META)",
+   "url": "https://www.benzinga.com/news/global/25/01/43153555/tiktok-parent-bytedance-plans-12-billion-ai-chip-investment-in-2025-to-bolster-global-ai-ambitions-amid-us-export-controls-report",
+   "domain": "benzinga.com",
+   "seenAt": "2025-01-23T11:00:00.000Z"
+  },
+  {
+   "title": "Many Nvidia GeForce Now subscription tiers currently unavailable due to high demand",
+   "url": "https://www.techspot.com/news/106426-several-nvidia-geforce-now-subscription-tiers-currently-unavailable.html",
+   "domain": "techspot.com",
+   "seenAt": "2025-01-21T12:00:00.000Z"
+  },
+  {
+   "title": "Prediction: Quantum Computing Will Be the Biggest AI Trend in 2025, and This Stock Will Lead the Charge",
+   "url": "https://www.fool.com/investing/2025/01/20/prediction-quantum-computing-will-be-the-biggest-a/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-01-21T03:30:00.000Z"
+  },
+  {
+   "title": "AMD Radeon RX 9070 GPUs Finally Get Official Release Window but Still No Price",
+   "url": "https://www.ign.com/articles/amd-radeon-rx-9070-gpus-finally-get-official-release-window-but-still-no-price",
+   "domain": "ign.com",
+   "seenAt": "2025-01-21T12:45:00.000Z"
+  },
+  {
+   "title": "Nvidia, Microsoft, Or Oracle: Which Stock Among These Stargate AI Project Beneficiaries Are The Least Expensive To Own? - Invesco AI and Next Gen Software ETF ( ARCA: IGPT), Microsoft ( NASDAQ: MSFT)",
+   "url": "https://www.benzinga.com/general/market-summary/25/01/43184963/nvidia-microsoft-or-oracle-which-among-these-stargate-ai-project-beneficiaries-are-the-lea",
+   "domain": "benzinga.com",
+   "seenAt": "2025-01-24T12:15:00.000Z"
+  },
+  {
+   "title": "Nvidia claims melting connectors wont be an issue for the RTX 50 series",
+   "url": "https://www.kitguru.net/components/graphic-cards/joao-silva/nvidia-claims-melting-connectors-wont-be-an-issue-for-the-rtx-50-series/",
+   "domain": "kitguru.net",
+   "seenAt": "2025-01-23T14:45:00.000Z"
+  },
+  {
+   "title": "Nvidia Reveals Full Slate of DLSS 4 Launch Titles: God of War, Cyberpunk, and More",
+   "url": "https://www.ign.com/articles/nvidia-reveals-full-slate-of-dlss-4-launch-titles-god-of-war-cyberpunk-and-more",
+   "domain": "ign.com",
+   "seenAt": "2025-01-21T18:30:00.000Z"
+  },
+  {
+   "title": "NVIDIA Flagship RTX Blackwell Workstation GPU Surfaces Online; Featuring 96GB GDDR7 Memory With 512 - Bit Interface",
+   "url": "https://wccftech.com/nvidia-flagship-rtx-blackwell-workstation-gpu-surfaces-online/",
+   "domain": "wccftech.com",
+   "seenAt": "2025-01-23T05:15:00.000Z"
+  },
+  {
+   "title": "A mystery NVIDIA Blackwell GPU with insane 96GB of GDDR7 on a 512 - bit bus has been spotted",
+   "url": "https://www.tweaktown.com/news/102740/mystery-nvidia-blackwell-gpu-with-insane-96gb-of-gddr7-on-512-bit-bus-has-been-spotted/",
+   "domain": "tweaktown.com",
+   "seenAt": "2025-01-23T06:00:00.000Z"
+  },
+  {
+   "title": "AMD Releases Orochi 3. 0 For HIP & CUDA API Switching At Run - Time",
+   "url": "https://www.phoronix.com/news/AMD-Orochi-3.0",
+   "domain": "phoronix.com",
+   "seenAt": "2025-01-22T16:00:00.000Z"
+  },
+  {
+   "title": "NVIDIA GeForce RTX 5090 review: +25% MSRP for +30% gains",
+   "url": "https://www.windowscentral.com/hardware/cpu-gpu-components/nvidia-geforce-rtx-5090-review",
+   "domain": "windowscentral.com",
+   "seenAt": "2025-01-23T18:45:00.000Z"
+  },
+  {
+   "title": "NVIDIA ( NVDA) Role in a $500B AI Future: Buy Now?",
+   "url": "https://www.insidermonkey.com/blog/nvidias-nvda-role-in-a-500b-ai-future-buy-now-1431914/",
+   "domain": "insidermonkey.com",
+   "seenAt": "2025-01-24T21:00:00.000Z"
+  },
+  {
+   "title": "NVIDIA GeForce NOW memberships are sold out right now here why",
+   "url": "https://www.windowscentral.com/gaming/nvidias-geforce-now-memberships-are-sold-out-right-now-and-it-says-its-our-fault-for-using-the-servers-too-much",
+   "domain": "windowscentral.com",
+   "seenAt": "2025-01-22T05:00:00.000Z"
+  },
+  {
+   "title": "This new Cyberpunk 2077 update is essential if you own an Nvidia GeForce RTX GPU",
+   "url": "https://www.pcgamesn.com/cyberpunk-2077/nvidia-dlss-4-update",
+   "domain": "pcgamesn.com",
+   "seenAt": "2025-01-24T16:45:00.000Z"
+  },
+  {
+   "title": "Nvidia starts to wind down support for old GPUs, including the long - lived GTX 1060",
+   "url": "https://arstechnica.com/gadgets/2025/01/nvidia-winding-down-support-for-older-gpus-including-the-legendary-750-ti-and-1060/",
+   "domain": "arstechnica.com",
+   "seenAt": "2025-01-25T01:45:00.000Z"
+  },
+  {
+   "title": "Nancy Pelosi makes significant trades in NVIDIA, Alphabet, Amazon, and Apple stocks By Investing. com",
+   "url": "https://www.investing.com/news/company-news/nancy-pelosi-makes-significant-trades-in-nvidia-alphabet-amazon-and-apple-stocks-93CH-3820756",
+   "domain": "investing.com",
+   "seenAt": "2025-01-20T22:45:00.000Z"
+  },
+  {
+   "title": "RTX 5070 Ti may hit the market on February 20 European retailer confirms imminent launch",
+   "url": "https://www.tomshardware.com/pc-components/gpus/rtx-5070-ti-may-hit-the-market-on-february-20-european-retailer-confirms-imminent-launch",
+   "domain": "tomshardware.com",
+   "seenAt": "2025-01-22T18:30:00.000Z"
+  },
+  {
+   "title": "DLSS frame gen could come to older Nvidia GeForce RTX gaming GPU lineups",
+   "url": "https://www.pcgamesn.com/nvidia/dlss-frame-gen-geforce-rtx-3000",
+   "domain": "pcgamesn.com",
+   "seenAt": "2025-01-20T21:15:00.000Z"
+  },
+  {
+   "title": "Rumor: Possible Nvidia RTX 5090 Ti or Titan GPU Surfaces",
+   "url": "https://www.extremetech.com/computing/rumor-possible-nvidia-rtx-5090-ti-or-titan-gpu-surfaces",
+   "domain": "extremetech.com",
+   "seenAt": "2025-01-21T19:45:00.000Z"
+  },
+  {
+   "title": "Jim Cramer on NVIDIA Corporation ( NVDA): When You Are As Visible With NVIDIA As I Am, Youre Like A Magnet",
+   "url": "https://www.insidermonkey.com/blog/jim-cramer-on-nvidia-corporation-nvda-when-you-are-as-visible-with-nvidia-as-i-am-youre-like-a-magnet-1432832/",
+   "domain": "insidermonkey.com",
+   "seenAt": "2025-01-25T20:45:00.000Z"
+  },
+  {
+   "title": "Cyberpunk 2077 is the first game with official DLSS 4 support for new RTX 50 series GPUs",
+   "url": "https://www.tweaktown.com/news/102756/cyberpunk-2077-is-the-first-game-with-official-dlss-4-support-for-new-rtx-50-series-gpus/",
+   "domain": "tweaktown.com",
+   "seenAt": "2025-01-24T00:45:00.000Z"
+  },
+  {
+   "title": "RIL share price: Mukesh Ambani to build world largest data centre in Jamnagar",
+   "url": "https://economictimes.indiatimes.com/industry/cons-products/electronics/mukesh-ambani-to-build-worlds-largest-data-centre-in-jamnagar/articleshow/117503440.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-01-24T03:45:00.000Z"
+  },
+  {
+   "title": "Aetina Announces Support for NVIDIA Super Mode",
+   "url": "https://www.manufacturing.net/artificial-intelligence/news/22931146/aetina-announces-support-for-nvidias-super-mode",
+   "domain": "manufacturing.net",
+   "seenAt": "2025-01-21T16:00:00.000Z"
+  },
+  {
+   "title": "Nvidia RTX 5090 review: fast, but not nearly twice as fast",
+   "url": "https://www.digitaltrends.com/computing/nvidia-rtx-5090-review/",
+   "domain": "digitaltrends.com",
+   "seenAt": "2025-01-23T15:00:00.000Z"
+  },
+  {
+   "title": "Nvidia says RTX 5090 isnt expected to suffer from power cable melting issues that blighted the RTX 4090, despite the GPU 575W power usage",
+   "url": "https://www.techradar.com/computing/gpu/nvidia-says-rtx-5090-isnt-expected-to-suffer-from-power-cable-melting-issues-that-blighted-the-rtx-4090-despite-the-gpus-575w-power-usage",
+   "domain": "techradar.com",
+   "seenAt": "2025-01-23T12:45:00.000Z"
+  },
+  {
+   "title": "NVIDIA RTX 5090 vs. 4090 size comparison: Founders Editions",
+   "url": "https://www.windowscentral.com/hardware/cpu-gpu-components/rtx-5090-4090-size-comparison",
+   "domain": "windowscentral.com",
+   "seenAt": "2025-01-20T20:15:00.000Z"
+  },
+  {
+   "title": "Nvidia and Mayo Clinic Partner on AI - Powered Digital Pathology",
+   "url": "https://www.genengnews.com/topics/artificial-intelligence/nvidia-and-mayo-clinic-partner-on-ai-powered-digital-pathology/",
+   "domain": "genengnews.com",
+   "seenAt": "2025-01-21T17:00:00.000Z"
+  },
+  {
+   "title": "Nvidia Blackwell GPU with 96GB GDDR7 memory spotted",
+   "url": "https://www.kitguru.net/components/graphic-cards/joao-silva/nvidia-blackwell-gpu-with-96gb-gddr7-memory-spotted/",
+   "domain": "kitguru.net",
+   "seenAt": "2025-01-24T18:45:00.000Z"
+  },
+  {
+   "title": "Race is on to finish San Jose hotel in time for big Nvidia conference",
+   "url": "https://www.mercurynews.com/2025/01/23/san-jose-economy-hotel-build-property-nvidia-tech-real-estate-develop/",
+   "domain": "mercurynews.com",
+   "seenAt": "2025-01-23T21:15:00.000Z"
+  },
+  {
+   "title": "Stargate project: $500 billion AI data center network announced by Donald Trump, OpenAI, and other tech giants",
+   "url": "https://www.businesstoday.in/technology/news/story/stargate-project-500-billion-ai-data-center-network-announced-by-donald-trump-openai-and-other-tech-giants-461635-2025-01-22",
+   "domain": "businesstoday.in",
+   "seenAt": "2025-01-22T05:15:00.000Z"
+  },
+  {
+   "title": "DOOM: The Dark Ages PC Requirements Revealed",
+   "url": "https://www.dualshockers.com/doom-the-dark-ages-pc-requirements-revealed/",
+   "domain": "dualshockers.com",
+   "seenAt": "2025-01-24T19:15:00.000Z"
+  },
+  {
+   "title": "How to buy a NVIDIA RTX 50 series GPU",
+   "url": "https://www.engadget.com/computing/how-to-buy-a-nvidia-rtx-50-series-gpu-160902797.html",
+   "domain": "engadget.com",
+   "seenAt": "2025-01-23T17:30:00.000Z"
+  },
+  {
+   "title": "New AMD Radeon RX 9070 gaming GPU range reportedly delayed by high prices",
+   "url": "https://www.pcgamesn.com/amd/radeon-rx-9070-price-delay",
+   "domain": "pcgamesn.com",
+   "seenAt": "2025-01-20T21:15:00.000Z"
+  }
+ ]
+}

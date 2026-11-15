@@ -1,0 +1,441 @@
+{
+ "ticker": "GLD",
+ "query": "\"gold prices\"",
+ "from": "2026-01-23T20:00:00.000Z",
+ "to": "2026-01-30T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T02:57:36.941Z",
+ "articles": [
+  {
+   "title": "Gold prices hit fresh record amid global rally",
+   "url": "https://dailytimes.com.pk/1440566/gold-prices-hit-fresh-record-amid-global-rally/",
+   "domain": "dailytimes.com.pk",
+   "seenAt": "2026-01-24T09:00:00.000Z"
+  },
+  {
+   "title": "Gold prices rise by Tk 7, 348 per bhori",
+   "url": "https://www.jagonews24.com/en/business/news/89362",
+   "domain": "jagonews24.com",
+   "seenAt": "2026-01-28T06:15:00.000Z"
+  },
+  {
+   "title": "Gold price hits all - time high of Tk 2. 57 lakh per bhori",
+   "url": "https://www.jagonews24.com/en/business/news/89285",
+   "domain": "jagonews24.com",
+   "seenAt": "2026-01-25T17:00:00.000Z"
+  },
+  {
+   "title": "SGX - listed pawnbrokers, stocks ride gold rally as bullion breaks US$5, 000 level",
+   "url": "https://www.straitstimes.com/business/companies-markets/sgx-listed-pawnbrokers-stocks-ride-gold-rally-as-bullion-breaks-us5000-level",
+   "domain": "straitstimes.com",
+   "seenAt": "2026-01-26T09:45:00.000Z"
+  },
+  {
+   "title": "SGX - listed pawnbrokers, stocks ride gold rally as precious metal breaks US$5, 000 level",
+   "url": "https://www.businesstimes.com.sg/companies-markets/energy-commodities/sgx-listed-pawnbrokers-stocks-ride-gold-rally-precious-metal-breaks-us5000-level",
+   "domain": "businesstimes.com.sg",
+   "seenAt": "2026-01-26T05:45:00.000Z"
+  },
+  {
+   "title": "Gold Rates in Pakistan Today - 29 January 2026",
+   "url": "https://en.dailypakistan.com.pk/29-Jan-2026/gold-rates-in-pakistan-today-29-january-2026",
+   "domain": "en.dailypakistan.com.pk",
+   "seenAt": "2026-01-29T08:00:00.000Z"
+  },
+  {
+   "title": "Gold Rates in Pakistan Today - 30 January 2026",
+   "url": "https://en.dailypakistan.com.pk/30-Jan-2026/gold-rates-in-pakistan-today-30-january-2026",
+   "domain": "en.dailypakistan.com.pk",
+   "seenAt": "2026-01-30T07:00:00.000Z"
+  },
+  {
+   "title": "Gold price exceeds Tk 2. 86, lakh per bhori, hits fresh record",
+   "url": "https://www.jagonews24.com/en/business/news/89408",
+   "domain": "jagonews24.com",
+   "seenAt": "2026-01-29T10:00:00.000Z"
+  },
+  {
+   "title": "Understanding the relationship between gold prices and the U. S. dollar: What to know for 2026",
+   "url": "https://www.cbsnews.com/news/relationship-between-gold-prices-and-us-dollar-what-to-know-for-2026/",
+   "domain": "cbsnews.com",
+   "seenAt": "2026-01-23T20:00:00.000Z"
+  },
+  {
+   "title": "3 Things Investors Need to Know About TRX Gold Corporation in 2026",
+   "url": "https://www.fool.com/investing/2026/01/26/3-things-investors-need-to-know-about-trx-gold-cor/",
+   "domain": "fool.com",
+   "seenAt": "2026-01-26T08:30:00.000Z"
+  },
+  {
+   "title": "Dubai gold breaks the records: Prices shatter Dh630 ceiling in historic monthly surge | World News",
+   "url": "https://timesofindia.indiatimes.com/world/middle-east/dubai-gold-breaks-the-records-prices-shatter-dh630-ceiling-in-historic-monthly-surge/articleshow/127686156.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2026-01-28T08:15:00.000Z"
+  },
+  {
+   "title": "Gold, Silver Rate Today LIVE: Gold price surpasses $5, 000 on Trump policy uncertainty, silver price above $100 mark",
+   "url": "https://www.livemint.com/market/commodities/gold-silver-rate-today-live-mcx-gold-price-today-mcx-silver-price-today-donald-trump-greenland-tariffs-26-january-2026-11769389097118.html",
+   "domain": "livemint.com",
+   "seenAt": "2026-01-26T01:45:00.000Z"
+  },
+  {
+   "title": "Chinese jewelry dealers raise prices for gold ornaments, as global spot gold price surpasses $5, 200 per ounce",
+   "url": "https://www.globaltimes.cn/page/202601/1354351.shtml",
+   "domain": "globaltimes.cn",
+   "seenAt": "2026-01-28T09:00:00.000Z"
+  },
+  {
+   "title": "Gold Rates in Pakistan Today - New Gold, Silver Price",
+   "url": "https://en.dailypakistan.com.pk/28-Jan-2026/gold-rates-in-pakistan-today-new-gold-silver-price-january-28-2027",
+   "domain": "en.dailypakistan.com.pk",
+   "seenAt": "2026-01-28T08:30:00.000Z"
+  },
+  {
+   "title": "Once regarded as waste, gold bat statue turns into public jackpot",
+   "url": "https://www.koreaherald.com/article/10664631",
+   "domain": "koreaherald.com",
+   "seenAt": "2026-01-28T05:45:00.000Z"
+  },
+  {
+   "title": "Gold: Strong week ahead – Deutsche Bank",
+   "url": "https://www.fxstreet.com/news/gold-strong-week-ahead-deutsche-bank-202601260953",
+   "domain": "fxstreet.com",
+   "seenAt": "2026-01-26T10:30:00.000Z"
+  },
+  {
+   "title": "Gold: Rally continues with all - time highs – UOB Group",
+   "url": "https://www.fxstreet.com/news/gold-rally-continues-with-all-time-highs-uob-group-202601290944",
+   "domain": "fxstreet.com",
+   "seenAt": "2026-01-29T10:00:00.000Z"
+  },
+  {
+   "title": "Gold price on January 30: Yellow metal volatile, trades at Rs 1, 82, 147 on MCX",
+   "url": "https://www.moneycontrol.com/news/business/personal-finance/gold-price-on-january-30-rebounds-at-rs-182147-amid-strong-dollar-heightened-volatility-13798418.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2026-01-30T07:15:00.000Z"
+  },
+  {
+   "title": "Endeavour impresses City analysts with cash returns",
+   "url": "https://www.proactiveinvestors.co.uk/companies/news/1086501/endeavour-impresses-city-analysts-with-cash-returns-1086501.html",
+   "domain": "proactiveinvestors.co.uk",
+   "seenAt": "2026-01-29T18:45:00.000Z"
+  },
+  {
+   "title": "Why Newmont Corporation Stock Just Dropped",
+   "url": "https://www.fool.com/investing/2026/01/30/why-newmont-corporation-stock-just-dropped/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2026-01-30T19:15:00.000Z"
+  },
+  {
+   "title": "Gold prices in Pakistan Today - January 27, 2026",
+   "url": "https://tribune.com.pk/story/2589317/gold-prices-fall-while-silver-hits-new-highs-in-local-markets",
+   "domain": "tribune.com.pk",
+   "seenAt": "2026-01-27T12:00:00.000Z"
+  },
+  {
+   "title": "Silver tops $100 for first time",
+   "url": "https://www.koreaherald.com/article/10662193",
+   "domain": "koreaherald.com",
+   "seenAt": "2026-01-25T08:00:00.000Z"
+  },
+  {
+   "title": "What is driving the gold surge?",
+   "url": "https://www.cp24.com/news/money/2026/01/26/gold-just-hit-a-record-5000-whats-driving-the-surge/",
+   "domain": "cp24.com",
+   "seenAt": "2026-01-26T12:30:00.000Z"
+  },
+  {
+   "title": "Gold prices fall by Rs 1, 500 per tola",
+   "url": "https://dailytimes.com.pk/1442376/gold-prices-fall-by-rs-1500-per-tola/",
+   "domain": "dailytimes.com.pk",
+   "seenAt": "2026-01-27T23:45:00.000Z"
+  },
+  {
+   "title": "What Are Gold & Silver Prices Today? January 2026 Update",
+   "url": "https://hollywoodlife.com/2026/01/29/what-are-gold-silver-prices-today-2026-update/",
+   "domain": "hollywoodlife.com",
+   "seenAt": "2026-01-29T21:00:00.000Z"
+  },
+  {
+   "title": "Gold price today: How much 22K, 24K gold costs in Delhi, Mumbai & other cities – check rates",
+   "url": "https://timesofindia.indiatimes.com/business/india-business/gold-price-today-check-gold-rate-in-your-city-on-january-28-2026-in-delhi-mumbai-chennai-kolkata-hyderabad-ahmedabad-jaipur-patna/articleshow/127708257.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2026-01-28T14:15:00.000Z"
+  },
+  {
+   "title": "الذهب يرتفع إلى مستوى تاريخي جديد عند 5120 دولاراً",
+   "url": "https://www.okaz.com.sa/economy/na/2233133",
+   "domain": "okaz.com.sa",
+   "seenAt": "2026-01-27T23:45:00.000Z"
+  },
+  {
+   "title": "Dont Buy Gold Mining Stocks Yet Not Before You Read This Warning",
+   "url": "https://www.fool.ca/2026/01/28/dont-buy-gold-mining-stocks-yet-not-before-you-read-this-warning/",
+   "domain": "fool.ca",
+   "seenAt": "2026-01-29T02:45:00.000Z"
+  },
+  {
+   "title": "Gold, silver prices surge by Rs 6, 500 per tola",
+   "url": "https://dailytimes.com.pk/1440857/gold-silver-prices-surge-by-rs-6500-per-tola/",
+   "domain": "dailytimes.com.pk",
+   "seenAt": "2026-01-25T00:00:00.000Z"
+  },
+  {
+   "title": "Gold prices in Pakistan see massive drop",
+   "url": "https://www.samaa.tv/2087345513-gold-prices-in-pakistan-see-massive-drop-jan-30-2026",
+   "domain": "samaa.tv",
+   "seenAt": "2026-01-30T11:00:00.000Z"
+  },
+  {
+   "title": "Gold nears US$5, 000 per oz",
+   "url": "https://kaieteurnewsonline.com/2026/01/26/gold-nears-us5000-per-oz/",
+   "domain": "kaieteurnewsonline.com",
+   "seenAt": "2026-01-26T07:00:00.000Z"
+  },
+  {
+   "title": "Gold just hit a record $5, 000. What driving the surge? | Money news",
+   "url": "https://www.channel3000.com/news/money/gold-just-hit-a-record-5-000-what-s-driving-the-surge/article_90db918e-fe89-5f25-b395-415890218113.html",
+   "domain": "channel3000.com",
+   "seenAt": "2026-01-26T16:00:00.000Z"
+  },
+  {
+   "title": "Gold Prices in Pakistan Today - New Gold Rates",
+   "url": "https://en.dailypakistan.com.pk/24-Jan-2026/gold-prices-in-pakistan-today-new-gold-rates-24-january-2026",
+   "domain": "en.dailypakistan.com.pk",
+   "seenAt": "2026-01-24T09:15:00.000Z"
+  },
+  {
+   "title": "Gold reserve fund likely to see high allocation in RE of FY26, BE of FY27",
+   "url": "https://www.thehindubusinessline.com/markets/gold/gold-reserve-fund-likely-to-see-high-allocation-in-re-of-fy26-be-of-fy27/article70553591.ece",
+   "domain": "thehindubusinessline.com",
+   "seenAt": "2026-01-26T17:45:00.000Z"
+  },
+  {
+   "title": "Fears of new US - Iran conflict fuel record - breaking surge in gold price",
+   "url": "https://www.perthnow.com.au/news/business/fears-of-new-us-iran-conflict-fuel-record-breaking-surge-in-gold-price-c-21464747",
+   "domain": "perthnow.com.au",
+   "seenAt": "2026-01-29T07:15:00.000Z"
+  },
+  {
+   "title": "Gold just hit a record $5, 000. What driving the surge? | Business",
+   "url": "https://www.abc12.com/news/business/gold-just-hit-a-record-5-000-what-s-driving-the-surge/article_1c6df5ce-bab5-5a5a-84df-2f9a201cbf84.html",
+   "domain": "abc12.com",
+   "seenAt": "2026-01-26T16:45:00.000Z"
+  },
+  {
+   "title": "gold price today: Why has gold price touched record $5, 110 and will it really rise further to $5, 700 or $6, 000 by year - end? Gold rally explained. Here what investors should do",
+   "url": "https://economictimes.indiatimes.com/news/international/us/why-has-gold-price-touched-record-5110-and-will-it-really-rise-further-to-5700-or-6000-by-year-end-gold-rally-explained-heres-what-investors-should-do/articleshow/127596024.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2026-01-27T05:15:00.000Z"
+  },
+  {
+   "title": "Gold tops $5, 000 for the first time in breathtaking and profoundly scary rally",
+   "url": "https://finance.yahoo.com/news/gold-tops-5000-for-the-first-time-in-breathtaking-and-profoundly-scary-rally-013213150.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-01-26T02:00:00.000Z"
+  },
+  {
+   "title": "Three reasons for the record rise in gold prices, and one why they are falling",
+   "url": "https://www.bbc.co.uk/news/articles/c87r2700dq8o",
+   "domain": "bbc.co.uk",
+   "seenAt": "2026-01-30T17:00:00.000Z"
+  },
+  {
+   "title": "Gold Soars Amid U. S.- Iran Tensions, Weakening Dollar",
+   "url": "https://www.finanznachrichten.de/nachrichten-2026-01/67514880-gold-soars-amid-u-s-iran-tensions-weakening-dollar-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2026-01-23T20:00:00.000Z"
+  },
+  {
+   "title": "Because It Inverted: Goldman Futures Traders Spot Anomaly In Gold Market",
+   "url": "https://www.zerohedge.com/precious-metals/because-its-inverted-goldman-futures-traders-spot-anomaly-gold-market",
+   "domain": "zerohedge.com",
+   "seenAt": "2026-01-27T16:45:00.000Z"
+  },
+  {
+   "title": "Gold prices in Pakistan today amid sell - off fears – 30 January 2026",
+   "url": "https://pakobserver.net/gold-prices-in-pakistan-today-amid-sell-off-fears-30-january-2026/",
+   "domain": "pakobserver.net",
+   "seenAt": "2026-01-30T04:45:00.000Z"
+  },
+  {
+   "title": "Gold rises after topping $5, 000 for the first time in breathtaking and profoundly scary rally",
+   "url": "https://finance.yahoo.com/news/gold-rises-after-topping-5000-for-the-first-time-in-breathtaking-and-profoundly-scary-rally-013213961.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-01-26T09:45:00.000Z"
+  },
+  {
+   "title": "Gold Price January 30: Check 18, 22, 24 carat gold prices in Chennai, Mumbai, Delhi, Kolkata, and other cities of India",
+   "url": "https://www.india.com/business/gold-price-january-30-check-18-22-24-carat-gold-prices-in-chennai-mumbai-delhi-kolkata-and-other-cities-of-india-8286563/",
+   "domain": "india.com",
+   "seenAt": "2026-01-30T06:15:00.000Z"
+  },
+  {
+   "title": "Gold ETFs: Democratizing wealth amid price surges - Academia",
+   "url": "https://www.thejakartapost.com/opinion/2026/01/29/gold-etfs-democratizing-wealth-amid-price-surges.html",
+   "domain": "thejakartapost.com",
+   "seenAt": "2026-01-29T05:15:00.000Z"
+  },
+  {
+   "title": "Rural Korean town goes from ridicule to riches as gold prices skyrocket",
+   "url": "https://www.koreatimes.co.kr/southkorea/society/20260128/rural-korean-town-goes-from-ridicule-to-riches-as-gold-prices-skyrocket",
+   "domain": "koreatimes.co.kr",
+   "seenAt": "2026-01-28T06:00:00.000Z"
+  },
+  {
+   "title": "Record gold prices: Indian bought less gold jewellery in 2025, spending hits record, says report",
+   "url": "https://www.businesstoday.in/personal-finance/investment/story/record-gold-prices-indian-bought-less-gold-jewellery-in-2025-spending-hits-record-says-report-513756-2026-01-30",
+   "domain": "businesstoday.in",
+   "seenAt": "2026-01-30T16:30:00.000Z"
+  },
+  {
+   "title": "Gold prices climb to historic high of Rs532, 062 per tola in Pakistan",
+   "url": "https://en.dailypakistan.com.pk/26-Jan-2026/gold-prices-climb-to-historic-high-of-rs532062-per-tola-in-pakistan",
+   "domain": "en.dailypakistan.com.pk",
+   "seenAt": "2026-01-26T13:15:00.000Z"
+  },
+  {
+   "title": "Gold Plunge 12 Pc, Silver 21 Per Cent After Making Historic Monthly Gains",
+   "url": "https://www.deccanchronicle.com/business/gold-plunge-12-pc-silver-21-per-cent-after-making-historic-monthly-gains-1933785",
+   "domain": "deccanchronicle.com",
+   "seenAt": "2026-01-30T16:30:00.000Z"
+  },
+  {
+   "title": "Gold, Silver and US stock markets see massive volatility as markets swing nearly $9 trillion",
+   "url": "https://www.thehindubusinessline.com/markets/gold-silver-and-us-stock-markets-see-massive-volatility-as-markets-swing-nearly-9-trillion/article70568773.ece",
+   "domain": "thehindubusinessline.com",
+   "seenAt": "2026-01-30T05:00:00.000Z"
+  },
+  {
+   "title": "Gold, silver rally extends amid US Iran threat, weak $",
+   "url": "https://timesofindia.indiatimes.com/business/india-business/gold-silver-rally-extends-amid-uss-iran-threat-weak-/articleshow/127748170.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2026-01-29T02:30:00.000Z"
+  },
+  {
+   "title": "Gold, silver prices in Pakistan latest: Jan 26, 2026",
+   "url": "https://www.samaa.tv/2087345245-gold-rate-in-pakistan-creates-new-record-jan-26-2026",
+   "domain": "samaa.tv",
+   "seenAt": "2026-01-26T09:30:00.000Z"
+  },
+  {
+   "title": "Today Gold, Silver Rate January 25: Check 18, 22, 24 carat Gold prices in Chennai, Mumbai, Delhi, Kolkata",
+   "url": "https://www.india.com/business/gold-silver-rate-january-250126-check-18-22-24-carat-gold-prices-in-chennai-mumbai-delhi-kolkata-bangalore-gold-price-8280663/",
+   "domain": "india.com",
+   "seenAt": "2026-01-25T07:15:00.000Z"
+  },
+  {
+   "title": "Mining Stocks Surge in Hong Kong, China as Gold Hits Record",
+   "url": "https://www.marketscreener.com/news/mining-stocks-surge-in-hong-kong-china-as-gold-hits-record-ce7e5bdad08ff624",
+   "domain": "marketscreener.com",
+   "seenAt": "2026-01-26T04:30:00.000Z"
+  },
+  {
+   "title": "In gold we trust: Is the move away from dollar behind its spurt?",
+   "url": "https://www.theweek.in/news/biz-tech/2026/01/24/in-gold-we-trust-is-the-move-away-from-dollar-behind-its-spurt.html",
+   "domain": "theweek.in",
+   "seenAt": "2026-01-24T11:45:00.000Z"
+  },
+  {
+   "title": "Gold price on January 28: Hits all - time high of $5, 220 / oz globally amid Trump tariff threats",
+   "url": "https://www.moneycontrol.com/news/business/personal-finance/gold-price-on-january-28-hits-all-time-high-of-5-220-oz-globally-amid-trump-s-tariff-threats-13793316.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2026-01-28T04:45:00.000Z"
+  },
+  {
+   "title": "Gold price in Pakistan nears Rs600, 000: Jan 29, 2026",
+   "url": "https://www.samaa.tv/2087345454-gold-price-in-pakistan-nears-rs600-000-jan-29-2026",
+   "domain": "samaa.tv",
+   "seenAt": "2026-01-29T14:15:00.000Z"
+  },
+  {
+   "title": "SBP reserves edge up to $16. 1b",
+   "url": "https://tribune.com.pk/story/2589820/sbp-reserves-edge-up-to-161b",
+   "domain": "tribune.com.pk",
+   "seenAt": "2026-01-30T03:45:00.000Z"
+  },
+  {
+   "title": "Gold prices top $5, 000 for first time amid safe - haven demand: More gains ahead?",
+   "url": "https://www.livemint.com/market/commodities/gold-prices-top-5-000-for-first-time-amid-safe-haven-demand-more-gains-ahead-11769402859592.html",
+   "domain": "livemint.com",
+   "seenAt": "2026-01-26T05:30:00.000Z"
+  },
+  {
+   "title": "Gold prices hit record high above $5, 000 per ounce",
+   "url": "https://www.azfamily.com/2026/01/28/gold-prices-hit-record-high-above-5000-per-ounce/",
+   "domain": "azfamily.com",
+   "seenAt": "2026-01-28T15:45:00.000Z"
+  },
+  {
+   "title": "What soaring gold prices mean for Bangladesh economy",
+   "url": "https://www.dhakatribune.com/business/401968/what-soaring-gold-prices-mean-for-bangladesh%E2%80%99s",
+   "domain": "dhakatribune.com",
+   "seenAt": "2026-01-27T15:30:00.000Z"
+  },
+  {
+   "title": "JPMorgan predicts gold could hit $8, 000 per ounce",
+   "url": "https://www.ghanaweb.com/GhanaHomePage/business/JPMorgan-predicts-gold-could-hit-8-000-per-ounce-2019439",
+   "domain": "ghanaweb.com",
+   "seenAt": "2026-01-29T18:45:00.000Z"
+  },
+  {
+   "title": "India gold demand to fall in 2026 as jewellery slump offsets investment rise",
+   "url": "https://www.hindustantimes.com/business/indias-gold-demand-to-fall-in-2026-as-jewellery-slump-offsets-investment-rise-101769667377003.html",
+   "domain": "hindustantimes.com",
+   "seenAt": "2026-01-29T06:45:00.000Z"
+  },
+  {
+   "title": "Gold prices in Pakistan Today - January 29, 2026",
+   "url": "https://tribune.com.pk/story/2589689/gold-prices-hit-historic-high-for-second-consecutive-day",
+   "domain": "tribune.com.pk",
+   "seenAt": "2026-01-29T13:30:00.000Z"
+  },
+  {
+   "title": "GOLD NEARS $5, 600 as investors seek safety; silver targets $120",
+   "url": "https://freerepublic.com/focus/f-news/4364488/posts",
+   "domain": "freerepublic.com",
+   "seenAt": "2026-01-29T06:45:00.000Z"
+  },
+  {
+   "title": "With surging gold prices, who pays the social cost?",
+   "url": "https://yourstory.com:443/socialstory/2026/01/surging-gold-prices-social-implications-buyers-tradition-india",
+   "domain": "yourstory.com",
+   "seenAt": "2026-01-26T08:30:00.000Z"
+  },
+  {
+   "title": "Why USAU Stock Is Surging As Gold Prices Near Record Highs - U. S. Gold ( NASDAQ: USAU)",
+   "url": "https://www.benzinga.com/trading-ideas/movers/26/01/50108729/why-usau-stock-is-surging-as-gold-prices-near-record-highs",
+   "domain": "benzinga.com",
+   "seenAt": "2026-01-23T20:00:00.000Z"
+  },
+  {
+   "title": "Gold Surges Above $5, 300 to Record High as Dollar Slides",
+   "url": "https://www.theepochtimes.com/business/gold-surges-above-5300-to-record-high-as-dollar-slides-5977409",
+   "domain": "theepochtimes.com",
+   "seenAt": "2026-01-28T15:30:00.000Z"
+  },
+  {
+   "title": "Gold Slips After Trump Drops Tariff Threat Over Greenland",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-012226/card/gold-slips-after-trump-drops-tariff-threat-over-greenland-6RyMadT0RcTRGDwLPLSK",
+   "domain": "barrons.com",
+   "seenAt": "2026-01-23T20:00:00.000Z"
+  },
+  {
+   "title": "Gold Prices Hit Record High Above $5, 500 as Iran Strike Fears Fuel Safe - Haven Demand",
+   "url": "http://www.econotimes.com/Gold-Prices-Hit-Record-High-Above-5500-as-Iran-Strike-Fears-Fuel-Safe-Haven-Demand-1732174",
+   "domain": "econotimes.com",
+   "seenAt": "2026-01-29T02:30:00.000Z"
+  },
+  {
+   "title": "Philex shares slide on Padcal mill disruption - BusinessWorld Online",
+   "url": "https://www.bworldonline.com/corporate/2026/01/26/726302/philex-shares-slide-on-padcal-mill-disruption/",
+   "domain": "bworldonline.com",
+   "seenAt": "2026-01-26T01:00:00.000Z"
+  },
+  {
+   "title": "Why SSR Mining Stock Just Dropped | The Motley Fool",
+   "url": "https://www.fool.com/investing/2026/01/30/why-ssr-mining-stock-just-dropped/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2026-01-30T19:15:00.000Z"
+  }
+ ]
+}

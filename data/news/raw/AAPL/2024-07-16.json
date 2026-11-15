@@ -1,0 +1,387 @@
+{
+ "ticker": "AAPL",
+ "query": "(\"Apple Inc\" OR \"Apple shares\" OR \"Apple stock\")",
+ "from": "2024-07-09T20:00:00.000Z",
+ "to": "2024-07-16T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T02:44:05.277Z",
+ "articles": [
+  {
+   "title": "Apple Stock Got Bit By Sellers Thursday: What Happened? - Apple ( NASDAQ: AAPL)",
+   "url": "https://www.benzinga.com/news/24/07/39739855/apple-stock-got-bit-by-sellers-thursday-what-happened",
+   "domain": "benzinga.com",
+   "seenAt": "2024-07-11T21:30:00.000Z"
+  },
+  {
+   "title": "Apple Hits Record High Again After Being Named Top Pick at Morgan Stanley",
+   "url": "https://finance.yahoo.com/news/apple-top-pick-morgan-stanley-110127237.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-07-15T16:00:00.000Z"
+  },
+  {
+   "title": "Apple Stock Hits Record High as Analysts Hike Price Targets on AI Optimism",
+   "url": "https://www.investopedia.com/apple-stock-price-record-high-analysts-targets-ai-8678016",
+   "domain": "investopedia.com",
+   "seenAt": "2024-07-15T20:30:00.000Z"
+  },
+  {
+   "title": "Apple tops $3. 5trn valuation and Nvidia surges again as analysts say AI excitement warranted",
+   "url": "https://www.proactiveinvestors.co.uk/companies/news/1051593/apple-tops-3-5trn-valuation-and-nvidia-surges-again-as-analysts-say-ai-excitement-warranted-1051593.html",
+   "domain": "proactiveinvestors.co.uk",
+   "seenAt": "2024-07-10T12:15:00.000Z"
+  },
+  {
+   "title": "As Apple Hits All - Time High, What Takes It Higher?",
+   "url": "https://247wallst.com/investing/2024/07/16/as-apple-hits-all-time-high-what-takes-it-higher/",
+   "domain": "247wallst.com",
+   "seenAt": "2024-07-16T12:15:00.000Z"
+  },
+  {
+   "title": "How Apple Could Boost Its Revenue by Selling Ads on Apple TV+ and More",
+   "url": "https://finance.yahoo.com/news/apple-could-boost-revenue-selling-215941296.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-07-10T23:00:00.000Z"
+  },
+  {
+   "title": "Apple market cap hits $3. 5 trillion as AI boosts the stock",
+   "url": "https://qz.com/apple-just-became-the-first-ever-company-to-hit-a-3-5-1851583712",
+   "domain": "qz.com",
+   "seenAt": "2024-07-09T22:15:00.000Z"
+  },
+  {
+   "title": "Jim Cramer Says He Still a Believer in Apple Inc ( NASDAQ: AAPL)",
+   "url": "https://finance.yahoo.com/news/jim-cramer-says-still-believer-134213292.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-07-11T14:15:00.000Z"
+  },
+  {
+   "title": "Where will Apple stock price be in 5 years?",
+   "url": "https://macdailynews.com/2024/07/16/where-will-apples-stock-price-be-in-5-years/",
+   "domain": "macdailynews.com",
+   "seenAt": "2024-07-16T19:00:00.000Z"
+  },
+  {
+   "title": "Where Will Apple Stock Be in 5 Years? | The Motley Fool",
+   "url": "https://www.fool.com/investing/2024/07/16/where-will-apple-stock-be-in-5-years/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2024-07-16T15:45:00.000Z"
+  },
+  {
+   "title": "Apple Inc. ( NASDAQ: AAPL) Position Cut by InTrack Investment Management Inc",
+   "url": "https://www.etfdailynews.com/2024/07/15/apple-inc-nasdaqaapl-position-cut-by-intrack-investment-management-inc/",
+   "domain": "etfdailynews.com",
+   "seenAt": "2024-07-15T08:30:00.000Z"
+  },
+  {
+   "title": "Apple hits record high again after being top pick at Morgan Stanley",
+   "url": "https://calgarysun.com/business/money-news/apple-hits-record-high-again-after-being-named-top-pick-at-morgan-stanley",
+   "domain": "calgarysun.com",
+   "seenAt": "2024-07-15T19:15:00.000Z"
+  },
+  {
+   "title": "Apple stock might soar thanks to old iPhones",
+   "url": "https://fortune.com/2024/07/12/most-iphone-users-have-old-phones-good-news-for-apple-stock/",
+   "domain": "fortune.com",
+   "seenAt": "2024-07-12T21:00:00.000Z"
+  },
+  {
+   "title": "2 High - Flying Stocks With Room to Run | The Motley Fool",
+   "url": "https://www.fool.com/investing/2024/07/16/2-high-flying-stocks-with-room-to-run/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2024-07-16T15:45:00.000Z"
+  },
+  {
+   "title": "Aging iPhones Could Propel Apple Stock to New Heights, Says Bank of America",
+   "url": "http://www.econotimes.com/Aging-iPhones-Could-Propel-Apple-Stock-to-New-Heights-Says-Bank-of-America-1681565",
+   "domain": "econotimes.com",
+   "seenAt": "2024-07-13T13:00:00.000Z"
+  },
+  {
+   "title": "TSMC Sales Surge Past Expectations on AI Infrastructure Boom",
+   "url": "https://www.bloomberg.com/news/articles/2024-07-10/tsmc-sales-surge-past-expectations-on-ai-infrastructure-demand",
+   "domain": "bloomberg.com",
+   "seenAt": "2024-07-10T12:15:00.000Z"
+  },
+  {
+   "title": "Apple Bets on AI to Drive Demand for iPhone 16, Targets 10% Growth in Shipments",
+   "url": "https://www.bloomberg.com/news/articles/2024-07-10/apple-bets-on-ai-to-drive-demand-for-iphone-16-targets-10-growth-in-shipments",
+   "domain": "bloomberg.com",
+   "seenAt": "2024-07-11T09:15:00.000Z"
+  },
+  {
+   "title": "Apple ( NASDAQ: AAPL) Stock Price Up 1. 7%",
+   "url": "https://theenterpriseleader.com/2024/07/12/apple-nasdaqaapl-stock-price-up-1-7.html",
+   "domain": "theenterpriseleader.com",
+   "seenAt": "2024-07-12T19:15:00.000Z"
+  },
+  {
+   "title": "Apple at all - time high after Morgan Stanley calls stock top pick for AI efforts",
+   "url": "https://www.moneycontrol.com/news/business/apple-at-all-time-high-after-morgan-stanley-calls-stock-top-pick-for-ai-efforts-12769952.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2024-07-16T02:30:00.000Z"
+  },
+  {
+   "title": "Cellphone market grows as discounts and AI help demand",
+   "url": "https://www.taipeitimes.com/News/biz/archives/2024/07/16/2003820855",
+   "domain": "taipeitimes.com",
+   "seenAt": "2024-07-15T17:15:00.000Z"
+  },
+  {
+   "title": "Nikkei stock index ends above 42, 000 mark for 1st time on tech gains",
+   "url": "https://www.marketscreener.com/quote/stock/APPLE-INC-4849/news/Nikkei-stock-index-ends-above-42-000-mark-for-1st-time-on-tech-gains-47358605/",
+   "domain": "marketscreener.com",
+   "seenAt": "2024-07-11T06:45:00.000Z"
+  },
+  {
+   "title": "Apple Sales in India Surge 33% to $8 Billion as Chinese Market Slows",
+   "url": "https://www.bloomberg.com/news/articles/2024-07-15/apple-sales-in-india-surge-33-to-8-billion-as-chinese-market-slows",
+   "domain": "bloomberg.com",
+   "seenAt": "2024-07-15T07:30:00.000Z"
+  },
+  {
+   "title": "Smartphone Market Grows 6% as AI and Discounts Help Demand",
+   "url": "https://www.bloomberg.com/news/articles/2024-07-15/smartphone-market-grows-6-as-ai-and-discounts-help-demand",
+   "domain": "bloomberg.com",
+   "seenAt": "2024-07-15T07:30:00.000Z"
+  },
+  {
+   "title": "Myecfo LLC Boosts Holdings in Apple Inc. ( NASDAQ: AAPL)",
+   "url": "https://www.etfdailynews.com/2024/07/15/myecfo-llc-boosts-holdings-in-apple-inc-nasdaqaapl/",
+   "domain": "etfdailynews.com",
+   "seenAt": "2024-07-15T08:30:00.000Z"
+  },
+  {
+   "title": "Digital Rights Management ( DRM) Market: Protecting Content",
+   "url": "https://www.openpr.com/news/3577203/digital-rights-management-drm-market-protecting-content",
+   "domain": "openpr.com",
+   "seenAt": "2024-07-11T16:15:00.000Z"
+  },
+  {
+   "title": "Apple retakes crown as world most valuable company",
+   "url": "https://www.sierraleonetimes.com/news/274449914/apple-retakes-crown-as-worlds-most-valuable-company",
+   "domain": "sierraleonetimes.com",
+   "seenAt": "2024-07-10T22:45:00.000Z"
+  },
+  {
+   "title": "Apple Stock: Upcoming Q3 Earnings Report May Be Irrelevant ( NASDAQ: AAPL)",
+   "url": "https://seekingalpha.com/article/4703077-apple-stock-upcoming-q3-earnings-report-may-be-irrelevant-reiterate-hold",
+   "domain": "seekingalpha.com",
+   "seenAt": "2024-07-10T05:15:00.000Z"
+  },
+  {
+   "title": "Microsoft and Apple Give Up OpenAI Board Seats amid Regulatory Concerns",
+   "url": "https://www.coinspeaker.com/microsoft-apple-openai-board-seats/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2024-07-10T12:15:00.000Z"
+  },
+  {
+   "title": "Apple hits record high after Morgan Stanley calls stock top pick",
+   "url": "https://www.business-standard.com/companies/news/apple-hits-record-high-after-morgan-stanley-calls-stock-top-pick-124071501135_1.html",
+   "domain": "business-standard.com",
+   "seenAt": "2024-07-15T17:00:00.000Z"
+  },
+  {
+   "title": "Apple gains after Morgan Stanley calls stock top pick for AI efforts",
+   "url": "https://www.channelnewsasia.com/business/apple-gains-after-morgan-stanley-calls-stock-top-pick-ai-efforts-4480976",
+   "domain": "channelnewsasia.com",
+   "seenAt": "2024-07-15T12:45:00.000Z"
+  },
+  {
+   "title": "Apple at all - time high",
+   "url": "https://bdnews24.com/technology/4703b5b42c06",
+   "domain": "bdnews24.com",
+   "seenAt": "2024-07-16T04:00:00.000Z"
+  },
+  {
+   "title": "Apple shares rise as the tech firm taps the AI market to boost device sales",
+   "url": "https://www.irishexaminer.com/business/companies/arid-41436955.html",
+   "domain": "irishexaminer.com",
+   "seenAt": "2024-07-15T17:00:00.000Z"
+  },
+  {
+   "title": "Morgan Stanley bets on AI features in Apple devices to drive sales, ET CIO",
+   "url": "https://cio.economictimes.indiatimes.com/news/artificial-intelligence/morgan-stanley-bets-on-ai-features-in-apple-devices-to-drive-sales/111760857",
+   "domain": "cio.economictimes.indiatimes.com",
+   "seenAt": "2024-07-16T07:45:00.000Z"
+  },
+  {
+   "title": "Apple Inc. ( NASDAQ: AAPL) Shares Sold by Signature Wealth Management Partners LLC",
+   "url": "https://www.tickerreport.com/banking-finance/12293242/apple-inc-nasdaqaapl-shares-sold-by-signature-wealth-management-partners-llc.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2024-07-15T10:45:00.000Z"
+  },
+  {
+   "title": "Is Berkshire Hathaway Stock a Buy? | The Motley Fool",
+   "url": "https://www.fool.com/investing/2024/07/14/is-berkshire-hathaway-stock-a-buy/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2024-07-14T11:00:00.000Z"
+  },
+  {
+   "title": "Enter the World of Disney Pixel RPG",
+   "url": "https://www.marketscreener.com/quote/stock/GUNGHO-ONLINE-ENTERTAINME-11551375/news/Enter-the-World-of-Disney-Pixel-RPG-47348181/",
+   "domain": "marketscreener.com",
+   "seenAt": "2024-07-10T04:00:00.000Z"
+  },
+  {
+   "title": "3 Cult - Like Stocks to Buy for Long - Term Gains",
+   "url": "https://investorplace.com/2024/07/3-cult-like-stocks-to-buy-for-long-term-gains/",
+   "domain": "investorplace.com",
+   "seenAt": "2024-07-13T18:45:00.000Z"
+  },
+  {
+   "title": "MP Congress chief claims his phone was hacked files police complaint",
+   "url": "https://www.theweek.in/wire-updates/national/2024/07/16/bom33-mp-cong-phone-hacking.html",
+   "domain": "theweek.in",
+   "seenAt": "2024-07-16T19:00:00.000Z"
+  },
+  {
+   "title": "TSMC Sales Surge Past Expectations on AI Infrastructure Demand",
+   "url": "https://finance.yahoo.com/news/tsmc-sales-surge-past-expectations-054510179.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-07-10T07:15:00.000Z"
+  },
+  {
+   "title": "Asian Stocks Echo US Rally Ahead of Inflation Data: Markets Wrap",
+   "url": "https://financialpost.com/pmn/business-pmn/asian-stocks-set-to-track-wall-streets-tech-rally-markets-wrap",
+   "domain": "financialpost.com",
+   "seenAt": "2024-07-11T01:30:00.000Z"
+  },
+  {
+   "title": "Wall Street renewed bullishness on Apple stock is all about the iPhone 16",
+   "url": "https://finance.yahoo.com/news/wall-streets-renewed-bullishness-apple-000357856.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-07-12T00:45:00.000Z"
+  },
+  {
+   "title": "Macy, Burberry fall; Trump Media, Tesla rise, Monday, 7 / 15 / 2024",
+   "url": "https://abcnews.go.com/Business/wireStory/macys-burberry-fall-trump-media-tesla-rise-monday-111955783",
+   "domain": "abcnews.go.com",
+   "seenAt": "2024-07-15T20:30:00.000Z"
+  },
+  {
+   "title": "Taiwan Semiconductor Joins The Trillion Dollar Club, Surpassing Tesla: Report - Taiwan Semiconductor ( NYSE: TSM)",
+   "url": "https://www.benzinga.com/news/24/07/39733017/taiwan-semiconductor-joins-the-trillion-dollar-club-surpassing-tesla-report",
+   "domain": "benzinga.com",
+   "seenAt": "2024-07-11T16:45:00.000Z"
+  },
+  {
+   "title": "Apple Vision Pro Wont Cross 500, 000 Sales This Year, IDC Says",
+   "url": "https://finance.yahoo.com/news/apple-vision-pro-won-t-044811056.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-07-11T08:15:00.000Z"
+  },
+  {
+   "title": "Apple ( NASDAQ: AAPL) Trading Down 0. 3%",
+   "url": "https://www.modernreaders.com/news/2024/07/10/apple-nasdaqaapl-trading-down-0-3.html",
+   "domain": "modernreaders.com",
+   "seenAt": "2024-07-10T23:15:00.000Z"
+  },
+  {
+   "title": "A Bull Market Is Here. 2 Reasons to Buy Apple Stock Like There No Tomorrow.",
+   "url": "https://www.fool.com/investing/2024/07/14/a-bull-market-is-here-2-reasons-to-buy-apple-stock/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2024-07-14T11:00:00.000Z"
+  },
+  {
+   "title": "Tim Cook, Mark Cuban, Elon Musk, Jeff Bezos And Other Tech Leaders Respond To Trump Rally Shooting - Apple ( NASDAQ: AAPL), Amazon. com ( NASDAQ: AMZN)",
+   "url": "https://www.benzinga.com/news/24/07/39763768/tim-cook-mark-cuban-elon-musk-jeff-bezos-and-other-tech-leaders-respond-to-trump-rally-shooting",
+   "domain": "benzinga.com",
+   "seenAt": "2024-07-14T19:45:00.000Z"
+  },
+  {
+   "title": "Apple to Jump 12% on Demand for iPhone 16 and AI Capabilities: BofA",
+   "url": "https://markets.businessinsider.com/news/stocks/apple-stock-price-outlook-ai-iphone16-release-upgrade-cycle-bofa-2024-7",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2024-07-11T17:30:00.000Z"
+  },
+  {
+   "title": "Apple Sees Biggest Gains as Quarterly Personal Computer Shipments Jump",
+   "url": "https://finance.yahoo.com/news/apple-sees-biggest-gains-quarterly-212400780.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-07-09T22:30:00.000Z"
+  },
+  {
+   "title": "Mark Zuckerberg Set To Appear In A Live Acquired Podcast Arena Event: What You Need To Know - Meta Platforms ( NASDAQ: META), JPMorgan Chase ( NYSE: JPM)",
+   "url": "https://www.benzinga.com/news/24/07/39743156/mark-zuckerberg-set-to-appear-in-a-live-acquired-podcast-arena-event-what-you-need-to-know",
+   "domain": "benzinga.com",
+   "seenAt": "2024-07-12T06:15:00.000Z"
+  },
+  {
+   "title": "Global smartphone market grows 6% as AI and discounts boost demand",
+   "url": "https://www.business-standard.com/technology/tech-news/global-smartphone-market-grows-6-as-ai-and-discounts-boost-demand-124071500144_1.html",
+   "domain": "business-standard.com",
+   "seenAt": "2024-07-15T05:00:00.000Z"
+  },
+  {
+   "title": "Apple gets price target increase from Bank of America on promising Gen AI features",
+   "url": "https://www.proactiveinvestors.co.uk/companies/news/1051745/apple-gets-price-target-increase-from-bank-of-america-on-promising-gen-ai-features-1051745.html",
+   "domain": "proactiveinvestors.co.uk",
+   "seenAt": "2024-07-11T21:45:00.000Z"
+  },
+  {
+   "title": "Apple agrees to allow contactless iPhone payments from other mobile wallets in EU",
+   "url": "https://www.proactiveinvestors.co.uk/companies/news/1051741/apple-agrees-to-allow-contactless-iphone-payments-from-other-mobile-wallets-in-eu-1051741.html",
+   "domain": "proactiveinvestors.co.uk",
+   "seenAt": "2024-07-11T21:45:00.000Z"
+  },
+  {
+   "title": "The Most Advanced Country in Asia in 2024",
+   "url": "https://www.insidermonkey.com/blog/the-most-advanced-country-in-asia-in-2024-1321725/",
+   "domain": "insidermonkey.com",
+   "seenAt": "2024-07-11T15:45:00.000Z"
+  },
+  {
+   "title": "AI Boom in the US Drives 422% Spike in Taiwanese Tech Exports",
+   "url": "https://finance.yahoo.com/news/ai-boom-us-drives-422-044345949.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-07-10T05:45:00.000Z"
+  },
+  {
+   "title": "Report: Apple prepping over 90 million iPhone 16 units for 2024 alone",
+   "url": "https://9to5mac.com/2024/07/10/report-apple-prepping-over-90-million-iphone-16-units-for-2024-alone/",
+   "domain": "9to5mac.com",
+   "seenAt": "2024-07-10T21:00:00.000Z"
+  },
+  {
+   "title": "Dow and Nasdaq rally alongside S & P 500 to record highs",
+   "url": "https://www.proactiveinvestors.com/companies/news/1051601/dow-and-nasdaq-rally-alongside-s-p-500-to-record-highs-1051601.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2024-07-10T22:30:00.000Z"
+  },
+  {
+   "title": "Nikkei stock index tops 42, 000 for 1st time on tech gains",
+   "url": "https://japantoday.com/category/business/nikkei-stock-index-tops-42-000-for-1st-time-on-tech-gains",
+   "domain": "japantoday.com",
+   "seenAt": "2024-07-11T08:30:00.000Z"
+  },
+  {
+   "title": "Microsoft, Apple avoid OpenAI board as US scrutiny grows",
+   "url": "https://gulfnews.com/technology/companies/microsoft-apple-avoid-openais-board-as-us-scrutiny-grows-1.1720597556930",
+   "domain": "gulfnews.com",
+   "seenAt": "2024-07-10T10:15:00.000Z"
+  },
+  {
+   "title": "Samsung Takes On Apple With New Galaxy Ring And Watch Ultra",
+   "url": "https://biztoc.com/x/d81a6a98f1c621cd",
+   "domain": "biztoc.com",
+   "seenAt": "2024-07-10T20:15:00.000Z"
+  },
+  {
+   "title": "Apple plans to ship 90 million iPhone 16 models in 2024",
+   "url": "https://www.androidheadlines.com/2024/07/apple-plans-to-ship-90-million-iphone-16-models-in-2024.html",
+   "domain": "androidheadlines.com",
+   "seenAt": "2024-07-11T12:15:00.000Z"
+  },
+  {
+   "title": "Is It Too Late to Buy Apple Stock?",
+   "url": "https://finance.yahoo.com/news/too-buy-apple-stock-104500993.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-07-10T11:30:00.000Z"
+  },
+  {
+   "title": "BERNAMA - APPLE WARNS IPHONE OWNERS OF SPYWARE ATTACKS",
+   "url": "https://www.bernama.com/en/world/news.php?id=2316852",
+   "domain": "bernama.com",
+   "seenAt": "2024-07-12T06:00:00.000Z"
+  }
+ ]
+}

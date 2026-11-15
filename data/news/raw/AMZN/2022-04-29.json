@@ -1,0 +1,363 @@
+{
+ "ticker": "AMZN",
+ "query": "(\"Amazon.com\" OR \"Amazon shares\" OR \"Amazon stock\")",
+ "from": "2022-04-22T20:00:00.000Z",
+ "to": "2022-04-29T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T02:56:50.682Z",
+ "articles": [
+  {
+   "title": "Weak Sales Forecast Impacts Amazon Stock Price",
+   "url": "https://www.swfinstitute.org/news/92365/weak-sales-forecast-impacts-amazons-stock-price",
+   "domain": "swfinstitute.org",
+   "seenAt": "2022-04-28T22:15:00.000Z"
+  },
+  {
+   "title": "Amazon price targets are slashed and stock sinks after first quarterly loss in seven years",
+   "url": "https://www.marketwatch.com/story/amazons-price-targets-are-slashed-and-stock-sinks-after-first-quarterly-loss-in-seven-years-11651245786",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-04-29T15:45:00.000Z"
+  },
+  {
+   "title": "Amazon Stock Plunges On Surprise Q1 Loss, Weak Near - Term Outlook",
+   "url": "https://www.thestreet.com/markets/amazon-stock-plunges-on-surprise-q1-loss-weak-near-term-outlook",
+   "domain": "thestreet.com",
+   "seenAt": "2022-04-28T22:45:00.000Z"
+  },
+  {
+   "title": "Amazon Plunges 10% on Earnings Miss -- Is Amazon Stock a Buy Now?",
+   "url": "https://www.fool.com/investing/2022/04/29/amazon-plunges-10-on-earnings-miss-is-amazon-stock/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-04-29T14:30:00.000Z"
+  },
+  {
+   "title": "Amazon latest Go store features a made - to - order kitchen",
+   "url": "https://www.marketwatch.com/story/amazons-latest-go-store-features-a-made-to-order-kitchen-2022-04-26",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-04-26T17:45:00.000Z"
+  },
+  {
+   "title": "Amazon Earnings: AMZN Sinks After the Bell as Inflation Eats at Outlook",
+   "url": "https://www.dailyfx.com/forex/market_alert/2022/04/28/Amazon-Earnings-AMZN-Sinks-After-the-Bell-as-Inflation-Eats-at-Outlook.html",
+   "domain": "dailyfx.com",
+   "seenAt": "2022-04-28T23:30:00.000Z"
+  },
+  {
+   "title": "SHAREHOLDER ALERT: Pomerantz Law Firm Investigates",
+   "url": "https://www.globenewswire.com/news-release/2022/04/28/2431894/0/en/SHAREHOLDER-ALERT-Pomerantz-Law-Firm-Investigates-Claims-On-Behalf-of-Investors-of-Amazon-com-Inc-AMZN.html",
+   "domain": "globenewswire.com",
+   "seenAt": "2022-04-28T19:15:00.000Z"
+  },
+  {
+   "title": "Does Amazon Deserve a Spot in Your Roth IRA Before the Stock Split?",
+   "url": "https://www.fool.com/investing/2022/04/27/does-amazon-deserve-a-spot-in-your-roth-ira-before/",
+   "domain": "fool.com",
+   "seenAt": "2022-04-27T14:30:00.000Z"
+  },
+  {
+   "title": "SHAREHOLDER ALERT: Pomerantz Law Firm Investigates Claims On Behalf of Investors of Amazon. com, Inc.",
+   "url": "https://www.prnewswire.com:443/news-releases/shareholder-alert-pomerantz-law-firm-investigates-claims-on-behalf-of-investors-of-amazoncom-inc---amzn-301531470.html",
+   "domain": "prnewswire.com",
+   "seenAt": "2022-04-25T20:45:00.000Z"
+  },
+  {
+   "title": "Stock Market Drops On Lackluster Earnings From Amazon, Apple",
+   "url": "https://www.investors.com/market-trend/stock-market-today/stock-market-drops-on-lackluster-earnings-from-amazon-apple/",
+   "domain": "investors.com",
+   "seenAt": "2022-04-29T15:15:00.000Z"
+  },
+  {
+   "title": "Amazon. com Inc and Apple Inc updates may cause new wobble for tech sector, though analysts confident",
+   "url": "https://www.proactiveinvestors.com/companies/news/980959/amazon-and-apple-updates-may-cause-new-wobble-for-tech-sector-though-analysts-confident-980959.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2022-04-29T13:45:00.000Z"
+  },
+  {
+   "title": "Stock Market | FinancialContent Business Page",
+   "url": "https://markets.financialcontent.com/stocks/article/bizwire-2022-4-28-shareholder-alert-labaton-sucharow-investigating-amazoncom-inc-amzn",
+   "domain": "markets.financialcontent.com",
+   "seenAt": "2022-04-28T22:30:00.000Z"
+  },
+  {
+   "title": "Amazon Stock: How Rivian Automotive May Impact Its Q1 Earnings",
+   "url": "https://www.thestreet.com/amazon/news/amazon-stock-how-rivian-automotive-may-impact-its-q1-earnings",
+   "domain": "thestreet.com",
+   "seenAt": "2022-04-27T14:00:00.000Z"
+  },
+  {
+   "title": "Amazon. com Inc stock dives as earnings reveal impact of pandemic, labour shortages",
+   "url": "https://www.proactiveinvestors.com/companies/news/980900/amazon-stock-dives-as-earnings-reveal-impact-of-pandemic-labour-shortages-980900.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2022-04-28T21:15:00.000Z"
+  },
+  {
+   "title": "Amazon earnings preview: Analysts anticipate Prime Day will take place in Q3",
+   "url": "https://www.marketwatch.com/story/amazon-earnings-preview-analysts-anticipate-prime-day-will-take-place-in-q3-11651000118",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-04-26T19:30:00.000Z"
+  },
+  {
+   "title": "Dont bet against Amazon: Fmr. Toys R Us CEO",
+   "url": "https://www.foxbusiness.com/technology/amazon-shares-inflation-recession-toys-r-us-ceo",
+   "domain": "foxbusiness.com",
+   "seenAt": "2022-04-29T17:45:00.000Z"
+  },
+  {
+   "title": "Dow Jones On Track For Weekly Losses; Amazon Plummets On Earnings",
+   "url": "https://www.investors.com/market-trend/stock-market-today/indexes-on-track-for-weekly-losses-amazon-stock-slides-on-earnings/",
+   "domain": "investors.com",
+   "seenAt": "2022-04-29T16:45:00.000Z"
+  },
+  {
+   "title": "Amazon Biggest Drop Since 2014 Caps Miserable Month for Tech",
+   "url": "https://www.bnnbloomberg.ca/amazon-s-biggest-drop-since-2014-caps-miserable-month-for-tech-1.1759023",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2022-04-29T14:30:00.000Z"
+  },
+  {
+   "title": "Expert opinion: Amazon stock will likely do well moving forward",
+   "url": "https://invezz.com/news/2022/04/28/expert-opinion-amazon-stock-will-likely-do-well-moving-forward/",
+   "domain": "invezz.com",
+   "seenAt": "2022-04-28T21:00:00.000Z"
+  },
+  {
+   "title": "Why property investors need to watch this indicator",
+   "url": "https://www.afr.com/companies/financial-services/why-property-investors-need-to-watch-this-indicator-20220425-p5afv8",
+   "domain": "afr.com",
+   "seenAt": "2022-04-25T19:30:00.000Z"
+  },
+  {
+   "title": "Be Careful With AMZN Stock After Its Q1 Earnings Miss",
+   "url": "https://investorplace.com/2022/04/be-careful-with-amzn-stock-after-its-q1-earnings-miss/",
+   "domain": "investorplace.com",
+   "seenAt": "2022-04-29T15:15:00.000Z"
+  },
+  {
+   "title": "Amazon Reports Earnings Thursday. Here What to Expect.",
+   "url": "https://www.marketwatch.com/articles/amazon-stock-price-earnings-51651098507",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-04-28T10:00:00.000Z"
+  },
+  {
+   "title": "Rivian Killed Ford Earnings. Now It Crushing Amazon.",
+   "url": "https://www.marketwatch.com/articles/rivian-killed-ford-earnings-now-its-crushing-amazons-51651183109",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-04-28T22:15:00.000Z"
+  },
+  {
+   "title": "ROSEN, RESPECTED INVESTOR COUNSEL, Encourages Amazon. com, Inc. Investors With Losses to Inquire About Securities Class Action Investigation",
+   "url": "https://www.prnewswire.com:443/news-releases/rosen-respected-investor-counsel-encourages-amazoncom-inc-investors-with-losses-to-inquire-about-securities-class-action-investigation--amzn-301531116.html",
+   "domain": "prnewswire.com",
+   "seenAt": "2022-04-24T16:45:00.000Z"
+  },
+  {
+   "title": "Amazon warehouse: Amazon net loss prompts query: Has it built too many warehouses?",
+   "url": "https://economictimes.indiatimes.com/news/international/business/amazons-net-loss-prompts-query-has-it-built-too-many-warehouses/articleshow/91178085.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2022-04-29T11:15:00.000Z"
+  },
+  {
+   "title": "Amazon net loss prompts question: Has it built too many warehouses? | Local Business",
+   "url": "https://www.stltoday.com/business/local/amazon-s-net-loss-prompts-question-has-it-built-too-many-warehouses/article_a05571ef-6a53-5aa0-8e07-32a23615e95c.html",
+   "domain": "stltoday.com",
+   "seenAt": "2022-04-29T13:00:00.000Z"
+  },
+  {
+   "title": "Amazon net loss prompts query: Has it built too many warehouses?",
+   "url": "https://news.yahoo.com/amazons-net-loss-prompts-query-100848093.html",
+   "domain": "news.yahoo.com",
+   "seenAt": "2022-04-29T11:00:00.000Z"
+  },
+  {
+   "title": "Amazon Stock Erases $184 Billion In Value After Inflation Triggers Unexpected Loss And Ugly Selloff",
+   "url": "https://www.forbes.com/sites/jonathanponciano/2022/04/29/amazon-stock-erases-184-billion-in-value-after-inflation-triggers-unexpected-loss-and-ugly-selloff/",
+   "domain": "forbes.com",
+   "seenAt": "2022-04-29T16:30:00.000Z"
+  },
+  {
+   "title": "Droves of Shoppers Are Buying These 15 Things at Amazon This April",
+   "url": "http://www.msn.com/en-us/lifestyle/lifestyle-buzz/droves-of-shoppers-are-buying-these-15-things-at-amazon-this-april/ar-AAWvAW2",
+   "domain": "msn.com",
+   "seenAt": "2022-04-23T11:00:00.000Z"
+  },
+  {
+   "title": "Amazon Is Having a Huge Spring Sale on Rugs This Weekend and Prices Start at $13",
+   "url": "http://www.msn.com/en-us/lifestyle/shopping/amazon-is-having-a-huge-spring-sale-on-rugs-this-weekend-and-prices-start-at-13/ar-AAWvKkq",
+   "domain": "msn.com",
+   "seenAt": "2022-04-23T12:15:00.000Z"
+  },
+  {
+   "title": "Stocks Edge Lower, Apple, Amazon, Tesla and Musk - 5 Things To Know",
+   "url": "https://www.thestreet.com/markets/-5-things-you-must-know-before-market-opens-friday-042922",
+   "domain": "thestreet.com",
+   "seenAt": "2022-04-29T10:15:00.000Z"
+  },
+  {
+   "title": "Best Tech and Gadgets | The Popular Mechanics Gadget Awards 2022",
+   "url": "https://www.popularmechanics.com/technology/gadgets/a39463104/best-gadgets-2022/",
+   "domain": "popularmechanics.com",
+   "seenAt": "2022-04-26T20:15:00.000Z"
+  },
+  {
+   "title": "3 Things to Know About Amazon Ahead of Its Stock Split",
+   "url": "https://www.fool.com/investing/2022/04/27/3-things-to-know-about-amazon-before-stock-split/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-04-27T12:45:00.000Z"
+  },
+  {
+   "title": "These Amazon Best - Selling Sandals Have 30, 700 Five - Star Ratings and Theyre on Sale for $19",
+   "url": "http://www.msn.com/en-us/lifestyle/shopping/these-amazon-best-selling-sandals-have-30-700-five-star-ratings-and-they-re-on-sale-for-19/ar-AAWAnJR",
+   "domain": "msn.com",
+   "seenAt": "2022-04-26T01:00:00.000Z"
+  },
+  {
+   "title": "How Amazon ended up with too much warehouse space and what it planning to do next",
+   "url": "https://www.geekwire.com/2022/how-amazon-ended-up-with-too-much-warehouse-space-and-what-its-planning-to-do-next/",
+   "domain": "geekwire.com",
+   "seenAt": "2022-04-29T00:45:00.000Z"
+  },
+  {
+   "title": "Nasdaq Futures Retreat as Apple and Amazon Retrace Following Quarterly Reports",
+   "url": "https://www.coinspeaker.com/nasdaq-futures-retreat-apple-amazon/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2022-04-29T11:45:00.000Z"
+  },
+  {
+   "title": "Is Amazon. com ( AMZN) Still an Investment Worthy Stock?",
+   "url": "https://www.insidermonkey.com/blog/is-amazon-com-amzn-still-an-investment-worthy-stock-1039616/",
+   "domain": "insidermonkey.com",
+   "seenAt": "2022-04-25T18:15:00.000Z"
+  },
+  {
+   "title": "Amazon stock plunges on surprise loss and bearish outlook",
+   "url": "https://siliconangle.com/2022/04/28/amazon-stock-plunges-surprise-loss-bearish-outlook/",
+   "domain": "siliconangle.com",
+   "seenAt": "2022-04-28T22:00:00.000Z"
+  },
+  {
+   "title": "The Simple Hack to Adding Traction to Slippery Shoes Is Only $10 at Amazon",
+   "url": "http://www.msn.com/en-us/lifestyle/shopping/the-simple-hack-to-adding-traction-to-slippery-shoes-is-only-10-at-amazon/ar-AAWCh6e",
+   "domain": "msn.com",
+   "seenAt": "2022-04-26T15:15:00.000Z"
+  },
+  {
+   "title": "Amazon Stock Plunges On Earnings Report| Investor Business Daily",
+   "url": "https://www.investors.com/news/technology/amazon-stock-plunges-on-earnings-report/",
+   "domain": "investors.com",
+   "seenAt": "2022-04-28T22:00:00.000Z"
+  },
+  {
+   "title": "Amazon Plans to Invest $1 Billion Into Its Industrial Innovation Fund",
+   "url": "https://www.theepochtimes.com/amazon-plans-to-invest-1-billion-into-its-industrial-innovation-fund_4418968.html",
+   "domain": "theepochtimes.com",
+   "seenAt": "2022-04-27T19:15:00.000Z"
+  },
+  {
+   "title": "『 グラブル 』 月イチ連載企画 ―― シナリオイベント振り返りやClass. Vジョブの初心者向け運用方法などを紹介 【 先出し週刊ファミ通 】",
+   "url": "https://www.famitsu.com/news/202204/26258996.html",
+   "domain": "famitsu.com",
+   "seenAt": "2022-04-26T11:45:00.000Z"
+  },
+  {
+   "title": "Amazon stock drops 10% after earnings slammed by Rivian stock decline, forecast comes up short",
+   "url": "https://www.marketwatch.com/story/amazon-stock-drops-10-after-earnings-slammed-by-rivian-stock-decline-forecast-comes-up-short-11651177012",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-04-28T21:00:00.000Z"
+  },
+  {
+   "title": "Here Why Farrer Wealth Advisors Sold its Amazon ( AMZN) Shares",
+   "url": "https://www.insidermonkey.com/blog/heres-why-farrer-wealth-advisors-sold-its-amazon-amzn-shares-1040345/",
+   "domain": "insidermonkey.com",
+   "seenAt": "2022-04-29T16:00:00.000Z"
+  },
+  {
+   "title": "You Can Find These $22 Super Soft Biker Shorts in Thousands of Amazon Shopping Carts Right Now",
+   "url": "http://www.msn.com/en-us/lifestyle/shopping/you-can-find-these-22-super-soft-biker-shorts-in-thousands-of-amazon-shopping-carts-right-now/ar-AAWGvzU",
+   "domain": "msn.com",
+   "seenAt": "2022-04-28T10:15:00.000Z"
+  },
+  {
+   "title": "Amazon. com Reports After The Close On 4 / 28 -- Options Contracts Expire The Next Day",
+   "url": "https://www.forbes.com/sites/dividendchannel/2022/04/25/amazoncom-reports-after-the-close-on-428options-contracts-expire-the-next-day/",
+   "domain": "forbes.com",
+   "seenAt": "2022-04-25T18:30:00.000Z"
+  },
+  {
+   "title": "Amazon stock sinks 10% after Q1 earnings as costs rise amid inflation, supply chain pressure",
+   "url": "https://www.geekwire.com/2022/amazon-stock-sinks-10-after-q1-earnings-as-costs-rise-amid-inflation-supply-chain-pressure/",
+   "domain": "geekwire.com",
+   "seenAt": "2022-04-29T00:45:00.000Z"
+  },
+  {
+   "title": "Amazon stock plunges as growth slows",
+   "url": "https://localnews8.com/news/national-world/2022/04/29/amazon-stock-plunges-as-company-reports-nearly-4-billion-loss-3/",
+   "domain": "localnews8.com",
+   "seenAt": "2022-04-29T19:15:00.000Z"
+  },
+  {
+   "title": "These Are The Top Ten Holdings Of Frank Sands",
+   "url": "https://www.marketbeat.com/articles/these-are-the-top-ten-holdings-of-frank-sands-2022-04-23/",
+   "domain": "marketbeat.com",
+   "seenAt": "2022-04-23T16:00:00.000Z"
+  },
+  {
+   "title": "LONDON MARKET EARLY CALL: FTSE called higher to round off tricky April",
+   "url": "https://www.lse.co.uk/news/london-market-early-call-ftse-called-higher-to-round-off-tricky-april-87prpdbp803z41d.html",
+   "domain": "lse.co.uk",
+   "seenAt": "2022-04-29T07:15:00.000Z"
+  },
+  {
+   "title": "Amazon. com Inc. stock outperforms competitors despite losses on the day",
+   "url": "https://www.marketwatch.com/story/amazon-com-inc-stock-outperforms-competitors-despite-losses-on-the-day-01650659440-930d317f36f9",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-04-22T21:15:00.000Z"
+  },
+  {
+   "title": "Amazon: Blackout curtains up to 46% off, Shark Steam Mop only $54. 99, Magic Bullet Blender Set $29. 99:: WRAL. com",
+   "url": "https://www.wral.com/amazon-blackout-curtains-up-to-46-off-shark-steam-mop-only-54-99-magic-bullet-blender-set-29-99/19957845/",
+   "domain": "wral.com",
+   "seenAt": "2022-04-23T20:00:00.000Z"
+  },
+  {
+   "title": "Amazon reports a $3. 8 billion QUARTERLY loss! Bleak forecast and slowest growth since dot - com bust – Investment Watch",
+   "url": "https://www.investmentwatchblog.com/amazon-reports-a-3-8-billion-quarterly-loss-bleak-forecast-and-slowest-growth-since-dot-com-bust/",
+   "domain": "investmentwatchblog.com",
+   "seenAt": "2022-04-28T23:15:00.000Z"
+  },
+  {
+   "title": "13 Best Deck Cleaners",
+   "url": "http://www.msn.com/en-us/lifestyle/shopping/13-best-deck-cleaners/ar-BB1g9LBO",
+   "domain": "msn.com",
+   "seenAt": "2022-04-25T22:30:00.000Z"
+  },
+  {
+   "title": "Amazon: Shark Steam Mop only $54. 99, Magic Bullet Blender Set $29. 99, Kindle Unlimited only $4. 99 for 2 months ( 75% off):: WRAL. com",
+   "url": "https://www.wral.com/amazon-shark-steam-mop-only-54-99-magic-bullet-blender-set-29-99-kindle-unlimited-only-4-99-for-2-months-75-off/19957845/",
+   "domain": "wral.com",
+   "seenAt": "2022-04-23T23:45:00.000Z"
+  },
+  {
+   "title": "Amazon: Tactical flashlights 2 - pack only $9. 99 ( 50% off), Shark Steam Mop only $54. 99, Magic Bullet Blender Set $29. 99:: WRAL. com",
+   "url": "https://www.wral.com/amazon-tactical-flashlights-2-pack-only-9-99-50-off-shark-steam-mop-only-54-99-magic-bullet-blender-set-29-99/19957845/",
+   "domain": "wral.com",
+   "seenAt": "2022-04-24T22:15:00.000Z"
+  },
+  {
+   "title": "Amazon Best - Selling End Table Is Perfect for Small Space and It Up to 64% Off",
+   "url": "http://www.msn.com/en-us/lifestyle/shopping/amazon-s-best-selling-end-table-is-perfect-for-small-spaces-and-it-s-up-to-64-off/ar-AAWvGRI",
+   "domain": "msn.com",
+   "seenAt": "2022-04-23T09:00:00.000Z"
+  },
+  {
+   "title": "Why Amazon. com Is Rising Today | The Motley Fool",
+   "url": "https://www.fool.com/investing/2022/04/28/why-amazoncom-is-rising-today/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-04-28T17:45:00.000Z"
+  },
+  {
+   "title": "$150 Billion Wiped Off Amazon Market Value: Should You Buy Now?",
+   "url": "https://www.fool.com/investing/2022/04/29/150-billion-wiped-off-amazons-market-value-should/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-04-29T19:15:00.000Z"
+  }
+ ]
+}

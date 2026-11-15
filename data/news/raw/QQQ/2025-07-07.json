@@ -1,0 +1,375 @@
+{
+ "ticker": "QQQ",
+ "query": "(\"Nasdaq 100\" OR \"Nasdaq Composite\")",
+ "from": "2025-06-30T20:00:00.000Z",
+ "to": "2025-07-07T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T02:47:33.639Z",
+ "articles": [
+  {
+   "title": "Stock Market Today: Dow jumps; S & P 500 and Nasdaq slip",
+   "url": "https://finance.yahoo.com/news/stock-market-today-dow-jumps-161123013.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-03T04:00:00.000Z"
+  },
+  {
+   "title": "Stock Market Today: Stocks soar on bullish jobs report",
+   "url": "https://finance.yahoo.com/news/stock-market-today-stocks-jump-161248598.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-04T23:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin, Ethereum, Dogecoin Gain As Trump Tariffs Deadline Delayed: Massive Altcoin Season In The Works, Says This Analyst - Grayscale Bitcoin Mini Trust ( BTC) Common units of fractional undivided beneficial interest ( ARCA: BTC)",
+   "url": "https://www.benzinga.com/crypto/25/07/46267392/bitcoin-ethereum-dogecoin-gain-as-trump-tariffs-deadline-delayed-massive-altcoin-season-in-the-works-says-this-analyst",
+   "domain": "benzinga.com",
+   "seenAt": "2025-07-07T06:30:00.000Z"
+  },
+  {
+   "title": "Asia - Pacific markets open mixed as investors assess U. S.- Vietnam trade deal",
+   "url": "https://www.nbcmiami.com/news/business/money-report/asia-pacific-markets-set-to-open-lower-as-investors-assess-u-s-vietnam-trade-deal/3650736/",
+   "domain": "nbcmiami.com",
+   "seenAt": "2025-07-03T00:45:00.000Z"
+  },
+  {
+   "title": "Stock futures fall after Trump says tariffs to go into effect Aug. 1, not July 9: Live updates",
+   "url": "https://www.nbcmiami.com/news/business/money-report/stock-futures-fall-after-trump-says-tariffs-to-go-into-effect-aug-1-not-july-9-live-updates/3652389/",
+   "domain": "nbcmiami.com",
+   "seenAt": "2025-07-06T22:45:00.000Z"
+  },
+  {
+   "title": "U. S. stock market performance today: US stock market futures edge higher as tech sector cools, Dow gains 93 points, investors eye Trump tax bill and key jobs data",
+   "url": "https://economictimes.indiatimes.com/news/international/us/us-stock-market-futures-edge-higher-as-tech-sector-cools-dow-gains-93-points-investors-eye-trump-tax-bill-and-key-jobs-data/articleshow/122205536.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-07-02T12:15:00.000Z"
+  },
+  {
+   "title": "US Market Outlook: Dow Jones, S & P 500 and NASDAQ Composite surge, dollar subdued.",
+   "url": "https://www.thehindubusinessline.com/portfolio/technical-analysis/us-market-outlook-dow-jones-sp-500-and-nasdaq-composite-surge-dollar-subdued/article69776007.ece",
+   "domain": "thehindubusinessline.com",
+   "seenAt": "2025-07-05T16:45:00.000Z"
+  },
+  {
+   "title": "Stock futures fall after Trump team says tariffs will go into effect on Aug. 1: Live updates",
+   "url": "https://www.nbcchicago.com/news/business/money-report/stock-futures-fall-after-trump-says-tariffs-to-go-into-effect-aug-1-not-july-9-live-updates/3783405/",
+   "domain": "nbcchicago.com",
+   "seenAt": "2025-07-07T03:00:00.000Z"
+  },
+  {
+   "title": "Stock market today: Live updates",
+   "url": "https://www.cnbc.com/2025/07/06/stock-market-today-live-updates.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-07-06T23:30:00.000Z"
+  },
+  {
+   "title": "Asia - Pacific markets set for mixed open after Trump shifts goalposts on tariffs again",
+   "url": "https://www.nbcdfw.com/news/business/money-report/asia-pacific-markets-set-for-mixed-open-after-trump-moves-tariff-rollout-to-aug-1/3879227/",
+   "domain": "nbcdfw.com",
+   "seenAt": "2025-07-07T00:15:00.000Z"
+  },
+  {
+   "title": "Undervalued and Profitable: This Artificial Intelligence ( AI) Stock Has Soared 73% in 2025, and It Could Still Jump Higher",
+   "url": "https://www.fool.com/investing/2025/07/06/undervalued-and-profitable-this-artificial-intelli/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-07-06T20:45:00.000Z"
+  },
+  {
+   "title": "Why SoundHound AI Stock Is Soaring Today",
+   "url": "https://finance.yahoo.com/news/why-soundhound-ai-stock-soaring-195413615.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-02T07:30:00.000Z"
+  },
+  {
+   "title": "Wall Street Live: S & P 500, Dow Jones, Nasdaq drop on weak jobs data, Tesla rises on Q2 sales",
+   "url": "https://www.livemint.com/market/stock-market-news/wall-street-live-s-p-500-dow-jones-nasdaq-drop-on-weak-jobs-data-tesla-rises-on-q2-sales-11751464963355.html",
+   "domain": "livemint.com",
+   "seenAt": "2025-07-02T15:30:00.000Z"
+  },
+  {
+   "title": "Bank of America Stock, Two Others In Buy Zones After New Highs",
+   "url": "https://www.investors.com/stock-lists/new-highs/bank-of-america-two-others-in-buy-zones-after-new-highs/",
+   "domain": "investors.com",
+   "seenAt": "2025-07-04T09:00:00.000Z"
+  },
+  {
+   "title": "Why the Dow Is Crushing the S & P 500 and Nasdaq",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-070125/card/why-the-dow-is-crushing-the-s-p-500-and-nasdaq-uI1bdzOc6yB3FR1z0dkN",
+   "domain": "barrons.com",
+   "seenAt": "2025-07-02T23:30:00.000Z"
+  },
+  {
+   "title": "S & P 500, Nasdaq Set More Record Highs; ServiceNow, Uber Hit Entries",
+   "url": "https://www.investors.com:443/market-trend/the-big-picture/sp500-nasdaq-record-highs-servicenow-now-uber-stock/",
+   "domain": "investors.com",
+   "seenAt": "2025-07-04T09:00:00.000Z"
+  },
+  {
+   "title": "How Major US Stock Indexes Fared July 2",
+   "url": "https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-july-2-post-5881747",
+   "domain": "theepochtimes.com",
+   "seenAt": "2025-07-02T23:30:00.000Z"
+  },
+  {
+   "title": "Dow Jumps 400 Points in Big Day for Little Stocks",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-070125/card/dow-jumps-400-points-in-big-day-for-little-stocks-0Ge10BhDEobVr4C1Yz4a",
+   "domain": "barrons.com",
+   "seenAt": "2025-07-03T08:15:00.000Z"
+  },
+  {
+   "title": "Wall Street Live: S & P 500, Dow Jones, Nasdaq drop on tariffs worries; Tesla slumps 8%, Capgemini down 5%",
+   "url": "https://www.livemint.com/market/stock-market-news/wall-street-live-s-p-500-dow-jones-nasdaq-drop-on-tariffs-worries-tesla-slumps-8-capgemini-down-5-11751895505674.html",
+   "domain": "livemint.com",
+   "seenAt": "2025-07-07T15:15:00.000Z"
+  },
+  {
+   "title": "Why Symbotic Stock Skyrocketed Again Today",
+   "url": "https://www.fool.com/investing/2025/07/03/why-symbotic-stock-soared-again-today/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-07-04T01:45:00.000Z"
+  },
+  {
+   "title": "US stock futures inch up as investors eye jobs data, trade deals; Tesla rises marginally",
+   "url": "https://www.moneycontrol.com/news/business/markets/us-stock-futures-inch-up-as-investors-eye-jobs-data-trade-deals-tesla-rises-marginally-13219868.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2025-07-02T13:00:00.000Z"
+  },
+  {
+   "title": "US stocks hit fresh record highs after strong jobs data",
+   "url": "https://economictimes.indiatimes.com/markets/stocks/news/us-stocks-hit-fresh-record-highs-after-strong-jobs-data/articleshow/122230326.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-07-03T14:15:00.000Z"
+  },
+  {
+   "title": "The Nasdaq Is Leading a Messy Session",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-070225/card/the-nasdaq-is-leading-a-messy-session-ZlrWED9pQuV5fqsphMMl",
+   "domain": "barrons.com",
+   "seenAt": "2025-07-02T15:30:00.000Z"
+  },
+  {
+   "title": "Nasdaq Leads Gains as Risk - Taking Returns",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-070225/card/nasdaq-leads-gains-as-risk-taking-returns-0N01qx1MtbsHkrBh31Yl",
+   "domain": "barrons.com",
+   "seenAt": "2025-07-04T04:45:00.000Z"
+  },
+  {
+   "title": "Wall St opens slightly lower after ADP shock; Tesla rises",
+   "url": "https://www.marketscreener.com/quote/currency/EURO-US-DOLLAR-EUR-USD-4591/news/Wall-St-opens-slightly-lower-after-ADP-shock-Tesla-rises-50400977/",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-07-02T14:00:00.000Z"
+  },
+  {
+   "title": "S & P 500 Turns Higher as Index Eyes Record Close",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-070125/card/s-p-500-turns-higher-as-index-eyes-record-close-5OO39sm79z9XJMypJJZR",
+   "domain": "barrons.com",
+   "seenAt": "2025-07-03T05:30:00.000Z"
+  },
+  {
+   "title": "Is Palantir Stock a Buy at New Record Highs?",
+   "url": "https://finance.yahoo.com/news/palantir-stock-buy-record-highs-173725023.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-07-03T05:00:00.000Z"
+  },
+  {
+   "title": "Wall St opens lower on tariff jitters; Tesla down on Musk political plans",
+   "url": "https://www.marketscreener.com/quote/stock/TESLA-INC-6344549/news/Wall-St-opens-lower-on-tariff-jitters-Tesla-down-on-Musk-s-political-plans-50445869/",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-07-07T14:00:00.000Z"
+  },
+  {
+   "title": "U. S. stocks close mixed",
+   "url": "https://www.thestar.com.my/news/world/2025/07/03/us-stocks-close-mixed",
+   "domain": "thestar.com.my",
+   "seenAt": "2025-07-02T22:30:00.000Z"
+  },
+  {
+   "title": "Dow Climbs 500 Points After Senate Passes Tax Bill",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-070125/card/dow-climbs-500-points-after-senate-passes-tax-bill-XFZTmv4v3HqemPo2WhI5",
+   "domain": "barrons.com",
+   "seenAt": "2025-07-03T00:00:00.000Z"
+  },
+  {
+   "title": "Stocks Wrap Up First Half at Records. S & P Closes Higher.",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-063025/card/stocks-wrap-up-first-half-at-records-s-p-closes-higher--lpjSeHfrOIhN7g64T6Hd",
+   "domain": "barrons.com",
+   "seenAt": "2025-07-02T07:30:00.000Z"
+  },
+  {
+   "title": "5 things to know before the stock market opens Monday",
+   "url": "https://www.nbcchicago.com/news/business/money-report/5-things-to-know-before-the-stock-market-opens-monday-210/3783609/",
+   "domain": "nbcchicago.com",
+   "seenAt": "2025-07-07T12:45:00.000Z"
+  },
+  {
+   "title": "Jobs report, Trump tax bill, S & P 500, Nasdaq records, trade deals| July 3, 2025",
+   "url": "https://www.foxbusiness.com/live-news/jobs-report-trump-s-tax-bill-and-trade-deals-drive-stocks-live-updates",
+   "domain": "foxbusiness.com",
+   "seenAt": "2025-07-03T14:30:00.000Z"
+  },
+  {
+   "title": "A 30 - Year - Old Asks Where The Best Place To Invest $5, 000 Per Month: Finally In A Place Where I Can Steadily Invest",
+   "url": "https://www.benzinga.com/personal-finance/management/25/07/46264902/a-30-year-old-asks-wheres-the-best-place-to-invest-5000-per-month-finally-in-a-place-where-i-can-steadily-invest",
+   "domain": "benzinga.com",
+   "seenAt": "2025-07-05T20:30:00.000Z"
+  },
+  {
+   "title": "Why TMC The Metals Company Stock Skyrocketed Again Today",
+   "url": "https://www.fool.com/investing/2025/07/03/why-tmc-the-metals-company-stock-skyrocketed-again/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-07-04T01:45:00.000Z"
+  },
+  {
+   "title": "US Stock Market today: S & P 500, Nasdaq close at record highs, Dow Jones falls. Nvidia, Apple, Tesla, Nike share price rise",
+   "url": "https://economictimes.indiatimes.com/news/international/us/us-stock-market-today-sp-500-nasdaq-close-at-record-highs-dow-jones-falls-nvidia-apple-tesla-nike-share-price-rise/articleshow/122213180.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-07-02T21:30:00.000Z"
+  },
+  {
+   "title": "How major US stock indexes fared Thursday, 7 / 3 / 2025",
+   "url": "https://www.yahoo.com/news/major-us-stock-indexes-fared-172929287.html",
+   "domain": "yahoo.com",
+   "seenAt": "2025-07-03T18:30:00.000Z"
+  },
+  {
+   "title": "Futures Drop as Trump Threatens 10% BRICS Tariff, Deals Deadline Nears",
+   "url": "https://wallstreetpit.com/127896-futures-drop-as-trump-threatens-10-brics-tariff-deals-deadline-nears/",
+   "domain": "wallstreetpit.com",
+   "seenAt": "2025-07-07T17:45:00.000Z"
+  },
+  {
+   "title": "Dow Futures surge 100 points amid cautious optimism ahead of key economic data",
+   "url": "https://invezz.com/news/2025/07/02/dow-futures-surge-100-points-amid-cautious-optimism-ahead-of-key-economic-data/",
+   "domain": "invezz.com",
+   "seenAt": "2025-07-02T14:15:00.000Z"
+  },
+  {
+   "title": "Think President Donald Trump Tariffs Are Wall Street Biggest Concern? Then Youre Completely Overlooking This Colossal Problem.",
+   "url": "https://www.fool.com/investing/2025/07/06/trump-tariffs-wall-street-concern-colossal-problem/",
+   "domain": "fool.com",
+   "seenAt": "2025-07-06T07:30:00.000Z"
+  },
+  {
+   "title": "Dow Jones Today: Stocks Fall from Record Highs as Investors Monitor News on Tariffs; Tesla Plunges After Musk Announces New Political Party",
+   "url": "https://www.investopedia.com/dow-jones-today-07072025-11767222",
+   "domain": "investopedia.com",
+   "seenAt": "2025-07-07T14:45:00.000Z"
+  },
+  {
+   "title": "Dow Jones Today: S & P 500, Nasdaq Hit New All - Time Highs as Stocks Surge After Strong June Jobs Report",
+   "url": "https://www.investopedia.com/dow-jones-today-07032025-11765983",
+   "domain": "investopedia.com",
+   "seenAt": "2025-07-03T14:45:00.000Z"
+  },
+  {
+   "title": "S & P / TSX composite down in late - morning trading, U. S. stock markets higher",
+   "url": "https://www.stcatharinesstandard.ca/business/s-p-tsx-composite-down-in-late-morning-trading-u-s-stock-markets-higher/article_eb7e567a-aeae-56a0-8150-98742d1e50a8.html",
+   "domain": "stcatharinesstandard.ca",
+   "seenAt": "2025-07-02T17:30:00.000Z"
+  },
+  {
+   "title": "Stocks Just Hit Rare Golden Cross For 1st Time Since 2023 Here What It Means For Investors - Invesco QQQ Trust, Series 1 ( NASDAQ: QQQ), SPDR S & P 500 ( ARCA: SPY)",
+   "url": "https://www.benzinga.com/markets/equities/25/07/46269226/stocks-just-hit-rare-golden-cross-for-1st-time-since-2023-heres-what-it-means-for-investors",
+   "domain": "benzinga.com",
+   "seenAt": "2025-07-07T11:00:00.000Z"
+  },
+  {
+   "title": "5 fantastic ASX ETFs to buy and hold for 10 years",
+   "url": "https://www.fool.com.au/2025/07/05/5-fantastic-asx-etfs-to-buy-and-hold-for-10-years/",
+   "domain": "fool.com.au",
+   "seenAt": "2025-07-05T01:15:00.000Z"
+  },
+  {
+   "title": "Strategic Financial Concepts LLC Has $9. 49 Million Position in Invesco NASDAQ 100 ETF ( NASDAQ: QQQM)",
+   "url": "https://www.themarketsdaily.com/2025/07/03/strategic-financial-concepts-llc-has-9-49-million-position-in-invesco-nasdaq-100-etf-nasdaqqqqm.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2025-07-03T15:00:00.000Z"
+  },
+  {
+   "title": "Wall Street falls as tariff uncertainty weighs; Tesla drops on Musk political ambition",
+   "url": "https://www.marketscreener.com/quote/stock/TESLA-INC-6344549/news/Wall-Street-falls-as-tariff-uncertainty-weighs-Tesla-drops-on-Musk-s-political-ambition-50445869/",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-07-07T15:15:00.000Z"
+  },
+  {
+   "title": "First Trust NASDAQ - 100 Technology Sector Index Fund ( NASDAQ: QTEC) Sets New 52 - Week High – Still a Buy?",
+   "url": "https://www.themarketsdaily.com/2025/07/05/first-trust-nasdaq-100-technology-sector-index-fund-nasdaqqtec-sets-new-52-week-high-still-a-buy.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2025-07-05T11:45:00.000Z"
+  },
+  {
+   "title": "Wall St recovers with help from Nvidia, Tesla; jobs data awaited",
+   "url": "https://www.marketscreener.com/quote/currency/EURO-US-DOLLAR-EUR-USD-4591/news/Wall-St-recovers-with-help-from-Nvidia-Tesla-jobs-data-awaited-50400977/",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-07-02T16:45:00.000Z"
+  },
+  {
+   "title": "CNBC Daily Open: Rely on the official U. S. jobs report, but consider what ADP is saying",
+   "url": "https://www.nbcdfw.com/news/business/money-report/daily-open-rely-on-the-official-u-s-jobs-report-but-consider-what-adp-is-saying/3878048/",
+   "domain": "nbcdfw.com",
+   "seenAt": "2025-07-04T05:45:00.000Z"
+  },
+  {
+   "title": "CNBC Daily Open: Divergence between official and ADP jobs reports reveals two labor markets",
+   "url": "https://www.nbcchicago.com/news/business/money-report/daily-open-divergence-between-official-and-adp-jobs-reports-reveals-two-labor-markets/3782617/",
+   "domain": "nbcchicago.com",
+   "seenAt": "2025-07-04T09:00:00.000Z"
+  },
+  {
+   "title": "Trump slaps 25% tariffs on Japan and South Korea and Wall Street stumbles",
+   "url": "https://fortune.com/2025/07/07/trump-25-percent-tariffs-japan-south-korea/",
+   "domain": "fortune.com",
+   "seenAt": "2025-07-07T18:15:00.000Z"
+  },
+  {
+   "title": "Asia - Pacific markets mixed after Trump shifts goalposts on tariffs again",
+   "url": "https://www.nbclosangeles.com/news/business/money-report/asia-pacific-markets-set-for-mixed-open-after-trump-moves-tariff-rollout-to-aug-1/3739276/",
+   "domain": "nbclosangeles.com",
+   "seenAt": "2025-07-07T03:15:00.000Z"
+  },
+  {
+   "title": "The stock - market rally is broadening beyond Big Tech. Will consumer stocks bounce back in the second half of the year?",
+   "url": "https://biztoc.com/x/55e0149d1d990720",
+   "domain": "biztoc.com",
+   "seenAt": "2025-07-06T15:00:00.000Z"
+  },
+  {
+   "title": "US stocks kickstart the new trading week lower",
+   "url": "https://www.forexlive.com/stock-market-update/us-stocks-kickstart-the-new-trading-week-lower-20250707/",
+   "domain": "forexlive.com",
+   "seenAt": "2025-07-07T14:45:00.000Z"
+  },
+  {
+   "title": "Sensex flat, Nifty under 25, 500 on weekly expiry; IT, metals outshine",
+   "url": "https://www.moneycontrol.com/news/business/markets/sensex-gains-over-200-points-nifty-holds-above-25-500-on-weekly-expiry-it-metals-outshine-13221443.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2025-07-03T05:15:00.000Z"
+  },
+  {
+   "title": "U. S. stocks set another record and yields leap on signals the U. S. economy is solid | The Asahi Shimbun: Breaking News, Japan News and Analysis",
+   "url": "https://www.asahi.com/ajw/articles/15884007",
+   "domain": "asahi.com",
+   "seenAt": "2025-07-04T03:45:00.000Z"
+  },
+  {
+   "title": "How this AI company CEO has joined the World Richest after stock surges 300%",
+   "url": "https://timesofindia.indiatimes.com/technology/tech-news/how-this-ai-companys-ceo-has-joined-the-worlds-richest-after-stock-surges-300/articleshow/122213067.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2025-07-02T21:00:00.000Z"
+  },
+  {
+   "title": "Why Lucid Group Stock Is Jumping Today | The Motley Fool",
+   "url": "https://www.fool.com/investing/2025/07/03/why-lucid-group-stock-is-jumping-today/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-07-03T19:00:00.000Z"
+  },
+  {
+   "title": "Markets today: U. S. stocks set another record",
+   "url": "https://www.bnnbloomberg.ca/business/2025/07/03/stocks-climb-and-yields-leap-on-signals-the-us-economy-is-solid/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2025-07-03T19:30:00.000Z"
+  },
+  {
+   "title": "Wall St edges down after ADP shock; focus on trade talks, payrolls data",
+   "url": "https://www.marketscreener.com/quote/currency/EURO-US-DOLLAR-EUR-USD-4591/news/Wall-St-edges-down-after-ADP-shock-focus-on-trade-talks-payrolls-data-50400977/",
+   "domain": "marketscreener.com",
+   "seenAt": "2025-07-02T14:45:00.000Z"
+  }
+ ]
+}

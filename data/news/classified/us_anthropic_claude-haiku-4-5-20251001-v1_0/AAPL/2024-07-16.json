@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2024-07-15",
+  "title": "Apple Hits Record High Again After Being Named Top Pick at Morgan Stanley",
+  "source": "finance.yahoo.com",
+  "url": "https://finance.yahoo.com/news/apple-top-pick-morgan-stanley-110127237.html",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:44:05.277Z",
+  "summary": "Apple atteint un record historique après être nommé meilleur choix par Morgan Stanley."
+ },
+ {
+  "date": "2024-07-15",
+  "title": "Apple Stock Hits Record High as Analysts Hike Price Targets on AI Optimism",
+  "source": "investopedia.com",
+  "url": "https://www.investopedia.com/apple-stock-price-record-high-analysts-targets-ai-8678016",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:44:05.277Z",
+  "summary": "Apple atteint un record historique, les analystes relèvent leurs objectifs de prix grâce à l'optimisme sur l'IA."
+ },
+ {
+  "date": "2024-07-15",
+  "title": "Apple Sales in India Surge 33% to $8 Billion as Chinese Market Slows",
+  "source": "bloomberg.com",
+  "url": "https://www.bloomberg.com/news/articles/2024-07-15/apple-sales-in-india-surge-33-to-8-billion-as-chinese-market-slows",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:44:05.277Z",
+  "summary": "Les ventes d'Apple en Inde augmentent de 33% à 8 milliards de dollars tandis que le marché chinois ralentit."
+ },
+ {
+  "date": "2024-07-13",
+  "title": "Aging iPhones Could Propel Apple Stock to New Heights, Says Bank of America",
+  "source": "econotimes.com",
+  "url": "http://www.econotimes.com/Aging-iPhones-Could-Propel-Apple-Stock-to-New-Heights-Says-Bank-of-America-1681565",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:44:05.277Z",
+  "summary": "Les anciens iPhones pourraient propulser le cours d'Apple à de nouveaux sommets, selon Bank of America."
+ },
+ {
+  "date": "2024-07-11",
+  "title": "Apple Bets on AI to Drive Demand for iPhone 16, Targets 10% Growth in Shipments",
+  "source": "bloomberg.com",
+  "url": "https://www.bloomberg.com/news/articles/2024-07-10/apple-bets-on-ai-to-drive-demand-for-iphone-16-targets-10-growth-in-shipments",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:44:05.277Z",
+  "summary": "Apple mise sur l'IA pour stimuler la demande d'iPhone 16, visant une croissance de 10% des expéditions."
+ }
+]

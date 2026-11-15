@@ -1,0 +1,26 @@
+{
+ "value": {
+  "text": "Apple a atteint des records historiques le 15 juillet, soutenu par l'optimisme des analystes sur l'IA et les hausses de cibles de prix. Les ventes en Inde ont bondi de 33% à 8 milliards de dollars.",
+  "sources": [
+   {
+    "title": "Apple Hits Record High Again After Being Named Top Pick at Morgan Stanley",
+    "source": "finance.yahoo.com",
+    "url": "https://finance.yahoo.com/news/apple-top-pick-morgan-stanley-110127237.html",
+    "date": "2024-07-15"
+   },
+   {
+    "title": "Apple Stock Hits Record High as Analysts Hike Price Targets on AI Optimism",
+    "source": "investopedia.com",
+    "url": "https://www.investopedia.com/apple-stock-price-record-high-analysts-targets-ai-8678016",
+    "date": "2024-07-15"
+   },
+   {
+    "title": "Apple Sales in India Surge 33% to $8 Billion as Chinese Market Slows",
+    "source": "bloomberg.com",
+    "url": "https://www.bloomberg.com/news/articles/2024-07-15/apple-sales-in-india-surge-33-to-8-billion-as-chinese-market-slows",
+    "date": "2024-07-15"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2024-07-16."
+ }
+}

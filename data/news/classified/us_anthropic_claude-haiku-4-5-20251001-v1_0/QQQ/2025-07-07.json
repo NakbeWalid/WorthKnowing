@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2025-07-07",
+  "title": "Wall Street Live: S & P 500, Dow Jones, Nasdaq drop on tariffs worries; Tesla slumps 8%, Capgemini down 5%",
+  "source": "livemint.com",
+  "url": "https://www.livemint.com/market/stock-market-news/wall-street-live-s-p-500-dow-jones-nasdaq-drop-on-tariffs-worries-tesla-slumps-8-capgemini-down-5-11751895505674.html",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:47:33.639Z",
+  "summary": "S&P 500, Dow Jones et Nasdaq baissent sur les craintes tarifaires; Tesla chute de 8%."
+ },
+ {
+  "date": "2025-07-05",
+  "title": "US Market Outlook: Dow Jones, S & P 500 and NASDAQ Composite surge, dollar subdued.",
+  "source": "thehindubusinessline.com",
+  "url": "https://www.thehindubusinessline.com/portfolio/technical-analysis/us-market-outlook-dow-jones-sp-500-and-nasdaq-composite-surge-dollar-subdued/article69776007.ece",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:47:33.639Z",
+  "summary": "Le Dow Jones, S&P 500 et Nasdaq Composite enregistrent des gains importants."
+ },
+ {
+  "date": "2025-07-04",
+  "title": "Stock Market Today: Stocks soar on bullish jobs report",
+  "source": "finance.yahoo.com",
+  "url": "https://finance.yahoo.com/news/stock-market-today-stocks-jump-161248598.html",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:47:33.639Z",
+  "summary": "Les actions montent suite à un rapport d'emploi positif."
+ },
+ {
+  "date": "2025-07-04",
+  "title": "S & P 500, Nasdaq Set More Record Highs; ServiceNow, Uber Hit Entries",
+  "source": "investors.com",
+  "url": "https://www.investors.com:443/market-trend/the-big-picture/sp500-nasdaq-record-highs-servicenow-now-uber-stock/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:47:33.639Z",
+  "summary": "S&P 500 et Nasdaq établissent de nouveaux records; ServiceNow et Uber atteignent des points d'entrée."
+ },
+ {
+  "date": "2025-07-03",
+  "title": "Stock Market Today: Dow jumps; S & P 500 and Nasdaq slip",
+  "source": "finance.yahoo.com",
+  "url": "https://finance.yahoo.com/news/stock-market-today-dow-jumps-161123013.html",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:47:33.639Z",
+  "summary": "Le Dow progresse tandis que le S&P 500 et le Nasdaq reculent."
+ }
+]

@@ -1,0 +1,26 @@
+{
+ "value": {
+  "text": "Manulife a publié ses résultats du premier trimestre 2022 avec un bénéfice net de 3,0 milliards et des ventes APE de 1,6 milliard. Le titre a chuté de près de 10%, enregistrant sa plus forte baisse depuis mars 2020.",
+  "sources": [
+   {
+    "title": "Manulife Profit Lags Estimates as Asia Lockdowns Hurt Sales",
+    "source": "bnnbloomberg.ca",
+    "url": "https://www.bnnbloomberg.ca/manulife-profit-lags-estimates-as-asia-lockdowns-hurt-sales-1.1764719",
+    "date": "2022-05-12"
+   },
+   {
+    "title": "Manulife Financial Down Nearly 10%, on Track for Largest Percent Decrease Since March 2020 Data Talk",
+    "source": "morningstar.com",
+    "url": "https://www.morningstar.com/news/dow-jones/2022051212923/manulife-financial-down-nearly-10-on-track-for-largest-percent-decrease-since-march-2020-data-talk",
+    "date": "2022-05-12"
+   },
+   {
+    "title": "Manulife reports 1Q22 net income of $3. 0 billion, core earnings of $1. 6 billion, APE sales of $1. 6 billion, and Global Wealth and Asset Management net inflows of $6. 9 billion",
+    "source": "prnewswire.com",
+    "url": "https://www.prnewswire.com:443/news-releases/manulife-reports-1q22-net-income-of-3-0-billion-core-earnings-of-1-6-billion-ape-sales-of-1-6-billion-and-global-wealth-and-asset-management-net-inflows-of-6-9-billion-301545451.html",
+    "date": "2022-05-11"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2022-05-12."
+ }
+}

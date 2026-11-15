@@ -1,0 +1,381 @@
+{
+ "ticker": "BTC-USD",
+ "query": "Bitcoin",
+ "from": "2022-06-06T20:00:00.000Z",
+ "to": "2022-06-13T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T02:54:33.883Z",
+ "articles": [
+  {
+   "title": "What Is a Wrapped Bitcoin ( WBTC)?",
+   "url": "https://www.howtogeek.com/808855/what-is-a-wrapped-bitcoin-wbtc/",
+   "domain": "howtogeek.com",
+   "seenAt": "2022-06-09T19:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin Adoption Accelerates As It Becomes Multilingual In Smaller Communities",
+   "url": "https://www.forbes.com/sites/rufaskamau/2022/06/06/bitcoin-adoption-accelerates-as-it-becomes-multilingual-in-smaller-communities/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-06T20:30:00.000Z"
+  },
+  {
+   "title": "The Seven Pillars Supporting The Bitcoin Revolution",
+   "url": "https://www.zerohedge.com/crypto/seven-pillars-supporting-bitcoin-revolution",
+   "domain": "zerohedge.com",
+   "seenAt": "2022-06-11T21:15:00.000Z"
+  },
+  {
+   "title": "Cybersecurity firm supports Bitcoin mission, converts balance sheet to BTC",
+   "url": "https://cointelegraph.com/news/cybersecurity-firm-supports-bitcoin-mission-converts-balance-sheet-to-btc",
+   "domain": "cointelegraph.com",
+   "seenAt": "2022-06-07T17:00:00.000Z"
+  },
+  {
+   "title": "Popular BTM Operator: Bitcoin of America Continues Rapid Expansion in 2022",
+   "url": "https://markets.businessinsider.com/news/stocks/popular-btm-operator-bitcoin-of-america-continues-rapid-expansion-in-2022-1031520817",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2022-06-09T23:00:00.000Z"
+  },
+  {
+   "title": "Why I Am Buying Bitcoin in June | The Motley Fool",
+   "url": "https://www.fool.com/investing/2022/06/08/why-i-am-buying-bitcoin-in-june/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-06-08T12:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin Bull Says BTC Could Hit $250K in the Future Should You Buy While Retirement Planning?",
+   "url": "https://www.gobankingrates.com/investing/crypto/bitcoin-bull-says-btc-could-hit-250k-future-should-you-buy-retirement-planning/",
+   "domain": "gobankingrates.com",
+   "seenAt": "2022-06-09T23:15:00.000Z"
+  },
+  {
+   "title": "New Bitcoin ATM Opens In Schnecksville, PA For Buying And Se...",
+   "url": "https://menafn.com/1104351906/New-Bitcoin-ATM-Opens-In-Schnecksville-PA-For-Buying-And-Selling-Cryptocurrency",
+   "domain": "menafn.com",
+   "seenAt": "2022-06-09T19:45:00.000Z"
+  },
+  {
+   "title": "The Mathematical Formula Behind Bitcoin Bullishness: Crypto CEO",
+   "url": "https://www.businessinsider.com/bitcoin-investing-crypto-dorsey-stock-flow-bullish-jack-mallers-strike-2022-6",
+   "domain": "businessinsider.com",
+   "seenAt": "2022-06-10T16:15:00.000Z"
+  },
+  {
+   "title": "Renowned technical analyst affirms Bitcoin price is about to rally",
+   "url": "https://www.fxstreet.com/cryptocurrencies/news/renowned-technical-analyst-affirms-bitcoin-price-is-about-to-rally-202206091108",
+   "domain": "fxstreet.com",
+   "seenAt": "2022-06-09T18:45:00.000Z"
+  },
+  {
+   "title": "Amid crypto bear market, institutional investors scoop up Bitcoin: CoinShares",
+   "url": "https://cointelegraph.com/news/amid-crypto-bear-market-institutional-investors-scoop-up-bitcoin-coinshares",
+   "domain": "cointelegraph.com",
+   "seenAt": "2022-06-06T22:30:00.000Z"
+  },
+  {
+   "title": "New study reveals Bitcoin decentralization and anonymity failures",
+   "url": "https://www.tweaktown.com/news/86777/new-study-reveals-bitcoin-decentralization-and-anonymity-failures/",
+   "domain": "tweaktown.com",
+   "seenAt": "2022-06-10T15:00:00.000Z"
+  },
+  {
+   "title": "Stock Market | FinancialContent Business Page",
+   "url": "https://markets.financialcontent.com/stocks/article/bizwire-2022-6-8-scrypt-enables-applications-built-on-ethereum-to-convert-its-code-for-bitcoin-sv",
+   "domain": "markets.financialcontent.com",
+   "seenAt": "2022-06-08T15:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin Prices Pop. Cryptos Still Face Headwinds Amid Major Short Positions.",
+   "url": "https://www.marketwatch.com/articles/bitcoin-crypto-market-today-51654683327",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-06-08T11:00:00.000Z"
+  },
+  {
+   "title": "Mawson Infrastructure Group Inc. Announces Bitcoin Miner Shipment, Deployment and Operational Update",
+   "url": "https://www.businesswire.com/news/home/20220609005599/en/Mawson-Infrastructure-Group-Inc.-Announces-Bitcoin-Miner-Shipment-Deployment-and-Operational-Update",
+   "domain": "businesswire.com",
+   "seenAt": "2022-06-09T15:30:00.000Z"
+  },
+  {
+   "title": "Getting paid in bitcoin: What you need to know",
+   "url": "https://www.moneysense.ca/save/investing/crypto/getting-paid-in-bitcoin-what-you-need-to-know/",
+   "domain": "moneysense.ca",
+   "seenAt": "2022-06-08T22:30:00.000Z"
+  },
+  {
+   "title": "Whales buy Bitcoin en masse – Largest BTC holdings in over a year",
+   "url": "https://article.wn.com/view/2022/06/07/whales_buy_bitcoin_en_masse_8211_largest_btc_holdings_in_ove/",
+   "domain": "article.wn.com",
+   "seenAt": "2022-06-07T04:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin Fear and Greed Index Signals a Buying Opportunity",
+   "url": "https://www.fool.com/investing/2022/06/09/bitcoin-fear-and-greed-index-signals-buying-opport/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-06-09T13:30:00.000Z"
+  },
+  {
+   "title": "3iQ Launches Australia Third Bitcoin ETF With A Unique Structure",
+   "url": "https://bitcoinmagazine.com/business/3iq-launches-third-bitcoin-etf-in-australia",
+   "domain": "bitcoinmagazine.com",
+   "seenAt": "2022-06-08T14:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin passes another crucial test",
+   "url": "https://www.biznews.com/sponsored/2022/06/07/bitcoin-passes-another-crucial-test%EF%BF%BC",
+   "domain": "biznews.com",
+   "seenAt": "2022-06-07T08:15:00.000Z"
+  },
+  {
+   "title": "EXCLUSIVE: New York Bitcoin Bill Is Illogical, Plays Politics With Bitcoin Mining, Marathon Digital CEO Says",
+   "url": "https://markets.businessinsider.com/news/stocks/exclusive-new-york-bitcoin-bill-is-illogical-plays-politics-with-bitcoin-mining-marathon-digital-ceo-says-1031514735",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2022-06-07T22:15:00.000Z"
+  },
+  {
+   "title": "Bitcade: CoinGeek pops - up with another amazing Bitcoin Arcade in Warsaw, Poland",
+   "url": "https://www.prnewswire.com:443/news-releases/bitcade-coingeek-pops-up-with-another-amazing-bitcoin-arcade-in-warsaw-poland-301562796.html",
+   "domain": "prnewswire.com",
+   "seenAt": "2022-06-07T12:15:00.000Z"
+  },
+  {
+   "title": "1 Reason Bitcoin Still Looks Overvalued",
+   "url": "https://www.fool.com/investing/2022/06/09/1-reason-bitcoin-still-looks-overvalued/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-06-09T19:30:00.000Z"
+  },
+  {
+   "title": "Treasury Secretary Janet Yellen Issues Serious Crypto Warning As Sudden Price Crash Hits Bitcoin, Ethereum, BNB, Solana, Cardano And XRP",
+   "url": "https://www.forbes.com/sites/billybambrough/2022/06/11/treasury-secretary-janet-yellen-issues-serious-crypto-warning-as-sudden-price-crash-hits-bitcoin-ethereum-bnb-solana-cardano-and-xrp/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-11T12:45:00.000Z"
+  },
+  {
+   "title": "Will Big Tech or Bitcoin Be Regulated?",
+   "url": "https://www.fool.com/investing/2022/06/10/will-big-tech-or-bitcoin-be-regulated/",
+   "domain": "fool.com",
+   "seenAt": "2022-06-10T13:30:00.000Z"
+  },
+  {
+   "title": "Is Bitcoin still worth buying to diversify your ASX share portfolio?",
+   "url": "https://www.fool.com.au/2022/06/10/is-bitcoin-still-worth-buying-to-diversify-your-asx-share-portfolio/",
+   "domain": "fool.com.au",
+   "seenAt": "2022-06-10T01:30:00.000Z"
+  },
+  {
+   "title": "Everbowl Accepts Bitcoin Payment For Franchise Fees",
+   "url": "https://bitcoinmagazine.com/business/food-chain-everbowl-accepts-franchise-fee-payment-in-bitcoin",
+   "domain": "bitcoinmagazine.com",
+   "seenAt": "2022-06-09T14:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin Needs Better Privacy For Fungibility - Bitcoin Magazine",
+   "url": "https://bitcoinmagazine.com/technical/bitcoin-needs-better-privacy-for-fungibility",
+   "domain": "bitcoinmagazine.com",
+   "seenAt": "2022-06-11T01:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin price falls below $30, 000 | Check latest cryptocurrency rates",
+   "url": "https://www.indiatoday.in/business/story/bitcoin-price-falls-below-30-000-check-latest-cryptocurrency-rates-1959364-2022-06-07",
+   "domain": "indiatoday.in",
+   "seenAt": "2022-06-07T08:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin and banking differing energy narratives are a matter of perspective",
+   "url": "https://cointelegraph.com/news/bitcoin-and-banking-s-differing-energy-narratives-are-a-matter-of-perspective",
+   "domain": "cointelegraph.com",
+   "seenAt": "2022-06-11T16:15:00.000Z"
+  },
+  {
+   "title": "Why Block Investors Should Look at the Company Squarely",
+   "url": "https://www.fool.com/investing/2022/06/09/why-block-investors-look-company-squarely/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-06-09T13:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin - thematic ETF lists on Italian stock exchange Borsa Italiana",
+   "url": "https://cointelegraph.com/news/bitcoin-thematic-etf-lists-on-italian-stock-exchange-borsa-italiana",
+   "domain": "cointelegraph.com",
+   "seenAt": "2022-06-07T12:00:00.000Z"
+  },
+  {
+   "title": "Has Bitcoin price bottomed? Technical indicator shows buy signal",
+   "url": "https://www.fxstreet.com/cryptocurrencies/news/has-bitcoin-price-bottomed-technical-indicator-shows-buy-signal-202206062133",
+   "domain": "fxstreet.com",
+   "seenAt": "2022-06-06T22:30:00.000Z"
+  },
+  {
+   "title": "Crypto Now Primed For A Fed Earthquake After Huge $1 Trillion Price Crash Tanked Bitcoin, Ethereum, BNB, Solana, Cardano, XRP, Tron And Avalanche",
+   "url": "https://www.forbes.com/sites/billybambrough/2022/06/09/crypto-now-primed-for-a-fed-earthquake-after-huge-1-trillion-price-crash-tanked-bitcoin-ethereum-bnb-solana-cardano-xrp-tron-and-avalanche/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-09T13:15:00.000Z"
+  },
+  {
+   "title": "Grayscale Taps Top Obama Lawyer as Crypto Firms Push for Bitcoin ETF",
+   "url": "https://www.marketwatch.com/articles/grayscale-lawsuit-sec-bitcoin-etf-51654884648",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-06-10T18:30:00.000Z"
+  },
+  {
+   "title": "Fidelity to allow account holders to invest retirement in bitcoin",
+   "url": "https://www.washingtonexaminer.com/policy/economy/fidelity-to-allow-account-holders-to-invest-retirement-in-bitcoin",
+   "domain": "washingtonexaminer.com",
+   "seenAt": "2022-06-07T14:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin Finishes 9 - Week Downtrend. Should You Buy?",
+   "url": "https://www.fool.com/the-ascent/cryptocurrency/articles/bitcoin-finishes-9-week-downtrend-should-you-buy/",
+   "domain": "fool.com",
+   "seenAt": "2022-06-07T05:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin Funds Rake In New Money as Altcoin Funds Suffer",
+   "url": "https://news.yahoo.com/bitcoin-funds-rake-money-altcoin-195208377.html",
+   "domain": "news.yahoo.com",
+   "seenAt": "2022-06-07T00:30:00.000Z"
+  },
+  {
+   "title": "Mawson piles into Tasmanian Bitcoin mining play TDI",
+   "url": "https://www.afr.com/street-talk/mawson-piles-into-tasmanian-bitcoin-mining-play-tdi-20220607-p5arsp",
+   "domain": "afr.com",
+   "seenAt": "2022-06-08T00:15:00.000Z"
+  },
+  {
+   "title": "Digital assets still make a lot of sense, says Codex co - founder",
+   "url": "https://cointelegraph.com/news/digital-assets-still-make-a-lot-of-sense-says-codex-co-founder",
+   "domain": "cointelegraph.com",
+   "seenAt": "2022-06-08T21:30:00.000Z"
+  },
+  {
+   "title": "Here Why Bitcoin Is a No - Brainer Investment You Need in Your Portfolio",
+   "url": "https://www.fool.com/investing/2022/06/07/why-bitcoin-is-a-no-brainer-investment-you-need/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-06-07T16:00:00.000Z"
+  },
+  {
+   "title": "Cryptocurrency Market Showing Signs Of Recovery Post Freefall",
+   "url": "https://www.ndtv.com/business/cryptocurrency-market-showing-signs-of-recovery-post-freefall-3044757",
+   "domain": "ndtv.com",
+   "seenAt": "2022-06-07T10:45:00.000Z"
+  },
+  {
+   "title": "Michael Saylor Expects Bitcoin To Hit New Highs After The Cr...",
+   "url": "https://menafn.com/1104350831/Michael-Saylor-Expects-Bitcoin-To-Hit-New-Highs-After-The-Crash",
+   "domain": "menafn.com",
+   "seenAt": "2022-06-09T18:15:00.000Z"
+  },
+  {
+   "title": "Ethereum Solidity Developers can save Gas Fees with new transpiler tool",
+   "url": "https://www.prnewswire.com/news-releases/ethereum-solidity-developers-can-save-gas-fees-with-new-transpiler-tool-301561839.html",
+   "domain": "prnewswire.com",
+   "seenAt": "2022-06-07T09:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin ( BTC) Tanks 7% Under $30, 000, Risks of Further Correction Still Alive",
+   "url": "https://www.coinspeaker.com/bitcoin-btc-tanks-under-30000/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2022-06-07T15:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin Price Predictions: Can Jay - Z and Jack Dorsey Bitcoin Academy Lift BTC?",
+   "url": "https://investorplace.com/2022/06/bitcoin-price-predictions-can-jay-z-and-jack-dorseys-bitcoin-academy-lift-btc/",
+   "domain": "investorplace.com",
+   "seenAt": "2022-06-11T00:45:00.000Z"
+  },
+  {
+   "title": "JAY - Z & Jack Dorsey Launch Bitcoin Program For Marcy Residents",
+   "url": "https://hiphopdx.com/news/id.70887/title.jay-z-jack-dorsey-launch-bitcoin-academy-marcy-residents",
+   "domain": "hiphopdx.com",
+   "seenAt": "2022-06-09T17:00:00.000Z"
+  },
+  {
+   "title": "BSV Global Blockchain Convention: Ethereum Solidity Developers can save Gas Fees with new transpiler tool",
+   "url": "https://www.finanznachrichten.de/nachrichten-2022-06/56244245-bsv-global-blockchain-convention-ethereum-solidity-developers-can-save-gas-fees-with-new-transpiler-tool-008.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2022-06-07T18:45:00.000Z"
+  },
+  {
+   "title": "El Salvador Bitcoin Bretton Woods Conference",
+   "url": "https://bitcoinmagazine.com/markets/el-salvadors-bitcoin-bretton-woods-conference",
+   "domain": "bitcoinmagazine.com",
+   "seenAt": "2022-06-11T17:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin Policy Institute Shaping Political Discourse",
+   "url": "https://bitcoinmagazine.com/markets/bitcoin-policy-institute-shaping-political-discourse",
+   "domain": "bitcoinmagazine.com",
+   "seenAt": "2022-06-11T08:30:00.000Z"
+  },
+  {
+   "title": "Why South Africans are optimistic about Bitcoin",
+   "url": "https://www.moneyweb.co.za/moneyweb-crypto/bitcoin/why-south-africans-are-optimistic-about-bitcoin/",
+   "domain": "moneyweb.co.za",
+   "seenAt": "2022-06-08T09:15:00.000Z"
+  },
+  {
+   "title": "Achieva Credit Union launches bitcoin trading in its mobile app",
+   "url": "https://www.americanbanker.com/news/achieva-credit-union-launches-bitcoin-trading-in-its-mobile-app",
+   "domain": "americanbanker.com",
+   "seenAt": "2022-06-10T19:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin Is Back, Expect A Massive Q4: Prediction",
+   "url": "https://www.valuewalk.com/bitcoin-is-back-expect-a-massive-q4-prediction/",
+   "domain": "valuewalk.com",
+   "seenAt": "2022-06-07T06:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin price falls, other cryptocurrencies in red",
+   "url": "https://www.indiatoday.in/business/story/bitcoin-price-falls-other-cryptocurrencies-in-red-1960247-2022-06-09",
+   "domain": "indiatoday.in",
+   "seenAt": "2022-06-09T08:30:00.000Z"
+  },
+  {
+   "title": "Jay - Z and Jack Dorsey Launch Bitcoin Academy in Brooklyn",
+   "url": "https://www.coinspeaker.com/jay-z-dorsey-bitcoin-academy/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2022-06-10T11:30:00.000Z"
+  },
+  {
+   "title": "Examine XBTF for Bitcoin Bounce - Back",
+   "url": "https://www.etftrends.com/crypto-channel/examine-xbtf-for-bitcoin-bounce-back/",
+   "domain": "etftrends.com",
+   "seenAt": "2022-06-07T18:45:00.000Z"
+  },
+  {
+   "title": "Jay - Z and Jack Dorsey criticized for launching Bitcoin Academy in rapper childhood home",
+   "url": "https://www.theverge.com/2022/6/10/23162314/jay-z-jack-dorsey-bitcoin-academy-brooklyn-free-classes",
+   "domain": "theverge.com",
+   "seenAt": "2022-06-10T10:15:00.000Z"
+  },
+  {
+   "title": "SAI. TECH CEO Arthur Lee Selected Into The Forbes 30 Under 30...",
+   "url": "https://menafn.com/1104346471/SAITECH-CEO-Arthur-Lee-Selected-Into-The-Forbes-30-Under-30-Asia-Of-2022",
+   "domain": "menafn.com",
+   "seenAt": "2022-06-09T02:45:00.000Z"
+  },
+  {
+   "title": "Crypto Price Prediction: Here When Bitcoin Could See A Significant Bounce And Why Ethereum Could Be In Trouble",
+   "url": "https://www.forbes.com/sites/billybambrough/2022/06/06/crypto-price-prediction-heres-when-bitcoin-could-see-a-significant-bounce-and-why-ethereum-could-be-in-trouble/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-06T23:45:00.000Z"
+  },
+  {
+   "title": "The Satoshi Action Fund to be Introduced at Miners Summit",
+   "url": "https://uspolitics.einnews.com/pr_news/575713578/the-satoshi-action-fund-to-be-introduced-at-miners-summit",
+   "domain": "uspolitics.einnews.com",
+   "seenAt": "2022-06-08T14:00:00.000Z"
+  },
+  {
+   "title": "Cryptoverse: The early birds betting bitcoin bottoming out",
+   "url": "https://news.yahoo.com/cryptoverse-early-birds-betting-bitcoins-051710037.html",
+   "domain": "news.yahoo.com",
+   "seenAt": "2022-06-07T06:30:00.000Z"
+  },
+  {
+   "title": "Why Bitcoin and Other Cryptos Are Finally Back On the Rise Today",
+   "url": "https://www.fool.com/investing/2022/06/06/why-bitcoin-and-other-cryptos-are-finally-back-on/",
+   "domain": "fool.com",
+   "seenAt": "2022-06-06T20:00:00.000Z"
+  }
+ ]
+}

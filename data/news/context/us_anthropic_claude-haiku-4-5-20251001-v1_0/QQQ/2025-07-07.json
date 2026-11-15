@@ -1,0 +1,38 @@
+{
+ "value": {
+  "text": "Le Nasdaq a connu une volatilité mixte la semaine précédente : hausse le 4 juillet suite à un rapport d'emploi positif, puis baisse le 3 juillet, avant de rebondir le 5 juillet. Le 7 juillet, les préoccupations tarifaires ont provoqué une chute du Nasdaq.",
+  "sources": [
+   {
+    "title": "US Market Outlook: Dow Jones, S & P 500 and NASDAQ Composite surge, dollar subdued.",
+    "source": "thehindubusinessline.com",
+    "url": "https://www.thehindubusinessline.com/portfolio/technical-analysis/us-market-outlook-dow-jones-sp-500-and-nasdaq-composite-surge-dollar-subdued/article69776007.ece",
+    "date": "2025-07-05"
+   },
+   {
+    "title": "Stock Market Today: Stocks soar on bullish jobs report",
+    "source": "finance.yahoo.com",
+    "url": "https://finance.yahoo.com/news/stock-market-today-stocks-jump-161248598.html",
+    "date": "2025-07-04"
+   },
+   {
+    "title": "S & P 500, Nasdaq Set More Record Highs; ServiceNow, Uber Hit Entries",
+    "source": "investors.com",
+    "url": "https://www.investors.com:443/market-trend/the-big-picture/sp500-nasdaq-record-highs-servicenow-now-uber-stock/",
+    "date": "2025-07-04"
+   },
+   {
+    "title": "Stock Market Today: Dow jumps; S & P 500 and Nasdaq slip",
+    "source": "finance.yahoo.com",
+    "url": "https://finance.yahoo.com/news/stock-market-today-dow-jumps-161123013.html",
+    "date": "2025-07-03"
+   },
+   {
+    "title": "Wall Street Live: S & P 500, Dow Jones, Nasdaq drop on tariffs worries; Tesla slumps 8%, Capgemini down 5%",
+    "source": "livemint.com",
+    "url": "https://www.livemint.com/market/stock-market-news/wall-street-live-s-p-500-dow-jones-nasdaq-drop-on-tariffs-worries-tesla-slumps-8-capgemini-down-5-11751895505674.html",
+    "date": "2025-07-07"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2025-07-07."
+ }
+}

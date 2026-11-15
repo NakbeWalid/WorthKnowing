@@ -1,0 +1,32 @@
+{
+ "value": {
+  "text": "Les médias rapportaient une baisse soudaine du Bitcoin avec un avertissement de la secrétaire au Trésor Janet Yellen [1]. Parallèlement, des analystes techniques prédisaient un rebond [2], tandis que les baleines et investisseurs institutionnels accumulaient du BTC [4][5].",
+  "sources": [
+   {
+    "title": "Treasury Secretary Janet Yellen Issues Serious Crypto Warning As Sudden Price Crash Hits Bitcoin, Ethereum, BNB, Solana, Cardano And XRP",
+    "source": "forbes.com",
+    "url": "https://www.forbes.com/sites/billybambrough/2022/06/11/treasury-secretary-janet-yellen-issues-serious-crypto-warning-as-sudden-price-crash-hits-bitcoin-ethereum-bnb-solana-cardano-and-xrp/",
+    "date": "2022-06-11"
+   },
+   {
+    "title": "Renowned technical analyst affirms Bitcoin price is about to rally",
+    "source": "fxstreet.com",
+    "url": "https://www.fxstreet.com/cryptocurrencies/news/renowned-technical-analyst-affirms-bitcoin-price-is-about-to-rally-202206091108",
+    "date": "2022-06-09"
+   },
+   {
+    "title": "Whales buy Bitcoin en masse – Largest BTC holdings in over a year",
+    "source": "article.wn.com",
+    "url": "https://article.wn.com/view/2022/06/07/whales_buy_bitcoin_en_masse_8211_largest_btc_holdings_in_ove/",
+    "date": "2022-06-07"
+   },
+   {
+    "title": "Amid crypto bear market, institutional investors scoop up Bitcoin: CoinShares",
+    "source": "cointelegraph.com",
+    "url": "https://cointelegraph.com/news/amid-crypto-bear-market-institutional-investors-scoop-up-bitcoin-coinshares",
+    "date": "2022-06-06"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2022-06-13."
+ }
+}

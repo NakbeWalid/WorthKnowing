@@ -1,0 +1,429 @@
+{
+ "ticker": "XOM",
+ "query": "(ExxonMobil OR \"Exxon Mobil\")",
+ "from": "2026-03-23T20:00:00.000Z",
+ "to": "2026-03-30T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T02:34:38.527Z",
+ "articles": [
+  {
+   "title": "ExxonMobil, QatarEnergy Joint Venture Begins First LNG Production - Exxon Mobil ( NYSE: XOM)",
+   "url": "https://www.benzinga.com/markets/large-cap/26/03/51550042/exxonmobil-qatarenergy-joint-venture-begins-first-lng-production",
+   "domain": "benzinga.com",
+   "seenAt": "2026-03-30T19:30:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil Corporation $XOM Shares Acquired by Signal Advisors Wealth LLC",
+   "url": "https://www.themarketsdaily.com/2026/03/28/exxon-mobil-corporation-xom-shares-acquired-by-signal-advisors-wealth-llc.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-03-28T10:30:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil ( NYSE: XOM) Price Target Raised to $172. 00 at Morgan Stanley",
+   "url": "https://www.dailypolitical.com/2026/03/28/exxon-mobil-nysexom-price-target-raised-to-172-00-at-morgan-stanley.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-03-28T10:30:00.000Z"
+  },
+  {
+   "title": "Norden Group LLC Has $4. 16 Million Stock Position in Exxon Mobil Corporation $XOM",
+   "url": "https://www.dailypolitical.com/2026/03/28/norden-group-llc-has-4-16-million-stock-position-in-exxon-mobil-corporation-xom.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-03-28T11:15:00.000Z"
+  },
+  {
+   "title": "Stokes Capital Advisors LLC Purchases Shares of 17, 308 Exxon Mobil Corporation $XOM",
+   "url": "https://www.tickerreport.com/banking-finance/13393493/stokes-capital-advisors-llc-purchases-shares-of-17308-exxon-mobil-corporation-xom.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-03-28T09:45:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil Target of Unusually Large Options Trading ( NYSE: XOM)",
+   "url": "https://www.themarketsdaily.com/2026/03/28/exxon-mobil-target-of-unusually-large-options-trading-nysexom.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-03-28T19:00:00.000Z"
+  },
+  {
+   "title": "Kathmere Capital Management LLC Acquires 3, 577 Shares of Exxon Mobil Corporation $XOM",
+   "url": "https://www.dailypolitical.com/2026/03/29/kathmere-capital-management-llc-acquires-3577-shares-of-exxon-mobil-corporation-xom.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-03-29T09:45:00.000Z"
+  },
+  {
+   "title": "Kathmere Capital Management LLC Has $3. 98 Million Stock Position in Exxon Mobil Corporation $XOM",
+   "url": "https://www.tickerreport.com/banking-finance/13394260/kathmere-capital-management-llc-has-3-98-million-stock-position-in-exxon-mobil-corporation-xom.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-03-29T09:45:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil ( NYSE: XOM) Stock Price Expected to Rise, Morgan Stanley Analyst Says",
+   "url": "https://www.themarketsdaily.com/2026/03/27/exxon-mobil-nysexom-stock-price-expected-to-rise-morgan-stanley-analyst-says.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-03-27T16:15:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil ( NYSE: XOM) Trading Down 1. 4% – Should You Sell?",
+   "url": "https://www.themarketsdaily.com/2026/03/27/exxon-mobil-nysexom-trading-down-1-4-should-you-sell.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-03-27T21:00:00.000Z"
+  },
+  {
+   "title": "Salem Investment Counselors Inc. Purchases 3, 397 Shares of Exxon Mobil Corporation $XOM",
+   "url": "https://www.dailypolitical.com/2026/03/26/salem-investment-counselors-inc-purchases-3397-shares-of-exxon-mobil-corporation-xom.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-03-26T10:30:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil ( NYSE: XOM) Reaches New 12 - Month High Following Analyst Upgrade",
+   "url": "https://www.dailypolitical.com/2026/03/30/exxon-mobil-nysexom-reaches-new-12-month-high-following-analyst-upgrade.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-03-30T14:30:00.000Z"
+  },
+  {
+   "title": "Exxon Mobil Corporation $XOM Shares Purchased by SG Americas Securities LLC",
+   "url": "https://www.dailypolitical.com/2026/03/25/exxon-mobil-corporation-xom-shares-purchased-by-sg-americas-securities-llc.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-03-25T11:15:00.000Z"
+  },
+  {
+   "title": "Salem Investment Counselors Inc. Boosts Stock Holdings in Exxon Mobil Corporation $XOM",
+   "url": "https://www.tickerreport.com/banking-finance/13391433/salem-investment-counselors-inc-boosts-stock-holdings-in-exxon-mobil-corporation-xom.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-03-26T10:30:00.000Z"
+  },
+  {
+   "title": "SBM Offshore Gets ExxonMobil Guyana FEED Contracts For Longtail FPSO Development",
+   "url": "https://www.finanznachrichten.de/nachrichten-2026-03/68018645-sbm-offshore-gets-exxonmobil-guyana-feed-contracts-for-longtail-fpso-development-020.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2026-03-24T08:15:00.000Z"
+  },
+  {
+   "title": "World Investment Advisors Buys 60, 332 Shares of Exxon Mobil Corporation $XOM",
+   "url": "https://www.themarketsdaily.com/2026/03/25/world-investment-advisors-buys-60332-shares-of-exxon-mobil-corporation-xom.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-03-25T13:15:00.000Z"
+  },
+  {
+   "title": "Goldman Sachs Resets Price Target on energy giant",
+   "url": "https://finance.yahoo.com/sectors/energy/articles/goldman-sachs-resets-price-target-213300823.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-03-26T09:45:00.000Z"
+  },
+  {
+   "title": "Guyana: SBM Offshore awarded FEED contracts for the Longtail project in Guyana",
+   "url": "https://www.energy-pedia.com/news/guyana/sbm-offshore-awarded-feed-contracts-for-the-longtail-project-in-guyana-203292",
+   "domain": "energy-pedia.com",
+   "seenAt": "2026-03-24T17:30:00.000Z"
+  },
+  {
+   "title": "Bernstein Analyst Sees Right Tail Risk, Raises Exxon Mobil ( XOM) Price Target",
+   "url": "https://finance.yahoo.com/sectors/energy/articles/bernstein-analyst-sees-tail-risk-174723701.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-03-28T00:45:00.000Z"
+  },
+  {
+   "title": "FinancialContent - Energy as the New Anchor: Exxon Mobil Surges as Investors Seek Refuge in Bits to Atom Rotation",
+   "url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-3-24-energy-as-the-new-anchor-exxon-mobil-surges-as-investors-seek-refuge-in-bits-to-atoms-rotation",
+   "domain": "markets.financialcontent.com",
+   "seenAt": "2026-03-24T16:30:00.000Z"
+  },
+  {
+   "title": "SBM OFFSHORE - SBM Offshore awarded FEED contracts for...",
+   "url": "https://www.euro-petrole.com/sbm-offshore-awarded-feed-contracts-for-the-longtail-project-in-guyana-n-i-29874",
+   "domain": "euro-petrole.com",
+   "seenAt": "2026-03-24T13:30:00.000Z"
+  },
+  {
+   "title": "Reformer Integrated Fuel Cells Market ( 2026)",
+   "url": "https://www.openpr.com/news/4437974/reformer-integrated-fuel-cells-market-2026-hydrogen-power",
+   "domain": "openpr.com",
+   "seenAt": "2026-03-24T12:00:00.000Z"
+  },
+  {
+   "title": "Proton Exchange Membrane Fuel Cells ( PEMFC) Market to Witness",
+   "url": "https://www.openpr.com/news/4438277/proton-exchange-membrane-fuel-cells-pemfc-market-to-witness",
+   "domain": "openpr.com",
+   "seenAt": "2026-03-24T14:00:00.000Z"
+  },
+  {
+   "title": "SBM Offshore awarded FEED contracts for the Longtail project in Guyana",
+   "url": "https://www.manilatimes.net/2026/03/24/tmt-newswire/globenewswire/sbm-offshore-awarded-feed-contracts-for-the-longtail-project-in-guyana/2306083",
+   "domain": "manilatimes.net",
+   "seenAt": "2026-03-24T08:00:00.000Z"
+  },
+  {
+   "title": "Oil Stocks To Add to Your Watchlist – March 30th",
+   "url": "https://www.dailypolitical.com/2026/03/30/oil-stocks-to-add-to-your-watchlist-march-30th.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-03-30T18:45:00.000Z"
+  },
+  {
+   "title": "Free Parkinson screening being offered Friday",
+   "url": "https://www.wafb.com/2026/03/26/free-parkinsons-screening-being-offered-friday/",
+   "domain": "wafb.com",
+   "seenAt": "2026-03-26T13:00:00.000Z"
+  },
+  {
+   "title": "David Rivera, former congressman accused of lobbying for Venezuela Maduro, faces judge in Miami amid trial - WSVN 7News | Miami News, Weather, Sports",
+   "url": "https://wsvn.com/news/politics/david-rivera-former-congressman-accused-of-lobbying-for-venezuelas-maduro-faces-judge-in-miami-amid-trial/",
+   "domain": "wsvn.com",
+   "seenAt": "2026-03-25T21:00:00.000Z"
+  },
+  {
+   "title": "Promising Oil Stocks To Watch Today – March 25th",
+   "url": "https://www.tickerreport.com/banking-finance/13391746/promising-oil-stocks-to-watch-today-march-25th.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-03-26T13:00:00.000Z"
+  },
+  {
+   "title": "Energy Stocks To Keep An Eye On – March 30th",
+   "url": "https://www.themarketsdaily.com/2026/03/30/energy-stocks-to-keep-an-eye-on-march-30th.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-03-30T18:45:00.000Z"
+  },
+  {
+   "title": "Top Energy Stocks To Add to Your Watchlist – March 24th",
+   "url": "https://www.dailypolitical.com/2026/03/25/top-energy-stocks-to-add-to-your-watchlist-march-24th.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-03-25T11:15:00.000Z"
+  },
+  {
+   "title": "Nasdaq confirms correction as Iran war uncertainty spooks investors",
+   "url": "https://www.marketscreener.com/news/nasdaq-confirms-correction-as-iran-war-uncertainty-spooks-investors-ce7e51dbd88cfe23",
+   "domain": "marketscreener.com",
+   "seenAt": "2026-03-26T23:45:00.000Z"
+  },
+  {
+   "title": "Stock Market Today, March 27: Crude Surges Above $110, Driving Broad Sell - Off",
+   "url": "https://www.fool.com/coverage/stock-market-today/2026/03/27/stock-market-today-march-27-crude-surges-above-usd110-driving-broad-sell-off/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2026-03-27T23:45:00.000Z"
+  },
+  {
+   "title": "Climate Change Reparations Melted By New Court Ruling In Deep Blue State",
+   "url": "https://dailycaller.com/2026/03/25/climate-change-reparations-maryland-supreme-court-fossil-fuels/",
+   "domain": "dailycaller.com",
+   "seenAt": "2026-03-25T23:15:00.000Z"
+  },
+  {
+   "title": "ExxonMobil EIA silent on cancer risk for employees and potential oil spill cost",
+   "url": "https://kaieteurnewsonline.com/2026/03/29/exxonmobil-eia-silent-on-cancer-risk-for-employees-potential-oil-spill-cost/",
+   "domain": "kaieteurnewsonline.com",
+   "seenAt": "2026-03-29T05:00:00.000Z"
+  },
+  {
+   "title": "Woodside Takes Control of Beaumont Plant, Signals Delay to Lower - Carbon Ammonia Output",
+   "url": "https://www.marketscreener.com/news/woodside-takes-control-of-beaumont-plant-signals-delay-to-lower-carbon-ammonia-output-ce7e5ed3d18ff22d",
+   "domain": "marketscreener.com",
+   "seenAt": "2026-03-25T23:00:00.000Z"
+  },
+  {
+   "title": "Former Trump Interior lead on energy jumps to lobbying firm",
+   "url": "https://www.eenews.net/articles/former-trump-interior-lead-on-energy-jumps-to-lobbying-firm/",
+   "domain": "eenews.net",
+   "seenAt": "2026-03-27T19:00:00.000Z"
+  },
+  {
+   "title": "Venezuela opposition leader María Corina Machado addresses oil industry",
+   "url": "https://www.cnbc.com/2026/03/24/venezuela-oil-machado-maduro-trump.html",
+   "domain": "cnbc.com",
+   "seenAt": "2026-03-24T22:30:00.000Z"
+  },
+  {
+   "title": "The S & P 500 Rips 1% Higher On Hope For Iran Peace Negotiations and Oil Falls Below Critical $100 Barrel Line",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-rips-1-higher-134953148.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-03-25T14:30:00.000Z"
+  },
+  {
+   "title": "Direxion Daily XOM Bull 2X Shares ( NASDAQ: XOMX) Sees Significant Decrease in Short Interest",
+   "url": "https://www.themarketsdaily.com/2026/03/29/direxion-daily-xom-bull-2x-shares-nasdaqxomx-sees-significant-decrease-in-short-interest.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-03-29T07:00:00.000Z"
+  },
+  {
+   "title": "Venezuela Delcy Rodríguez Allegedly Hired Former US Lawmaker in $50M Bid to Influence Trump White House",
+   "url": "https://www.ibtimes.com/venezuelas-delcy-rodriguez-allegedly-hired-former-us-lawmaker-50m-bid-influence-trump-white-3799945",
+   "domain": "ibtimes.com",
+   "seenAt": "2026-03-23T22:15:00.000Z"
+  },
+  {
+   "title": "Tuesday big stock stories: What likely to move the market",
+   "url": "https://www.cnbc.com/2026/03/23/tuesdays-big-stock-stories-whats-likely-to-move-the-market.html",
+   "domain": "cnbc.com",
+   "seenAt": "2026-03-24T00:15:00.000Z"
+  },
+  {
+   "title": "Zimmer Biomet Holdings, Inc. ( ZBH) Stock Forecasts",
+   "url": "https://finance.yahoo.com/research/reports/ARGUS_46574_MarketSummary_1774868041000",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-03-30T14:30:00.000Z"
+  },
+  {
+   "title": "Big Oil to reap billions from Iran war windfall after a month of soaring energy prices",
+   "url": "https://www.marketscreener.com/news/ceraweek-big-oil-to-reap-billions-from-iran-war-windfall-after-a-month-of-soaring-energy-prices-ce7e51dad08ff02c",
+   "domain": "marketscreener.com",
+   "seenAt": "2026-03-26T19:45:00.000Z"
+  },
+  {
+   "title": "The 1 Number That Tells You Everything About ExxonMobil Right Now",
+   "url": "https://finance.yahoo.com/sectors/energy/articles/1-number-tells-everything-exxonmobil-110300169.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-03-29T12:15:00.000Z"
+  },
+  {
+   "title": "VTI vs. VTV: Is Broad Market Diversification or Value Investing the Better Buy Right Now?",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/vti-vs-vtv-broad-market-201549762.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-03-25T20:45:00.000Z"
+  },
+  {
+   "title": "Energy ETFs Pull In Billions as Oil Rally Fuels Sector Gains",
+   "url": "https://finance.yahoo.com/sectors/energy/articles/energy-etfs-pull-billions-oil-022250303.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-03-28T07:30:00.000Z"
+  },
+  {
+   "title": "Cramer tells investors to sit on your hand as U. S.- Iran war rattles stocks",
+   "url": "https://www.cnbc.com/2026/03/24/cramer-tells-investors-to-sit-on-your-hands-as-us-iran-war-rattles-stocks-.html",
+   "domain": "cnbc.com",
+   "seenAt": "2026-03-25T00:00:00.000Z"
+  },
+  {
+   "title": "ExxonMobil Stock Hits an All - Time High. Is It Still a Good Buy?",
+   "url": "https://www.fool.com/investing/2026/03/23/exxonmobil-stock-hits-an-all-time-high-is-it-still/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2026-03-24T00:00:00.000Z"
+  },
+  {
+   "title": "Rubio testifies in former congressman Venezuela lobbying trial - WSVN 7News | Miami News, Weather, Sports",
+   "url": "https://wsvn.com/news/politics/rubio-testifies-in-former-congressmans-venezuela-lobbying-trial/",
+   "domain": "wsvn.com",
+   "seenAt": "2026-03-24T16:30:00.000Z"
+  },
+  {
+   "title": "Rubio testifies in former congressman Venezuela lobbying trial",
+   "url": "https://lancasteronline.com/business/nation/rubio-testifies-in-former-congressmans-venezuela-lobbying-trial/article_1f2ee656-b6df-54cd-acab-d13b93dfd9bd.html",
+   "domain": "lancasteronline.com",
+   "seenAt": "2026-03-24T15:00:00.000Z"
+  },
+  {
+   "title": "FinancialContent - Chevron Shares Hit $200 as Hess Integration and $110 Oil Prices Redefine the Energy Market",
+   "url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-3-24-chevron-shares-hit-200-as-hess-integration-and-110-oil-prices-redefine-the-energy-market",
+   "domain": "markets.financialcontent.com",
+   "seenAt": "2026-03-24T21:45:00.000Z"
+  },
+  {
+   "title": "Baystreet. ca - What To Do If Inflation Tops 5%",
+   "url": "http://baystreet.ca/articles/stockstowatch/119512/What-To-Do-If-Inflation-Tops-5",
+   "domain": "baystreet.ca",
+   "seenAt": "2026-03-26T04:15:00.000Z"
+  },
+  {
+   "title": "Baystreet. ca - Will Market Panic Worsen As S & P 500 Losing Streak Continues?",
+   "url": "http://baystreet.ca/articles/stockstowatch/119482/Will-Market-Panic-Worsen-As-SP-500-Losing-Streak-Continues",
+   "domain": "baystreet.ca",
+   "seenAt": "2026-03-27T16:30:00.000Z"
+  },
+  {
+   "title": "Rubio testifies in former congressman Venezuela lobbying trial – Winnipeg Free Press",
+   "url": "https://www.winnipegfreepress.com/business/2026/03/24/rubio-testifies-in-former-congressmans-venezuela-lobbying-trial",
+   "domain": "winnipegfreepress.com",
+   "seenAt": "2026-03-24T15:00:00.000Z"
+  },
+  {
+   "title": "Baystreet. ca - Why The Iran Conflict Might Become a Forever War",
+   "url": "http://baystreet.ca/stockstowatch/22987/Why-The-Iran-Conflict-Might-Become-a-Forever-War",
+   "domain": "baystreet.ca",
+   "seenAt": "2026-03-26T18:00:00.000Z"
+  },
+  {
+   "title": "Why ExxonMobil ( XOM) Stock Is Trading Up Today",
+   "url": "https://finance.yahoo.com/sectors/energy/articles/why-exxonmobil-xom-stock-trading-214508516.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2026-03-27T22:15:00.000Z"
+  },
+  {
+   "title": "ExxonMobil taps SBM Offshore for Longtail FPSO design work",
+   "url": "https://www.offshore-technology.com/news/exxonmobil-taps-sbm-offshore-longtail-fpso-design/",
+   "domain": "offshore-technology.com",
+   "seenAt": "2026-03-25T13:00:00.000Z"
+  },
+  {
+   "title": "FinancialContent - Why ExxonMobil ( XOM) Stock Is Trading Up Today",
+   "url": "https://markets.financialcontent.com/stocks/article/stockstory-2026-3-27-why-exxonmobil-xom-stock-is-trading-up-today",
+   "domain": "markets.financialcontent.com",
+   "seenAt": "2026-03-27T19:00:00.000Z"
+  },
+  {
+   "title": "US stock markets today ( March 30, 2026): Wall Street rebounds after selloff amid Iran war, oil and inflation worries persist",
+   "url": "https://timesofindia.indiatimes.com/business/international-business/us-stock-markets-today-30march-2026-dow-jones-sp500-nasdaq-wall-street-rebounds-after-selloff-iran-conflict-widens-oil-and-inflation-worries-persist/articleshow/129904272.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2026-03-30T15:30:00.000Z"
+  },
+  {
+   "title": "Why Shares of ExxonMobil Gushed Higher Today",
+   "url": "https://www.fool.com/investing/2026/03/24/why-shares-of-exxon-mobil-gushed-higher-today/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2026-03-24T22:15:00.000Z"
+  },
+  {
+   "title": "Exxon award contracts to build 8th oil ship without Govt. approval",
+   "url": "https://kaieteurnewsonline.com/2026/03/25/exxon-award-contracts-to-build-8th-oil-ship-without-govt-approval/",
+   "domain": "kaieteurnewsonline.com",
+   "seenAt": "2026-03-25T05:15:00.000Z"
+  },
+  {
+   "title": "2 Oil Giants to Buy Immediately as the Iran Crisis Pushes Crude Toward $100",
+   "url": "https://www.fool.com/investing/2026/03/30/2-oil-giants-to-buy-immediately-as-the-iran-crisis/",
+   "domain": "fool.com",
+   "seenAt": "2026-03-30T12:00:00.000Z"
+  },
+  {
+   "title": "Wall St set for higher open after recent selloff, Mideast conflict widens",
+   "url": "https://www.marketscreener.com/news/wall-st-set-for-higher-open-after-recent-selloff-mideast-conflict-widens-ce7e51d9db8af525",
+   "domain": "marketscreener.com",
+   "seenAt": "2026-03-30T13:00:00.000Z"
+  },
+  {
+   "title": "Why ExxonMobil, Transocean, SLB, and Other Oil Stocks Surged This Week",
+   "url": "https://www.fool.com/investing/2026/03/29/why-exxon-mobil-transocean-slb-oil-stocks-are-up/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2026-03-30T02:30:00.000Z"
+  },
+  {
+   "title": "QatarEnergy largest investment in US, Golden Pass LNG marks historic milestone with first production - Read Qatar Tribune on the go for unrivalled news coverage",
+   "url": "https://www.qatar-tribune.com/article/226422/latest-news/qatarenergys-largest-investment-in-us-golden-pass-lng-marks-historic-milestone-with-first-production",
+   "domain": "qatar-tribune.com",
+   "seenAt": "2026-03-30T17:45:00.000Z"
+  },
+  {
+   "title": "QatarEnergy Golden Pass LNG marks historic milestone with first LNG production",
+   "url": "http://thepeninsulaqatar.com/article/30/03/2026/qatarenergys-golden-pass-lng-marks-historic-milestone-with-first-lng-production",
+   "domain": "thepeninsulaqatar.com",
+   "seenAt": "2026-03-30T17:30:00.000Z"
+  },
+  {
+   "title": "SCHB vs. VTV: SCHB Targets Broad Market Reach, While VTV Focuses on Value",
+   "url": "https://www.fool.com/coverage/etfs/2026/03/25/schb-vs-vtv-schb-targets-broad-market-reach-while-vtv-focuses-on-value/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2026-03-25T21:15:00.000Z"
+  },
+  {
+   "title": "Morgan Stanley Upgraded, Tyson Foods Downgraded: Updated Rankings on Top Blue - Chip Stocks",
+   "url": "https://investorplace.com/market360/2026/03/20260323-blue-chip-upgrades-downgrades/",
+   "domain": "investorplace.com",
+   "seenAt": "2026-03-24T18:45:00.000Z"
+  },
+  {
+   "title": "2 Oil Stocks That Can Weather the Current Volatility",
+   "url": "https://www.fool.com/investing/2026/03/24/2-oil-stocks-that-can-weather-the-current-volatili/",
+   "domain": "fool.com",
+   "seenAt": "2026-03-24T17:30:00.000Z"
+  },
+  {
+   "title": "Oil prices rise again as global markets advance in challenging conditions",
+   "url": "https://www.irishtimes.com/business/2026/03/30/oil-prices-rise-again-as-global-markets-advance-in-choppy-trade/",
+   "domain": "irishtimes.com",
+   "seenAt": "2026-03-30T18:30:00.000Z"
+  }
+ ]
+}
