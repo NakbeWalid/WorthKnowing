@@ -57,6 +57,8 @@ export const config = {
     /** Clé d'API que le partenaire envoie dans l'en-tête x-partner-key (secret partagé). */
     apiKey: process.env.PARTNER_API_KEY ?? 'dev-partner-key-change-me',
     /** Origines vers lesquelles Miroir accepte de renvoyer l'utilisateur (anti redirection ouverte). */
+    /** Adresse où Miroir envoie le nouveau jeton de l'utilisateur quand il le régénère (serveur à serveur). */
+    tokenWebhookUrl: process.env.PARTNER_TOKEN_WEBHOOK_URL ?? 'http://localhost:3001/api/partner-webhook/persona-code',
     returnOrigins: (process.env.PARTNER_RETURN_ORIGINS ?? 'http://localhost:3001').split(',').map((o) => o.trim()).filter(Boolean),
   },
   /** Secret qui signe les codes de liaison et les codes persona (indépendant de l'authentification). */

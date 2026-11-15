@@ -2,6 +2,7 @@ import { BadRequestException, ConflictException, Injectable, UnauthorizedExcepti
 import { randomUUID } from 'crypto';
 import { signToken, verifyToken } from '../../shared/local-auth';
 import { config } from '../config';
+import { ConnectService } from '../connect/connect.service';
 import { User } from '../domain/types';
 import { EventsService } from '../realtime/events.service';
 import { Store } from '../storage/store';
@@ -15,16 +16,18 @@ const PERSONA_PREFIX = 'mir_';
  *
  *   1. l'utilisateur, connecté à Miroir, autorise la liaison          -> authorize()  : code à usage unique (5 min),
  *      renvoyé au courtier dans l'URL de retour ;
- *   2. le serveur du courtier échange ce code (avec sa clé d'API)      -> exchange()   : CODE PERSONA durable ;
- *   3. chaque requête de trade du courtier porte le code persona       -> resolve()    : retrouve le bon profil.
+ *   2. le serveur du courtier échange ce code (avec sa clé d'API et     -> exchange()   : il reçoit le USER ID de
+ *      l'identifiant du compte chez lui)                                                   l'utilisateur (jeton wk_…), et
+ *                                                                                          Miroir enregistre l'ID INSTITUTION ;
+ *   3. chaque requête de trade du courtier porte ce user id            -> resolve()    : retrouve le bon profil.
  *
- * Les deux codes sont signés (HMAC) et contiennent l'identifiant de la liaison en cours : révoquer ou
- * refaire la liaison change cet identifiant, et les anciens codes cessent d'être acceptés. Rien à stocker de plus.
+ * Le user id est valable tant que la liaison est active ; quand l'utilisateur le régénère, Miroir envoie le
+ * nouveau au courtier (ConnectService.regenerate). Les codes « mir_… » des liaisons antérieures restent acceptés.
  * Le code de l'URL ne vaut rien sans la clé d'API du courtier ; le code persona ne transite que de serveur à serveur.
  */
 @Injectable()
 export class LinkService {
-  constructor(private store: Store, private events: EventsService) {}
+  constructor(private store: Store, private events: EventsService, private connect: ConnectService) {}
 
   /** Nom du partenaire si l'URL de retour lui appartient, sinon undefined (anti redirection ouverte). */
   partnerFor(returnUrl: string): string | undefined {
@@ -50,24 +53,33 @@ export class LinkService {
   }
 
   /** Étape 2 — appelée par le serveur du courtier : code à usage unique -> code persona. */
-  async exchange(code: string) {
+  async exchange(code: string, accountId: unknown) {
     const payload = verifyToken<CodePayload>(code, config.linkSecret);
     const user = payload?.t === 'code' ? await this.store.getUser(payload.uid) : undefined;
     // « pending » garantit l'usage unique : dès le premier échange la liaison passe à « active ».
     if (!user?.link || user.link.id !== payload!.lid || user.link.status !== 'pending') {
       throw new UnauthorizedException('Code de liaison invalide, expiré ou déjà utilisé.');
     }
+    if (typeof accountId !== 'string' || !/^[\w.@:+-]{1,100}$/.test(accountId)) {
+      throw new BadRequestException('Identifiant du compte chez le courtier (accountId) requis.');
+    }
     user.link.status = 'active';
     user.link.linkedAt = new Date().toISOString();
+    this.connect.setLinkedPlatform(user, user.link.partner, accountId);
     await this.store.saveUser(user);
     this.events.emit('link.created', user, `Compte lié à ${user.link.partner}`);
-    const personaCode = PERSONA_PREFIX + signToken({ t: 'persona', uid: user.id, lid: user.link.id }, config.linkSecret);
-    return { personaCode, persona: this.summary(user) };
+    return { personaCode: this.connect.tokenValue(user), persona: this.summary(user) };
   }
 
   /** Étape 3 — à chaque requête du courtier : à quel persona appartient ce trade ? */
   async resolve(personaCode: string): Promise<User> {
     const raw = String(personaCode ?? '');
+    if (!raw.startsWith(PERSONA_PREFIX)) {
+      const user = await this.connect.userForToken(raw);
+      if (!user || !this.connect.linkedPlatform(user)) throw new UnauthorizedException('Code persona invalide ou liaison révoquée.');
+      return user;
+    }
+    // Ancien format (liaisons faites avant le user id) : code signé contenant l'identifiant de la liaison.
     const payload = raw.startsWith(PERSONA_PREFIX)
       ? verifyToken<CodePayload>(raw.slice(PERSONA_PREFIX.length), config.linkSecret) : undefined;
     const user = payload?.t === 'persona' ? await this.store.getUser(payload.uid) : undefined;
@@ -82,6 +94,7 @@ export class LinkService {
     if (!user.link) return { ok: true };
     const partner = user.link.partner;
     user.link = null;
+    this.connect.removeLinkedPlatform(user);
     await this.store.saveUser(user);
     this.events.emit('link.revoked', user, `Liaison avec ${partner} révoquée`);
     return { ok: true };

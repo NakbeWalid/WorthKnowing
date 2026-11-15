@@ -73,7 +73,7 @@ async function refresh() {
   if ($('#revoke')) $('#revoke').onclick = async () => {
     if (!confirm(`Retirer l’accès de ${me.link.partner} ? Vos ordres ne seront plus analysés.`)) return;
     await api('DELETE', '/link').catch((err) => alert(err.message));
-    refresh();
+    refresh(); renderConnect().catch(() => {});
   };
 
   // Hexagone 6 critères (Ce que vous pensez vs Ce que vous êtes)
@@ -275,55 +275,46 @@ async function loadAndRenderRuleEditor(focusReset = false) {
   });
 })();
 
-// ------------------------------------------------------------------ Jeton personnel et autres plateformes
-// Le jeton permet d'utiliser WorthKnowing depuis une plateforme non partenaire. Il ne sert qu'avec un
-// compte déclaré ci-dessous : une plateforme doit présenter le jeton ET l'identifiant de compte.
-let newToken = null; // jeton en clair, gardé seulement le temps de l'affichage qui suit sa création
-
+// ------------------------------------------------------------------ User id et identifiants institution
+// User id : vous représente auprès des institutions. Créé automatiquement, toujours visible, seulement régénérable.
+// ID institution : votre identifiant chez une plateforme. Reçu automatiquement quand vous liez la plateforme,
+// ou ajouté à la main pour qu'une autre plateforme puisse faire analyser vos trades.
 async function renderConnect() {
   const c = await api('GET', '/connect');
-  const t = c.token;
-  $('#token').innerHTML = newToken
-    ? `<div class="notice">Copiez votre jeton maintenant : pour votre sécurité, il ne sera plus affiché en entier.</div>
-       <div class="row"><code style="flex:1; word-break:break-all">${esc(newToken)}</code><button class="mini" id="copyToken">Copier</button><button class="mini" id="doneToken">C’est noté</button></div>`
-    : t
-      ? `<p><span class="badge ok">Actif</span> <code>${esc(t.hint)}</code>, créé le ${esc(day(t.createdAt))}.</p>
-         <p class="small muted">${t.lastUsedAt ? `Dernière utilisation : ${esc(day(t.lastUsedAt))}.` : 'Jamais utilisé.'}</p>`
-      : `<p class="muted">Aucun jeton. Créez-en un pour utiliser WorthKnowing depuis une autre plateforme de courtage.</p>`;
-  $('#token').insertAdjacentHTML('beforeend', `<p class="small muted">Ce jeton vous représente : ne le donnez qu'aux plateformes que vous avez ajoutées ci-dessous.</p>
-    <div class="row ${newToken ? 'hidden' : ''}"><button class="mini primary" id="createToken">${t ? 'Régénérer' : 'Créer mon jeton'}</button>
-    ${t ? '<button class="mini" id="revokeToken">Révoquer</button>' : ''}</div>`);
-  if ($('#copyToken')) $('#copyToken').onclick = () => navigator.clipboard.writeText(newToken).then(() => { $('#copyToken').textContent = 'Copié'; });
-  $('#createToken').onclick = async () => {
-    if (t && !confirm('Régénérer le jeton ? L’ancien cessera aussitôt de fonctionner sur toutes vos plateformes.')) return;
-    try { newToken = (await api('POST', '/connect/token')).token.value; } catch (err) { return alert(err.message); }
-    renderConnect();
+  $('#token').innerHTML = c.token
+    ? `<div class="row"><code style="flex:1; word-break:break-all">${esc(c.token.value)}</code><button class="mini" id="copyToken">Copier</button></div>
+       <p class="small muted">Créé le ${esc(day(c.token.createdAt))}. Ne le donnez qu’aux institutions de la liste ci-dessous.</p>
+       <button class="mini" id="regenToken">Régénérer</button><div class="error" id="tokenError"></div>`
+    : '<p class="muted">Votre user id sera créé automatiquement à la fin de votre évaluation.</p>';
+  if ($('#copyToken')) $('#copyToken').onclick = () => navigator.clipboard.writeText(c.token.value).then(() => { $('#copyToken').textContent = 'Copié'; });
+  if ($('#regenToken')) $('#regenToken').onclick = async () => {
+    const linked = c.platforms.find((p) => p.source === 'link');
+    if (!confirm(`Régénérer votre user id ? L’ancien cessera aussitôt de fonctionner.${linked ? ` ${linked.name} recevra automatiquement le nouveau.` : ''}`)) return;
+    try {
+      const r = await api('POST', '/connect/token/regenerate');
+      if (r.manualPlatforms.length) alert(`Nouveau user id créé. Donnez-le à : ${r.manualPlatforms.join(', ')} (plateformes ajoutées à la main).`);
+      renderConnect();
+    } catch (err) { $('#tokenError').textContent = err.message; }
   };
-  if ($('#revokeToken')) $('#revokeToken').onclick = async () => {
-    if (!confirm('Révoquer le jeton ? Plus aucune autre plateforme ne pourra utiliser vos services.')) return;
-    newToken = null;
-    await api('DELETE', '/connect/token').catch((err) => alert(err.message));
-    renderConnect();
-  };
-  if ($('#doneToken')) $('#doneToken').onclick = () => { newToken = null; renderConnect(); }; // affiché une seule fois
 
   $('#platforms').innerHTML = `
-    ${c.platforms.length ? `<ul>${c.platforms.map((p) => `<li><b>${esc(p.name)}</b> — compte <code>${esc(p.accountId)}</code>
-        <span class="small muted">${p.lastUsedAt ? `utilisé le ${esc(day(p.lastUsedAt))}` : 'jamais utilisé'}</span>
-        <button class="mini" data-remove="${esc(p.id)}">Retirer</button></li>`).join('')}</ul>`
-      : '<p class="muted">Aucune autre plateforme.</p>'}
-    <form id="addPlatform">
-      <label for="pfName">Plateforme</label><input id="pfName" maxlength="60" placeholder="ex. Wealthsimple" required>
-      <label for="pfAccount">Mon identifiant sur cette plateforme</label><input id="pfAccount" maxlength="100" required>
+    ${c.platforms.length ? `<ul>${c.platforms.map((p) => `<li><b>${esc(p.name)}</b> — ID institution <code>${esc(p.accountId)}</code>
+        ${p.source === 'link' ? '<span class="badge ok">lié automatiquement</span>'
+          : `<span class="badge grey">ajouté à la main</span> <button class="mini" data-remove="${esc(p.id)}">Retirer</button>`}</li>`).join('')}</ul>`
+      : '<p class="muted">Aucune institution. Liez votre compte depuis votre plateforme de courtage, ou ajoutez-en une ci-dessous.</p>'}
+    ${c.token ? `<form id="addPlatform">
+      <p class="small muted" style="margin:0">Une autre plateforme ? Ajoutez votre identifiant chez elle pour que vos trades soient aussi analysés.</p>
+      <label for="pfName">Institution</label><input id="pfName" maxlength="60" placeholder="ex. Wealthsimple" required>
+      <label for="pfAccount">Mon ID chez cette institution</label><input id="pfAccount" maxlength="100" required>
       <div class="error" id="pfError"></div>
       <button class="mini primary">Ajouter</button>
-    </form>`;
+    </form>` : ''}`;
   $('#platforms').querySelectorAll('[data-remove]').forEach((b) => (b.onclick = async () => {
-    if (!confirm('Retirer cette plateforme ? Elle ne pourra plus utiliser votre jeton.')) return;
+    if (!confirm('Retirer cette institution ? Ses trades ne seront plus analysés.')) return;
     await api('DELETE', `/connect/platforms/${encodeURIComponent(b.dataset.remove)}`).catch((err) => alert(err.message));
     renderConnect();
   }));
-  $('#addPlatform').onsubmit = async (e) => {
+  if ($('#addPlatform')) $('#addPlatform').onsubmit = async (e) => {
     e.preventDefault();
     try {
       await api('POST', '/connect/platforms', { name: $('#pfName').value, accountId: $('#pfAccount').value });

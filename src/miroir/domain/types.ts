@@ -76,24 +76,24 @@ export interface User {
   seenScenarios: string[];
   /** Enrichissement de la caractérisation comportementale (CV, réseaux sociaux). */
   characterizationEnrichment?: any;
-  /** Jeton personnel WorthKnowing (seule son empreinte est stockée). Absent = jamais créé. */
+  /** Jeton personnel WorthKnowing (« user id »), créé automatiquement. Absent = évaluation pas encore terminée. */
   accessToken?: AccessToken | null;
-  /** Comptes que l'utilisateur détient sur d'autres plateformes, autorisés à utiliser son jeton. */
+  /** Identifiants de l'utilisateur chez les institutions : la plateforme liée (automatique) et celles ajoutées à la main. */
   platforms?: ExternalPlatform[];
 }
 
-/** Jeton personnel : on ne garde que son empreinte SHA-256, le jeton en clair n'est montré qu'une fois. */
+/** Jeton personnel : empreinte SHA-256 (vérification) + copie chiffrée AES-256-GCM (affichage à l'utilisateur). */
 export interface AccessToken {
   hash: string;
-  /** Fin du jeton, pour que l'utilisateur le reconnaisse (ex. « wk_…a1B2 »). */
-  hint: string;
+  enc: string;
   createdAt: string;
-  lastUsedAt?: string;
 }
 
-/** Compte de l'utilisateur sur une autre plateforme de courtage (déclaré par lui). */
+/** Identifiant de l'utilisateur chez une institution (plateforme de courtage). */
 export interface ExternalPlatform {
   id: string;
+  /** link = reçu automatiquement à la liaison ; manual = saisi par l'utilisateur. */
+  source: 'link' | 'manual';
   /** Nom de la plateforme, ex. « Wealthsimple ». */
   name: string;
   /** Identifiant du compte de l'utilisateur sur cette plateforme. */

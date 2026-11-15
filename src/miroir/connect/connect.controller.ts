@@ -7,7 +7,7 @@ import { LinkService } from '../partner/link.service';
 import { TradeRequest, TradesService } from '../trades/trades.service';
 import { ConnectService } from './connect.service';
 
-/** Côté utilisateur (connecté) : gérer son jeton personnel et ses comptes sur d'autres plateformes. */
+/** Côté utilisateur (connecté) : voir et régénérer son user id, gérer ses identifiants chez les institutions. */
 @Controller('api/connect')
 @UseGuards(AuthGuard)
 export class ConnectController {
@@ -16,13 +16,10 @@ export class ConnectController {
   @Get()
   status(@Req() req: any) { return this.connect.status(req.user); }
 
-  /** Crée ou régénère le jeton ; c'est la seule réponse qui contient le jeton en clair. */
-  @Post('token')
+  /** Seule action possible sur le user id : le régénérer (la plateforme liée reçoit le nouveau). */
+  @Post('token/regenerate')
   @HttpCode(200)
-  createToken(@Req() req: any) { return this.connect.createToken(req.user); }
-
-  @Delete('token')
-  revokeToken(@Req() req: any) { return this.connect.revokeToken(req.user); }
+  regenerate(@Req() req: any) { return this.connect.regenerate(req.user); }
 
   @Post('platforms')
   @HttpCode(200)
@@ -34,13 +31,13 @@ export class ConnectController {
   removePlatform(@Req() req: any, @Param('id') id: string) { return this.connect.removePlatform(req.user, id); }
 }
 
-/** Authentifie une plateforme par le jeton personnel (x-wk-token) ET le compte déclaré (x-platform-account). */
+/** Plateforme ajoutée à la main : user id (x-wk-token) ET identifiant institution déclaré (x-platform-account). */
 @Injectable()
 export class ConnectGuard implements CanActivate {
   constructor(private connect: ConnectService) {}
   async canActivate(ctx: ExecutionContext) {
     const req = ctx.switchToHttp().getRequest();
-    const { user, platform } = await this.connect.resolve(req.headers['x-wk-token'], req.headers['x-platform-account']);
+    const { user, platform } = await this.connect.resolveManual(req.headers['x-wk-token'], req.headers['x-platform-account']);
     req.user = user;
     req.platform = platform;
     return true;

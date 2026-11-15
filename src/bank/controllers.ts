@@ -1,4 +1,5 @@
-import { Body, Controller, Get, HttpCode, Post, Query, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Headers, HttpCode, Post, Query, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { safeEqual } from '../shared/local-auth';
 import { MarketService } from '../shared/market.service';
 import { BankAuthGuard } from './auth';
 import { config } from './config';
@@ -80,6 +81,19 @@ export class MiroirController {
 }
 
 /** Sonde de santé pour l'équilibreur de charge. */
+/** Notifications envoyées par Miroir (serveur à serveur), authentifiées par la clé partenaire. */
+@Controller('api/partner-webhook')
+export class PartnerWebhookController {
+  constructor(private links: MiroirLinkService) {}
+
+  @Post('persona-code')
+  @HttpCode(200)
+  personaCode(@Headers('x-partner-key') key: string, @Body() body: { accountId: string; personaCode: string }) {
+    if (typeof key !== 'string' || !safeEqual(key, config.miroir.apiKey)) throw new UnauthorizedException('Clé partenaire invalide.');
+    return this.links.updatePersonaCode(body?.accountId, body?.personaCode);
+  }
+}
+
 @Controller('api/health')
 export class BankHealthController {
   @Get()

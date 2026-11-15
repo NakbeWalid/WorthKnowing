@@ -17,7 +17,7 @@ export class PartnerController {
   @Post('link/exchange')
   @HttpCode(200)
   @UseGuards(PartnerGuard)
-  exchange(@Body() body: { code: string }) { return this.links.exchange(body?.code); }
+  exchange(@Body() body: { code: string; accountId: string }) { return this.links.exchange(body?.code, body?.accountId); }
 
   /** Le courtier (ou son client) met fin à la liaison. */
   @Delete('link')

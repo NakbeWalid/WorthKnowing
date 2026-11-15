@@ -4,7 +4,7 @@ import { join } from 'path';
 import { MarketService } from '../shared/market.service';
 import { BankAuthController, BankAuthGuard, BankAuthService } from './auth';
 import { config } from './config';
-import { BankHealthController, MiroirController, TradingController } from './controllers';
+import { BankHealthController, MiroirController, PartnerWebhookController, TradingController } from './controllers';
 import { DynamoBankStore } from './dynamo.store';
 import { MiroirLinkService } from './miroir-link.service';
 import { MiroirClient } from './miroir.client';
@@ -17,7 +17,7 @@ import { TradingService } from './trading.service';
  */
 @Module({
   imports: [ServeStaticModule.forRoot({ rootPath: join(process.cwd(), 'public', 'bank'), exclude: ['/api/(.*)'] })],
-  controllers: [BankHealthController, BankAuthController, TradingController, MiroirController],
+  controllers: [BankHealthController, BankAuthController, TradingController, MiroirController, PartnerWebhookController],
   providers: [
     { provide: BankStore, useClass: config.storageDriver === 'dynamodb' ? DynamoBankStore : JsonBankStore },
     BankAuthService, BankAuthGuard, MarketService, MiroirClient, MiroirLinkService, TradingService,

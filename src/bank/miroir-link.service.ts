@@ -49,7 +49,7 @@ export class MiroirLinkService {
       throw new BadRequestException('Cette demande de liaison ne correspond pas à votre compte. Recommencez depuis les réglages.');
     }
     try {
-      const { personaCode, persona } = await this.miroir.exchange(String(code ?? ''));
+      const { personaCode, persona } = await this.miroir.exchange(String(code ?? ''), account.id);
       account.miroir = { status: 'linked', personaCode, linkedAt: new Date().toISOString() };
       await this.store.saveAccount(account);
       return { status: 'linked', persona };
@@ -57,6 +57,20 @@ export class MiroirLinkService {
       if (err instanceof MiroirError && err.status === 0) throw new ServiceUnavailableException(err.message);
       throw new BadRequestException((err as Error).message);
     }
+  }
+
+  /**
+   * Appelé par Miroir (serveur à serveur, clé partenaire vérifiée par le contrôleur) quand le client régénère
+   * son user id : on remplace le code persona, sans aucune action du client.
+   */
+  async updatePersonaCode(accountId: unknown, personaCode: unknown) {
+    const account = typeof accountId === 'string' ? await this.store.getAccount(accountId) : undefined;
+    if (!account || account.miroir.status !== 'linked' || typeof personaCode !== 'string' || !personaCode.startsWith('wk_')) {
+      throw new BadRequestException('Compte lié ou code persona invalide.');
+    }
+    account.miroir.personaCode = personaCode;
+    await this.store.saveAccount(account);
+    return { ok: true };
   }
 
   /** Le client retire Miroir de son compte. On prévient Miroir, sans en dépendre. */

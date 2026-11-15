@@ -68,8 +68,9 @@ export class MiroirClient {
   private log = new Logger('Miroir');
 
   /** Échange le code à usage unique rapporté par le navigateur contre le code persona. */
-  exchange(code: string) {
-    return this.call<{ personaCode: string; persona: MiroirPersona }>('POST', '/link/exchange', { body: { code } });
+  /** `accountId` : identifiant du compte chez nous, que Miroir enregistre comme ID institution de l'utilisateur. */
+  exchange(code: string, accountId: string) {
+    return this.call<{ personaCode: string; persona: MiroirPersona }>('POST', '/link/exchange', { body: { code, accountId } });
   }
   persona(personaCode: string) { return this.call<MiroirPersona>('GET', '/persona', { personaCode }); }
   revoke(personaCode: string) { return this.call<{ ok: boolean }>('DELETE', '/link', { personaCode }); }
