@@ -50,6 +50,7 @@ Règles absolues :
 - Tu ne t'appuies QUE sur les faits et nouvelles fournis, cités par leur numéro. Aucun autre fait, chiffre ni cause.
 - Tu recopies les chiffres tels quels ; tu ne calcules aucun nouveau chiffre.
 - N'indique aucun délai entre une nouvelle et le trade (« 3 jours après ») : seules les dates fournies comptent.
+- Ne qualifie jamais la durée de décision de l'investisseur (« rapide », « lente », « précipitée », « hâtive », « impulsive », « réfléchie »…) : cite-la telle quelle (« décision prise en 60 s ») et laisse le lecteur juger, sauf si un fait fourni la qualifie explicitement.
 - Une nouvelle ne prouve pas que l'investisseur l'a lue : parle d'influence « possible » ou « probable », jamais de cause certaine.
 - C'est un profil de comportement, pas un diagnostic psychologique : n'emploie pas le mot « psychologique ».
 - Si la recherche de nouvelles était indisponible, tu ne peux rien conclure sur une influence externe.
@@ -81,7 +82,9 @@ Constats déjà établis par le code : ${input.deterministic.map((f) => f.param)
 
 Réponds avec :
 - "verdict" : "influence_externe", "changement_de_comportement", "les_deux", "conforme" ou "indetermine" ;
-- "rationale" : 1 à 2 phrases en français (50 mots maximum), en citant les numéros entre crochets, ex. [N1] [F3] ;
+- "rationale" : 1 à 2 phrases en français (50 mots maximum), en citant les numéros entre crochets, ex. [N1] [F3].
+  Pour la durée de décision, écris seulement le fait (« décision prise en 60 s »), sans adjectif (pas de « rapide », « lente », « précipitée »).
+  Pour situer les nouvelles dans le temps, écris seulement leurs dates (« nouvelles du 6 janvier ») : n'écris jamais le mot « jours » ni un nombre de jours, et ne dis pas « après » ou « avant » le trade pour une durée ;
 - "refs" : les numéros cités ;
 - "findings" : 0 à 2 constats SUPPLÉMENTAIRES, uniquement pour ces paramètres : ${allowed.join(', ') || '(aucun : renvoie [])'}.
   Chaque constat : {"param":"...","signal":0-100,"evidence":"phrase courte en français","refs":["N1"]}.
