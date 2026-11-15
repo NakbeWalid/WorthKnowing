@@ -89,10 +89,11 @@ Format : {"verdict":"...","rationale":"...","refs":["F1"],"findings":[]}`;
 
     try {
       const out = await this.bedrock.json<any>(SYSTEM, prompt, 700);
-      return {
-        verdict: this.checkVerdict(out, known, `${facts.join(' ')} ${news.map((n) => n.title).join(' ')}`),
-        findings: this.checkFindings(out.findings, known, allowed, input, news),
-      };
+      const verdict = this.checkVerdict(out, known, `${facts.join(' ')} ${news.map((n) => n.title).join(' ')}`);
+      // Pas de constat supplémentaire si le modèle lui-même ne voit rien de particulier.
+      const findings = ['conforme', 'indetermine'].includes(verdict.verdict)
+        ? [] : this.checkFindings(out.findings, known, allowed, input, news);
+      return { verdict, findings };
     } catch (err) {
       this.log.warn(`analyse impossible : ${(err as Error).message}`);
       return { findings: [], verdict: null };
@@ -129,6 +130,8 @@ Format : {"verdict":"...","rationale":"...","refs":["F1"],"findings":[]}`;
       seen.add(param);
       const anchor = PARAM_CHECKS[param].signal(input.metrics);
       const signal = clamp(Math.max(anchor - MAX_AI_SHIFT, Math.min(anchor + MAX_AI_SHIFT, Number(f.signal))));
+      // Un constat signale un comportement exprimé : il ne peut que renforcer le paramètre, jamais l'abaisser.
+      if (signal <= input.profile.current[param]) continue;
       const cited = refs.filter((r) => r.startsWith('N')).map((r) => `« ${news[Number(r.slice(1)) - 1].title} »`);
       findings.push({
         param, signal, origin: 'bedrock',

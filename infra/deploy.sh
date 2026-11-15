@@ -15,6 +15,7 @@ npx cdk deploy MiroirData MiroirBuild --require-approval never --outputs-file ou
 
 echo "▶ 2/4 Image $TAG (CodeBuild)"
 SOURCE=$(node -p "require('./outputs.json').MiroirBuild.SourceKey")
+POOL=$(node -p "require('./outputs.json').MiroirData.UserPoolId")
 BUILD_ID=$(aws codebuild start-build --project-name miroir-image \
   --source-location-override "${SOURCE#s3://}" \
   --environment-variables-override "name=IMAGE_TAG,value=$TAG" --query build.id --output text)
@@ -26,12 +27,11 @@ done
 [ "$STATUS" = "SUCCEEDED" ] || { echo "Échec du build : $STATUS ($BUILD_ID)"; exit 1; }
 
 echo "▶ 3/4 Application"
-npx cdk deploy MiroirApp -c imageTag="$TAG" --require-approval never --outputs-file outputs.json
+npx cdk deploy MiroirApp --exclusively -c imageTag="$TAG" --require-approval never --outputs-file app-outputs.json
 
 echo "▶ 4/4 Compte admin"
-POOL=$(node -p "require('./outputs.json').MiroirData.UserPoolId")
 PASSWORD=$(aws secretsmanager get-secret-value --secret-id miroir/admin-password --query SecretString --output text)
 aws cognito-idp admin-set-user-password --user-pool-id "$POOL" --username admin@miroir.local --password "$PASSWORD" --permanent
 
-echo "✔ Déployé : $(node -p "require('./outputs.json').MiroirApp.Url")"
+echo "✔ Déployé : $(node -p "require('./app-outputs.json').MiroirApp.Url")"
 echo "  Mot de passe admin : aws secretsmanager get-secret-value --secret-id miroir/admin-password --query SecretString --output text"

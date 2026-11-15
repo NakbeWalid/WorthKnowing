@@ -63,7 +63,7 @@ export class TemplateExplainer extends Explainer {
         'Un paramètre est « mis en jeu » quand le trade franchit un seuil fixe (ex. achat après +20 % en 30 séances).',
         '« Spéculatif » = cryptoactif ou volatilité annualisée ≥ 45 %.',
         'Chaque constat déplace le paramètre de 35 % vers le signal observé.',
-        ...(d.influence ? ['Un constat de l’agent d’influence (IA) ne porte que sur les nouvelles, le « hype » ou les pertes, doit citer une donnée fournie, et son signal reste à ±15 points du signal calculé par le code.'] : []),
+        ...(d.influence ? ['Un constat de l’agent d’influence (IA) ne porte que sur les nouvelles, le « hype » ou les pertes, doit citer une donnée fournie, ne peut que renforcer un paramètre, et son signal reste à ±15 points du signal calculé par le code.'] : []),
       ],
       limits: [
         newsLimit(d),
@@ -82,7 +82,8 @@ Tu t'adresses à l'investisseur en le vouvoyant, en français clair, sans jargon
 Règles absolues : tu n'utilises QUE les faits fournis ; tu recopies les chiffres tels quels sans en calculer de nouveaux ;
 tu n'ajoutes aucune cause, aucune prévision, aucun conseil d'achat ou de vente ; tu ne qualifies pas une durée
 (ni « rapide » ni « lent ») si les faits ne le font pas. Une nouvelle antérieure au trade ne prouve pas qu'elle l'a
-déclenché : écris au plus « possiblement influencé par ». Pas de vocabulaire psychologique : c'est un profil de comportement.
+déclenché : écris au plus « possiblement influencé par ». N'indique aucun délai entre une nouvelle et le trade
+(« 3 jours après », « 24 heures après ») : seules les dates fournies comptent. Pas de vocabulaire psychologique.
 Tu réponds uniquement par un objet JSON.`;
 
 /**

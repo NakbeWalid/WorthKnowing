@@ -16,6 +16,8 @@ COPY --from=build /app/dist ./dist
 COPY package.json ./
 COPY public ./public
 COPY dataset ./dataset
+# prefetch_news.mjs peut tourner en tâche ECS ponctuelle pour compléter le corpus dans S3.
+COPY scripts ./scripts
 # Copie locale de repli : en production, les données et le corpus sont lus depuis S3 (DATA_BUCKET).
 COPY --chown=node:node data ./data
 USER node
