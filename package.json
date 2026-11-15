@@ -11,7 +11,7 @@
     "start:dev:miroir": "nest start --watch --entryFile miroir/main",
     "start:dev:bank": "nest start --watch --entryFile bank/main",
     "scenarios": "python3 scripts/build_scenarios.py",
-    "test:unit": "node scripts/test-influence.mjs",
+    "test:unit": "node scripts/test-influence.mjs && node scripts/test-profile.mjs",
     "test": "node scripts/test_all_features.mjs",
     "test:e2e": "node scripts/e2e.mjs"
   },

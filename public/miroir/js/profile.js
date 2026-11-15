@@ -24,12 +24,11 @@ async function refresh() {
     top = `<div class="banner">
       <div>
         <b>Seuil de dérive dépassé (${me.drift.score} sur ${me.driftThreshold}).</b> Votre comportement s’est trop éloigné de vos garde-fous.<br>
-        Vos ordres sont suspendus chez votre courtier. <b>Vous êtes invité à réajuster vos règles</b> pour réaligner votre profil.
-        La validation de vos règles réinitialisera votre score de dérive à 0 et réactivera vos ordres.
+        Vos ordres sont suspendus chez votre courtier jusqu’à ce que vous refassiez l’évaluation complète
+        (questionnaire et simulations). Modifier vos règles ne remet pas la dérive à zéro.
       </div>
       <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
-        <button class="primary" id="btnBannerEditRules">Réajuster mes règles & Réinitialiser la dérive à 0</button>
-        <button class="danger" onclick="location.href='/onboarding.html'">Refaire l’évaluation complète</button>
+        <button class="primary" onclick="location.href='/onboarding.html'">Refaire l’évaluation complète</button>
       </div>
     </div>`;
   } else if (p) {
@@ -42,27 +41,14 @@ async function refresh() {
     $('#refuse').onclick = () => { pending.clear(); refresh(); };
   }
   if ($('#goBack')) $('#goBack').onclick = () => finishAndReturn();
-  if ($('#btnBannerEditRules')) {
-    $('#btnBannerEditRules').onclick = () => openSmartRuleEditor(true);
-  }
 
   // Score de dérive
   $('#driftScore').textContent = me.drift.score;
   $('#driftNeedle').style.left = `calc(${me.drift.score}% - 2px)`;
   $('#driftLimit').style.left = me.driftThreshold + '%';
-  $('#driftText').textContent = `Écart entre votre comportement récent et votre dernière évaluation. À ${me.driftThreshold}, une réévaluation ou un réajustement des règles est exigé.`
+  $('#driftText').textContent = `Écart entre votre comportement récent et votre dernière évaluation. À ${me.driftThreshold}, une réévaluation complète est exigée.`
     + (me.drift.overrides ? ` Règles outrepassées depuis : ${me.drift.overrides}.` : '');
 
-  // Bouton de reset dérive si seuil dépassé ou dérive > 0
-  const resetActionDiv = $('#driftResetAction');
-  if (resetActionDiv) {
-    resetActionDiv.innerHTML = me.drift.score > 0
-      ? `<button class="mini" id="btnQuickReset" style="width:100%;">Réajuster règles & Réinitialiser dérive à 0</button>`
-      : '';
-    if ($('#btnQuickReset')) {
-      $('#btnQuickReset').onclick = () => openSmartRuleEditor(true);
-    }
-  }
 
   // Liaison avec le courtier
   $('#link').innerHTML = me.link
@@ -88,14 +74,10 @@ async function refresh() {
   // Enrichissement de la caractérisation (CV)
   const enrichBox = $('#enrichmentProfileBox');
   if (enrichBox) {
-    if (me.characterizationEnrichment) {
-      const enr = me.characterizationEnrichment;
-      enrichBox.innerHTML = `
-        <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:10px; margin-bottom:12px;">
-          <h4 style="margin:0 0 6px; font-size:13px; color:#1e293b;">✨ Caractérisation comportementale enrichie (CV)</h4>
-          ${enr.summary ? `<p class="small" style="margin:0 0 6px; white-space:pre-line; color:#475569;">${esc(enr.summary)}</p>` : ''}
-          ${enr.highlights?.length ? `<ul class="small" style="margin:0; padding-left:18px; color:#475569;">${enr.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
-        </div>`;
+    const src = me.profile.sources;
+    if (src?.cv) {
+      enrichBox.innerHTML = `<p class="small muted">Référence : simulations (${Math.round((1 - src.cvWeight) * 100)} %)
+        et CV (${Math.round(src.cvWeight * 100)} %), source distincte de vos réponses au questionnaire.</p>`;
     } else {
       enrichBox.innerHTML = '';
     }
@@ -147,7 +129,6 @@ async function loadAndRenderRuleEditor(focusReset = false) {
   }
 
   const { suggestions, rules, drift, status } = cachedRulesData;
-  const isResetRequired = status === 'reevaluation_required' || drift.score > 0 || focusReset;
 
   editor.innerHTML = `
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
@@ -193,16 +174,7 @@ async function loadAndRenderRuleEditor(focusReset = false) {
       }).join('')}
     </div>
 
-    <div style="margin:14px 0; padding:10px; background:${isResetRequired ? '#fef2f2' : '#f1f5f9'}; border-radius:6px;">
-      <label style="margin:0; font-weight:600; display:flex; align-items:center; gap:8px; cursor:pointer;">
-        <input type="checkbox" id="chkResetDrift" ${isResetRequired ? 'checked' : ''}>
-        <span>Réinitialiser le score de dérive à 0 lors de l'enregistrement</span>
-      </label>
-      <p class="small muted" style="margin:4px 0 0 24px;">
-        Recommandé si vous avez dépassé le seuil de dérive afin de réactiver immédiatement vos ordres de courtage.
-      </p>
-    </div>
-
+    <p class="small muted">Modifier vos règles ne change ni votre score de dérive ni le blocage de vos ordres.</p>
     <div style="display:flex; gap:8px; align-items:center;">
       <button class="primary" id="btnSaveSmartRules">Enregistrer mes règles</button>
       <button id="btnCancelEditor">Annuler</button>
@@ -250,16 +222,13 @@ async function loadAndRenderRuleEditor(focusReset = false) {
       }
     });
 
-    const resetDrift = $('#chkResetDrift').checked;
     $('#btnSaveSmartRules').disabled = true;
 
     try {
-      await api('PUT', '/rules', { rules: updatedRules, resetDrift });
+      await api('PUT', '/rules', { rules: updatedRules });
       editor.classList.add('hidden');
       await refresh();
-      alert(resetDrift
-        ? 'Règles enregistrées avec succès et score de dérive réinitialisé à 0 !'
-        : 'Règles mises à jour avec succès !');
+      alert('Règles mises à jour. Votre score de dérive n’a pas changé.');
     } catch (err) {
       errorSpan.textContent = err.message;
     } finally {

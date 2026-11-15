@@ -4,7 +4,6 @@ import { PARAM_INFO, PARAMS, ParamKey, Rule, User } from '../domain/types';
 import { PARAM_CHECKS } from '../evaluation/rule-templates';
 import { EventsService } from '../realtime/events.service';
 import { Store } from '../storage/store';
-import { TradesService } from '../trades/trades.service';
 
 export interface SmartRuleSuggestion {
   param: ParamKey;
@@ -25,18 +24,13 @@ export interface SmartRuleSuggestion {
 
 @Injectable()
 export class RulesService {
-  constructor(
-    private store: Store,
-    private events: EventsService,
-    private trades: TradesService,
-  ) {}
+  constructor(private store: Store, private events: EventsService) {}
 
   /** Récupère les règles courantes avec suggestions intelligentes personnalisées. */
   async getSmartRules(user: User): Promise<{
     rules: Rule[];
     drift: User['drift'];
     status: User['status'];
-    canResetDrift: boolean;
     suggestions: SmartRuleSuggestion[];
   }> {
     const profile = user.profile;
@@ -105,67 +99,25 @@ export class RulesService {
       rules: user.rules,
       drift: user.drift,
       status: user.status,
-      canResetDrift: user.drift.score > 0 || user.status === 'reevaluation_required',
       suggestions,
     };
   }
 
-  /** Modifie ou remplace l'ensemble des règles (modifiable n'importe quand). */
-  async saveRules(
-    user: User,
-    rawRules: Array<{ param: ParamKey; text: string; threshold: number }>,
-    resetDrift = false,
-  ) {
+  /**
+   * Modifie ou remplace l'ensemble des règles (gouvernance, modifiable n'importe quand).
+   * N'agit NI sur le score de dérive NI sur le statut : seule une (ré)évaluation complète les remet à zéro.
+   */
+  async saveRules(user: User, rawRules: Array<{ param: ParamKey; text: string; threshold: number }>) {
     if (!Array.isArray(rawRules)) throw new BadRequestException('Liste de règles requise.');
-
     const now = new Date().toISOString();
-    const updatedRules: Rule[] = rawRules.map((r) => {
+    user.rules = rawRules.map((r): Rule => {
       if (!PARAMS.includes(r.param) || !r.text?.trim() || !(Number(r.threshold) > 0)) {
         throw new BadRequestException('Chaque règle requiert un paramètre valide, un texte et un seuil > 0.');
       }
-      return {
-        id: randomUUID(),
-        param: r.param,
-        text: r.text.trim().slice(0, 300),
-        threshold: Number(r.threshold),
-        createdAt: now,
-      };
+      return { id: randomUUID(), param: r.param, text: r.text.trim().slice(0, 300), threshold: Number(r.threshold), createdAt: now };
     });
-
-    user.rules = updatedRules;
-
-    // Si resetDrift demandé ou si le statut était en réévaluation requise : reset complet à 0
-    if (resetDrift || user.status === 'reevaluation_required') {
-      user.drift.score = 0;
-      user.drift.overrides = 0;
-      user.status = 'active';
-      if (user.profile) {
-        user.profile.baseline = { ...user.profile.current };
-      }
-      this.events.emit(
-        'drift.reset',
-        user,
-        `Règles mises à jour (${user.rules.length}) et score de dérive réinitialisé à 0`,
-      );
-    } else {
-      this.events.emit(
-        'rules.updated',
-        user,
-        `Règles comportementales mises à jour (${user.rules.length} actives)`,
-      );
-    }
-
     await this.store.saveUser(user);
-    return {
-      ok: true,
-      rules: user.rules,
-      drift: user.drift,
-      status: user.status,
-    };
-  }
-
-  /** Réinitialise expressément le score de dérive à 0 suite au réajustement des règles. */
-  async resetDrift(user: User) {
-    return this.trades.resetDrift(user);
+    this.events.emit('rules.updated', user, `Règles personnelles mises à jour (${user.rules.length} actives)`);
+    return { ok: true, rules: user.rules, drift: user.drift, status: user.status };
   }
 }

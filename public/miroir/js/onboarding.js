@@ -3,11 +3,9 @@
 // L'évaluation en cours est mémorisée dans l'onglet : recharger la page reprend là où on en était.
 
 const view = $('#view');
-const state = { questions: [], answers: {}, session: null, index: 0, shownAt: 0, result: null, enrichment: null };
+const state = { questions: [], answers: {}, session: null, index: 0, shownAt: 0, result: null, cv: null };
 const partner = pending.get()?.partner; // défini si l'utilisateur vient de la plateforme de courtage
 
-let cvFileCached = null;
-let cvTextCached = '';
 
 // Profils de démonstration (les 3 personas de l'énoncé) pour remplir le questionnaire en un clic.
 const PERSONAS = {
@@ -47,61 +45,29 @@ function showQuestion() {
   const q = state.questions[state.index];
   const isLast = state.index + 1 === state.questions.length;
   const isAnswered = state.answers[q.id] !== undefined;
-  const suggestedOpt = state.enrichment?.suggestedAnswers?.[q.id];
 
   view.innerHTML = `
     ${state.index === 0 && partner ? `<div class="card partner"><p style="margin:0">Vous venez de ${esc(partner)}.
       Comptez une dizaine de minutes ; à la fin, vous y serez ramené et vos ordres pourront être analysés.</p></div>` : ''}
 
     ${state.index === 0 ? `
-    <div class="card" style="border: 2px dashed #94a3b8; background: #f8fafc; margin-bottom: 20px;">
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <h3 style="margin:0;">⚡ Pré-remplissage et caractérisation via votre CV</h3>
-        <span class="badge" style="background:#2563eb; color:white;">WorthKnowing AI</span>
-      </div>
-      <p class="small muted" style="margin:6px 0 14px;">
-        Fournissez votre CV (PDF, Texte, Markdown, JSON) pour pré-remplir automatiquement vos réponses et affiner votre caractérisation, <b>sans sauter le questionnaire</b>.
-      </p>
-
-      <!-- Zone CV -->
-      <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:6px; padding:12px; margin-bottom:12px;">
-        <label style="font-weight:600; font-size:13px; display:block; margin-bottom:6px;">📄 Votre CV (PDF, Texte, Markdown, JSON)</label>
-        <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-          <input type="file" id="cvFileInput" accept=".pdf,.txt,.json,.md" style="flex:1; min-width:200px;">
-        </div>
-        <details style="margin-top:6px;"><summary class="small muted" style="cursor:pointer">Ou coller directement le texte de votre CV</summary>
-          <textarea id="cvTextPaste" rows="3" placeholder="Collez le texte brut de votre CV ici..." style="width:100%; margin-top:6px; font-size:13px;">${esc(cvTextCached)}</textarea>
-        </details>
-      </div>
-
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-        <button class="primary" id="btnEnrichAll">⚡ Analyser le CV & Pré-remplir le questionnaire</button>
-        <span class="small muted">Facultatif : vous pouvez aussi répondre directement au questionnaire ci-dessous.</span>
-      </div>
-
-      <div id="enrichResultBox" class="${state.enrichment ? '' : 'hidden'}" style="margin-top:14px;">
-        ${renderEnrichmentSummary(state.enrichment)}
-      </div>
-    </div>` : (state.enrichment ? `
-      <div style="margin-bottom:14px; font-size:12px; color:#15803d; background:#ecfdf5; border:1px solid #bbf7d0; padding:8px 12px; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
-        <span>✨ <b>Profil pré-rempli par votre CV</b>. Vérifiez et ajustez chaque réponse selon vos souhaits.</span>
-        <button class="link mini" id="btnEditEnrichData" style="font-size:11px;">Modifier CV</button>
-      </div>` : '')}
-
+    <div class="card quiet">
+      <h2>Votre CV (facultatif)</h2>
+      <p class="small muted">Vous pouvez passer cette étape. Si vous fournissez un CV, il ne remplit <b>aucune</b> de vos réponses :
+        il est analysé à part et compte pour 25 % de votre profil de référence, à côté de ce que vous ferez en simulation.
+        Le texte du CV n’est pas conservé.</p>
+      <div id="cvBox">${cvBoxHtml(state.cv)}</div>
+    </div>` : ''}
     <div class="card" id="questionCard">
       <div class="progress"><i style="width:${((state.index + 1) / state.questions.length) * 100}%"></i></div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
         <p class="small muted" style="margin:0;">Question ${state.index + 1} sur ${state.questions.length}</p>
-        ${state.enrichment ? `<span class="badge" style="background:#ecfdf5; color:#15803d; border:1px solid #a7f3d0; font-size:11px;">✦ Suggestion appliquée</span>` : ''}
       </div>
       <h1 style="margin-top:12px;">${esc(q.text)}</h1>
       <div class="choices">
         ${q.options.map((o) => {
           const isSelected = state.answers[q.id] === o.id;
-          const isSuggested = suggestedOpt === o.id;
-          return `<button data-id="${esc(o.id)}" class="${isSelected ? 'primary' : ''}">
-            ${esc(o.label)}${isSuggested ? ' <span style="font-size:11px; opacity:0.85; font-weight:normal;">(✦ Suggéré)</span>' : ''}
-          </button>`;
+          return `<button data-id="${esc(o.id)}" class="${isSelected ? 'primary' : ''}">${esc(o.label)}</button>`;
         }).join('')}
       </div>
 
@@ -146,13 +112,6 @@ function showQuestion() {
     };
   }
 
-  // Raccourci vers le panneau CV si l'utilisateur veut le modifier
-  if ($('#btnEditEnrichData')) {
-    $('#btnEditEnrichData').onclick = () => {
-      state.index = 0;
-      showQuestion();
-    };
-  }
 
   // Pré-remplissage via persona démo
   view.querySelectorAll('[data-persona]').forEach((b) => (b.onclick = () => {
@@ -160,124 +119,50 @@ function showQuestion() {
     showQuestion();
   }));
 
-  // Initialisation du panneau d'enrichissement (étape 1 uniquement)
-  if (state.index === 0) {
-    setupEnrichmentPanel();
-  }
+  if (state.index === 0) setupCvBox();
 }
 
-function renderEnrichmentSummary(res) {
-  if (!res) return '';
-  return `
-    <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:6px; padding:12px;">
-      <div style="display:flex; align-items:center; gap:8px;">
-        <span style="font-size:18px;">✅</span>
-        <h4 style="margin:0; color:#166534;">CV analysé & Réponses pré-remplies !</h4>
-      </div>
-      <p class="small" style="margin:6px 0 8px; color:#15803d;">
-        Vos 13 questions ci-dessous ont été pré-remplies selon votre parcours.
-        <b>Parcourez les questions ci-dessous pour valider ou ajuster chaque choix.</b>
-      </p>
-      <div class="small" style="background:#ffffff; border:1px solid #bbf7d0; border-radius:4px; padding:10px;">
-        ${res.summary ? `<div style="white-space:pre-line; margin-bottom:6px; color:#334155;">${esc(res.summary)}</div>` : ''}
-        ${res.highlights?.length ? `<ul style="margin:0; padding-left:18px; color:#475569;">${res.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
-      </div>
-    </div>
-  `;
+// CV facultatif : analysé côté serveur, conservé à part, jamais utilisé pour remplir les réponses.
+function cvBoxHtml(cv) {
+  if (cv) {
+    return `<p class="small"><span class="badge ok">CV pris en compte</span> analysé le ${esc(day(cv.analysedAt))}.</p>
+      ${cv.summary ? `<p class="small muted" style="white-space:pre-line">${esc(cv.summary)}</p>` : ''}
+      <button class="mini" id="cvRemove">Retirer mon CV</button>`;
+  }
+  return `<input type="file" id="cvFile" accept=".pdf,.txt,.md,.json" aria-label="Fichier du CV (PDF ou texte, 5 Mo max.)">
+    <div class="row"><button class="mini" id="cvSend">Analyser mon CV</button><span class="small muted">PDF ou texte, 5 Mo max.</span></div>
+    <div class="error" id="cvError" role="alert"></div>`;
 }
 
-function setupEnrichmentPanel() {
-  const btnEnrichAll = $('#btnEnrichAll');
-  const cvFileInput = $('#cvFileInput');
-  const cvTextPaste = $('#cvTextPaste');
-
-  if (cvFileInput) {
-    cvFileInput.onchange = () => {
-      if (cvFileInput.files && cvFileInput.files[0]) {
-        cvFileCached = cvFileInput.files[0];
-      }
-    };
-  }
-
-  if (cvTextPaste) {
-    cvTextPaste.oninput = () => {
-      cvTextCached = cvTextPaste.value;
-    };
-  }
-
-  if (btnEnrichAll) {
-    btnEnrichAll.onclick = async () => {
-      const hasCvFile = cvFileCached || (cvFileInput?.files && cvFileInput.files[0]);
-      const hasCvText = Boolean(cvTextCached.trim());
-
-      if (!hasCvFile && !hasCvText) {
-        return alert('Veuillez sélectionner un fichier CV ou coller le texte de votre CV.');
-      }
-
-      btnEnrichAll.disabled = true;
-      btnEnrichAll.textContent = 'Analyse du CV en cours…';
-
-      try {
-        let cvPayload = undefined;
-        if (hasCvFile) {
-          const file = cvFileCached || cvFileInput.files[0];
-          const isText = file.name.endsWith('.txt') || file.name.endsWith('.json') || file.name.endsWith('.md');
-          const readerData = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
-            if (isText) reader.readAsText(file);
-            else reader.readAsDataURL(file);
-          });
-          cvPayload = isText
-            ? { text: readerData, filename: file.name }
-            : { base64: readerData, filename: file.name };
-        } else if (hasCvText) {
-          cvPayload = { text: cvTextCached.trim(), filename: 'cv.txt' };
-        }
-
-        let res;
-        try {
-          res = await api('POST', '/parser/enrich', { cv: cvPayload, ...cvPayload });
-        } catch (enrichErr) {
-          // Si le serveur actif tourne encore sur une version sans /enrich, repli transparent sur /parser/cv
-          if (enrichErr.message?.includes('Cannot POST') || enrichErr.status === 404) {
-            const rawCv = await api('POST', '/parser/cv', cvPayload);
-            res = {
-              cv: rawCv,
-              suggestedAnswers: rawCv.suggestedAnswers,
-              inferredScores: rawCv.inferredScores,
-              highlights: rawCv.highlights,
-              summary: rawCv.summary,
-            };
-          } else {
-            throw enrichErr;
-          }
-        }
-        state.enrichment = res;
-
-        // Pré-remplissage des réponses du questionnaire
-        state.answers = { ...res.suggestedAnswers, ...state.answers };
-
-        // Affichage du résultat d'enrichissement
-        const resultBox = $('#enrichResultBox');
-        if (resultBox) {
-          resultBox.classList.remove('hidden');
-          resultBox.innerHTML = renderEnrichmentSummary(res);
-        }
-
-        // Rafraîchit la carte de question sans sauter le formulaire
-        showQuestion();
-      } catch (err) {
-        alert('Erreur lors de l’analyse du CV : ' + err.message);
-      } finally {
-        if (btnEnrichAll) {
-          btnEnrichAll.disabled = false;
-          btnEnrichAll.textContent = '⚡ Analyser le CV & Pré-remplir le questionnaire';
-        }
-      }
-    };
-  }
+function setupCvBox() {
+  if ($('#cvRemove')) $('#cvRemove').onclick = async () => {
+    await api('DELETE', '/parser/cv').catch((err) => alert(err.message));
+    state.cv = null;
+    $('#cvBox').innerHTML = cvBoxHtml(null);
+    setupCvBox();
+  };
+  if (!$('#cvSend')) return;
+  $('#cvSend').onclick = async () => {
+    const file = $('#cvFile').files?.[0];
+    if (!file) return ($('#cvError').textContent = 'Choisissez un fichier, ou passez directement au questionnaire.');
+    if (file.size > 5 * 1024 * 1024) return ($('#cvError').textContent = 'Fichier trop volumineux (5 Mo maximum).');
+    $('#cvSend').disabled = true;
+    try {
+      const isText = /\.(txt|md|json)$/i.test(file.name);
+      const data = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        isText ? reader.readAsText(file) : reader.readAsDataURL(file);
+      });
+      state.cv = await api('POST', '/parser/cv', isText ? { text: data, filename: file.name } : { base64: data, filename: file.name });
+      $('#cvBox').innerHTML = cvBoxHtml(state.cv);
+      setupCvBox();
+    } catch (err) {
+      $('#cvError').textContent = err.message;
+      $('#cvSend').disabled = false;
+    }
+  };
 }
 
 // ------------------------------------------------------------------ Étape 2 : simulations
@@ -285,7 +170,6 @@ async function startSimulations(answers) {
   try {
     state.session = await api('POST', '/evaluation/start', {
       answers: answers || state.answers,
-      enrichment: state.enrichment || undefined,
     });
   } catch (err) { return showError(err, () => startSimulations(answers)); }
   sessionStorage.setItem('miroir.evaluation', state.session.evaluationId);
@@ -516,6 +400,7 @@ async function init() {
   let me;
   try {
     me = await api('GET', '/me');
+    state.cv = me.cvProfile ?? null;
     if (me.role === 'admin') return route(me);
     const current = sessionStorage.getItem('miroir.evaluation');
     if (current) {

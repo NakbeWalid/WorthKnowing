@@ -1,41 +1,25 @@
-import { Body, Controller, Get, HttpCode, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '../auth/auth.guard';
 import { ParamKey } from '../domain/types';
 import { RulesService } from './rules.service';
 
+type RulesBody = { rules: Array<{ param: ParamKey; text: string; threshold: number }> };
+
+/** Règles personnelles (gouvernance). Les modifier ne touche pas à la dérive : voir RulesService.saveRules. */
 @Controller('api/rules')
 @UseGuards(AuthGuard)
 export class RulesController {
   constructor(private rulesService: RulesService) {}
 
-  /** Récupère les règles courantes avec suggestions intelligentes. */
+  /** Règles courantes avec suggestions. */
   @Get()
-  getRules(@Req() req: any) {
-    return this.rulesService.getSmartRules(req.user);
-  }
+  getRules(@Req() req: any) { return this.rulesService.getSmartRules(req.user); }
 
-  /** Modifie ou remplace l'ensemble des règles n'importe quand. */
+  /** Remplace l'ensemble des règles. */
   @Put()
-  saveRules(
-    @Req() req: any,
-    @Body() body: { rules: Array<{ param: ParamKey; text: string; threshold: number }>; resetDrift?: boolean },
-  ) {
-    return this.rulesService.saveRules(req.user, body?.rules ?? [], Boolean(body?.resetDrift));
-  }
+  saveRules(@Req() req: any, @Body() body: RulesBody) { return this.rulesService.saveRules(req.user, body?.rules ?? []); }
 
-  /** Alias POST pour enregistrer des règles. */
+  /** Alias POST. */
   @Post()
-  updateRules(
-    @Req() req: any,
-    @Body() body: { rules: Array<{ param: ParamKey; text: string; threshold: number }>; resetDrift?: boolean },
-  ) {
-    return this.rulesService.saveRules(req.user, body?.rules ?? [], Boolean(body?.resetDrift));
-  }
-
-  /** Quand on dépasse le seuil de dérive : invite le user à refaire ses règles et reset à 0. */
-  @Post('reset-drift')
-  @HttpCode(200)
-  resetDrift(@Req() req: any) {
-    return this.rulesService.resetDrift(req.user);
-  }
+  updateRules(@Req() req: any, @Body() body: RulesBody) { return this.rulesService.saveRules(req.user, body?.rules ?? []); }
 }

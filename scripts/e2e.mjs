@@ -67,6 +67,8 @@ step('Activation demandée', `redirection vers ${link.origin}`);
 const miroir = client(MIROIR);
 assert((await miroir.call('GET', `/api/link/partner?return=${encodeURIComponent(returnUrl)}`)).allowed, 'adresse de retour reconnue');
 assert(!(await miroir.call('GET', `/api/link/partner?return=${encodeURIComponent('https://evil.example/app.html')}`)).allowed, 'adresse inconnue refusée');
+await client(MIROIR).call('POST', '/api/parser/cv', { text: 'CV' }, [401]);
+step('Analyse de CV refusée sans session', '401');
 const reg = await miroir.call('POST', '/api/auth/register', { email: `robert-miroir+${stamp}@test.local`, password: 'secret123', name: 'Robert (Miroir)' });
 miroir.token = reg.token;
 await miroir.call('POST', '/api/link/authorize', { state, returnUrl }, [409]);

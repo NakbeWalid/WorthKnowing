@@ -35,6 +35,16 @@ export interface Profile {
   current: ParamScores;
   evaluatedAt: string;
   evaluationCount: number;
+  /** D'où vient la référence : simulations seules, ou simulations + CV (source distincte, pondérée). */
+  sources?: { observed: ParamScores; cv: ParamScores | null; cvWeight: number };
+}
+
+/** Ce qui est conservé d'un CV analysé : des scores et un résumé, jamais le texte du CV. */
+export interface CvProfile {
+  inferredScores: ParamScores;
+  summary: string;
+  highlights: string[];
+  analysedAt: string;
 }
 
 export interface Drift {
@@ -74,8 +84,8 @@ export interface User {
   /** Liaison avec la plateforme de courtage partenaire (null = aucune). */
   link: Link | null;
   seenScenarios: string[];
-  /** Enrichissement de la caractérisation comportementale (CV, réseaux sociaux). */
-  characterizationEnrichment?: any;
+  /** CV analysé (facultatif) : source d'information distincte, prise en compte à la fin de l'évaluation. */
+  cvProfile?: CvProfile | null;
   /** Jeton personnel WorthKnowing (« user id »), créé automatiquement. Absent = évaluation pas encore terminée. */
   accessToken?: AccessToken | null;
   /** Identifiants de l'utilisateur chez les institutions : la plateforme liée (automatique) et celles ajoutées à la main. */

@@ -1,96 +1,46 @@
-import { BadRequestException, Body, Controller, HttpCode, Post } from '@nestjs/common';
-import { ParamScores } from '../domain/types';
-import { CvParserService, ParsedCvResult } from './cv-parser.service';
+import { BadRequestException, Body, Controller, Delete, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '../auth/auth.guard';
+import { CvProfile } from '../domain/types';
+import { Store } from '../storage/store';
+import { CvParserService } from './cv-parser.service';
 
-function scoreToOption(score: number): string {
-  const reference = [15, 40, 65, 90];
-  let bestIdx = 0;
-  let minDiff = Infinity;
-  for (let i = 0; i < reference.length; i++) {
-    const diff = Math.abs(reference[i] - score);
-    if (diff < minDiff) {
-      minDiff = diff;
-      bestIdx = i;
-    }
-  }
-  return String(bestIdx);
-}
+/** Environ 5 Mo de fichier une fois encodé en base64. */
+const MAX_CV_CHARS = 7_000_000;
 
-@Controller(['api/parser', 'parser'])
+/**
+ * CV facultatif (utilisateur connecté uniquement, comme les autres routes de l'API).
+ * Le CV n'est PAS une réponse au questionnaire : ses scores sont conservés à part (user.cvProfile) et
+ * entrent comme source distincte dans la référence du profil à la fin de l'évaluation (EvaluationService.finalize).
+ * Le texte du CV n'est jamais conservé.
+ */
+@Controller('api/parser')
+@UseGuards(AuthGuard)
 export class ParserController {
-  constructor(private cvParser: CvParserService) {}
+  constructor(private cvParser: CvParserService, private store: Store) {}
 
-  /** Parse un CV (PDF en base64 ou texte brut) et extrait le profil comportemental. */
   @Post('cv')
   @HttpCode(200)
-  parseCv(@Body() body: { text?: string; base64?: string; filename?: string }) {
-    if (!body?.text && !body?.base64) {
-      throw new BadRequestException('Veuillez fournir le contenu du CV (texte ou fichier base64).');
+  async analyse(@Req() req: any, @Body() body: { text?: string; base64?: string; filename?: string }) {
+    const input = body?.base64 || body?.text || '';
+    if (typeof input !== 'string' || !input.trim()) {
+      throw new BadRequestException('Veuillez fournir le contenu du CV (texte ou fichier).');
     }
-    const input = body.base64 || body.text || '';
-    return this.cvParser.parseCv(input, body.filename || 'cv.pdf');
+    if (input.length > MAX_CV_CHARS) throw new BadRequestException('CV trop volumineux (5 Mo maximum).');
+    const parsed = this.cvParser.parseCv(input, String(body?.filename ?? 'cv.pdf').slice(0, 120));
+    const cvProfile: CvProfile = {
+      inferredScores: parsed.inferredScores, summary: parsed.summary, highlights: parsed.highlights,
+      analysedAt: new Date().toISOString(),
+    };
+    req.user.cvProfile = cvProfile;
+    await this.store.saveUser(req.user);
+    return cvProfile;
   }
 
-  /**
-   * Analyse du CV pour pré-remplir les 13 questions et affiner la caractérisation
-   * comportementale sans jamais forcer l'utilisateur à sauter les questions.
-   */
-  @Post('enrich')
-  @HttpCode(200)
-  async enrichProfile(
-    @Body()
-    body: {
-      cv?: { text?: string; base64?: string; filename?: string };
-      text?: string;
-      base64?: string;
-      filename?: string;
-    },
-  ) {
-    const cvInput = body.cv?.base64 || body.cv?.text || body.base64 || body.text || '';
-    const filename = body.cv?.filename || body.filename || 'cv.pdf';
-
-    if (!cvInput) {
-      throw new BadRequestException('Veuillez fournir un CV (fichier PDF ou texte).');
-    }
-
-    const cvResult = this.cvParser.parseCv(cvInput, filename);
-    const cvScores = cvResult.inferredScores;
-
-    const inferredScores: ParamScores = {
-      riskTolerance: cvScores.riskTolerance,
-      lossAversion: cvScores.lossAversion,
-      fomo: cvScores.fomo,
-      concentration: cvScores.concentration,
-      impulsivity: cvScores.impulsivity,
-      newsSensitivity: cvScores.newsSensitivity,
-    };
-
-    // Réponses suggérées pour les 13 questions du questionnaire
-    const suggestedAnswers: Record<string, string> = {
-      age: cvResult.suggestedAnswers.age ?? '30-44',
-      horizon: cvResult.suggestedAnswers.horizon ?? '8-12',
-      objective: cvResult.suggestedAnswers.objective ?? 'balanced',
-      experience: cvResult.suggestedAnswers.experience === 'novice'
-        ? 'beginner'
-        : (cvResult.suggestedAnswers.experience ?? 'intermediate'),
-      esg: cvResult.suggestedAnswers.esg ?? 'medium',
-      crypto: cvResult.suggestedAnswers.crypto ?? 'curious',
-      follows: cvResult.suggestedAnswers.follows ?? 'weekly',
-      // Les 6 questions de posture (0, 1, 2, 3)
-      riskTolerance: scoreToOption(inferredScores.riskTolerance),
-      lossAversion: scoreToOption(inferredScores.lossAversion),
-      fomo: scoreToOption(inferredScores.fomo),
-      concentration: scoreToOption(inferredScores.concentration),
-      impulsivity: scoreToOption(inferredScores.impulsivity),
-      newsSensitivity: scoreToOption(inferredScores.newsSensitivity),
-    };
-
-    return {
-      cv: cvResult,
-      suggestedAnswers,
-      inferredScores,
-      highlights: cvResult.highlights,
-      summary: cvResult.summary,
-    };
+  /** L'utilisateur retire son CV : il ne sera pas pris en compte à sa prochaine évaluation. */
+  @Delete('cv')
+  async remove(@Req() req: any) {
+    req.user.cvProfile = null;
+    await this.store.saveUser(req.user);
+    return { ok: true };
   }
 }

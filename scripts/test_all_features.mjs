@@ -95,17 +95,14 @@ const updated = await rulesService.saveRules(testUser, [
 assert(updated.ok === true, 'Enregistrement des règles anytime réussi');
 assert(testUser.rules.length === 2, '2 règles sauvegardées sur l’utilisateur');
 
-console.log('\n--- 5. Test Dépassement Seuil Dérive et Reset à 0 ---');
+console.log('\n--- 5. Modifier ses règles ne remet pas la dérive à zéro ---');
 testUser.drift = { score: 65, overrides: 4 }; // dépassement du seuil (60)
 testUser.status = 'reevaluation_required';
 await store.saveUser(testUser);
-
-const resetRes = await rulesService.resetDrift(testUser);
-assert(resetRes.ok === true, 'Reset dérive validé');
-assert(testUser.drift.score === 0, 'Score de dérive réinitialisé à 0');
-assert(testUser.drift.overrides === 0, 'Overrides remis à 0');
-assert(testUser.status === 'active', 'Statut repassé à active');
-
+await rulesService.saveRules(testUser, [{ param: 'fomo', text: 'Pas d’achat après +{seuil} %', threshold: 10 }]);
+assert(testUser.drift.score === 65 && testUser.drift.overrides === 4, 'Dérive inchangée après édition des règles');
+assert(testUser.status === 'reevaluation_required', 'Statut reevaluation_required conservé');
+testUser.status = 'active';
 console.log('\n--- 6. Test pré-contrôle : impact sur la dérive ---');
 const checkRes = await trades.check(testUser, {
   ticker: 'NVDA',
@@ -119,33 +116,13 @@ assert(checkRes.triggeredRules.length > 0, 'Règle d’impulsivité déclenchée
 assert(checkRes.derivationImpact !== undefined, 'Impact facteur de dérive calculé');
 assert(checkRes.derivationImpact.addedDriftPoints >= 8, 'Pénalité calculée (+8 points)');
 
-console.log('\n--- 7. Test ParserController (CV 258+ KB Endpoint) ---');
-const parserCtrl = new ParserController(cvParser);
-
-// 7a: Simulation d'un fichier CV de 260 KB en base64
-const largeCvBuffer = Buffer.alloc(260 * 1024, 'A'); // 260 ko
-const largeCvBase64 = 'data:application/pdf;base64,' + largeCvBuffer.toString('base64');
-const cvRes = parserCtrl.parseCv({ base64: largeCvBase64, filename: 'mon_cv_260ko.pdf' });
-assert(cvRes.industry !== undefined, 'CV 260ko analysé sans crash');
-assert(cvRes.suggestedAnswers !== undefined, 'Réponses suggérées générées pour CV volumineux');
-
-console.log('\n--- 8. Test CV Characterization Enrichment & Form Pre-fill without Skipping Questions ---');
-const enrichRes = await parserCtrl.enrichProfile({
-  cv: { text: sampleCvText, filename: 'cv.txt' },
-});
-
-assert(enrichRes.cv !== null, 'Analyse CV effectuée');
-assert(Object.keys(enrichRes.suggestedAnswers).length === 13, 'Toutes les 13 questions ont des réponses suggérées');
-assert(enrichRes.suggestedAnswers.riskTolerance !== undefined, 'Score de risque posture suggéré (0-3)');
-assert(enrichRes.suggestedAnswers.impulsivity !== undefined, 'Score impulsivité posture suggéré (0-3)');
-assert(enrichRes.inferredScores.riskTolerance > 0, 'Inferred score calculé avec CV');
-
-// Test que start() accepte et enregistre l'enrichissement sans sauter le questionnaire
-const evaluationService = new (await import('../dist/miroir/evaluation/evaluation.service.js')).EvaluationService(store, events);
-await evaluationService.onModuleInit();
-const evalStart = await evaluationService.start(testUser, enrichRes.suggestedAnswers, enrichRes);
-assert(evalStart.evaluationId !== undefined, 'Évaluation démarrée avec réponses validées');
-assert(testUser.characterizationEnrichment !== undefined, 'Caractérisation enrichie sauvegardée sur l’utilisateur');
-assert(testUser.preferences.experience !== undefined, 'Préférences factuelles sauvegardées');
-
+console.log('\n--- 7. Test ParserController : CV conservé à part, sans réponses suggérées ---');
+const parserCtrl = new ParserController(cvParser, store);
+const largeCvBase64 = 'data:application/pdf;base64,' + Buffer.alloc(260 * 1024, 'A').toString('base64');
+const cvRes = await parserCtrl.analyse({ user: testUser }, { base64: largeCvBase64, filename: 'mon_cv_260ko.pdf' });
+assert(cvRes.inferredScores !== undefined, 'CV 260 ko analysé sans crash');
+assert(!('suggestedAnswers' in cvRes), 'Aucune réponse suggérée renvoyée au questionnaire');
+await parserCtrl.analyse({ user: testUser }, { text: sampleCvText, filename: 'cv.txt' });
+assert(testUser.cvProfile?.inferredScores.riskTolerance > 0, 'Scores du CV conservés sur l’utilisateur');
+assert(!JSON.stringify(testUser.cvProfile).includes('ALEXANDRE DUPONT'), 'Le texte du CV n’est pas conservé');
 console.log(`\n🎉 TOUS LES TESTS SONT PASSÉS AVEC SUCCÈS ! (${passed}/${total})\n`);

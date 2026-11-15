@@ -33,16 +33,13 @@ export class EvaluationService implements OnModuleInit {
   questions() { return QUESTIONS; }
 
   /** Démarre une évaluation : enregistre le profil déclaré et tire 5 scénarios. */
-  async start(user: User, answers?: Record<string, string>, enrichment?: any) {
+  async start(user: User, answers?: Record<string, string>) {
     const kind = user.profile ? 'reevaluation' : 'initial';
     let declared = user.profile?.declared;
     if (answers) {
       declared = this.declaredFrom(answers);
       user.preferences = Object.fromEntries(
         QUESTIONS.filter((q) => q.kind === 'info').map((q) => [q.id, answers[q.id]]));
-      if (enrichment) {
-        user.characterizationEnrichment = enrichment;
-      }
       await this.store.saveUser(user);
     }
     if (!declared) throw new BadRequestException('Le questionnaire est requis pour la première évaluation.');
@@ -168,9 +165,13 @@ export class EvaluationService implements OnModuleInit {
       }
       return { id: randomUUID(), param: r.param, text: r.text.trim().slice(0, 300), threshold: Number(r.threshold), createdAt: now };
     });
+    // Référence = comportement observé en simulation, combiné au CV s'il y en a un (source distincte).
+    const cv = user.cvProfile?.inferredScores ?? null;
+    const baseline = referenceProfile(result.observed, cv);
     user.profile = {
-      declared: evaluation.declared, baseline: { ...result.observed }, current: { ...result.observed },
+      declared: evaluation.declared, baseline: { ...baseline }, current: { ...baseline },
       evaluatedAt: now, evaluationCount: (user.profile?.evaluationCount ?? 0) + 1,
+      sources: { observed: { ...result.observed }, cv: cv ? { ...cv } : null, cvWeight: cv ? CV_WEIGHT : 0 },
     };
     user.drift = { score: 0, overrides: 0 }; // remise à zéro de la dérive
     user.status = 'active';
@@ -246,6 +247,21 @@ export class EvaluationService implements OnModuleInit {
     if (!evaluation || evaluation.userId !== user.id) throw new NotFoundException('Évaluation introuvable.');
     return evaluation;
   }
+}
+
+/**
+ * Poids du CV dans la référence du profil. Le CV décrit un parcours (expérience, secteur), pas des décisions :
+ * il compte moins que les simulations, où l'on observe ce que la personne fait.
+ */
+export const CV_WEIGHT = 0.25;
+
+/** Profil de référence : observé seul, ou (1 − CV_WEIGHT) × observé + CV_WEIGHT × CV. Le déclaré n'y entre pas. */
+export function referenceProfile(observed: ParamScores, cv: ParamScores | null): ParamScores {
+  if (!cv) return { ...observed };
+  return Object.fromEntries(PARAMS.map((p) => {
+    const fromCv = Number.isFinite(cv[p]) ? Math.max(0, Math.min(100, cv[p])) : observed[p];
+    return [p, Math.round((1 - CV_WEIGHT) * observed[p] + CV_WEIGHT * fromCv)];
+  })) as ParamScores;
 }
 
 const avg = (values: number[]) => values.reduce((a, b) => a + b, 0) / values.length;

@@ -167,18 +167,6 @@ export class TradesService {
     return { trade, status: user.status, drift: user.drift };
   }
 
-  /** Quand on dépasse le seuil de dérive ou que l'utilisateur refait ses règles : reset à 0. */
-  async resetDrift(user: User) {
-    user.drift = { score: 0, overrides: 0 };
-    user.status = 'active';
-    if (user.profile) {
-      user.profile.baseline = { ...user.profile.current };
-    }
-    await this.store.saveUser(user);
-    this.events.emit('drift.reset', user, 'Score de dérive réinitialisé à 0 suite au réajustement des règles');
-    return { ok: true, drift: user.drift, status: user.status };
-  }
-
   history(user: User) { return this.store.listTrades(user.id); }
 
   /** Valide la requête du partenaire et calcule les mesures du trade (poids après exécution, délai de décision…). */

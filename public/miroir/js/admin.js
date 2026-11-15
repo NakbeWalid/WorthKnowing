@@ -55,12 +55,7 @@ async function loadDetail() {
             <td class="right"><b class="${Math.abs(p.current[k] - p.baseline[k]) >= 10 ? 'neg' : ''}">${p.current[k]}</b></td></tr>`).join('')}
           </table>
           ${prefs ? `<h3 style="margin-top:20px">Ce que le persona a déclaré</h3><table>${prefs}</table>` : ''}
-          ${user.characterizationEnrichment ? `
-            <h3 style="margin-top:20px">Caractérisation enrichie (CV)</h3>
-            <div class="card" style="background:#f8fafc; font-size:12px; padding:10px;">
-              ${user.characterizationEnrichment.summary ? `<p style="margin:0 0 6px; white-space:pre-line;">${esc(user.characterizationEnrichment.summary)}</p>` : ''}
-              ${user.characterizationEnrichment.highlights?.length ? `<ul style="margin:0; padding-left:18px;">${user.characterizationEnrichment.highlights.map((h) => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
-            </div>` : ''}
+          ${user.profile?.sources?.cv ? `<p class="small muted" style="margin-top:12px">Référence : simulations ${Math.round((1 - user.profile.sources.cvWeight) * 100)} % + CV ${Math.round(user.profile.sources.cvWeight * 100)} %.</p>` : ''}
         </div>
         <div>
           <h3>Règles auto-définies</h3>
