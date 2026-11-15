@@ -22,7 +22,8 @@ const sse = await fetch(`${BASE}/api/admin/stream?token=${admin.token}`);
   const decoder = new TextDecoder();
   for await (const chunk of sse.body) {
     for (const line of decoder.decode(chunk).split('\n')) {
-      if (line.startsWith('data: ')) events.push(JSON.parse(line.slice(6)));
+      // Les « ping » (data vide) servent seulement à garder la connexion ouverte.
+      if (line.startsWith('data: {')) { try { events.push(JSON.parse(line.slice(6))); } catch { /* ligne coupée */ } }
     }
   }
 })().catch(() => {});
