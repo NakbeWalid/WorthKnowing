@@ -135,6 +135,51 @@ Déployé avec `./deploy.sh` (image en ligne : `e91ec23`, étiquette = commit) ;
 - Les comptes de test (`@test.local`) laissés par les e2e ont été supprimés de Cognito et de DynamoDB (comptes, ordres, évaluations). Restent `admin@miroir.local` et `zkr@faudrasyfaire.com`. Chaque e2e en recrée : à nettoyer avant la démo finale.
 - GDELT limite le débit depuis ces adresses (429) : un ordre à une date absente du corpus retombe sur des signaux simulés (étiquetés). Les dates de la démo sont toutes dans le corpus.
 
+## 5 bis. Les trois choix des simulations
+
+Chaque situation propose exactement **Vendre / Garder / Acheter** (ids `sell` / `keep` / `buy`), sans curseur
+(`scenario-types.ts`, `trio()`) : Vendre = tout vendre (exposition 0), Garder = ne rien changer (1), Acheter = +50 % (1,5).
+Seul l'effet de chaque choix sur le profil (`signals`) dépend de la situation.
+- **« L'emballement » reformulée** : le titre était auparavant *non détenu* (« vous avez 10 000 $ en liquidités ») ; « Vendre » n'aurait
+  rien voulu dire. On détient maintenant 10 000 $ du titre qui a monté ; Acheter = courir après la hausse (signal `fomo` 90).
+- **Profils plus polarisés** : les options intermédiaires (« vendre la moitié », « investir 10 % »…) n'existent plus, donc chaque
+  paramètre est mesuré sur trois niveaux au lieu de quatre. Les barèmes `signals` n'ont pas été recalibrés (réglage à la main :
+  `flat`/Acheter = impulsivité 35, jugement à valider).
+- **Évaluations en cours à la mise en ligne** : leurs réponses aux anciens choix (`sell_all`, `hold`…) sont ignorées (`validDecisions`) ;
+  la personne les refait au lieu d'obtenir une erreur 500.
+
+## 5 ter. Précision du profil : 10 situations (2 par comportement)
+
+Chaque évaluation pose maintenant **10 situations** : 2 de chacun des 5 types (`config.scenariosPerType = 2`), sur des actifs tous
+différents, données par tours (jamais deux situations du même type de suite). Avant, un seul exemple par type : concentration et sensibilité
+aux nouvelles reposaient sur **une seule réponse**. Mesure sur le code (toutes les combinaisons de réponses) :
+- valeurs possibles d'un paramètre : concentration, impulsivité, nouvelles 3 → 6 ; pertes 6 → 17 ; hype 9 → 25 ; risque 8 → 23 ;
+- écart maximal causé par **un seul clic de travers** : divisé par deux (concentration 75 → 38, nouvelles 70 → 35, pertes et hype 75 → 38).
+Conséquences : l'évaluation est deux fois plus longue (environ 5 minutes de plus) ; les profils sont moins polarisés (moyenne de deux réponses).
+Les barèmes `signals` restent fixés à la main, **sans validation sur de vraies personnes** : la précision reste celle d'un profil indicatif.
+Non fait (proposé, à décider) : mélanger l'ordre des boutons, demander un niveau de confiance après chaque réponse, pondérer l'évaluation
+initiale plus fortement au début puis laisser les vrais ordres reprendre la main.
+Tests : `scripts/test-simulations.mjs` (tirage sur 2000 tirages aléatoires, bibliothèque partiellement ou entièrement vue, alias A à J).
+Quand une bibliothèque en grande partie vue n'offre plus assez de situations nouvelles aux actifs distincts, le tirage garde les actifs
+distincts (sinon on révèle l'épisode) et accepte de réutiliser une situation déjà vue.
+
+## 5 quater. Niveau de confiance et fiabilité du profil
+
+Après chaque choix, la personne indique son niveau de confiance : **Sûr / Plutôt sûr / Hésitant** (`high` / `medium` / `low`, champ facultatif
+`confidence` de la décision, validé par le serveur). Le choix peut être changé tant que la confiance n'est pas donnée ; le temps de décision est celui du
+**dernier choix**, pas celui de la confiance.
+- **La confiance ne modifie pas le score du profil** (décision délibérée) : pondérer le score demanderait des poids que rien ne permet de valider. Elle
+  alimente seulement la **fiabilité** par paramètre (`src/miroir/evaluation/reliability.ts`) : élevée / moyenne / faible selon (1) le nombre de mesures,
+  (2) l'écart entre elles (≤ 30 cohérentes, > 50 contradictoires), (3) la confiance moyenne (≥ 0,8 / < 0,55). Une seule mesure ou des réponses
+  contradictoires donnent « faible » quelle que soit la confiance. Sans confiance indiquée (anciennes évaluations), jamais « élevée ».
+- **Limite de cet indice** : il mesure la cohérence des réponses, pas leur justesse.
+- **Précision estimée** (`scripts/measure-precision.mjs`, simulation, hypothèses écrites en tête du fichier) : écart moyen au vrai niveau, bruit moyen :
+  13,5 points (5 situations, 4 choix) ; 15,4 (5 situations, 3 choix) ; **11,9 (10 situations, 3 choix, version actuelle)**. Sans aucun bruit, il reste 10,2 points
+  d'écart : le plancher vient des barèmes à 3 valeurs irrégulières (par exemple concentration 15 / 70 / 90), pas du nombre de questions.
+- **Piste non appliquée** : un barème à écarts réguliers (15 / 50 / 85) ramènerait l'écart à 11,0 (bruit moyen) et 8,2 (sans bruit). Changer les barèmes
+  modifie tous les profils et les seuils de dérive qui s'y appuient : décision métier à valider avec l'équipe.
+- Tests : `scripts/test-reliability.mjs` (27 contrôles, dans `npm run test:unit`).
+
 ## 6. Limites connues, par ordre d'intérêt
 0. **Agent d'influence : relance unique, devenue rare (≈ 4 %).** Quand la phrase du modèle viole le garde-fou (chiffre ou délai absent des faits), `retryRationale` le relance une fois en nommant la violation ; seule la nouvelle phrase est reprise, et seulement si elle passe le même garde-fou. Si elle échoue aussi, plante ou manque de temps (la relance partage le budget de 15 s du 1er appel), la liste « Appuyé sur : F1, N1… » est affichée : une phrase fautive n'est jamais montrée.
    **Cause racine de la relance quasi systématique** (mesurée sur le vrai modèle, 74 à 111 essais par variante, 37 situations réelles du corpus × 2 à 3 durées de décision) : le taux était de **66 %**, et ce n'était pas un biais du modèle. (1) **31 des 49 relances** venaient du garde-fou lui-même : le prompt donnait les dates des nouvelles au modèle, mais pas au garde-fou, qui rejetait « nouvelles du 15 juillet » comme chiffre inventé (24 % après correction). (2) Le reste venait des délais que le modèle calculait en voyant la date de chaque nouvelle à côté de celle du trade. **Retirer les dates de nouvelles du prompt** (elles restent affichées à l'utilisateur) : **4 % de relance**, sans effet sur les qualificatifs de durée.
@@ -166,7 +211,7 @@ Déployé avec `./deploy.sh` (image en ligne : `e91ec23`, étiquette = commit) ;
 
 1. Fenêtre A : vue admin de Miroir. Fenêtre B : Boréal Courtage.
 2. Boréal : ouvrir un compte « Robert », cliquer **Non merci**, passer un petit ordre : il s'exécute, colonne Miroir vide.
-3. Boréal : **Activer Miroir** → compte Miroir → persona *Robert* → 5 situations → révélation → règles → retour automatique.
+3. Boréal : **Activer Miroir** → compte Miroir → persona *Robert* → 10 situations → révélation → règles → retour automatique.
 4. Boréal : acheter 30 000 $ de NVDA au **2023-05-30** → rappel des règles et avertissements → **Renoncer** (l'admin
    voit « règle respectée »), puis recommencer et **Passer outre** → analyse de Miroir, dérive en hausse.
 5. Continuer en avançant la date : BTC-USD au **2024-03-25**, TSLA au **2024-12-17** → réévaluation exigée, ordres suspendus.

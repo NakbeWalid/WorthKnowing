@@ -9,6 +9,7 @@ import { readDataFile } from '../../shared/data-files';
 import { Store } from '../storage/store';
 import { QUESTIONS } from './questions';
 import { PARAM_CHECKS } from './rule-templates';
+import { overallReliability, Reading, Reliability, reliabilityOf, CONFIDENCE_LEVELS } from './reliability';
 import { eventSentence, outcomeOf, SCENARIO_TYPES, STAKE } from './scenario-types';
 
 /**
@@ -32,7 +33,7 @@ export class EvaluationService implements OnModuleInit {
 
   questions() { return QUESTIONS; }
 
-  /** Démarre une évaluation : enregistre le profil déclaré et tire 5 scénarios. */
+  /** Démarre une évaluation : enregistre le profil déclaré et tire les mises en situation (2 par type de comportement). */
   async start(user: User, answers?: Record<string, string>) {
     const kind = user.profile ? 'reevaluation' : 'initial';
     let declared = user.profile?.declared;
@@ -64,19 +65,30 @@ export class EvaluationService implements OnModuleInit {
     if (evaluation.completedAt) throw new NotFoundException('Cette évaluation est déjà terminée.');
     return {
       ...this.masked(evaluation),
-      answered: evaluation.decisions.map((d) => d.scenarioId),
+      answered: this.validDecisions(evaluation).map((d) => d.scenarioId),
       result: evaluation.result,
     };
   }
 
   /** Vue masquée : ni le titre réel, ni les dates, ni la suite ne quittent le serveur. */
+  /**
+   * Réponses dont le choix existe encore. Une évaluation commencée avant le passage aux trois choix
+   * (Vendre / Garder / Acheter) contient d'anciens identifiants (`sell_all`, `hold`…) : ces réponses sont
+   * ignorées, la personne les refait, au lieu de faire échouer la révélation.
+   */
+  private validDecisions(evaluation: Evaluation) {
+    return evaluation.decisions.filter((d) => {
+      const s = this.library.find((x) => x.id === d.scenarioId);
+      return !!s && SCENARIO_TYPES[s.type].choices.some((c) => c.id === d.choiceId);
+    });
+  }
   private masked(evaluation: Evaluation) {
     return {
       evaluationId: evaluation.id, kind: evaluation.kind, stake: STAKE,
       scenarios: evaluation.scenarioIds.map((id) => this.scenario(id)).map((s, i) => {
         const def = SCENARIO_TYPES[s.type];
         return {
-          id: s.id, title: def.title, alias: `Titre ${'ABCDEFGH'[i]}`, maskLabel: s.maskLabel,
+          id: s.id, title: def.title, alias: aliasOf(i), maskLabel: s.maskLabel,
           headline: def.headline, situation: def.situation(s), context: s.context,
           choices: def.choices.map(({ id, label }) => ({ id, label })),
         };
@@ -95,22 +107,28 @@ export class EvaluationService implements OnModuleInit {
       throw new BadRequestException('Choix invalide.');
     }
     evaluation.decisions = evaluation.decisions.filter((d) => d.scenarioId !== scenario.id);
+    if (decision.confidence !== undefined && !CONFIDENCE_LEVELS.includes(decision.confidence)) {
+      throw new BadRequestException('Niveau de confiance invalide.');
+    }
     evaluation.decisions.push({
       scenarioId: scenario.id, choiceId: decision.choiceId, decisionTimeMs: Number(decision.decisionTimeMs) || 0,
+      ...(decision.confidence ? { confidence: decision.confidence } : {}),
     });
     await this.store.saveEvaluation(evaluation);
-    return { answered: evaluation.decisions.length, total: evaluation.scenarioIds.length };
+    return { answered: this.validDecisions(evaluation).length, total: evaluation.scenarioIds.length };
   }
 
   /** Fin des simulations : révèle l'histoire réelle, chiffre chaque décision et bâtit le profil observé. */
   async complete(user: User, evaluationId: string) {
     const evaluation = await this.load(user, evaluationId);
     if (evaluation.result) return evaluation.result; // déjà calculée : même révélation à chaque appel
-    if (evaluation.decisions.length < evaluation.scenarioIds.length) {
+    if (this.validDecisions(evaluation).length < evaluation.scenarioIds.length) {
       throw new BadRequestException('Toutes les simulations doivent être complétées.');
     }
     const signals: Record<ParamKey, number[]> = Object.fromEntries(PARAMS.map((p) => [p, []])) as any;
     const timeSignals: number[] = [];
+    // Toutes les mesures de chaque paramètre (réponses + temps de décision), pour en juger la fiabilité.
+    const readings = Object.fromEntries(PARAMS.map((p) => [p, [] as Reading[]])) as Record<ParamKey, Reading[]>;
 
     // Dans l'ordre où les situations ont été présentées (et non l'ordre d'arrivée des réponses).
     const reveals = evaluation.scenarioIds.map((id, i) => {
@@ -118,14 +136,17 @@ export class EvaluationService implements OnModuleInit {
       const s = this.scenario(id);
       const def = SCENARIO_TYPES[s.type];
       const chosen = def.choices.find((c) => c.id === d.choiceId)!;
-      for (const [param, value] of Object.entries(chosen.signals)) signals[param as ParamKey].push(value);
+      for (const [param, value] of Object.entries(chosen.signals)) {
+        signals[param as ParamKey].push(value);
+        readings[param as ParamKey].push({ value, confidence: d.confidence, source: 'answer' });
+      }
       const seconds = d.decisionTimeMs / 1000;
       timeSignals.push(seconds < 5 ? 85 : seconds < 12 ? 55 : 25);
 
       const options = def.choices.map((c) => ({ id: c.id, label: c.label, pnl: outcomeOf(s, c) }));
       const best = options.reduce((a, b) => (b.pnl > a.pnl ? b : a));
       return {
-        scenarioId: s.id, alias: `Titre ${'ABCDEFGH'[i]}`, title: def.title, tests: def.tests, testsLabel: PARAM_INFO[def.tests].label,
+        scenarioId: s.id, alias: aliasOf(i), title: def.title, tests: def.tests, testsLabel: PARAM_INFO[def.tests].label,
         reveal: s.reveal, context: s.context, forward: s.forward, stats: s.stats, outcome: s.outcome,
         sentence: eventSentence(s),
         chosenId: chosen.id, bestId: best.id, options,
@@ -134,15 +155,19 @@ export class EvaluationService implements OnModuleInit {
       };
     });
     signals.impulsivity.push(avg(timeSignals));
+    readings.impulsivity.push({ value: avg(timeSignals), source: 'time' });
 
     const observed = Object.fromEntries(PARAMS.map((p) =>
       [p, signals[p].length ? Math.round(avg(signals[p])) : evaluation.declared[p]])) as ParamScores;
 
+    // Fiabilité de chaque paramètre. La confiance déclarée n'entre PAS dans le score : voir reliability.ts.
+    const reliability = Object.fromEntries(PARAMS.map((p) => [p, reliabilityOf(readings[p])])) as Record<ParamKey, Reliability>;
     const result = {
       reveals,
       totalPnl: reveals.reduce((sum, r) => sum + r.pnl, 0),
       observed,
-      params: this.diagnose(evaluation.declared, observed, user.rules),
+      params: this.diagnose(evaluation.declared, observed, user.rules).map((row) => ({ ...row, reliability: reliability[row.param] })),
+      reliability: overallReliability(reliability),
       note: 'Le profil mesure votre comportement, pas votre rendement : une décision risquée peut bien tourner par chance.',
     };
     evaluation.result = result;
@@ -194,18 +219,27 @@ export class EvaluationService implements OnModuleInit {
     return scores;
   }
 
-  /** Un scénario par type de biais, sur des actifs différents, jamais déjà vus si possible. */
+  /**
+   * `scenariosPerType` situations par type de biais, sur des actifs tous différents, jamais déjà vues si possible.
+   * Elles sont données par « tours » (un exemplaire de chaque type par tour, dans un ordre mélangé) : deux situations
+   * du même type ne se suivent jamais.
+   */
   private pickScenarios(seen: string[]): Scenario[] {
-    const types = shuffle<ScenarioType>(['crash', 'hype', 'shock', 'flat', 'winner']).slice(0, config.scenariosPerEvaluation);
+    const types: ScenarioType[] = ['crash', 'hype', 'shock', 'flat', 'winner'];
     const picked: Scenario[] = [];
-    for (const type of types) {
-      const pool = shuffle(this.library.filter((s) => s.type === type));
-      const distinct = (s: Scenario) => !picked.some((p) => p.reveal.ticker === s.reveal.ticker);
-      picked.push(pool.find((s) => distinct(s) && !seen.includes(s.id)) ?? pool.find(distinct) ?? pool[0]);
+    for (let round = 0; round < config.scenariosPerType; round++) {
+      const order = shuffle(types);
+      if (picked.length && order[0] === picked[picked.length - 1].type) order.push(order.shift()!); // pas deux fois le même type d'affilée
+      for (const type of order) {
+        const pool = shuffle(this.library.filter((s) => s.type === type && !picked.some((p) => p.id === s.id)));
+        const newAsset = (s: Scenario) => !picked.some((p) => p.reveal.ticker === s.reveal.ticker);
+        const unseen = (s: Scenario) => !seen.includes(s.id);
+        // Par ordre de préférence : actif nouveau et situation jamais vue, puis actif nouveau, puis jamais vue, puis n'importe laquelle.
+        picked.push(pool.find((s) => newAsset(s) && unseen(s)) ?? pool.find(newAsset) ?? pool.find(unseen) ?? pool[0]);
+      }
     }
     return picked;
   }
-
   /** Compare déclaré et observé, repère les paramètres fragiles et propose une règle pour chacun. */
   private diagnose(declared: ParamScores, observed: ParamScores, existingRules: Rule[]) {
     const rows = PARAMS.map((param) => {
@@ -248,6 +282,8 @@ export class EvaluationService implements OnModuleInit {
   }
 }
 
+/** « Titre A », « Titre B »… (assez de lettres pour toutes les situations d'une évaluation). */
+export const aliasOf = (i: number) => `Titre ${String.fromCharCode(65 + i)}`;
 const avg = (values: number[]) => values.reduce((a, b) => a + b, 0) / values.length;
 function shuffle<T>(items: T[]): T[] {
   return items.map((v) => [Math.random(), v] as const).sort((a, b) => a[0] - b[0]).map(([, v]) => v);

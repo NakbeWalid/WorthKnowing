@@ -10,8 +10,11 @@ export const config = {
   adminPassword: process.env.ADMIN_PASSWORD ?? 'admin123',
   /** Seuil du score de dérive à partir duquel une réévaluation est exigée. */
   driftThreshold: Number(process.env.DRIFT_THRESHOLD ?? 60),
-  /** Nombre de mises en situation par évaluation (une par type de biais). */
-  scenariosPerEvaluation: 5,
+  /**
+   * Mises en situation par type de comportement (5 types). Deux par type : chaque paramètre du profil repose sur la
+   * moyenne de deux réponses sur deux actifs différents, et non sur une seule (un clic de travers pèse deux fois moins).
+   */
+  scenariosPerType: 2,
   /**
    * Pause entre les étapes du pipeline, pour que la vue admin les montre une à une (démo).
    * Inutile avec Bedrock : les appels au modèle introduisent déjà une vraie latence.

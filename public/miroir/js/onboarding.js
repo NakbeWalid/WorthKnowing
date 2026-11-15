@@ -189,14 +189,15 @@ async function startSimulations(answers) {
   $('#go').onclick = showScenario;
 }
 
+/** Les trois niveaux de confiance proposés après chaque réponse (ids attendus par le serveur). */
+const CONFIDENCES = [['high', 'Sûr'], ['medium', 'Plutôt sûr'], ['low', 'Hésitant']];
 function showScenario() {
   setStep(2);
   const s = state.session.scenarios[state.index];
   const total = state.session.scenarios.length;
   state.shownAt = Date.now(); // sert à mesurer le temps de décision
-
-  let currentChoiceIdx = 0;
-
+  s.decisionTimeMs = undefined;
+  let chosen = null;
   view.innerHTML = `
     <div class="card">
       <div class="progress"><i style="width:${(state.index / total) * 100}%"></i></div>
@@ -206,82 +207,47 @@ function showScenario() {
       <p class="small muted">Prix sur les 90 dernières séances (base 100).</p>
       <div class="quote">${esc(s.headline)} <span class="badge grey">manchette fictive</span></div>
       <p><b>${esc(s.situation)}</b></p>
-
-      <!-- Slider interactif dans la mise en situation -->
-      <div class="slider-box" style="margin:20px 0; padding:16px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-          <span style="font-weight:600; font-size:14px; color:#1e293b;">Curseur de décision (Slider) :</span>
-          <span class="badge" id="sliderChoiceBadge" style="background:#2563eb; color:white;">Option 1 / ${s.choices.length}</span>
-        </div>
-        <input type="range" id="scenarioSlider" min="0" max="${s.choices.length - 1}" step="1" value="0" style="width:100%; cursor:pointer;">
-        <div style="display:flex; justify-content:space-between; font-size:11px; color:#64748b; margin-top:4px;">
-          <span>Prudent / Vente</span>
-          <span>Neutre</span>
-          <span>Agressif / Achat</span>
-        </div>
-        <div style="margin-top:12px; padding:10px; background:white; border:1px solid #e2e8f0; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            <span class="small muted">Option sélectionnée avec le curseur :</span><br>
-            <b id="activeChoiceText" style="font-size:14px; color:#0f172a;">${esc(s.choices[0].label)}</b>
-          </div>
-          <button class="primary" id="sliderConfirmBtn" style="flex:none; margin-left:12px;">Confirmer avec le curseur</button>
-        </div>
+      <p>Que faites-vous ?</p>
+      <div class="choices trio" id="choiceRow">${s.choices.map((c) => `<button data-id="${esc(c.id)}" aria-pressed="false">${esc(c.label)}</button>`).join('')}</div>
+      <p class="small muted" style="margin:10px 0 0">Vendre : tout vendre · Garder : ne rien changer · Acheter : ajouter 50 % de plus.</p>
+      <div id="confidenceBox" class="hidden">
+        <p style="margin-top:18px">Quel est votre niveau de confiance dans cette décision ?</p>
+        <div class="choices trio" id="confidenceRow">${CONFIDENCES.map(([id, label]) => `<button data-confidence="${id}">${esc(label)}</button>`).join('')}</div>
       </div>
-
-      <p class="small muted" style="margin:16px 0 6px;">Ou cliquez directement sur l'une des options :</p>
-      <div class="choices">${s.choices.map((c, i) => `<button data-id="${c.id}" data-idx="${i}">${esc(c.label)}</button>`).join('')}</div>
       <div class="error" id="error" role="alert"></div>
     </div>`;
-
-  const slider = $('#scenarioSlider');
-  const badge = $('#sliderChoiceBadge');
-  const activeText = $('#activeChoiceText');
-  const buttons = view.querySelectorAll('.choices button');
-
-  const updateSelection = (idx) => {
-    currentChoiceIdx = idx;
-    slider.value = idx;
-    badge.textContent = `Option ${idx + 1} / ${s.choices.length}`;
-    activeText.textContent = s.choices[idx].label;
-    buttons.forEach((btn, i) => {
-      btn.style.outline = i === idx ? '2px solid #2563eb' : '';
-      btn.style.background = i === idx ? '#eff6ff' : '';
+  const choiceButtons = [...view.querySelectorAll('#choiceRow button')];
+  const confidenceButtons = [...view.querySelectorAll('#confidenceRow button')];
+  const lock = (disabled) => [...choiceButtons, ...confidenceButtons].forEach((x) => (x.disabled = disabled));
+  // 1. Le choix : on peut en changer tant que la confiance n'est pas donnée. Le temps de décision est celui du DERNIER choix.
+  choiceButtons.forEach((b) => (b.onclick = () => {
+    chosen = b.dataset.id;
+    s.decisionTimeMs = Date.now() - state.shownAt;
+    choiceButtons.forEach((x) => {
+      const on = x === b;
+      x.setAttribute('aria-pressed', String(on));
+      x.style.background = on ? 'var(--accent-soft)' : '';
+      x.style.borderColor = on ? 'var(--accent)' : '';
     });
-  };
-
-  slider.oninput = (e) => updateSelection(Number(e.target.value));
-
-  const submitDecision = async (choiceId) => {
-    view.querySelectorAll('button').forEach((x) => (x.disabled = true));
-    slider.disabled = true;
+    $('#confidenceBox').classList.remove('hidden');
+  }));
+  // 2. La confiance : envoie la réponse. En cas d'échec réseau, on peut renvoyer sans fausser le temps de décision.
+  confidenceButtons.forEach((b) => (b.onclick = async () => {
+    lock(true);
     $('#error').textContent = '';
-    s.decisionTimeMs ??= Date.now() - state.shownAt;
     try {
       await api('POST', `/evaluation/${state.session.evaluationId}/decisions`, {
-        scenarioId: s.id,
-        choiceId,
-        decisionTimeMs: s.decisionTimeMs,
+        scenarioId: s.id, choiceId: chosen, decisionTimeMs: s.decisionTimeMs, confidence: b.dataset.confidence,
       });
     } catch (err) {
-      $('#error').textContent = err.message;
-      view.querySelectorAll('button').forEach((x) => (x.disabled = false));
-      slider.disabled = false;
+      $('#error').textContent = err.message; // le serveur remplace la décision : on peut renvoyer
+      lock(false);
       return;
     }
     state.index++;
     state.index < total ? showScenario() : showReveal();
-  };
-
-  $('#sliderConfirmBtn').onclick = () => submitDecision(s.choices[currentChoiceIdx].id);
-
-  buttons.forEach((b) => (b.onclick = () => {
-    updateSelection(Number(b.dataset.idx));
-    submitDecision(b.dataset.id);
   }));
-
-  updateSelection(0);
 }
-
 // ------------------------------------------------------------------ Étape 3 : révélation
 async function showReveal() {
   setStep(3);
@@ -316,6 +282,11 @@ async function showReveal() {
 }
 
 // ------------------------------------------------------------------ Étape 4 : règles auto-définies
+/** Lecture d'ensemble de la fiabilité du profil (les évaluations d'avant la confiance n'en ont pas : rien n'est affiché). */
+function reliabilityHtml(r) {
+  if (!r) return '';
+  return `<p class="small" style="margin:0 0 10px"><b>Fiabilité de ce profil : ${esc(r.label)}.</b> <span class="muted">${esc(r.summary)}</span></p>`;
+}
 function showRules() {
   setStep(4);
   const params = state.result.params;
@@ -330,8 +301,10 @@ function showRules() {
       <!-- Graphique Hexagonal à 6 critères : what you think vs what you are -->
       ${hexagonChart(declaredScores, observedScores)}
 
+      ${reliabilityHtml(state.result.reliability)}
       ${mirrorHead('Vous disiez', 'Vous avez fait')}
-      ${params.map((p) => mirror(esc(p.label), p.declared, p.observed)).join('')}
+      ${params.map((p) => mirror(esc(p.label), p.declared, p.observed, p.reliability ? `fiabilité ${esc(p.reliability.label)}` : '')).join('')}
+      ${params.some((p) => p.reliability) ? '<p class="small muted" style="margin:8px 0 0">La fiabilité dit si vos réponses se recoupent et si vous étiez sûr de vous. Elle ne mesure pas la justesse du score : seuls vos vrais ordres, un par un, l’affineront.</p>' : ''}
     </div>
     <div class="card">
       <h2>Vos règles</h2>

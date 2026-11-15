@@ -67,6 +67,9 @@ label { display: block; font-size: 14px; color: var(--muted); margin: 14px 0 5px
 .choices { display: grid; gap: 10px; margin-top: 16px; }
 .choices button { text-align: left; padding: 14px 18px; }
 .choices button:hover:not(:disabled) { background: var(--accent-soft); border-color: var(--accent); }
+.choices.trio { grid-template-columns: repeat(3, 1fr); }
+.choices.trio button { text-align: center; font-weight: 600; }
+@media (max-width: 560px) { .choices.trio { grid-template-columns: 1fr; } }
 .progress { height: 4px; background: var(--line); border-radius: 2px; margin-bottom: 18px; }
 .progress i { display: block; height: 100%; background: var(--accent); border-radius: 2px; transition: width .2s; }
 
