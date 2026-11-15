@@ -108,7 +108,7 @@ navigateur Boréal ── POST /api/trades/preview ──▶ TradingService.prev
 
 ## 5. Vérification sur AWS (faite le 2026-11-15, compte 025066237985, us-east-1)
 
-Déployé avec `./deploy.sh` (image en ligne : `e91ec23`, étiquette = commit) ; `npm run test:e2e` **vert contre l'environnement déployé**
+Déployé avec `./deploy.sh` (image en ligne : `309cdf7`, étiquette = commit) ; `npm run test:e2e` **vert contre l'environnement déployé**
 (`MIROIR_URL`, `BANK_URL`, `PARTNER_API_KEY`, `ADMIN_PASSWORD` lus dans Secrets Manager). Miroir :
 `https://d282er2gpi2tj4.cloudfront.net` · Boréal : `https://ds5dvhgpln5xx.cloudfront.net`.
 
