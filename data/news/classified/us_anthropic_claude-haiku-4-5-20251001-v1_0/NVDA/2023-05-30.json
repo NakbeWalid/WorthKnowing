@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2023-05-26",
+  "title": "Nvidia Stock Surges Off Huge AI - Focused Earnings Report",
+  "source": "forbes.com",
+  "url": "https://www.forbes.com/sites/qai/2023/05/26/nvidia-stock-surges-off-huge-ai-focused-earnings-report/",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:35:12.360Z",
+  "summary": "Le cours NVIDIA bondit après un rapport de résultats massif axé sur l'IA."
+ },
+ {
+  "date": "2023-05-25",
+  "title": "NVIDIA ( NVDA) stock hits all - time high on bullish Q2 2024 forecast",
+  "source": "shacknews.com",
+  "url": "https://www.shacknews.com/article/135644/nvidia-nvda-stock-rise-q2-2024-forecast",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:35:12.360Z",
+  "summary": "NVIDIA atteint un sommet historique suite à des prévisions bullish pour Q2 2024."
+ },
+ {
+  "date": "2023-05-25",
+  "title": "NVIDIA Analysts Praise Company Hitting The Mother of All Cycle: To $1 Trillion And Beyond For The AI Leader - NVIDIA ( NASDAQ: NVDA)",
+  "source": "benzinga.com",
+  "url": "https://www.benzinga.com/analyst-ratings/analyst-color/23/05/32576632/nvidia-analysts-praise-company-hitting-the-mother-of-all-cycles-to-1-trillion-and-b",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:35:12.360Z",
+  "summary": "Les analystes saluent NVIDIA franchissant un cycle majeur vers 1 trillion de dollars et au-delà."
+ },
+ {
+  "date": "2023-05-29",
+  "title": "NVIDIA Grace Hopper Superchips Designed for Accelerated Generative AI Enter Full Production",
+  "source": "marketscreener.com",
+  "url": "https://www.marketscreener.com/quote/stock/NVIDIA-CORPORATION-57355629/news/NVIDIA-Grace-Hopper-Superchips-Designed-for-Accelerated-Generative-AI-Enter-Full-Production-43974211/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:35:12.360Z",
+  "summary": "Les superchips NVIDIA Grace Hopper conçus pour l'IA générative entrent en production complète."
+ },
+ {
+  "date": "2023-05-29",
+  "title": "NVIDIA Announces DGX GH200 AI Supercomputer",
+  "source": "marketscreener.com",
+  "url": "https://www.marketscreener.com/quote/stock/NVIDIA-CORPORATION-57355629/news/NVIDIA-Announces-DGX-GH200-AI-Supercomputer-43974234/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:35:12.360Z",
+  "summary": "NVIDIA annonce le superordinateur IA DGX GH200."
+ }
+]

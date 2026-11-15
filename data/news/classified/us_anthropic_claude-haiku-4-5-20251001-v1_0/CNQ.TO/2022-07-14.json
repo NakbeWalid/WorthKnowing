@@ -1,0 +1,32 @@
+[
+ {
+  "date": "2022-07-13",
+  "title": "Oil Drops Below $100: What Now?",
+  "source": "fool.ca",
+  "url": "https://www.fool.ca/2022/07/13/oil-drops-below-100-what-now/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:02:28.352Z",
+  "summary": "Le pétrole chute sous les 100 dollars."
+ },
+ {
+  "date": "2022-07-12",
+  "title": "Cerity Partners LLC Decreases Stock Position in Canadian Natural Resources Limited ( NYSE: CNQ)",
+  "source": "etfdailynews.com",
+  "url": "https://www.etfdailynews.com/2022/07/12/cerity-partners-llc-decreases-stock-position-in-canadian-natural-resources-limited-nysecnq/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:02:28.352Z",
+  "summary": "Cerity Partners LLC réduit sa position en actions de Canadian Natural Resources Limited."
+ },
+ {
+  "date": "2022-07-12",
+  "title": "TSX today: Energy stocks weigh on Bay Street as oil slides",
+  "source": "bnnbloomberg.ca",
+  "url": "https://www.bnnbloomberg.ca/tsx-today-energy-stocks-weigh-on-bay-street-as-oil-slides-1.1790884",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T02:02:28.352Z",
+  "summary": "Les actions énergétiques pèsent sur la Bourse alors que le pétrole baisse."
+ }
+]

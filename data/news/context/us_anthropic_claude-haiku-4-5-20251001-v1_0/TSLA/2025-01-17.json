@@ -1,0 +1,38 @@
+{
+ "value": {
+  "text": "Tesla fait face à plusieurs défis : licenciements de plus de 10% de l'effectif (1), rappels de 240 000 véhicules (4), et réductions de prix sur le Cybertruck (3). Les analystes restent divisés sur les perspectives long terme avec les robotaxis et le FSD (2, 5).",
+  "sources": [
+   {
+    "title": "It is revealed what Elon Musk wrote to Tesla staff announcing the layoff of more than 10% of the workforce - Telegraph",
+    "source": "telegrafi.com",
+    "url": "https://telegrafi.com/en/zbulohet-se-cfare-shkroi-elon-musk-stafit-te-tesla-s-ku-njoftoi-pushimin-nga-puna-te-shume-se-10-te-fuqise-punetore/",
+    "date": "2025-01-15"
+   },
+   {
+    "title": "Tesla Offers Cybertruck Discounts Amid Production Challenges",
+    "source": "cnet.com",
+    "url": "https://www.cnet.com/roadshow/news/tesla-offers-cybertruck-discounts-amid-production-challenges/",
+    "date": "2025-01-16"
+   },
+   {
+    "title": "Tesla Starts 2025 With Recall For 240, 000 EVs, Some May Need New Computers",
+    "source": "carscoops.com",
+    "url": "https://www.carscoops.com/2025/01/almost-240000-teslas-need-their-rear-view-cameras-fixed/",
+    "date": "2025-01-13"
+   },
+   {
+    "title": "Tesla Stock Valuation Is Full: Analyst Flags Long - Term Growth Opportunities With Robotaxis, FSD - Tesla ( NASDAQ: TSLA)",
+    "source": "benzinga.com",
+    "url": "https://www.benzinga.com/analyst-ratings/analyst-color/25/01/43036902/tesla-stock-valuation-analyst-flags-long-term-growth-opportunities-robotaxis-fsd",
+    "date": "2025-01-16"
+   },
+   {
+    "title": "Tesla Stock Has Tumbled From Highs. This Analyst Just Hiked The Bull Case To $800.",
+    "source": "investors.com",
+    "url": "https://www.investors.com/news/tesla-stock-analyst-bull-case/",
+    "date": "2025-01-13"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2025-01-17."
+ }
+}

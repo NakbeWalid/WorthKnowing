@@ -1,0 +1,399 @@
+{
+ "ticker": "NVDA",
+ "query": "Nvidia",
+ "from": "2023-05-23T20:00:00.000Z",
+ "to": "2023-05-30T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T01:35:12.360Z",
+ "articles": [
+  {
+   "title": "NVIDIA Collaborates With Microsoft to Accelerate",
+   "url": "https://www.globenewswire.com/news-release/2023/05/23/2674741/0/en/NVIDIA-Collaborates-With-Microsoft-to-Accelerate-Enterprise-Ready-Generative-AI.html",
+   "domain": "globenewswire.com",
+   "seenAt": "2023-05-23T21:45:00.000Z"
+  },
+  {
+   "title": "NVIDIA ( NVDA) stock hits all - time high on bullish Q2 2024 forecast",
+   "url": "https://www.shacknews.com/article/135644/nvidia-nvda-stock-rise-q2-2024-forecast",
+   "domain": "shacknews.com",
+   "seenAt": "2023-05-25T00:00:00.000Z"
+  },
+  {
+   "title": "Nvidia stock gained $184 billion in a day, vaulting it past Tesla. But a top analyst now calls it priced for fantasy.",
+   "url": "https://finance.yahoo.com/news/nvidia-stock-gained-184-billion-213706787.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-05-26T05:00:00.000Z"
+  },
+  {
+   "title": "Nvidia CEO Says This Is the Company iPhone Moment -- and Wall Street Agrees",
+   "url": "https://www.fool.com/investing/2023/05/27/nvidia-ceo-says-this-is-the-companys-iphone-moment/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2023-05-27T10:45:00.000Z"
+  },
+  {
+   "title": "Nvidia share price adds $190 billion overnight. Where to from here?",
+   "url": "https://www.fool.com.au/2023/05/26/nvidia-share-price-adds-190-billion-overnight-where-to-from-here/",
+   "domain": "fool.com.au",
+   "seenAt": "2023-05-26T04:45:00.000Z"
+  },
+  {
+   "title": "NVIDIA Grace Hopper Superchips Designed for Accelerated Generative AI Enter Full Production",
+   "url": "https://www.marketscreener.com/quote/stock/NVIDIA-CORPORATION-57355629/news/NVIDIA-Grace-Hopper-Superchips-Designed-for-Accelerated-Generative-AI-Enter-Full-Production-43974211/",
+   "domain": "marketscreener.com",
+   "seenAt": "2023-05-29T07:15:00.000Z"
+  },
+  {
+   "title": "Microsoft integrates Nvidia AI Enterprise Suite with Azure Machine Learning",
+   "url": "https://www.networkworld.com/article/3696978/microsoft-integrates-nvidia-s-ai-enterprise-suite-with-azure-machine-learning.html",
+   "domain": "networkworld.com",
+   "seenAt": "2023-05-23T21:45:00.000Z"
+  },
+  {
+   "title": "Nvidia stock rides the AI wave with more to come",
+   "url": "https://www.moneycontrol.com/news/opinion/nvidia-stock-rides-the-ai-wave-with-more-to-come-10665371.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2023-05-26T04:45:00.000Z"
+  },
+  {
+   "title": "NVIDIA Financial Results for First Quarter Fiscal 2024, Gaming Down 38% YoY",
+   "url": "https://www.guru3d.com/news-story/nvidia-financial-results-for-first-quarter-fiscal-2024gaming-down-38-yoy.html",
+   "domain": "guru3d.com",
+   "seenAt": "2023-05-25T08:00:00.000Z"
+  },
+  {
+   "title": "NVIDIA Back - Shares Surge By 27% As CEO Boasts Of Trillion Dollar Opportunity",
+   "url": "https://wccftech.com/nvidias-back-shares-surge-by-27-as-ceo-boasts-of-trillion-dollar-opportunity/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-05-25T01:30:00.000Z"
+  },
+  {
+   "title": "Nvidia and ChatGPT: How Nvidia is leading other chipmakers amid the emergence of ChatGPT",
+   "url": "https://www.business-standard.com/companies/news/how-nvidia-is-leading-other-chipmakers-amid-the-emergence-of-chatgpt-123052600463_1.html",
+   "domain": "business-standard.com",
+   "seenAt": "2023-05-26T10:00:00.000Z"
+  },
+  {
+   "title": "Nvidia Stock Surges Off Huge AI - Focused Earnings Report",
+   "url": "https://www.forbes.com/sites/qai/2023/05/26/nvidia-stock-surges-off-huge-ai-focused-earnings-report/",
+   "domain": "forbes.com",
+   "seenAt": "2023-05-26T12:30:00.000Z"
+  },
+  {
+   "title": "A secretive US hedge fund has likely notched a $5 billion gain on Nvidia stock this year as the AI boom rages on",
+   "url": "https://finance.yahoo.com/news/secretive-us-hedge-fund-likely-200157708.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-05-26T20:30:00.000Z"
+  },
+  {
+   "title": "1 Monster Opportunity in the Global Chip Shortage",
+   "url": "https://www.fool.com/investing/2023/05/23/1-monster-opportunity-in-the-global-chip-shortage/",
+   "domain": "fool.com",
+   "seenAt": "2023-05-24T08:30:00.000Z"
+  },
+  {
+   "title": "Nvidia Set to Join Apple, Microsoft, Amazon in the Trillion - Dollar Market Cap Group",
+   "url": "https://www.coinspeaker.com/nvidia-trillion-dollar-market-cap/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2023-05-26T15:00:00.000Z"
+  },
+  {
+   "title": "Nvidia Ignites AI - Related Stock Rally After Blow - Out Forecast",
+   "url": "https://finance.yahoo.com/news/nvidia-ignites-ai-related-stock-230804470.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-05-25T01:30:00.000Z"
+  },
+  {
+   "title": "This Chip Stock Could Redefine the AI Revolution",
+   "url": "https://www.fool.com/investing/2023/05/26/this-chip-stock-could-redefine-the-ai-revolution/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2023-05-26T12:00:00.000Z"
+  },
+  {
+   "title": "Here Why I Just Sold My Nvidia Position",
+   "url": "https://www.fool.com/investing/2023/05/25/heres-why-i-just-sold-my-nvidia-position/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2023-05-25T12:00:00.000Z"
+  },
+  {
+   "title": "Nvidia sees two simultaneous transitions in tech and investors are psyched",
+   "url": "https://news.yahoo.com/nvidia-sees-two-simultaneous-transitions-002400645.html",
+   "domain": "news.yahoo.com",
+   "seenAt": "2023-05-25T01:30:00.000Z"
+  },
+  {
+   "title": "NVIDIA Analysts Praise Company Hitting The Mother of All Cycle: To $1 Trillion And Beyond For The AI Leader - NVIDIA ( NASDAQ: NVDA)",
+   "url": "https://www.benzinga.com/analyst-ratings/analyst-color/23/05/32576632/nvidia-analysts-praise-company-hitting-the-mother-of-all-cycles-to-1-trillion-and-b",
+   "domain": "benzinga.com",
+   "seenAt": "2023-05-25T16:45:00.000Z"
+  },
+  {
+   "title": "NVIDIA Announces DGX GH200 AI Supercomputer",
+   "url": "https://www.marketscreener.com/quote/stock/NVIDIA-CORPORATION-57355629/news/NVIDIA-Announces-DGX-GH200-AI-Supercomputer-43974234/",
+   "domain": "marketscreener.com",
+   "seenAt": "2023-05-29T04:45:00.000Z"
+  },
+  {
+   "title": "Nvidia Nears Entry to Silicon Valley Most Exclusive Club",
+   "url": "https://www.myrtlebeachonline.com/news/business/article275793321.html",
+   "domain": "myrtlebeachonline.com",
+   "seenAt": "2023-05-26T02:45:00.000Z"
+  },
+  {
+   "title": "Nvidia Stock Earnings: NVDA explodes 23% to new all - time high",
+   "url": "https://www.fxstreet.com/news/nvidia-stock-earnings-nvda-explodes-23-to-new-all-time-high-202305242121",
+   "domain": "fxstreet.com",
+   "seenAt": "2023-05-24T23:15:00.000Z"
+  },
+  {
+   "title": "Hedge Fund Scores $5 Billion Gain on Nvidia Stock As AI Boom Rages on",
+   "url": "https://markets.businessinsider.com/news/stocks/nvidia-stock-price-gain-jennison-hedge-fund-ai-tech-boom-2023-5",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2023-05-26T12:30:00.000Z"
+  },
+  {
+   "title": "Nvidia Earnings Outlook for Current Quarter Induces AI Rally as Company Boosts Production",
+   "url": "https://www.coinspeaker.com/nvidia-earnings-ai-rally/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2023-05-26T00:45:00.000Z"
+  },
+  {
+   "title": "Nvidia Stock Soars 29% As CEO Jensen Huang Cites Generative AI Edge",
+   "url": "https://www.forbes.com/sites/petercohan/2023/05/25/nvidia-stock-soars-29-as-ceo-jensen-huang-cites-generative-ai-edge/",
+   "domain": "forbes.com",
+   "seenAt": "2023-05-25T14:00:00.000Z"
+  },
+  {
+   "title": "How to Fix the Nvidia Container High CPU Usage on Windows",
+   "url": "https://www.makeuseof.com/windows-nvidia-container-high-cpu/",
+   "domain": "makeuseof.com",
+   "seenAt": "2023-05-29T16:15:00.000Z"
+  },
+  {
+   "title": "Unprecedented and unfathomable. Nvidia makes jaws drop on Wall Street as stock explodes higher.",
+   "url": "https://www.marketwatch.com/story/unprecedented-and-unfathomable-nvidia-makes-jaws-drop-on-wall-street-as-stock-explodes-higher-9361285f",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-05-25T12:15:00.000Z"
+  },
+  {
+   "title": "NVIDIA ACE for Games Sparks Life Into Virtual",
+   "url": "https://www.globenewswire.com/news-release/2023/05/29/2677522/0/en/NVIDIA-ACE-for-Games-Sparks-Life-Into-Virtual-Characters-With-Generative-AI.html",
+   "domain": "globenewswire.com",
+   "seenAt": "2023-05-29T04:00:00.000Z"
+  },
+  {
+   "title": "Nvidia is now worth almost as much as Amazon",
+   "url": "https://www.digitaltrends.com/computing/nvidia-trillion-market-cap/",
+   "domain": "digitaltrends.com",
+   "seenAt": "2023-05-30T17:30:00.000Z"
+  },
+  {
+   "title": "Listen to NVIDIA ( NVDA) Q1 2024 earnings call here",
+   "url": "https://www.shacknews.com/article/135624/listen-to-nvidia-q1-2024-earnings-call",
+   "domain": "shacknews.com",
+   "seenAt": "2023-05-24T19:15:00.000Z"
+  },
+  {
+   "title": "Nvidia Reports Earnings Today. What to Expect.",
+   "url": "https://www.marketwatch.com/articles/nvidia-earnings-stock-price-f2f143e4",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-05-24T05:45:00.000Z"
+  },
+  {
+   "title": "AI chip giant Nvidia nears trillion dollar valuation",
+   "url": "https://news.yahoo.com/ai-chip-giant-nvidia-nears-195941590.html",
+   "domain": "news.yahoo.com",
+   "seenAt": "2023-05-25T20:45:00.000Z"
+  },
+  {
+   "title": "Semiconductor index surges with Nvidia leading race to AI gold rush",
+   "url": "https://finance.yahoo.com/news/semiconductor-index-surges-nvidia-leading-175228749.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-05-25T18:30:00.000Z"
+  },
+  {
+   "title": "Nvidia close to becoming first trillion - dollar chip firm after stellar forecast",
+   "url": "https://dunyanews.tv/en/Technology/726543-Nvidia-close-to-becoming-first-trillion-dollar-chip-firm-after-stellar-f",
+   "domain": "dunyanews.tv",
+   "seenAt": "2023-05-25T17:30:00.000Z"
+  },
+  {
+   "title": "Nvidia: The chip maker that became an AI superpower",
+   "url": "https://news.yahoo.com/nvidia-chip-maker-became-ai-155957346.html",
+   "domain": "news.yahoo.com",
+   "seenAt": "2023-05-25T16:45:00.000Z"
+  },
+  {
+   "title": "What is Nvidia ACE?",
+   "url": "https://www.trustedreviews.com/explainer/what-is-nvidia-ace-4331305",
+   "domain": "trustedreviews.com",
+   "seenAt": "2023-05-29T11:00:00.000Z"
+  },
+  {
+   "title": "NVIDIA Collaborates With SoftBank Corp. to Power SoftBank Next - Gen Data Centers Using Grace Hopper Superchip for Generative AI and 5G / 6G",
+   "url": "https://www.marketscreener.com/quote/stock/NVIDIA-CORPORATION-57355629/news/NVIDIA-Collaborates-With-SoftBank-Corp-to-Power-SoftBank-s-Next-Gen-Data-Centers-Using-Grace-Hopper-43974287/",
+   "domain": "marketscreener.com",
+   "seenAt": "2023-05-29T07:15:00.000Z"
+  },
+  {
+   "title": "Nvidia chief Jensen Huang wealth soars on AI boom guidance but Cathie Wood ARK Innovation ETF sold out in January",
+   "url": "https://www.afr.com/chanticleer/nvidia-s-165pc-surge-has-many-winners-but-cathie-wood-isn-t-one-of-them-20230526-p5dbhi",
+   "domain": "afr.com",
+   "seenAt": "2023-05-26T01:15:00.000Z"
+  },
+  {
+   "title": "SK Hynix Climbs, Tracking Nvidia Rally",
+   "url": "https://www.marketwatch.com/story/sk-hynix-climbs-tracking-nvidia-s-rally-89744e7a",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-05-25T10:15:00.000Z"
+  },
+  {
+   "title": "NVIDIA GH200 GPU Debuts On The Grace Hopper Superchips, New HGX Servers Revealed Too",
+   "url": "https://wccftech.com/nvidia-gh200-gpu-debuts-grace-hopper-superchips-new-hgx-servers-revealed/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-05-29T05:30:00.000Z"
+  },
+  {
+   "title": "Nvidia and Microsoft Partner on Generative AI Solutions for Enterprise and Consumers",
+   "url": "https://www.fool.com/investing/2023/05/25/nvidia-and-microsoft-partner-on-generative-ai-solu/",
+   "domain": "fool.com",
+   "seenAt": "2023-05-25T12:00:00.000Z"
+  },
+  {
+   "title": "Nvidia Soars to a Record as Worldwide AI Boom Fuels Chips Demand",
+   "url": "https://finance.yahoo.com/news/nvidia-shares-surge-record-high-134343453.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-05-25T14:45:00.000Z"
+  },
+  {
+   "title": "Nvidia CEO Takes Strong Stance on its Value Versus Competitors",
+   "url": "https://www.kansascity.com/news/business/article275762366.html",
+   "domain": "kansascity.com",
+   "seenAt": "2023-05-25T06:15:00.000Z"
+  },
+  {
+   "title": "NVIDIA Launches Accelerated Ethernet Platform for Hyperscale Generative AI",
+   "url": "https://www.wallstreet-online.de/nachricht/16986332-nvidia-launches-accelerated-ethernet-platform-for-hyperscale-generative-ai",
+   "domain": "wallstreet-online.de",
+   "seenAt": "2023-05-29T07:15:00.000Z"
+  },
+  {
+   "title": "NVIDIA Computex 2023 Keynote Biggest Announcements And Developments",
+   "url": "https://www.gizbot.com/tech-biz/nvidia-computex-2023-keynote-biggest-announcements-developments-ai-gpu-085682.html",
+   "domain": "gizbot.com",
+   "seenAt": "2023-05-29T16:15:00.000Z"
+  },
+  {
+   "title": "NVIDIA MGX Gives System Makers Modular Architecture to Meet Diverse Accelerated Computing Needs of World Data Centers",
+   "url": "https://www.streetinsider.com/Globe+Newswire/NVIDIA+MGX+Gives+System+Makers+Modular+Architecture+to+Meet+Diverse+Accelerated+Computing+Needs+of+World%E2%80%99s+Data+Centers/21729400.html",
+   "domain": "streetinsider.com",
+   "seenAt": "2023-05-29T07:15:00.000Z"
+  },
+  {
+   "title": "Nvidia shares soar nearly 30% as sales forecast jumps",
+   "url": "https://www.rte.ie/news/business/2023/0525/1385527-nvidia-quarterly-results/",
+   "domain": "rte.ie",
+   "seenAt": "2023-05-25T09:30:00.000Z"
+  },
+  {
+   "title": "Nvidia Blowout Earnings Lift AMD While Other Chipmakers Like Intel Fall",
+   "url": "https://www.nbcconnecticut.com/news/business/money-report/nvidias-blowout-earnings-lift-amd-while-other-chipmakers-like-intel-fall/3038777/",
+   "domain": "nbcconnecticut.com",
+   "seenAt": "2023-05-25T17:00:00.000Z"
+  },
+  {
+   "title": "Explainer - Why are Nvidia shares soaring and what is its role in the AI boom?",
+   "url": "https://www.marketscreener.com/quote/stock/NVIDIA-CORPORATION-57355629/news/Explainer-Why-are-Nvidia-s-shares-soaring-and-what-is-its-role-in-the-AI-boom-43949672/",
+   "domain": "marketscreener.com",
+   "seenAt": "2023-05-25T18:15:00.000Z"
+  },
+  {
+   "title": "Nvidia becomes first $1 trillion chip company as AI explodes",
+   "url": "https://www.pcworld.com/article/1935564/nvidia-passes-1-trillion-market-cap-as-investors-fall-in-love-with-ai.html",
+   "domain": "pcworld.com",
+   "seenAt": "2023-05-30T20:00:00.000Z"
+  },
+  {
+   "title": "NVIDIA Computex 2023 Recap: Lots of AI Talk, Powerful GH200 GPUs, Grace Hopper Superchips & New Servers",
+   "url": "https://wccftech.com/nvidia-computex-2023-recap-lots-of-ai-talk-powerful-gh200-gpus-grace-hopper-superchips-new-servers/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-05-29T19:45:00.000Z"
+  },
+  {
+   "title": "Nvidia CEO highlights chips for the historic wave of generative AI at Computex",
+   "url": "https://venturebeat.com/games/nvidia-ceo-highlights-chips-for-the-historic-wave-of-generative-ai-at-computex/",
+   "domain": "venturebeat.com",
+   "seenAt": "2023-05-29T12:00:00.000Z"
+  },
+  {
+   "title": "How the AI Boom Could Be Nvidia iPhone Moment – 24 / 7 Wall St.",
+   "url": "https://247wallst.com/investing/2023/05/25/how-the-ai-boom-could-be-nvidias-iphone-moment/",
+   "domain": "247wallst.com",
+   "seenAt": "2023-05-26T06:45:00.000Z"
+  },
+  {
+   "title": "Gamers Are Angry At Stock Market Darling Nvidia Here Why",
+   "url": "https://www.forbes.com/sites/siladityaray/2023/05/29/gamers-are-angry-at-stock-market-darling-nvidia-heres-why/",
+   "domain": "forbes.com",
+   "seenAt": "2023-05-29T15:45:00.000Z"
+  },
+  {
+   "title": "Nvidia Corp shares up 250% in 7 months; can it add another N to FAANG stocks?",
+   "url": "https://www.businesstoday.in/markets/company-stock/story/nvidia-corp-shares-up-250-in-7-months-can-it-add-another-n-to-faang-stocks-383278-2023-05-29",
+   "domain": "businesstoday.in",
+   "seenAt": "2023-05-29T10:15:00.000Z"
+  },
+  {
+   "title": "Nvidia Partners With MediaTek To Offer AI - Powered In - Car Infotainment and Safety Systems",
+   "url": "https://www.autoevolution.com/news/nvidia-partners-with-mediatek-to-offer-ai-powered-in-car-infotainment-and-safety-systems-215810.html",
+   "domain": "autoevolution.com",
+   "seenAt": "2023-05-30T18:30:00.000Z"
+  },
+  {
+   "title": "Dell Technologies and NVIDIA Introduce Project Helix for Secure, On - Premises Generative AI",
+   "url": "https://www.streetinsider.com/PRNewswire/Dell+Technologies+and+NVIDIA+Introduce+Project+Helix+for+Secure,+On-Premises+Generative+AI/21705662.html",
+   "domain": "streetinsider.com",
+   "seenAt": "2023-05-23T20:00:00.000Z"
+  },
+  {
+   "title": "The A. I. Chip Boom Is Pushing Nvidia Toward $1 Trillion, But It Wont Help Intel and AMD",
+   "url": "https://www.nbcconnecticut.com/news/business/money-report/the-a-i-chip-boom-is-pushing-nvidia-toward-1-trillion-but-it-wont-help-intel-and-amd/3038645/",
+   "domain": "nbcconnecticut.com",
+   "seenAt": "2023-05-25T12:00:00.000Z"
+  },
+  {
+   "title": "Cathie Wood Top Fund Missed Nvidia Stock Surge. But ARK Made This AI Bet.",
+   "url": "https://www.marketwatch.com/articles/cathie-wood-nvidia-stock-ark-ai-uipath-b080d4c0",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-05-26T12:00:00.000Z"
+  },
+  {
+   "title": "nvidia: Nvidia results spark nearly $300 billion rally in AI stocks",
+   "url": "https://economictimes.indiatimes.com/markets/stocks/news/nvidias-results-spark-nearly-300-billion-rally-in-ai-stocks/articleshow/100489673.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2023-05-25T04:00:00.000Z"
+  },
+  {
+   "title": "NVIDIA shares recently hit $380 each, but is the price fair?",
+   "url": "https://www.neowin.net/editorials/nvidia-shares-recently-hit-380-each-but-is-the-price-fair/",
+   "domain": "neowin.net",
+   "seenAt": "2023-05-26T09:45:00.000Z"
+  },
+  {
+   "title": "Nvidia CEO Jensen Huang just added $7 billion to his net worth after AI frenzy drives the chipmaker stock to its biggest 1 - day market value gain in history",
+   "url": "https://finance.yahoo.com/news/nvidia-ceo-jensen-huang-just-022705475.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-05-26T03:30:00.000Z"
+  },
+  {
+   "title": "From Gaming Guru to AI Game - Changer: How Nvidia Reinvented Itself",
+   "url": "https://www.fool.com/investing/2023/05/28/how-nvidia-moved-from-gaming-guru-to-ai-giant/",
+   "domain": "fool.com",
+   "seenAt": "2023-05-28T16:00:00.000Z"
+  },
+  {
+   "title": "nvidia: Nvidia shares soar nearly 30% as sales forecast jumps and AI booms",
+   "url": "https://economictimes.indiatimes.com/markets/stocks/news/nvidia-shares-soar-nearly-30-as-sales-forecast-jumps-and-ai-booms/articleshow/100488394.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2023-05-25T04:00:00.000Z"
+  }
+ ]
+}

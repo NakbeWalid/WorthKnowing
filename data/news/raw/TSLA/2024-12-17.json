@@ -1,0 +1,423 @@
+{
+ "ticker": "TSLA",
+ "query": "Tesla",
+ "from": "2024-12-10T20:00:00.000Z",
+ "to": "2024-12-17T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T02:19:12.065Z",
+ "articles": [
+  {
+   "title": "Some People Are Paying Less At Tesla Superchargers",
+   "url": "https://www.topspeed.com/some-people-paying-less-tesla-superchargers/",
+   "domain": "topspeed.com",
+   "seenAt": "2024-12-12T18:15:00.000Z"
+  },
+  {
+   "title": "Why Tesla Stock Is on the Heels of a Record High Today",
+   "url": "https://www.fool.com/investing/2024/12/10/why-tesla-stock-is-on-the-heels-of-a-record-high-t/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2024-12-10T20:00:00.000Z"
+  },
+  {
+   "title": "Tesla Robotaxis Coming With Human Teleoperators In 2025, Says Deutsche Bank",
+   "url": "https://www.carscoops.com/2024/12/tesla-robotaxis-coming-with-human-teleoperators-in-2025-says-deutsche-bank/",
+   "domain": "carscoops.com",
+   "seenAt": "2024-12-11T00:45:00.000Z"
+  },
+  {
+   "title": "Tesla: Can Elon Musk Navigate Risks in China to Keep the Comeback Rally Going?",
+   "url": "https://www.investing.com/analysis/tesla-can-elon-musk-navigate-risks-in-china-to-keep-the-comeback-rally-going-200655375",
+   "domain": "investing.com",
+   "seenAt": "2024-12-17T15:00:00.000Z"
+  },
+  {
+   "title": "The Tesla Model 3 Performance Is The Most American - Made Car",
+   "url": "https://www.carscoops.com/2024/12/teslas-are-the-most-american-made-cars-in-the-market/",
+   "domain": "carscoops.com",
+   "seenAt": "2024-12-14T01:45:00.000Z"
+  },
+  {
+   "title": "Elon Musk says even Microsoft founder Bill Gates will go bankrupt if...",
+   "url": "https://timesofindia.indiatimes.com/technology/tech-news/elon-musk-says-even-microsoft-founder-bill-gates-will-go-bankrupt-if-/articleshow/116199608.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2024-12-11T06:45:00.000Z"
+  },
+  {
+   "title": "Elon Musk Tesla to enter India soon? EV maker restarts search for showroom in Delhi - NCR: Report",
+   "url": "https://timesofindia.indiatimes.com/business/india-business/elon-musks-tesla-to-enter-india-soon-ev-maker-restarts-search-for-showroom-in-delhi-ncr-report/articleshow/116198869.cms",
+   "domain": "timesofindia.indiatimes.com",
+   "seenAt": "2024-12-11T06:45:00.000Z"
+  },
+  {
+   "title": "Tesla Brings Back Free Supercharging For Life",
+   "url": "https://www.topspeed.com/tesla-brings-back-free-supercharging/",
+   "domain": "topspeed.com",
+   "seenAt": "2024-12-16T20:45:00.000Z"
+  },
+  {
+   "title": "Mega - Bullish Analyst Ups Tesla Stock Price Target to $515",
+   "url": "https://www.valuewalk.com/mega-bullish-analyst-ups-tesla-stock-price-target-to-515/",
+   "domain": "valuewalk.com",
+   "seenAt": "2024-12-17T15:15:00.000Z"
+  },
+  {
+   "title": "Tesla Stock Keeps Roaring On Another Upgrade; China Demand Steady",
+   "url": "https://www.investors.com/news/tesla-stock-upgrade-china-demand-steady/",
+   "domain": "investors.com",
+   "seenAt": "2024-12-17T15:15:00.000Z"
+  },
+  {
+   "title": "Trump transition team seeks to scrap car - crash reporting rule opposed by Elon Musk Tesla",
+   "url": "https://nypost.com/2024/12/13/business/trump-transition-team-seeks-to-scrap-car-crash-reporting-rule-opposed-by-elon-musks-tesla/",
+   "domain": "nypost.com",
+   "seenAt": "2024-12-13T19:45:00.000Z"
+  },
+  {
+   "title": "Tesla 76% Post - Trump Rally: Bullish Run Or Signal To Cash Out? - Tesla ( NASDAQ: TSLA)",
+   "url": "https://www.benzinga.com/trading-ideas/long-ideas/24/12/42489019/teslas-76-post-trump-rally-bullish-run-or-signal-to-cash-out",
+   "domain": "benzinga.com",
+   "seenAt": "2024-12-13T18:45:00.000Z"
+  },
+  {
+   "title": "Tesla Is Analyst Top 2025 Stock Pick: Elon Musk Political Involvement May Accelerate EV Maker Beyond Autos - Tesla ( NASDAQ: TSLA)",
+   "url": "https://www.benzinga.com/analyst-ratings/analyst-color/24/12/42449593/tesla-stock-is-analysts-top-2025-sector-pick-elon-musks-political-involvement-will-",
+   "domain": "benzinga.com",
+   "seenAt": "2024-12-11T22:45:00.000Z"
+  },
+  {
+   "title": "2025 Tesla Model Y review",
+   "url": "https://www.canberratimes.com.au/story/8848708/2025-tesla-model-y-review/?cs=34616",
+   "domain": "canberratimes.com.au",
+   "seenAt": "2024-12-16T15:15:00.000Z"
+  },
+  {
+   "title": "Tesla New Cheaper Wraps Sound Good Until You Find Out Theyre Just Vinyl",
+   "url": "https://www.carscoops.com/2024/12/tesla-drops-prices-of-its-wraps-for-the-model-3-model-y-and-cybertruck/",
+   "domain": "carscoops.com",
+   "seenAt": "2024-12-16T20:00:00.000Z"
+  },
+  {
+   "title": "Tesla New Delhi Showroom: Tesla restarts search for New Delhi showroom with India DLF, ET Auto",
+   "url": "https://auto.economictimes.indiatimes.com/news/passenger-vehicle/tesla-restarts-search-for-new-delhi-showroom-with-indias-dlf/116194693",
+   "domain": "auto.economictimes.indiatimes.com",
+   "seenAt": "2024-12-11T07:45:00.000Z"
+  },
+  {
+   "title": "Tesla Mezcal Costs $450, But Hey, At Least You Get A Hand - Blown Bottle",
+   "url": "https://www.carscoops.com/2024/12/teslas-mezcal-costs-450-but-hey-at-least-you-get-a-hand-blown-bottle/",
+   "domain": "carscoops.com",
+   "seenAt": "2024-12-13T01:45:00.000Z"
+  },
+  {
+   "title": "Tesla India launch, new showroom in Delhi",
+   "url": "https://www.autocarindia.com:443/industry/tesla-restarts-scouting-for-showroom-space-in-delhi-433829",
+   "domain": "autocarindia.com",
+   "seenAt": "2024-12-12T14:15:00.000Z"
+  },
+  {
+   "title": "Why Tesla stock is on the heels of a record high",
+   "url": "https://www.fool.com.au/2024/12/11/why-tesla-stock-is-on-the-heels-of-a-record-high-usfeed/",
+   "domain": "fool.com.au",
+   "seenAt": "2024-12-11T03:45:00.000Z"
+  },
+  {
+   "title": "Tesla Stock Is Crushing the Rest of the Mag 7. Here What Going Right.",
+   "url": "https://markets.businessinsider.com/news/stocks/tesla-stock-price-magificent-7-stocks-trump-self-driving-robotaxi-2024-12",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2024-12-11T18:00:00.000Z"
+  },
+  {
+   "title": "Tesla price target raised at Wedbush, Truist; shares up By Investing. com",
+   "url": "https://www.investing.com/news/stock-market-news/tesla-price-target-raised-at-wedbush-truist-shares-up-3774435",
+   "domain": "investing.com",
+   "seenAt": "2024-12-16T17:15:00.000Z"
+  },
+  {
+   "title": "Tesla restarts search for New Delhi showroom with India DLF | Technology News",
+   "url": "https://indianexpress.com/article/technology/techook/tesla-restarts-search-for-new-delhi-showroom-with-indias-dlf-9720202/",
+   "domain": "indianexpress.com",
+   "seenAt": "2024-12-12T04:30:00.000Z"
+  },
+  {
+   "title": "Tesla Raises Prices In Bold Move",
+   "url": "https://247wallst.com/cars-and-drivers/2024/12/14/tesla-raises-prices-in-bold-move/",
+   "domain": "247wallst.com",
+   "seenAt": "2024-12-14T21:00:00.000Z"
+  },
+  {
+   "title": "Tesla New Delhi showroom - Elon Musk Tesla resumes hunt for New Delhi showroom with DLF Report",
+   "url": "https://www.indiatoday.in/business/story/elon-musk-tesla-resumes-hunt-for-new-delhi-showroom-with-dlf-says-report-2648089-2024-12-11",
+   "domain": "indiatoday.in",
+   "seenAt": "2024-12-11T10:15:00.000Z"
+  },
+  {
+   "title": "Tesla restarts search for New Delhi showroom with DLF: Report",
+   "url": "https://www.thehindubusinessline.com/companies/tesla-restarts-search-for-new-delhi-showroom-with-dlf-report/article68971876.ece",
+   "domain": "thehindubusinessline.com",
+   "seenAt": "2024-12-11T07:45:00.000Z"
+  },
+  {
+   "title": "Tesla shares rally as investors anticipate growth after Trump victory",
+   "url": "https://www.euronews.com/business/2024/12/13/teslas-shares-in-meteoric-rally-after-trumps-us-election-victory",
+   "domain": "euronews.com",
+   "seenAt": "2024-12-13T09:30:00.000Z"
+  },
+  {
+   "title": "Will There Be a $25, 000 Tesla? And Will It Be Worth It?",
+   "url": "https://www.dailydot.com/news/25k-tesla-model-q/",
+   "domain": "dailydot.com",
+   "seenAt": "2024-12-14T23:45:00.000Z"
+  },
+  {
+   "title": "Tesla to deploy V4 Superchargers on Chinese Mainland in 2025",
+   "url": "https://autonews.gasgoo.com/new_energy/70035361.html",
+   "domain": "autonews.gasgoo.com",
+   "seenAt": "2024-12-11T09:30:00.000Z"
+  },
+  {
+   "title": "Tesla Robotaxi To Rely On Remote Control Failsafe When FSD Fails",
+   "url": "https://carbuzz.com/tesla-robotaxi-remote-control-failsafe-when-fsd-fails/",
+   "domain": "carbuzz.com",
+   "seenAt": "2024-12-11T16:00:00.000Z"
+  },
+  {
+   "title": "Trump transition recommends scrapping car - crash reporting requirement opposed by Tesla",
+   "url": "https://www.gmanetwork.com/news/topstories/world/929953/trump-transition-recommends-scrapping-car-crash-reporting-requirement-opposed-by-tesla/story/",
+   "domain": "gmanetwork.com",
+   "seenAt": "2024-12-13T20:15:00.000Z"
+  },
+  {
+   "title": "Elon Musk Reportedly Told TSMC Chairman In A Recent Secret Meeting That Optimus Robots - Not Cars",
+   "url": "https://wccftech.com/elon-musk-reportedly-told-tsmcs-chairman-in-a-recent-secret-meeting-that-optimus-robots-not-cars-are-teslas-future/",
+   "domain": "wccftech.com",
+   "seenAt": "2024-12-17T06:30:00.000Z"
+  },
+  {
+   "title": "Tesla with 1000hp gets V8 muscle car body",
+   "url": "https://www.drive.com.au/news/challenger-hellcat-gets-1000hp-upgrade-via-tesla-model-s-plaid-ev-swap/",
+   "domain": "drive.com.au",
+   "seenAt": "2024-12-13T23:45:00.000Z"
+  },
+  {
+   "title": "Tesla Stock Just Did Something It Hasnt Done in 3 Years. Wall Street Says a Big Move Is Coming in 2025.",
+   "url": "https://finance.yahoo.com/news/tesla-stock-just-did-something-092800191.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-12-17T13:00:00.000Z"
+  },
+  {
+   "title": "Tesla Launches Actually Smart Summon Feature In China Ahead Of Planned FSD Rollout In Early 2025 - Tesla ( NASDAQ: TSLA)",
+   "url": "https://www.benzinga.com/24/12/42479639/tesla-launches-actually-smart-summon-feature-in-china-ahead-of-fsd-rollout-in-early-2025",
+   "domain": "benzinga.com",
+   "seenAt": "2024-12-13T10:45:00.000Z"
+  },
+  {
+   "title": "Donald Trump transition team wants to scrap a car crash requirement opposed by Elon Musk Tesla",
+   "url": "https://www.aol.com/donald-trumps-transition-team-wants-193101605.html",
+   "domain": "aol.com",
+   "seenAt": "2024-12-15T20:30:00.000Z"
+  },
+  {
+   "title": "Tesla Races Toward $2 Trillion Market Cap",
+   "url": "https://247wallst.com/investing/2024/12/17/tesla-races-toward-2-trillion-market-cap/",
+   "domain": "247wallst.com",
+   "seenAt": "2024-12-17T15:15:00.000Z"
+  },
+  {
+   "title": "Tesla restarts search for New Delhi showroom with India DLF: report",
+   "url": "https://www.dealstreetasia.com/stories/tesla-new-delhi-showroom-422938",
+   "domain": "dealstreetasia.com",
+   "seenAt": "2024-12-11T02:30:00.000Z"
+  },
+  {
+   "title": "Trump team wants to scrap car - crash reporting rule that Tesla opposes",
+   "url": "https://www.ksl.com:443/article/51211407/trump-team-wants-to-scrap-car-crash-reporting-rule-that-tesla-opposes",
+   "domain": "ksl.com",
+   "seenAt": "2024-12-16T23:30:00.000Z"
+  },
+  {
+   "title": "Trump team wants to scrap car - crash reporting rule",
+   "url": "https://bdnews24.com/world/americas/7c263770d4eb",
+   "domain": "bdnews24.com",
+   "seenAt": "2024-12-15T08:00:00.000Z"
+  },
+  {
+   "title": "Why Tesla Stock Jumped Again Today | The Motley Fool",
+   "url": "https://www.fool.com/investing/2024/12/16/why-tesla-stock-jumped-again-today/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2024-12-16T22:00:00.000Z"
+  },
+  {
+   "title": "Bill Gates Could Go Bankrupt If Tesla Stock Surges 200% To Become The Top Company, Says Elon Musk",
+   "url": "https://finance.yahoo.com/news/bill-gates-could-bankrupt-tesla-180037866.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-12-10T20:00:00.000Z"
+  },
+  {
+   "title": "Tesla stock is up 70% since Trump win. This analyst sees it surging to $500 / sh By Investing. com",
+   "url": "https://www.investing.com/news/stock-market-news/tesla-stock-is-up-70-since-trumps-win-this-analyst-sees-it-surging-to-500sh-3769070",
+   "domain": "investing.com",
+   "seenAt": "2024-12-12T16:00:00.000Z"
+  },
+  {
+   "title": "UK government was reportedly lobbied by Tesla to make petrol cars more expensive",
+   "url": "https://www.drive.com.au/news/tesla-lobbied-uk-to-make-petrol-cars-more-expensive-report/",
+   "domain": "drive.com.au",
+   "seenAt": "2024-12-14T23:45:00.000Z"
+  },
+  {
+   "title": "Tesla Sued After Woman Claims Locking Flaw Let Attacker Enter Model Y",
+   "url": "https://www.carscoops.com/2024/12/woman-sues-tesla-over-allegedly-faulty-door-locks-that-allowed-her-to-be-assaulted/",
+   "domain": "carscoops.com",
+   "seenAt": "2024-12-12T01:15:00.000Z"
+  },
+  {
+   "title": "Exclusive - Trump transition recommends scrapping car - crash reporting requirement opposed by Tesla",
+   "url": "https://gazette.com/news/us-world/exclusive-trump-transition-recommends-scrapping-car-crash-reporting-requirement-opposed-by-tesla/article_b690694d-822d-591c-87d0-3ee1bcbce951.html",
+   "domain": "gazette.com",
+   "seenAt": "2024-12-13T13:15:00.000Z"
+  },
+  {
+   "title": "Trump Transition Says Crash Reporting Requirement Should Be Scrapped",
+   "url": "https://www.forbes.com/sites/tylerroush/2024/12/13/trump-transition-team-wants-to-end-crash-report-requirement-opposed-by-tesla-report-says/",
+   "domain": "forbes.com",
+   "seenAt": "2024-12-13T15:30:00.000Z"
+  },
+  {
+   "title": "Bill Gate Tesla Short Could Bankrupt Him if Shares Surge 200% To Top the Global Market",
+   "url": "https://www.ibtimes.co.uk/bill-gates-tesla-short-could-bankrupt-him-if-shares-surge-200-top-global-market-1729463",
+   "domain": "ibtimes.co.uk",
+   "seenAt": "2024-12-11T17:00:00.000Z"
+  },
+  {
+   "title": "Fact Check: Tesla Made More Cars Than It Sold in Q1 2024 But Those Unsold Cars Arent All Visible from Space",
+   "url": "https://www.yahoo.com/news/fact-check-tesla-made-more-002200896.html",
+   "domain": "yahoo.com",
+   "seenAt": "2024-12-11T02:00:00.000Z"
+  },
+  {
+   "title": "Trump may scrap a crash - reporting requirement that makes Tesla look bad: Reuters",
+   "url": "https://www.salon.com/2024/12/13/may-scrap-a-crash-reporting-requirement-that-makes-tesla-look-bad-reuters/",
+   "domain": "salon.com",
+   "seenAt": "2024-12-13T22:15:00.000Z"
+  },
+  {
+   "title": "Tesla Made More Cars Than It Sold in Q1 2024 But Those Unsold Cars Arent All Visible from Space",
+   "url": "https://www.snopes.com/fact-check/tesla-cars-seen-from-space/",
+   "domain": "snopes.com",
+   "seenAt": "2024-12-11T15:30:00.000Z"
+  },
+  {
+   "title": "Cathie Wood Ark Invest Trims Tesla Exposure Amid Searing Rally, Sells $21. 8M Worth Of Stock Bets On This AI Medical Company - ARK Genomic Revolution ETF ( BATS: ARKG), ARK Innovation ETF ( ARCA: ARKK)",
+   "url": "https://www.benzinga.com/24/12/42452421/cathie-woods-ark-invest-trims-tesla-exposure-amid-searing-rally-sells-21-8m-worth-of-stock-bets-on-this-ai-medical-company",
+   "domain": "benzinga.com",
+   "seenAt": "2024-12-12T04:30:00.000Z"
+  },
+  {
+   "title": "Tesla resumes search for New Delhi showroom with DLF help, eyes India entry amid EV push: Report",
+   "url": "https://www.businesstoday.in/technology/news/story/tesla-resumes-search-for-new-delhi-showroom-with-dlfs-help-eyes-india-entry-amid-ev-push-report-456902-2024-12-11",
+   "domain": "businesstoday.in",
+   "seenAt": "2024-12-11T07:45:00.000Z"
+  },
+  {
+   "title": "Will Tesla Reach $500 Today or By Friday? | NextBigFuture. com",
+   "url": "https://www.nextbigfuture.com/2024/12/will-tesla-reach-500-today-or-by-friday.html",
+   "domain": "nextbigfuture.com",
+   "seenAt": "2024-12-17T16:30:00.000Z"
+  },
+  {
+   "title": "Elon Musk New Affinity To Trump Aimed At Pushing Tesla EV Deliveries, Says Jay Leno: Researcher Says It Doesnt Match Up With Data - Tesla ( NASDAQ: TSLA)",
+   "url": "https://www.benzinga.com/24/12/42479242/jay-leno-says-elon-musks-new-affinity-to-trump-aimed-at-hiking-ev-deliveries-tesla-researcher-disagrees",
+   "domain": "benzinga.com",
+   "seenAt": "2024-12-13T10:45:00.000Z"
+  },
+  {
+   "title": "The cheapest Tesla Model Q model was shown online - photos of the new Tesla Model Q 2025",
+   "url": "https://eng.obozrevatel.com/section-news/news-the-cheapest-tesla-model-was-shown-with-a-new-design-12-12-2024.html",
+   "domain": "eng.obozrevatel.com",
+   "seenAt": "2024-12-12T18:15:00.000Z"
+  },
+  {
+   "title": "Musk Support for Trump Boosted Etsy Side Hustle for Aquarium Worker",
+   "url": "https://www.businessinsider.com/elon-musk-trump-tesla-owner-etsy-side-hustle-bumper-stickers-2024-12",
+   "domain": "businessinsider.com",
+   "seenAt": "2024-12-14T12:15:00.000Z"
+  },
+  {
+   "title": "Cathie Wood Ark Invest Dumps Another $15. 3 Million Tesla Shares, Pivots To This Flying Taxi Startup - Archer Aviation ( NYSE: ACHR), ARK Innovation ETF ( ARCA: ARKK)",
+   "url": "https://www.benzinga.com/24/12/42476448/cathie-woods-ark-invest-dumps-another-15-3-million-tesla-shares-pivots-to-this-flying-taxi-startup",
+   "domain": "benzinga.com",
+   "seenAt": "2024-12-13T03:30:00.000Z"
+  },
+  {
+   "title": "Tesla Quietly Lobbied For Strict Emission Regulations As Musk Eyes Dismantling Others",
+   "url": "https://insideevs.com:443/news/744114/tesla-uk-emissions-mandate-lobbied/",
+   "domain": "insideevs.com",
+   "seenAt": "2024-12-12T16:30:00.000Z"
+  },
+  {
+   "title": "Why The Tesla NACS Revolution Is Our Technology Of The Year",
+   "url": "https://insideevs.com:443/features/743912/nacs-277-volt-power/",
+   "domain": "insideevs.com",
+   "seenAt": "2024-12-11T21:15:00.000Z"
+  },
+  {
+   "title": "Family Of Dead Driver Sues Tesla Over Misleading And Flawed Autopilot And FSD",
+   "url": "https://www.carscoops.com/2024/12/family-of-dead-driver-sues-tesla-over-misleading-and-flawed-autopilot-and-fsd/",
+   "domain": "carscoops.com",
+   "seenAt": "2024-12-10T20:00:00.000Z"
+  },
+  {
+   "title": "Tesla shares surge to record high after Donald Trump election win",
+   "url": "https://www.standard.net.au/story/8845076/tesla-shares-surge-to-record-high-after-donald-trump-election-win/?cs=34616",
+   "domain": "standard.net.au",
+   "seenAt": "2024-12-12T03:45:00.000Z"
+  },
+  {
+   "title": "Tesla sells 21, 900 EVs in China in first week of Dec, the highest in Q4",
+   "url": "https://www.marketscreener.com/quote/stock/TESLA-INC-6344549/news/Tesla-sells-21-900-EVs-in-China-in-first-week-of-Dec-the-highest-in-Q4-48565340/",
+   "domain": "marketscreener.com",
+   "seenAt": "2024-12-11T04:00:00.000Z"
+  },
+  {
+   "title": "I Correctly Predicted Tesla Would Pass $450 in a Rapid Price Increase",
+   "url": "https://www.nextbigfuture.com/2024/12/i-correctly-predicted-tesla-would-pass-450-in-a-rapid-price-increase.html",
+   "domain": "nextbigfuture.com",
+   "seenAt": "2024-12-16T17:30:00.000Z"
+  },
+  {
+   "title": "Tesla fires up its South Texas lithium refinery for first time",
+   "url": "http://www.houstonchronicle.com/business/article/tesla-lithium-refinery-texas-kiln-starts-19983809.php",
+   "domain": "houstonchronicle.com",
+   "seenAt": "2024-12-17T08:45:00.000Z"
+  },
+  {
+   "title": "Wedbush Optimistic On Tesla ( TSLA) As Actually Smart Summon Arrives In China",
+   "url": "https://www.insidermonkey.com/blog/wedbush-optimistic-on-tesla-tsla-as-actually-smart-summon-arrives-in-china-1407928/",
+   "domain": "insidermonkey.com",
+   "seenAt": "2024-12-16T15:15:00.000Z"
+  },
+  {
+   "title": "Tesla offers free Supercharging for Model S with a catch",
+   "url": "https://techcrunch.com/2024/12/16/tesla-offers-free-supercharging-for-model-s-with-a-catch/",
+   "domain": "techcrunch.com",
+   "seenAt": "2024-12-16T21:30:00.000Z"
+  },
+  {
+   "title": "Tesla Stock Hits $420: A Milestone Packed with Meme Significance",
+   "url": "https://bravenewcoin.com/insights/tesla-stock-hits-420-a-milestone-packed-with-meme-significance",
+   "domain": "bravenewcoin.com",
+   "seenAt": "2024-12-13T17:30:00.000Z"
+  },
+  {
+   "title": "Tesla reaches record, boosted by 64% pop since Trump election victory",
+   "url": "https://www.cnbc.com/2024/12/11/tesla-reaches-record-boosted-by-64percent-pop-since-trump-election-victory.html",
+   "domain": "cnbc.com",
+   "seenAt": "2024-12-11T18:30:00.000Z"
+  },
+  {
+   "title": "The Most Practical And Balanced Electric Sedan For 2025",
+   "url": "https://www.topspeed.com/most-practical-balanced-electric-sedan/",
+   "domain": "topspeed.com",
+   "seenAt": "2024-12-15T00:45:00.000Z"
+  }
+ ]
+}

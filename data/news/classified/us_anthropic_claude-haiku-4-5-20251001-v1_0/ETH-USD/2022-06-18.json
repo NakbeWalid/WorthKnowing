@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2022-06-18",
+  "title": "Ethereum risks another 60% drop after breaking below $1K to 18 - month lows",
+  "source": "cointelegraph.com",
+  "url": "https://cointelegraph.com/news/ethereum-risks-another-60-drop-after-breaking-below-1k-to-18-month-lows",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:56:24.373Z",
+  "summary": "Ethereum risque une baisse supplémentaire de 60% après avoir chuté sous 1000$ aux plus bas de 18 mois."
+ },
+ {
+  "date": "2022-06-15",
+  "title": "Ethereum Price Falls to $950 on Uniswap As Whale Dumps 93K ETH",
+  "source": "nextbigwhat.com",
+  "url": "https://nextbigwhat.com/ethereum-price-falls-to-950-on-uniswap-as-whale-dumps-93k-eth/",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:56:24.373Z",
+  "summary": "Le prix d'Ethereum tombe à 950$ sur Uniswap après qu'une baleine ait vendu 93000 ETH."
+ },
+ {
+  "date": "2022-06-13",
+  "title": "What led to the Ethereum crypto crash? Explained here",
+  "source": "businesstoday.in",
+  "url": "https://www.businesstoday.in/crypto/story/what-led-to-the-ethereum-crypto-crash-explained-here-337415-2022-06-13",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:56:24.373Z",
+  "summary": "Explication des causes du crash d'Ethereum, mettant en lumière les facteurs ayant conduit à la chute de la crypto-monnaie."
+ },
+ {
+  "date": "2022-06-13",
+  "title": "Bitcoin, Ethereum crash to record low amid crypto winter",
+  "source": "gulfnews.com",
+  "url": "https://gulfnews.com/your-money/cryptocurrency/bitcoin-ethereum-crash-to-record-low-amid-crypto-winter-1.1655108946589",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:56:24.373Z",
+  "summary": "Bitcoin et Ethereum s'effondrent à des niveaux record au cours de l'hiver crypto."
+ },
+ {
+  "date": "2022-06-13",
+  "title": "Ethereum price flash crashes to $950 on Uniswap",
+  "source": "today.ng",
+  "url": "https://www.today.ng/business/cryptocurrency/ethereum-price-flash-crashes-950-uniswap-429404",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:56:24.373Z",
+  "summary": "Le prix d'Ethereum chute brutalement à 950$ sur Uniswap lors d'un flash crash."
+ }
+]

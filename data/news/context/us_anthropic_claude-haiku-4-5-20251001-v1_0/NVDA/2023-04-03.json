@@ -1,0 +1,20 @@
+{
+ "value": {
+  "text": "Les médias couvrent l'engouement d'Nvidia autour de l'IA générative lors de sa conférence GTC. Le titre connaît son meilleur rallye en deux décennies avec un gain de 300 milliards de dollars de capitalisation boursière.",
+  "sources": [
+   {
+    "title": "Nvidia Rides The Generative AI Wave At GTC",
+    "source": "forbes.com",
+    "url": "https://www.forbes.com/sites/tiriasresearch/2023/03/31/nvidia-rides-the-generative-ai-wave-at-gtc/",
+    "date": "2023-03-31"
+   },
+   {
+    "title": "Nvidia Adds $300B in Market Value With Best Stock Rally in 2 Decades",
+    "source": "markets.businessinsider.com",
+    "url": "https://markets.businessinsider.com/news/stocks/nvidia-stock-market-cap-rise-artificial-intelligence-ai-tech-shares-2023-3",
+    "date": "2023-03-29"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2023-04-03."
+ }
+}

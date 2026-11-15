@@ -1,0 +1,26 @@
+{
+ "value": {
+  "text": "Les médias rapportaient une chute majeure du prix d'Ethereum, tombé à 950 dollars sur Uniswap suite à une vente massive de 93K ETH par une baleine, atteignant des creux de 18 mois et risquant une baisse supplémentaire de 60%.",
+  "sources": [
+   {
+    "title": "Ethereum risks another 60% drop after breaking below $1K to 18 - month lows",
+    "source": "cointelegraph.com",
+    "url": "https://cointelegraph.com/news/ethereum-risks-another-60-drop-after-breaking-below-1k-to-18-month-lows",
+    "date": "2022-06-18"
+   },
+   {
+    "title": "Ethereum Price Falls to $950 on Uniswap As Whale Dumps 93K ETH",
+    "source": "nextbigwhat.com",
+    "url": "https://nextbigwhat.com/ethereum-price-falls-to-950-on-uniswap-as-whale-dumps-93k-eth/",
+    "date": "2022-06-15"
+   },
+   {
+    "title": "Ethereum price flash crashes to $950 on Uniswap",
+    "source": "today.ng",
+    "url": "https://www.today.ng/business/cryptocurrency/ethereum-price-flash-crashes-950-uniswap-429404",
+    "date": "2022-06-13"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2022-06-18."
+ }
+}

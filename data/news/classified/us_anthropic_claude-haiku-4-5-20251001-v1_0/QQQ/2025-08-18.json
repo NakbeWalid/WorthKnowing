@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2025-08-14",
+  "title": "US: S & P 500, Nasdaq retreat from record rally after hot producer inflation data",
+  "source": "businesstimes.com.sg",
+  "url": "https://www.businesstimes.com.sg/companies-markets/us-sp-500-nasdaq-retreat-record-rally-after-hot-producer-inflation-data",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:38:31.599Z",
+  "summary": "S&P 500 et Nasdaq reculent des records après des données d'inflation productrice plus élevées que prévu."
+ },
+ {
+  "date": "2025-08-13",
+  "title": "S & P 500, Nasdaq hover near record highs on Fed rate cut hopes",
+  "source": "staradvertiser.com",
+  "url": "https://www.staradvertiser.com/2025/08/13/breaking-news/sp-500-nasdaq-hover-near-record-highs-on-fed-rate-cut-hopes/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:38:31.599Z",
+  "summary": "S&P 500 et Nasdaq proches des records historiques grâce aux espoirs de baisse des taux de la Fed."
+ },
+ {
+  "date": "2025-08-13",
+  "title": "Wall Street today: S & P 500, Nasdaq hit record high on Fed rate cut optimism",
+  "source": "livemint.com",
+  "url": "https://www.livemint.com/market/stock-market-news/wall-street-today-s-p-500-nasdaq-hit-record-high-on-fed-rate-cut-optimism-11755093087355.html",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:38:31.599Z",
+  "summary": "Wall Street: S&P 500 et Nasdaq atteignent des records sur l'optimisme concernant les réductions de taux."
+ },
+ {
+  "date": "2025-08-13",
+  "title": "CPI report lifts Wall Street to new highs, September rate cut seen as likely",
+  "source": "moneycontrol.com",
+  "url": "https://www.moneycontrol.com/news/business/markets/cpi-report-lifts-wall-street-to-new-highs-september-rate-cut-seen-as-likely-13452810.html",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:38:31.599Z",
+  "summary": "Le rapport CPI propulse Wall Street à de nouveaux sommets, une baisse de taux en septembre semble probable."
+ },
+ {
+  "date": "2025-08-13",
+  "title": "US: S & P 500, Nasdaq hit record highs at open on September rate cut hopes",
+  "source": "businesstimes.com.sg",
+  "url": "https://www.businesstimes.com.sg/companies-markets/us-sp-500-nasdaq-hit-record-highs-open-september-rate-cut-hopes",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T01:38:31.599Z",
+  "summary": "S&P 500 et Nasdaq atteignent des records à l'ouverture sur les espoirs de baisse de taux en septembre."
+ }
+]

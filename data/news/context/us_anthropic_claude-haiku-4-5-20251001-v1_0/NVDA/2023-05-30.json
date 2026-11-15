@@ -1,0 +1,32 @@
+{
+ "value": {
+  "text": "NVIDIA a publié des résultats solides axés sur l'IA, propulsant le titre à des sommets historiques. L'entreprise a lancé ses puces Grace Hopper et le superordinateur DGX GH200 pour l'IA générative.",
+  "sources": [
+   {
+    "title": "Nvidia Stock Surges Off Huge AI - Focused Earnings Report",
+    "source": "forbes.com",
+    "url": "https://www.forbes.com/sites/qai/2023/05/26/nvidia-stock-surges-off-huge-ai-focused-earnings-report/",
+    "date": "2023-05-26"
+   },
+   {
+    "title": "NVIDIA ( NVDA) stock hits all - time high on bullish Q2 2024 forecast",
+    "source": "shacknews.com",
+    "url": "https://www.shacknews.com/article/135644/nvidia-nvda-stock-rise-q2-2024-forecast",
+    "date": "2023-05-25"
+   },
+   {
+    "title": "NVIDIA Grace Hopper Superchips Designed for Accelerated Generative AI Enter Full Production",
+    "source": "marketscreener.com",
+    "url": "https://www.marketscreener.com/quote/stock/NVIDIA-CORPORATION-57355629/news/NVIDIA-Grace-Hopper-Superchips-Designed-for-Accelerated-Generative-AI-Enter-Full-Production-43974211/",
+    "date": "2023-05-29"
+   },
+   {
+    "title": "NVIDIA Announces DGX GH200 AI Supercomputer",
+    "source": "marketscreener.com",
+    "url": "https://www.marketscreener.com/quote/stock/NVIDIA-CORPORATION-57355629/news/NVIDIA-Announces-DGX-GH200-AI-Supercomputer-43974234/",
+    "date": "2023-05-29"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2023-05-30."
+ }
+}

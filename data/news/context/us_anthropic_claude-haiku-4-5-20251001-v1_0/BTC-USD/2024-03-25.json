@@ -1,0 +1,32 @@
+{
+ "value": {
+  "text": "Les médias soulignaient l'optimisme autour du Bitcoin, avec Cathie Wood réitérant un objectif de prix de 1,5M$ et BlackRock concentrant ses efforts sur cet actif. Bitcoin approchait une série de gains de 7 mois inédite, tandis que les traders anticipaient une volatilité accrue avec des intérêts ouverts en contrats à terme dépassant 36B$.",
+  "sources": [
+   {
+    "title": "Cathie Wood Calls Bitcoin ( BTC) a Financial Super Highway, Reiterates $1. 5M Price Target",
+    "source": "coindesk.com",
+    "url": "https://www.coindesk.com/business/2024/03/22/cathie-wood-calls-bitcoin-a-financial-super-highway-reiterates-15m-price-target/",
+    "date": "2024-03-22"
+   },
+   {
+    "title": "Blackrock Focuses on Bitcoin, Sidelines Other Cryptos Despite Market Expectations",
+    "source": "econotimes.com",
+    "url": "http://www.econotimes.com/Blackrock-Focuses-on-Bitcoin-Sidelines-Other-Cryptos-Despite-Market-Expectations-1674175",
+    "date": "2024-03-23"
+   },
+   {
+    "title": "Bitcoin eyes 7 - month win streak for the first time",
+    "source": "cointelegraph.com",
+    "url": "https://cointelegraph.com/news/bitcoin-7-win-streak-month-first-time",
+    "date": "2024-03-22"
+   },
+   {
+    "title": "Bitcoin traders anticipate volatility as BTC futures open interest tops $36B",
+    "source": "cointelegraph.com",
+    "url": "https://cointelegraph.com/news/bitcoin-traders-anticipate-volatility-as-btc-futures-open-interest-tops-36b",
+    "date": "2024-03-22"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2024-03-25."
+ }
+}

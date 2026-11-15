@@ -1,0 +1,309 @@
+{
+ "ticker": "QQQ",
+ "query": "(\"Nasdaq 100\" OR \"Nasdaq Composite\")",
+ "from": "2022-05-04T20:00:00.000Z",
+ "to": "2022-05-11T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T02:19:52.771Z",
+ "articles": [
+  {
+   "title": "The US stock market just took a major dive. What going on?",
+   "url": "https://www.fool.com.au/2022/05/06/the-us-stock-market-just-took-a-major-dive-whats-going-on/",
+   "domain": "fool.com.au",
+   "seenAt": "2022-05-08T23:15:00.000Z"
+  },
+  {
+   "title": "U. S. stock futures climb after three days of heavy selling",
+   "url": "https://www.marketwatch.com/story/u-s-stock-futures-climb-after-three-days-of-heavy-selling-11652174336",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-10T10:30:00.000Z"
+  },
+  {
+   "title": "The Stock Market Selling Storm Is Over",
+   "url": "https://www.forbes.com/sites/johntobey/2022/05/07/the-stock-market-selling-storm-is-overtime-to-buy/",
+   "domain": "forbes.com",
+   "seenAt": "2022-05-08T05:45:00.000Z"
+  },
+  {
+   "title": "U. S. stock futures slip, suggesting relief rally already out of steam",
+   "url": "https://www.marketwatch.com/story/u-s-stock-futures-slip-suggesting-relief-rally-already-out-of-steam-11651743400",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-05T10:30:00.000Z"
+  },
+  {
+   "title": "Stock Futures Are Little Changed After Dow Worst Day Since 2020",
+   "url": "https://www.nbcnewyork.com/news/business/money-report/stock-futures-are-little-changed-after-dows-worst-day-since-2020/3675741/",
+   "domain": "nbcnewyork.com",
+   "seenAt": "2022-05-05T22:45:00.000Z"
+  },
+  {
+   "title": "U. S. stock futures climb as make or break CPI swings into focus",
+   "url": "https://www.marketwatch.com/story/u-s-stock-futures-climb-as-make-or-break-cpi-swings-into-focus-11652261490",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-11T10:00:00.000Z"
+  },
+  {
+   "title": "Stock futures fall as Wall Street looks to stabilize after rollercoaster week",
+   "url": "https://biztoc.com/p/99766rxu",
+   "domain": "biztoc.com",
+   "seenAt": "2022-05-08T23:00:00.000Z"
+  },
+  {
+   "title": "Stock Futures Dip Slightly Ahead of Key Inflation Reading",
+   "url": "https://www.nbclosangeles.com/news/business/money-report/stock-futures-dip-slightly-ahead-of-key-inflation-reading/2890206/",
+   "domain": "nbclosangeles.com",
+   "seenAt": "2022-05-10T22:30:00.000Z"
+  },
+  {
+   "title": "Stock Futures Are Little Changed Ahead of Key Inflation Reading",
+   "url": "https://www.nbcconnecticut.com/news/business/money-report/stock-futures-dip-slightly-ahead-of-key-inflation-reading/2781959/",
+   "domain": "nbcconnecticut.com",
+   "seenAt": "2022-05-10T23:00:00.000Z"
+  },
+  {
+   "title": "Nifty Opening As LIC IPO to Close for Subscription & Asian Stocks in Stress",
+   "url": "https://in.investing.com/news/niftys-opening-as-lic-ipo-to-close-for-subscription--asian-stocks-in-stress-3192744",
+   "domain": "in.investing.com",
+   "seenAt": "2022-05-09T03:45:00.000Z"
+  },
+  {
+   "title": "Stock Futures Slip as Wall Street Attempts to Stabilize After Rollercoaster Week",
+   "url": "https://www.nbcsandiego.com/news/business/money-report/stock-futures-fall-as-wall-street-looks-to-stabilize-after-rollercoaster-week/2940666/",
+   "domain": "nbcsandiego.com",
+   "seenAt": "2022-05-09T02:30:00.000Z"
+  },
+  {
+   "title": "Xero share price plummets 7% as tech sector struggles",
+   "url": "https://www.fool.com.au/2022/05/06/xero-share-price-plummets-7-as-tech-sector-struggles/",
+   "domain": "fool.com.au",
+   "seenAt": "2022-05-06T05:45:00.000Z"
+  },
+  {
+   "title": "This Prescient Contrarian Indicator Is Flashing a Very Bullish Signal",
+   "url": "https://realmoney.thestreet.com/markets/this-prescient-contrarian-indicator-is-flashing-a-very-bullish-signal-15992312",
+   "domain": "realmoney.thestreet.com",
+   "seenAt": "2022-05-06T18:15:00.000Z"
+  },
+  {
+   "title": "Stock Futures Are Slightly Higher After S & P 500 Falls to Its Lowest Level in More Than a Year",
+   "url": "https://www.nbcdfw.com/news/business/money-report/stock-futures-are-slightly-higher-after-sp-500-falls-to-its-lowest-level-in-more-than-a-year/2963307/",
+   "domain": "nbcdfw.com",
+   "seenAt": "2022-05-09T22:45:00.000Z"
+  },
+  {
+   "title": "Index Road Kill, S & P 500 Has a Pulse, Sector Slaughter, Betting on CEOs",
+   "url": "https://realmoney.thestreet.com/investing/stocks/index-road-kill-s-p-500-has-a-pulse-sector-slaughter-betting-on-ceos-15991970",
+   "domain": "realmoney.thestreet.com",
+   "seenAt": "2022-05-06T13:45:00.000Z"
+  },
+  {
+   "title": "US stocks seen extending falls on fears of weaker growth amid higher interest rates; jobs data due",
+   "url": "https://www.proactiveinvestors.com/companies/news/981605/us-stocks-seen-extending-falls-on-fears-of-weaker-growth-amid-higher-interest-rates-jobs-data-due-981605.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2022-05-06T11:45:00.000Z"
+  },
+  {
+   "title": "Stock Futures Fall Slightly After Fed Induced Relief Rally",
+   "url": "https://www.nbclosangeles.com/news/business/money-report/stock-futures-fall-slightly-after-fed-induced-relief-rally/2885883/",
+   "domain": "nbclosangeles.com",
+   "seenAt": "2022-05-05T00:45:00.000Z"
+  },
+  {
+   "title": "Stock Market | FinancialContent Business Page",
+   "url": "https://markets.financialcontent.com/stocks/article/bizwire-2022-5-6-first-trust-announces-changes-in-investment-strategies-and-other-related-matters-for-first-trust-hedged-buywrite-income-etf",
+   "domain": "markets.financialcontent.com",
+   "seenAt": "2022-05-06T20:30:00.000Z"
+  },
+  {
+   "title": "Dow Futures Tick Higher Following Market Sell - Off By Investing. com",
+   "url": "https://www.investing.com/news/stock-market-news/dow-futures-tick-higher-following-market-selloff-2821012",
+   "domain": "investing.com",
+   "seenAt": "2022-05-09T23:15:00.000Z"
+  },
+  {
+   "title": "U. S. stocks open lower, extending Thursday selloff as focus remains on stagflation risks",
+   "url": "https://www.marketwatch.com/story/us-stocks-open-lower-extending-thursdays-selloff-as-focus-remains-on-stagflation-risks-2022-05-06",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-06T14:00:00.000Z"
+  },
+  {
+   "title": "Nasdaq Records First Five - Week Losing Streak Since 2012",
+   "url": "https://www.nbclosangeles.com/news/business/money-report/nasdaq-records-first-five-week-losing-streak-since-2012/2887571/",
+   "domain": "nbclosangeles.com",
+   "seenAt": "2022-05-06T21:00:00.000Z"
+  },
+  {
+   "title": "S & P 500: This Is Still The Best Place To Put Your Money Long Term",
+   "url": "https://www.investors.com/etfs-and-funds/etfs/sp500-this-is-still-the-best-place-to-put-your-money-long-term/",
+   "domain": "investors.com",
+   "seenAt": "2022-05-11T16:45:00.000Z"
+  },
+  {
+   "title": "Dow Futures Fall 540 Pts; Rivian Automotive Slumps on Block Trades",
+   "url": "https://za.investing.com/news/dow-futures-fall-540-pts-rivian-automotive-slumps-on-block-trades-2551543",
+   "domain": "za.investing.com",
+   "seenAt": "2022-05-09T12:45:00.000Z"
+  },
+  {
+   "title": "The S & P Valuation Is Not at a Premium for the First Time In Almost 2 Years",
+   "url": "https://realmoney.thestreet.com/markets/market-valuation-not-at-a-premium-first-time-since-june-2020-15996493",
+   "domain": "realmoney.thestreet.com",
+   "seenAt": "2022-05-11T15:15:00.000Z"
+  },
+  {
+   "title": "Asia - Pacific Stocks Set for Opening Declines Following Wall Street Tumble",
+   "url": "https://www.nbclosangeles.com/news/business/money-report/asia-pacific-stocks-set-for-opening-declines-following-wall-street-tumble/2889287/",
+   "domain": "nbclosangeles.com",
+   "seenAt": "2022-05-10T00:00:00.000Z"
+  },
+  {
+   "title": "Asia - Pacific Stocks Drop Following Wall Street Tumble; Technology Stocks Fall",
+   "url": "https://www.nbcnewyork.com/news/business/money-report/asia-pacific-stocks-set-for-opening-declines-following-wall-street-tumble/3679283/",
+   "domain": "nbcnewyork.com",
+   "seenAt": "2022-05-10T00:45:00.000Z"
+  },
+  {
+   "title": "Stock futures struggle for traction after dramatic day of selling, as nonfarm payrolls data looms",
+   "url": "https://www.marketwatch.com/story/stock-futures-struggle-for-traction-after-dramatic-day-of-selling-as-nonfarm-payrolls-data-looms-11651826336",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-06T09:15:00.000Z"
+  },
+  {
+   "title": "Stock market investors are getting very worried about a recession: Goldman Sachs",
+   "url": "https://finance.yahoo.com/news/stock-market-recession-goldman-sachs-102543235.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2022-05-09T14:30:00.000Z"
+  },
+  {
+   "title": "Stock carnage, Fed Powell inflation apology points to policy defeat",
+   "url": "https://www.foxbusiness.com/markets/stock-carnage-feds-powell-inflation-apology-points-to-policy-defeat",
+   "domain": "foxbusiness.com",
+   "seenAt": "2022-05-10T15:15:00.000Z"
+  },
+  {
+   "title": "Nasdaq Tumble Is a Good Reminder. It All About Rates",
+   "url": "https://www.marketwatch.com/articles/nasdaq-stocks-tumble-51651782783",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-05T21:00:00.000Z"
+  },
+  {
+   "title": "Dow Jones Futures Reverse On Hot Inflation Report; Coinbase, Unity Plunge On Earnings",
+   "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-jump-ahead-of-key-inflation-report-coinbase-unity-plunge-on-earnings/",
+   "domain": "investors.com",
+   "seenAt": "2022-05-11T13:30:00.000Z"
+  },
+  {
+   "title": "VOLATILITY AGAIN",
+   "url": "https://www.etftrends.com/etf-strategist-channel/volatility-again/",
+   "domain": "etftrends.com",
+   "seenAt": "2022-05-11T00:30:00.000Z"
+  },
+  {
+   "title": "Tech Stocks in Asia Fall Dragging Down Hong Kong Hang Seng by Nearly 3%",
+   "url": "https://www.nbcdfw.com/news/business/money-report/asia-pacific-stocks-set-for-opening-declines-following-wall-street-tumble/2963427/",
+   "domain": "nbcdfw.com",
+   "seenAt": "2022-05-10T02:45:00.000Z"
+  },
+  {
+   "title": "Stock Market Crash: 3 Absolute Bargains Just Begging to Be Bought",
+   "url": "https://www.fool.com/investing/2022/05/09/stock-market-crash-3-absolute-bargains-to-buy/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2022-05-09T14:15:00.000Z"
+  },
+  {
+   "title": "U. S. Stocks Poised for Lower Open on Monday",
+   "url": "https://www.marketwatch.com/articles/u-s-stocks-poised-for-lower-open-on-monday-51652048854",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-09T01:15:00.000Z"
+  },
+  {
+   "title": "Tesla, Nvidia, and 10 Other Beaten - Up Stocks That Look Like Opportunities",
+   "url": "https://www.marketwatch.com/articles/nvidia-tesla-beaten-up-stocks-improving-earnings-outlooks-51652137314",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-10T12:30:00.000Z"
+  },
+  {
+   "title": "These 13 Nasdaq - 100 stocks had the biggest swings up and down after the Fed raised rates. Should you be scared off?",
+   "url": "https://www.marketwatch.com/story/these-13-nasdaq-100-stocks-had-the-biggest-swings-up-and-down-after-the-fed-raised-rates-should-you-be-scared-off-11651784004",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-05T21:15:00.000Z"
+  },
+  {
+   "title": "European Stocks Set to Pull Back After Wall Street Sell - Off",
+   "url": "https://www.nbcdfw.com/news/business/money-report/european-stocks-set-to-pull-back-after-wall-street-sell-off/2960731/",
+   "domain": "nbcdfw.com",
+   "seenAt": "2022-05-06T06:30:00.000Z"
+  },
+  {
+   "title": "Dow sheds over 1, 000 points as sell - off deepens on Wall Street",
+   "url": "https://article.wn.com/view/2022/05/05/Dow_sheds_over_1000_points_as_selloff_deepens_on_Wall_Street/",
+   "domain": "article.wn.com",
+   "seenAt": "2022-05-06T00:15:00.000Z"
+  },
+  {
+   "title": "U. S. stocks fall after jobs data",
+   "url": "https://article.wn.com/view/2022/05/07/US_stocks_fall_after_jobs_data/",
+   "domain": "article.wn.com",
+   "seenAt": "2022-05-07T00:15:00.000Z"
+  },
+  {
+   "title": "U. S. stocks end mixed as market volatility continues",
+   "url": "https://article.wn.com/view/2022/05/10/US_stocks_end_mixed_as_market_volatility_continues/",
+   "domain": "article.wn.com",
+   "seenAt": "2022-05-11T00:30:00.000Z"
+  },
+  {
+   "title": "It Looks Like Capitulation Is Close",
+   "url": "https://seekingalpha.com/article/4509470-it-looks-like-capitulation-is-close",
+   "domain": "seekingalpha.com",
+   "seenAt": "2022-05-10T14:00:00.000Z"
+  },
+  {
+   "title": "CPI Inflation Rate Is Finally Falling But Still Too Hot; Dow Jones Futures Reverse Lower",
+   "url": "https://www.investors.com/news/economy/cpi-inflation-rate-is-finally-falling-but-its-still-too-hot-dow-jones-falls/",
+   "domain": "investors.com",
+   "seenAt": "2022-05-11T13:30:00.000Z"
+  },
+  {
+   "title": "Tesla, Nvidia and 10 Other Beaten Up Stocks With Rising Earnings Estimates",
+   "url": "https://www.marketwatch.com/articles/12-stocks-falling-despite-improving-outlooks-51652137314",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-10T09:30:00.000Z"
+  },
+  {
+   "title": "Dow Jones Plummets Over 1, 000 Points, Nasdaq Plunges 4% as US Stock Sell Off Intensifies",
+   "url": "https://sputniknews.com/20220505/dow-jones-plummets-over-1000-points-nasdaq-plunges-4-as-us-stock-sell-off-intensifies-1095292698.html",
+   "domain": "sputniknews.com",
+   "seenAt": "2022-05-05T16:45:00.000Z"
+  },
+  {
+   "title": "Why is the Dow down more than 1, 000 points? Should I wait for stocks to sink lower? Here what some pros think.",
+   "url": "https://www.marketwatch.com/story/why-is-the-dow-down-more-than-1-000-points-should-i-wait-for-stocks-to-sink-lower-heres-what-some-pros-think-11651777100",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-05T19:15:00.000Z"
+  },
+  {
+   "title": "Stock Market Today: Dow Futures Slide, Bond Yields Surge, Bitcoin Drops",
+   "url": "https://www.marketwatch.com/articles/stock-market-today-51652088366",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-09T12:15:00.000Z"
+  },
+  {
+   "title": "Stocks open sharply higher as S & P 500 aims to bounce back from 13 - month low",
+   "url": "https://www.marketwatch.com/story/stocks-open-sharply-higher-as-sp-500-aims-to-bounce-back-from-13-month-low-2022-05-10",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-10T14:00:00.000Z"
+  },
+  {
+   "title": "Nasdaq finds a footing | Forexlive",
+   "url": "https://www.forexlive.com/news/nasdaq-finds-a-footing-20220510/",
+   "domain": "forexlive.com",
+   "seenAt": "2022-05-10T18:00:00.000Z"
+  },
+  {
+   "title": "Apple Inc. stock outperforms competitors despite losses on the day",
+   "url": "https://www.marketwatch.com/story/apple-inc-stock-outperforms-competitors-despite-losses-on-the-day-01652128312-5dfe9d4e287f",
+   "domain": "marketwatch.com",
+   "seenAt": "2022-05-09T21:00:00.000Z"
+  }
+ ]
+}

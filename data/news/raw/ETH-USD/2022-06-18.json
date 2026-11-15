@@ -1,0 +1,327 @@
+{
+ "ticker": "ETH-USD",
+ "query": "(Ethereum OR Ether)",
+ "from": "2022-06-11T20:00:00.000Z",
+ "to": "2022-06-18T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T01:56:24.373Z",
+ "articles": [
+  {
+   "title": "What led to the Ethereum crypto crash? Explained here",
+   "url": "https://www.businesstoday.in/crypto/story/what-led-to-the-ethereum-crypto-crash-explained-here-337415-2022-06-13",
+   "domain": "businesstoday.in",
+   "seenAt": "2022-06-13T12:45:00.000Z"
+  },
+  {
+   "title": "Crypto Moves – Crypto plummets again; Ether staking service raises red flags",
+   "url": "https://www.arabnews.com/node/2101701/business-economy",
+   "domain": "arabnews.com",
+   "seenAt": "2022-06-12T08:15:00.000Z"
+  },
+  {
+   "title": "Ethereum risks another 60% drop after breaking below $1K to 18 - month lows",
+   "url": "https://cointelegraph.com/news/ethereum-risks-another-60-drop-after-breaking-below-1k-to-18-month-lows",
+   "domain": "cointelegraph.com",
+   "seenAt": "2022-06-18T14:00:00.000Z"
+  },
+  {
+   "title": "Ethereum: Biggest Ether staking service has a centralisation problem",
+   "url": "https://economictimes.indiatimes.com/markets/cryptocurrency/biggest-ether-staking-service-has-a-centralisation-problem/articleshow/92156713.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2022-06-12T06:45:00.000Z"
+  },
+  {
+   "title": "Ethereum vs. Bitcoin: What the Difference",
+   "url": "https://www.finsmes.com/2022/06/ethereum-vs-bitcoin-whats-the-difference.html",
+   "domain": "finsmes.com",
+   "seenAt": "2022-06-13T13:45:00.000Z"
+  },
+  {
+   "title": "How To Buy Ethereum",
+   "url": "https://www.forbes.com/advisor/ca/investing/cryptocurrency/how-to-buy-ethereum/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-13T19:30:00.000Z"
+  },
+  {
+   "title": "Can the upcoming merge save the Ethereum price from further destruction?",
+   "url": "https://www.fool.com.au/2022/06/15/can-the-upcoming-merge-save-the-ethereum-price-from-further-destruction/",
+   "domain": "fool.com.au",
+   "seenAt": "2022-06-14T23:45:00.000Z"
+  },
+  {
+   "title": "Crypto Market Chaos: No, Lido Is Not the Next Terra",
+   "url": "http://www.msn.com/en-us/news/technology/crypto-market-chaos-no-lido-is-not-the-next-terra/ar-AAYv2Oq",
+   "domain": "msn.com",
+   "seenAt": "2022-06-15T17:15:00.000Z"
+  },
+  {
+   "title": "DeFi Platform MakerDAO Pauses Some Aave - Related Lending Activity",
+   "url": "https://www.bnnbloomberg.ca/defi-platform-makerdao-pauses-some-aave-related-lending-activity-1.1780585",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2022-06-18T18:15:00.000Z"
+  },
+  {
+   "title": "Biggest stETH Pool Almost Empty, Complicating Exit for Would - Be Sellers | Currency News | Financial and Business News",
+   "url": "https://markets.businessinsider.com/news/currencies/biggest-steth-pool-almost-empty-complicating-exit-for-would-be-sellers-1031534418",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2022-06-17T07:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin, Ethereum crash to record low amid crypto winter",
+   "url": "https://gulfnews.com/your-money/cryptocurrency/bitcoin-ethereum-crash-to-record-low-amid-crypto-winter-1.1655108946589",
+   "domain": "gulfnews.com",
+   "seenAt": "2022-06-13T09:15:00.000Z"
+  },
+  {
+   "title": "Bit. com Lists Staked Ether ( STETH) On Spot, Perpetual Futures Markets",
+   "url": "https://www.crowdfundinsider.com/2022/06/192350-bit-com-lists-staked-ether-steth-on-spot-perpetual-futures-markets/",
+   "domain": "crowdfundinsider.com",
+   "seenAt": "2022-06-16T01:15:00.000Z"
+  },
+  {
+   "title": "This token could trigger the next meltdown in Ethereum and crypto",
+   "url": "https://www.fxstreet.com/cryptocurrencies/news/this-token-could-trigger-the-next-meltdown-in-ethereum-and-crypto-202206161501",
+   "domain": "fxstreet.com",
+   "seenAt": "2022-06-16T16:00:00.000Z"
+  },
+  {
+   "title": "Ethereum price flash crashes to $950 on Uniswap",
+   "url": "https://www.today.ng/business/cryptocurrency/ethereum-price-flash-crashes-950-uniswap-429404",
+   "domain": "today.ng",
+   "seenAt": "2022-06-13T18:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin Plunges Toward $20, 000 as Crypto Meltdown Continues",
+   "url": "https://www.nbcnewyork.com/news/business/money-report/bitcoin-plunges-toward-20000-as-crypto-meltdown-continues/3734895/",
+   "domain": "nbcnewyork.com",
+   "seenAt": "2022-06-15T12:00:00.000Z"
+  },
+  {
+   "title": "Token at the Center of Crypto Storm Becomes Arbitrage Target",
+   "url": "https://www.bnnbloomberg.ca/token-at-the-center-of-crypto-storm-becomes-arbitrage-target-1.1779930",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2022-06-16T17:45:00.000Z"
+  },
+  {
+   "title": "Token at the centre of crypto storm becomes arbitrage target",
+   "url": "https://www.moneyweb.co.za/moneyweb-crypto/token-at-the-centre-of-crypto-storm-becomes-arbitrage-target/",
+   "domain": "moneyweb.co.za",
+   "seenAt": "2022-06-17T13:45:00.000Z"
+  },
+  {
+   "title": "Economist Peter Schiff Explains Why He Expects Bitcoin to Crash as Recession Deepens Warns Dont Buy This Dip – Bitcoin News",
+   "url": "https://news.bitcoin.com/economist-peter-schiff-explains-why-he-expects-bitcoin-to-crash-as-recession-deepens-warns-dont-buy-this-dip/",
+   "domain": "news.bitcoin.com",
+   "seenAt": "2022-06-13T03:00:00.000Z"
+  },
+  {
+   "title": "Goldman Sachs Introduces Ether - Linked Derivative Trade",
+   "url": "https://nextbigwhat.com/goldman-sachs-introduces-ether-linked-derivative-trade/",
+   "domain": "nextbigwhat.com",
+   "seenAt": "2022-06-15T12:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin falls 12. 1% to $23, 366",
+   "url": "https://www.marketscreener.com/news/latest/Bitcoin-falls-12-1-to-23-366--40711974/",
+   "domain": "marketscreener.com",
+   "seenAt": "2022-06-13T22:00:00.000Z"
+  },
+  {
+   "title": "Crypto Meltdown Offers Trading Age - Old Money Opportunity",
+   "url": "https://www.ndtv.com/business/crypto-meltdown-offers-age-old-trading-arbitrage-money-opportunity-3074724",
+   "domain": "ndtv.com",
+   "seenAt": "2022-06-17T05:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin drops below $20, 000 to lowest since December 2020",
+   "url": "https://bdnews24.com/business/2022/06/18/bitcoin-drops-below-20000-to-lowest-since-december-2020",
+   "domain": "bdnews24.com",
+   "seenAt": "2022-06-18T13:30:00.000Z"
+  },
+  {
+   "title": "Notes from RSK Scientific Moments: Blockchain Engineeri...",
+   "url": "http://www.taringa.net/+crypto/notes-from-rsk-scientific-moments-blockchain-engineering-economics_53kvk6",
+   "domain": "taringa.net",
+   "seenAt": "2022-06-17T16:30:00.000Z"
+  },
+  {
+   "title": "Ethereum Price Falls to $950 on Uniswap As Whale Dumps 93K ETH",
+   "url": "https://nextbigwhat.com/ethereum-price-falls-to-950-on-uniswap-as-whale-dumps-93k-eth/",
+   "domain": "nextbigwhat.com",
+   "seenAt": "2022-06-15T12:00:00.000Z"
+  },
+  {
+   "title": "Singapore - based crypto hedge fund cryptic tweet fuels speculation over losses",
+   "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2022/06/15/singapore-based-crypto-hedge-fund039s-cryptic-tweet-fuels-speculation-over-losses",
+   "domain": "thestar.com.my",
+   "seenAt": "2022-06-15T08:15:00.000Z"
+  },
+  {
+   "title": "Crypto Hedge Fund Cryptic Tweet Fuels Speculation Over Losses",
+   "url": "https://www.bnnbloomberg.ca/crypto-hedge-fund-s-cryptic-tweet-fuels-speculation-over-losses-1.1778973",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2022-06-15T07:15:00.000Z"
+  },
+  {
+   "title": "Ethereum sell - off resumes with ETH price risking another 25% decline in June",
+   "url": "https://www.today.ng/business/cryptocurrency/ethereum-sell-resumes-eth-price-risking-25-decline-june-429889",
+   "domain": "today.ng",
+   "seenAt": "2022-06-16T16:15:00.000Z"
+  },
+  {
+   "title": "Why is the crypto market crashing today? Bitcoin and Ethereum now worth half of their all - time highs",
+   "url": "https://www.dnaindia.com/explainer/report-dna-explainer-why-is-the-crypto-market-crashing-today-bitcoin-ethereum-federal-reserve-interest-rate-inflation-2960103",
+   "domain": "dnaindia.com",
+   "seenAt": "2022-06-13T10:00:00.000Z"
+  },
+  {
+   "title": "Cryptocurrency prices today: Bitcoin, Ethereum witness sharp drop in last 24 hours",
+   "url": "https://www.bgr.in/news/cryptocurrency-prices-today-bitcoin-ethereum-witness-sharp-drop-in-last-24-hours-1283297/",
+   "domain": "bgr.in",
+   "seenAt": "2022-06-12T07:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin drops below $20, 000 to lowest since December 2020 - Business",
+   "url": "https://www.dawn.com/news/1695460/bitcoin-drops-below-20000-to-lowest-since-december-2020",
+   "domain": "dawn.com",
+   "seenAt": "2022-06-18T11:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin drops to lowest since in 2 years",
+   "url": "https://www.thehindu.com/business/markets/bitcoin-drops-to-lowest-since-in-2-years/article65539822.ece",
+   "domain": "thehindu.com",
+   "seenAt": "2022-06-18T12:00:00.000Z"
+  },
+  {
+   "title": "Crypto Moves – Bitcoin, Ether prices plummet; Crypto lenders halt bitcoin redemption",
+   "url": "https://www.arabnews.com/node/2103041/business-economy",
+   "domain": "arabnews.com",
+   "seenAt": "2022-06-14T10:30:00.000Z"
+  },
+  {
+   "title": "Crypto investors alert! Bitcoin, Ethereum crash to record low",
+   "url": "https://zeenews.india.com/markets/crypto-investors-alert-bitcoin-ethereum-crash-to-record-low-amid-crypto-winter-2473353.html",
+   "domain": "zeenews.india.com",
+   "seenAt": "2022-06-13T10:45:00.000Z"
+  },
+  {
+   "title": "Crypto crash: Bitcoin falls below $20, 000 as selloff continues",
+   "url": "https://www.fox5atlanta.com/news/crypto-crash-bitcoin-falls-selloff",
+   "domain": "fox5atlanta.com",
+   "seenAt": "2022-06-18T18:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin, Ethereum crash to record low amid crypto winter DEEP DIVE General Technology",
+   "url": "https://www.moneylife.in/article/bitcoin-ethereum-crash-to-record-low-amid-crypto-winter-deep-dive-general-technology/67456.html",
+   "domain": "moneylife.in",
+   "seenAt": "2022-06-13T11:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin drops below US$20k to lowest since December 2020",
+   "url": "https://www.malaymail.com/news/money/2022/06/18/bitcoin-drops-below-us20k-to-lowest-since-december-2020/12996",
+   "domain": "malaymail.com",
+   "seenAt": "2022-06-18T12:00:00.000Z"
+  },
+  {
+   "title": "Top cryptocurrency prices today: Bitcoin, Ethereum, BNB, Solana zoom up to 6%",
+   "url": "https://economictimes.indiatimes.com/markets/cryptocurrency/top-cryptocurrency-prices-today-bitcoin-ethereum-bnb-solana-zoom-up-to-6/articleshow/92218874.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2022-06-15T05:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin drops below US$20, 000 to lowest since December 2020",
+   "url": "https://www.straitstimes.com/world/united-states/bitcoin-drops-below-us20000-to-lowest-since-december-2020",
+   "domain": "straitstimes.com",
+   "seenAt": "2022-06-18T11:00:00.000Z"
+  },
+  {
+   "title": "Arthur Hayes Predicts Altcoins May Lose Another 50%",
+   "url": "https://www.coinspeaker.com/arthur-hayes-altcoins-lose/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2022-06-17T13:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin Price Outlook: Crypto to Rise to $100, 000, Says Scaramucci",
+   "url": "https://markets.businessinsider.com/news/currencies/bitcoin-price-outlook-100000-anthony-scaramucci-crypto-ethereum-bull-crypto-2022-6",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2022-06-13T18:45:00.000Z"
+  },
+  {
+   "title": "Celsius Is Running Out of Options to Stay Solvent, Kaiko Says",
+   "url": "https://www.bnnbloomberg.ca/celsius-is-running-out-of-options-to-stay-solvent-kaiko-says-1.1779541",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2022-06-16T02:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin & Ether Post Double Digits Losses - Crypto Market Cap Tumbles",
+   "url": "https://www.dailyfx.com/forex/market_alert/2022/06/13/Bitcoin--Ether-Post-Double-Digits-Losses--Crypto-Market-Cap-Tumbles.html",
+   "domain": "dailyfx.com",
+   "seenAt": "2022-06-13T23:30:00.000Z"
+  },
+  {
+   "title": "Cryptocurrencies Crash With Bitcoin, Ethereum Falling To Record Low",
+   "url": "https://www.techshout.com/cryptocurrencies-crash-with-bitcoin-ethereum-falling-to-record-low/",
+   "domain": "techshout.com",
+   "seenAt": "2022-06-14T09:00:00.000Z"
+  },
+  {
+   "title": "The SEC Crypto Bait And Switch And Investor Loss Of $15 Billion",
+   "url": "https://www.forbes.com/sites/roslynlayton/2022/06/15/the-secs-crypto-bait-and-switch--and-investors-loss-of-15-billion/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-15T09:00:00.000Z"
+  },
+  {
+   "title": "Billionaire Mark Cuban Doesnt Mince Words About Crypto",
+   "url": "https://www.thestreet.com/investing/cryptocurrency/billionaire-mark-cuban-doesnt-mince-words-about-crypto",
+   "domain": "thestreet.com",
+   "seenAt": "2022-06-17T08:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin and other cryptocurrencies are on a downward spiral. Why?",
+   "url": "https://mashable.com/article/crypto-crashing-why",
+   "domain": "mashable.com",
+   "seenAt": "2022-06-13T16:45:00.000Z"
+  },
+  {
+   "title": "Crypto hedge fund tweet fuels speculation over losses",
+   "url": "https://economictimes.indiatimes.com/tech/technology/crypto-hedge-funds-tweet-fuels-speculation-over-losses/articleshow/92226268.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2022-06-15T10:00:00.000Z"
+  },
+  {
+   "title": "Fed Fears Spark Sudden $100 Billion Crypto Price Crash Sending Bitcoin, Ethereum, BNB, Solana, Cardano, XRP, Dogecoin, Polkadot, Tron And Avalanche Into Free Fall",
+   "url": "https://www.forbes.com/sites/billybambrough/2022/06/12/fed-fears-spark-sudden-100-billion-crypto-price-crash-sending-bitcoin-ethereum-bnb-solana-cardano-xrp-dogecoin-tron-and-avalanche-into-free-fall/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-12T10:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin Braces For Biggest Federal Rate Increase In 28 Years",
+   "url": "https://www.forbes.com/sites/stevenehrlich/2022/06/15/bitcoin-braces-for-biggest-federal-rate-increase-in-28-years/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-15T13:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin Crashes, Ether Slides As Major Crypto Lender Celsius Suspends Withdrawals In Unprecedented Move",
+   "url": "https://www.forbes.com/sites/omkargodbole/2022/06/13/bitcoin-crashes-ether-slides-as-major-crypto-lender-celsius-suspends-withdrawals-in-unprecedented-move/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-13T13:00:00.000Z"
+  },
+  {
+   "title": "Novogratz Says Crypto Market Is Closer to a Bottom Than Stocks",
+   "url": "https://www.bnnbloomberg.ca/novogratz-says-crypto-market-is-closer-to-a-bottom-than-stocks-1.1778322",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2022-06-13T21:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin, Ethereum, XRP: What The Price Charts Look Like Now",
+   "url": "https://www.forbes.com/sites/johnnavin/2022/06/14/bitcoin-ethereum-xrp-what-the-price-charts-look-like-now/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-14T16:45:00.000Z"
+  },
+  {
+   "title": "Serious $10, 000 Warning As Massive Meltdown Sends Bitcoin Crashing Under $20, 000 Tanking The Price Of Ethereum, BNB, XRP, Solana And Cardano",
+   "url": "https://www.forbes.com/sites/billybambrough/2022/06/18/stark-10000-warning-as-massive-meltdown-sends-bitcoin-price-crashing-under-20000-tanking-ethereum-bnb-xrp-solana-and-cardano/",
+   "domain": "forbes.com",
+   "seenAt": "2022-06-18T09:00:00.000Z"
+  }
+ ]
+}

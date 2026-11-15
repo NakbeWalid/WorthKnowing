@@ -1,0 +1,32 @@
+{
+ "value": {
+  "text": "Tesla fait face à une baisse significative de ses ventes : crash en Europe avec une chute de 70% en Allemagne, recul de 49% des ventes chinoises, et baisse générale aux États-Unis nécessitant de nouvelles incitations commerciales.",
+  "sources": [
+   {
+    "title": "6 falling Tesla sales numbers that should worry Elon Musk",
+    "source": "aol.com",
+    "url": "https://www.aol.com/6-falling-tesla-sales-numbers-200553293.html",
+    "date": "2025-03-05"
+   },
+   {
+    "title": "Tesla ( TSLA) sales crash continues in Europe, with Germany down 70%",
+    "source": "electrek.co",
+    "url": "https://electrek.co/2025/03/05/tesla-tsla-sales-crash-continues-in-europe-with-germany-down-70/",
+    "date": "2025-03-05"
+   },
+   {
+    "title": "Tesla Stock Price Drops As China - Made EV Sales Plunge 49%",
+    "source": "markets.businessinsider.com",
+    "url": "https://markets.businessinsider.com/news/stocks/tesla-stock-price-sell-off-china-ev-sales-europe-byd-2025-3",
+    "date": "2025-03-04"
+   },
+   {
+    "title": "Tesla introduces new Model 3 incentives to attract US buyers",
+    "source": "pocket-lint.com",
+    "url": "https://www.pocket-lint.com/tesla-model-3-us-incentives/",
+    "date": "2025-03-05"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2025-03-10."
+ }
+}

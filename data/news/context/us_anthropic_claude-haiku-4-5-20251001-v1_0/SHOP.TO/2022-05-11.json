@@ -1,0 +1,32 @@
+{
+ "value": {
+  "text": "Les médias rapportaient une chute du cours de Shopify suite à des résultats décevants au T1 2022, avec un manque à gagner sur les revenus et bénéfices. L'annonce d'une acquisition de 2,1 milliards pour Deliverr a également marqué les discussions.",
+  "sources": [
+   {
+    "title": "Shopify Stock Plunges 14% After Earnings and Revenue Miss in Q1 of 2022",
+    "source": "fool.ca",
+    "url": "https://www.fool.ca/2022/05/06/shopify-stock-plunges-14-after-earnings-and-revenue-miss-in-q1-of-2022/",
+    "date": "2022-05-06"
+   },
+   {
+    "title": "Shopify Stock Falls As Earnings, Revenue Miss Estimates Amid Deliverr Acquisition",
+    "source": "investors.com",
+    "url": "https://www.investors.com/news/technology/shopify-stock-shopify-earnings-news-acquisition-deliverr-q1/",
+    "date": "2022-05-05"
+   },
+   {
+    "title": "Shopify stock tumbles after earnings miss, announcement of $2. 1 billion fulfillment acquisition",
+    "source": "marketwatch.com",
+    "url": "https://www.marketwatch.com/story/shopify-stock-tumbles-after-earnings-miss-announcement-of-21-billion-fulfillment-acquisition-2022-05-05",
+    "date": "2022-05-05"
+   },
+   {
+    "title": "Shopify shares plunge as Canada tech champion reports big loss",
+    "source": "financialpost.com",
+    "url": "https://financialpost.com/technology/shopify-shares-plunge-big-quarterly-loss",
+    "date": "2022-05-05"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2022-05-11."
+ }
+}

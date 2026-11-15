@@ -1,0 +1,32 @@
+{
+ "value": {
+  "text": "Le Nasdaq-100 a connu sa première séquence de cinq semaines perdantes depuis 2012 [2]. Les marchés boursiers américains ont enregistré des baisses significatives, suivies de rebonds modestes des contrats à terme [1][4][5].",
+  "sources": [
+   {
+    "title": "The US stock market just took a major dive. What going on?",
+    "source": "fool.com.au",
+    "url": "https://www.fool.com.au/2022/05/06/the-us-stock-market-just-took-a-major-dive-whats-going-on/",
+    "date": "2022-05-08"
+   },
+   {
+    "title": "Nasdaq Records First Five - Week Losing Streak Since 2012",
+    "source": "nbclosangeles.com",
+    "url": "https://www.nbclosangeles.com/news/business/money-report/nasdaq-records-first-five-week-losing-streak-since-2012/2887571/",
+    "date": "2022-05-06"
+   },
+   {
+    "title": "U. S. stock futures climb after three days of heavy selling",
+    "source": "marketwatch.com",
+    "url": "https://www.marketwatch.com/story/u-s-stock-futures-climb-after-three-days-of-heavy-selling-11652174336",
+    "date": "2022-05-10"
+   },
+   {
+    "title": "Stock Futures Are Slightly Higher After S & P 500 Falls to Its Lowest Level in More Than a Year",
+    "source": "nbcdfw.com",
+    "url": "https://www.nbcdfw.com/news/business/money-report/stock-futures-are-slightly-higher-after-sp-500-falls-to-its-lowest-level-in-more-than-a-year/2963307/",
+    "date": "2022-05-09"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2022-05-11."
+ }
+}

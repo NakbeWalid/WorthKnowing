@@ -1,0 +1,393 @@
+{
+ "ticker": "NVDA",
+ "query": "Nvidia",
+ "from": "2023-03-27T20:00:00.000Z",
+ "to": "2023-04-03T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T01:39:44.140Z",
+ "articles": [
+  {
+   "title": "Buy the Dip in Nvidia Stock? Let Check the Chart First",
+   "url": "https://www.macon.com/news/business/article273700915.html",
+   "domain": "macon.com",
+   "seenAt": "2023-03-29T00:30:00.000Z"
+  },
+  {
+   "title": "After reaping the rewards, Nvidia turns its back on crypto",
+   "url": "https://www.digitaltrends.com/computing/nvidia-says-crypto-is-useless-for-society/",
+   "domain": "digitaltrends.com",
+   "seenAt": "2023-03-27T22:15:00.000Z"
+  },
+  {
+   "title": "Oracle Cloud Expands Partnership With Nvidia. Does That Make Oracle Stock a Buy Now?",
+   "url": "https://www.fool.com/investing/2023/04/01/oracle-cloud-expands-partnership-nvidia-buy-now/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2023-04-01T14:30:00.000Z"
+  },
+  {
+   "title": "In shadow of ChatGPT, diverse Nvidia technology grows at GTC 2023",
+   "url": "https://venturebeat.com/programming-development/in-shadow-of-chatgpt-diverse-nvidia-technology-grows-at-gtc-2023/",
+   "domain": "venturebeat.com",
+   "seenAt": "2023-03-28T19:15:00.000Z"
+  },
+  {
+   "title": "Nvidia Shield TV update kills off one feature but simplifies the experience",
+   "url": "https://www.pocket-lint.com/nvidia-shield-tv-update-kills-off-one-feature-but-simplifies-the-experience/",
+   "domain": "pocket-lint.com",
+   "seenAt": "2023-03-30T11:00:00.000Z"
+  },
+  {
+   "title": "Nvidia Rides The Generative AI Wave At GTC",
+   "url": "https://www.forbes.com/sites/tiriasresearch/2023/03/31/nvidia-rides-the-generative-ai-wave-at-gtc/",
+   "domain": "forbes.com",
+   "seenAt": "2023-03-31T05:15:00.000Z"
+  },
+  {
+   "title": "Nvidia Stock: Is Trouble on the Horizon?",
+   "url": "https://www.fool.com/investing/2023/04/01/nvidia-stock-is-trouble-on-the-horizon/",
+   "domain": "fool.com",
+   "seenAt": "2023-04-01T13:45:00.000Z"
+  },
+  {
+   "title": "Nvidia GeForce RTX 4070 release date speculation",
+   "url": "https://www.pcgamesn.com/nvidia/rtx-4070-release-date-price-spec-and-benchmarks",
+   "domain": "pcgamesn.com",
+   "seenAt": "2023-03-30T18:15:00.000Z"
+  },
+  {
+   "title": "2 Green Flags for Nvidia Future | The Motley Fool",
+   "url": "https://www.fool.com/investing/2023/03/30/2-green-flags-for-nvidias-future/",
+   "domain": "fool.com",
+   "seenAt": "2023-03-30T15:00:00.000Z"
+  },
+  {
+   "title": "Heads Up, SHIELD TV Update Inbound",
+   "url": "https://www.droid-life.com/2023/03/29/fresh-shield-tv-update-focuses-on-geforce-now-streaming/",
+   "domain": "droid-life.com",
+   "seenAt": "2023-03-29T20:45:00.000Z"
+  },
+  {
+   "title": "NVIDIA Unusual Options Activity For March 28 - NVIDIA ( NASDAQ: NVDA)",
+   "url": "https://www.benzinga.com/markets/options/23/03/31530217/nvidia-unusual-options-activity-for-march-28",
+   "domain": "benzinga.com",
+   "seenAt": "2023-03-28T14:45:00.000Z"
+  },
+  {
+   "title": "Nvidia GameStream is dead. Sunshine and Moonlight are great replacements.",
+   "url": "https://arstechnica.com/gaming/2023/04/nvidias-gamestream-is-dead-sunshine-and-moonlight-are-better-replacements/",
+   "domain": "arstechnica.com",
+   "seenAt": "2023-04-01T12:00:00.000Z"
+  },
+  {
+   "title": "First NVIDIA GeForce RTX 4070 Custom Models By MSI Listed By Online Retailer",
+   "url": "https://wccftech.com/first-nvidia-geforce-rtx-4070-custom-models-by-msi-listed-by-online-retailer/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-04-02T17:30:00.000Z"
+  },
+  {
+   "title": "NVIDIA GeForce RTX 4070 Consumes The Same Power As An RTX 3060 But As Fast As An RTX 3080",
+   "url": "https://wccftech.com/nvidia-geforce-rtx-4070-consumes-the-same-power-as-an-rtx-3060-but-as-fast-as-an-rtx-3080/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-04-02T17:30:00.000Z"
+  },
+  {
+   "title": "GIGABYTE GeForce RTX 4070 Ti GAMING OC 12G Graphics Card, 3x WINDFORCE Fans, 12GB 192 - bit GDDR6X, GV - N407TGAMING OC - 12GD Video Card",
+   "url": "https://www.newegg.com/gigabyte-geforce-rtx-4070-ti-gv-n407tgaming-oc-12gd/p/N82E16814932580?Item=N82E16814932580&cm_sp=Homepage_SS-_-P1_14-932-580-_-03302023",
+   "domain": "newegg.com",
+   "seenAt": "2023-03-30T08:15:00.000Z"
+  },
+  {
+   "title": "Nvidia Adds $300B in Market Value With Best Stock Rally in 2 Decades",
+   "url": "https://markets.businessinsider.com/news/stocks/nvidia-stock-market-cap-rise-artificial-intelligence-ai-tech-shares-2023-3",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2023-03-29T17:45:00.000Z"
+  },
+  {
+   "title": "AMD is taking the fight to NVIDIA DLSS 3 with new frame interpolation tech",
+   "url": "https://www.windowscentral.com/gaming/pc-gaming/amd-is-taking-the-fight-to-nvidias-dlss-3-with-new-frame-interpolation-tech",
+   "domain": "windowscentral.com",
+   "seenAt": "2023-03-28T21:00:00.000Z"
+  },
+  {
+   "title": "Nvidia investors say the promise of A. I. justifies the stock premium",
+   "url": "https://www.cnbc.com/2023/03/30/nvidia-investors-say-the-promise-of-ai-justifies-the-stocks-premium.html",
+   "domain": "cnbc.com",
+   "seenAt": "2023-03-30T17:00:00.000Z"
+  },
+  {
+   "title": "Ampere, NVIDIA Extend AICAN Gaming Platform Ecosystem",
+   "url": "https://www.globenewswire.com/news-release/2023/03/30/2637896/0/en/Ampere-NVIDIA-Extend-AICAN-Gaming-Platform-Ecosystem.html",
+   "domain": "globenewswire.com",
+   "seenAt": "2023-03-30T15:30:00.000Z"
+  },
+  {
+   "title": "Fake & Shady GeForce Graphics Cards Doing The Round In Retail, NVIDIA Begins Crackdown",
+   "url": "https://wccftech.com/fake-shady-geforce-graphics-cards-doing-the-round-in-retail-nvidia-begins-crackdown/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-03-31T12:45:00.000Z"
+  },
+  {
+   "title": "Nvidia Has Great News for Shareholders of This Top Semiconductor Design Stock",
+   "url": "https://www.fool.com/investing/2023/03/31/nvidia-great-news-semiconductor-synopsys-stock/",
+   "domain": "fool.com",
+   "seenAt": "2023-03-31T10:15:00.000Z"
+  },
+  {
+   "title": "NVIDIA RTX 4060 Ti and RTX 4050 data leak includes potential GPU launch dates",
+   "url": "https://www.windowscentral.com/hardware/computers-desktops/nvidia-rtx-4060-ti-rtx-4050-data-leak-potential-launch-dates",
+   "domain": "windowscentral.com",
+   "seenAt": "2023-03-30T15:30:00.000Z"
+  },
+  {
+   "title": "Got $5, 000? 2 Top Growth Stocks to Buy That Could Double Your Money.",
+   "url": "https://www.fool.com/investing/2023/03/28/got-5000-2-top-growth-stocks-to-buy-that-could-dou/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2023-03-28T13:45:00.000Z"
+  },
+  {
+   "title": "Best NVIDIA Graphics Cards in 2023",
+   "url": "https://gamerant.com/best-nvidia-graphics-cards/",
+   "domain": "gamerant.com",
+   "seenAt": "2023-03-29T03:30:00.000Z"
+  },
+  {
+   "title": "Nvidia | Pocket - lint",
+   "url": "https://www.pocket-lint.com/nvidia/",
+   "domain": "pocket-lint.com",
+   "seenAt": "2023-04-02T16:15:00.000Z"
+  },
+  {
+   "title": "NVIDIA Shows How AI Plays A Prominent Role In Optimizing & Accelerating Chip Designs By Up To 30x",
+   "url": "https://wccftech.com/nvidia-shows-how-ai-plays-a-prominent-role-in-optimizing-accelerating-chip-designs-by-up-to-30x/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-03-30T14:00:00.000Z"
+  },
+  {
+   "title": "Windows 11 / 10 and Windows 8. 1 / 7 security drivers for Nvidia GTX 700 and 600 ( Kepler) is here",
+   "url": "https://www.neowin.net/news/windows-1110-and-windows-817-security-drivers-for-nvidia-gtx-700-and-600-kepler-is-here/",
+   "domain": "neowin.net",
+   "seenAt": "2023-03-30T22:30:00.000Z"
+  },
+  {
+   "title": "Nvidia RTX 4070 might not be a lost cause after all",
+   "url": "https://www.digitaltrends.com/computing/nvidia-rtx-4070-price-may-be-better-than-expected/",
+   "domain": "digitaltrends.com",
+   "seenAt": "2023-03-30T20:15:00.000Z"
+  },
+  {
+   "title": "U. S. Hardware Is Fueling Russia Facial Recognition Crackdown on Anti - War Dissidents",
+   "url": "https://www.vice.com/en/article/88xa4x/us-hardware-is-fueling-russias-facial-recognition-crackdown-on-anti-war-dissidents",
+   "domain": "vice.com",
+   "seenAt": "2023-03-29T00:00:00.000Z"
+  },
+  {
+   "title": "Alleged Price and TGP of RTX 4070 Revealed by Leak",
+   "url": "https://www.tomshardware.com/news/final-price-and-tgp-of-nvidia-geforce-rtx-4070-leak",
+   "domain": "tomshardware.com",
+   "seenAt": "2023-04-02T20:00:00.000Z"
+  },
+  {
+   "title": "AI About to Take the Driver Seat",
+   "url": "https://www.eetimes.com/ai-about-to-take-the-drivers-seat/",
+   "domain": "eetimes.com",
+   "seenAt": "2023-03-29T21:45:00.000Z"
+  },
+  {
+   "title": "Nvidia shows new research on using AI to improve chip designs",
+   "url": "https://dunyanews.tv/en/Technology/710658-Nvidia-shows-new-research-on-using-AI-to-improve-chip-designs",
+   "domain": "dunyanews.tv",
+   "seenAt": "2023-03-28T06:15:00.000Z"
+  },
+  {
+   "title": "Nvidia Begins Cracking Down on Fake Ampere GPUs",
+   "url": "https://www.extremetech.com/gaming/nvidia-begins-cracking-down-on-fake-ampere-gpus",
+   "domain": "extremetech.com",
+   "seenAt": "2023-03-31T20:45:00.000Z"
+  },
+  {
+   "title": "Nvidia RTX 4070 GPU could cost the same as RTX 3070 Ti",
+   "url": "https://www.pcgamesn.com/nvidia/rtx-4070-gpu-could-cost-the-same-as-rtx-3070-ti",
+   "domain": "pcgamesn.com",
+   "seenAt": "2023-03-30T18:15:00.000Z"
+  },
+  {
+   "title": "2 Semiconductor Stocks That Could Join Apple, Amazon, Alphabet, and Microsoft in the $1 Trillion Club",
+   "url": "https://www.fool.com/investing/2023/04/02/2-stocks-apple-alphabet-microsoft-1-trillion-club/",
+   "domain": "fool.com",
+   "seenAt": "2023-04-02T13:45:00.000Z"
+  },
+  {
+   "title": "Vulkan 1. 3. 245 Brings New NVIDIA Vendor Extension To Help Optimize Ray - Tracing",
+   "url": "https://www.phoronix.com/news/Vulkan-1.3.245-Released",
+   "domain": "phoronix.com",
+   "seenAt": "2023-03-28T14:00:00.000Z"
+  },
+  {
+   "title": "2 Growth Stocks That Turned $20, 000 Into $1 Million In the Last Decade",
+   "url": "https://www.fool.com/investing/2023/03/31/2-growth-stocks-turned-20000-into-1-million-decade/",
+   "domain": "fool.com",
+   "seenAt": "2023-03-31T13:45:00.000Z"
+  },
+  {
+   "title": "Nvidia contradictory relationship with crypto mining",
+   "url": "https://www.proactiveinvestors.com/companies/news/1010922/nvidia-s-contradictory-relationship-with-crypto-mining-1010922.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2023-04-01T12:15:00.000Z"
+  },
+  {
+   "title": "Co - Founder & GM of Biren Tech, The Chinese GPU Startup Taking On NVIDIA, Has Quit",
+   "url": "https://wccftech.com/co-founder-gm-of-biren-tech-the-chinese-gpu-startup-taking-on-nvidia-has-quit/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-04-01T13:00:00.000Z"
+  },
+  {
+   "title": "As Nvidia Stock Firms Up, Option Trade Could Return Nearly $300",
+   "url": "https://www.investors.com/research/options/as-nvidia-stock-firms-up-option-trade-could-return-nearly-300/",
+   "domain": "investors.com",
+   "seenAt": "2023-03-31T17:30:00.000Z"
+  },
+  {
+   "title": "How NVIDIA Omniverse is Helping Shape the Future of 3D Production",
+   "url": "https://www.awn.com/animationworld/how-nvidias-omniverse-helping-shape-future-3d-production",
+   "domain": "awn.com",
+   "seenAt": "2023-03-30T17:45:00.000Z"
+  },
+  {
+   "title": "Nvidia CTO Michael Kagan Skeptical about Cryptocurrencies: Prioritizing AI and Gaming",
+   "url": "https://www.economywatch.com/news/nvidia-cto-michael-kagan-skeptical-about-cryptocurrencies-prioritizing-ai-and-gaming",
+   "domain": "economywatch.com",
+   "seenAt": "2023-03-28T11:00:00.000Z"
+  },
+  {
+   "title": "Nvidia Sizzling AI - Driven Rally Flashes a Warning",
+   "url": "https://www.bnnbloomberg.ca/nvidia-s-sizzling-ai-driven-rally-flashes-a-warning-1.1901895",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-03-29T12:15:00.000Z"
+  },
+  {
+   "title": "Here what the NVIDIA GeForce RTX 4070 will cost you",
+   "url": "https://www.windowscentral.com/hardware/computers-desktops/heres-what-the-nvidia-geforce-rtx-4070-will-cost-you",
+   "domain": "windowscentral.com",
+   "seenAt": "2023-03-30T20:15:00.000Z"
+  },
+  {
+   "title": "NVIDIA to exit consumer GPU market - focus Hopper AI, Bluefield, Orin, etc.",
+   "url": "https://www.neowin.net/forum/topic/1427526-nvidia-to-exit-consumer-gpu-market-focus-hopper-ai-bluefield-orin-etc/",
+   "domain": "neowin.net",
+   "seenAt": "2023-04-01T11:45:00.000Z"
+  },
+  {
+   "title": "ASML, TSMC, and Synopsys Are Partnering With Nvidia to Revolutionize the Chip Manufacturing Process",
+   "url": "https://www.fool.com/investing/2023/03/27/asml-tsmc-and-synopsys-are-partnering-with-nvidia/",
+   "domain": "fool.com",
+   "seenAt": "2023-03-28T08:30:00.000Z"
+  },
+  {
+   "title": "If You Invested $1000 In This Stock 5 Years Ago, You Would Have $5, 000 Today - NVIDIA ( NASDAQ: NVDA)",
+   "url": "https://www.benzinga.com/news/earnings/23/03/31617432/if-you-invested-1000-in-this-stock-5-years-ago-you-would-have-5-000-today",
+   "domain": "benzinga.com",
+   "seenAt": "2023-03-31T21:30:00.000Z"
+  },
+  {
+   "title": "NVIDIA & CD Projekt Red Devs Recommend A Powerful PC With RTX 40 GPUs To Run Cyberpunk 2077 Path Tracing",
+   "url": "https://wccftech.com/nvidia-cd-projekt-red-devs-recommend-a-powerful-pc-with-rtx-40-gpus-to-run-cyberpunk-2077-path-tracing/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-03-29T14:00:00.000Z"
+  },
+  {
+   "title": "ProHawk Vision Restoration Plugin Aims to Boost Vision AI Accuracy...",
+   "url": "https://www.pr-inside.com/prohawk-vision-restoration-plugin-aims-to-boost-vision-ai-accuracy-r4912904.htm",
+   "domain": "pr-inside.com",
+   "seenAt": "2023-03-29T15:45:00.000Z"
+  },
+  {
+   "title": "NVDA Stock Analysis: Why Most Of Nvidia AI - Driven Upside Potential May Already Be Discounted - NVIDIA ( NASDAQ: NVDA)",
+   "url": "https://www.benzinga.com/analyst-ratings/analyst-color/23/03/31553521/nvda-stock-analysis-why-most-of-nvidias-ai-driven-upside-potential-may-already-be-d",
+   "domain": "benzinga.com",
+   "seenAt": "2023-03-29T18:30:00.000Z"
+  },
+  {
+   "title": "Nvidia ( NVDA) Surges As Chatgpt Boom Boosts AI Demand",
+   "url": "https://menafn.com/1105897063/Nvidia-NVDA-Surges-As-Chatgpt-Boom-Boosts-AI-Demand",
+   "domain": "menafn.com",
+   "seenAt": "2023-03-30T00:45:00.000Z"
+  },
+  {
+   "title": "Top analysts say buy stocks like Nvidia & Nike",
+   "url": "https://www.cnbc.com/2023/04/02/top-analysts-say-buy-stocks-like-nvidia-nike.html",
+   "domain": "cnbc.com",
+   "seenAt": "2023-04-02T11:45:00.000Z"
+  },
+  {
+   "title": "[ UPDATED ] NVIDIA DLSS 3 Forza Horizon 5 Hands - on Test",
+   "url": "https://wccftech.com/nvidia-dlss-3-forza-horizon-5-hands-on-test/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-03-31T17:15:00.000Z"
+  },
+  {
+   "title": "NVIDIA RTX 4070 GPU price could make your wallet cower in fear",
+   "url": "https://www.tweaktown.com/news/90734/nvidia-rtx-4070-gpu-price-could-make-your-wallet-cower-in-fear/",
+   "domain": "tweaktown.com",
+   "seenAt": "2023-03-30T20:00:00.000Z"
+  },
+  {
+   "title": "Top Analysts Are Bullish on These Five Long - Term Picks",
+   "url": "https://www.nbcnewyork.com/news/business/money-report/top-analysts-are-bullish-on-these-five-long-term-picks/4204168/",
+   "domain": "nbcnewyork.com",
+   "seenAt": "2023-04-02T13:30:00.000Z"
+  },
+  {
+   "title": "DLSS 3 Out Today in Forza Horizon 5; ICAT Comparison Tool Gets HEVC Support and Export Functionality",
+   "url": "https://wccftech.com/dlss-3-out-today-in-forza-horizon-5-icat-comparison-tool-gets-hevc-support-and-export-functionality/",
+   "domain": "wccftech.com",
+   "seenAt": "2023-03-28T14:30:00.000Z"
+  },
+  {
+   "title": "TweakTown: Latest Worldwide Tech News & Game Reviews ( Page 4885)",
+   "url": "https://www.tweaktown.com/index4885.html",
+   "domain": "tweaktown.com",
+   "seenAt": "2023-04-03T12:45:00.000Z"
+  },
+  {
+   "title": "TweakTown: Latest Worldwide Tech News & Game Reviews ( Page 4879)",
+   "url": "https://www.tweaktown.com/index4879.html",
+   "domain": "tweaktown.com",
+   "seenAt": "2023-03-28T06:45:00.000Z"
+  },
+  {
+   "title": "The RTX 4070 leaked price tag is a breath of fresh air - I just hope Nvidia delivers",
+   "url": "https://www.techradar.com/news/the-rtx-4070s-leaked-price-tag-is-a-breath-of-fresh-air-i-just-hope-nvidia-delivers",
+   "domain": "techradar.com",
+   "seenAt": "2023-04-03T10:15:00.000Z"
+  },
+  {
+   "title": "Forza Horizon 5 gets DLSS 3 upgrade today",
+   "url": "https://www.kitguru.net/components/graphic-cards/matthew-wilson/forza-horizon-5-gets-dlss-3-upgrade-today/",
+   "domain": "kitguru.net",
+   "seenAt": "2023-03-28T18:45:00.000Z"
+  },
+  {
+   "title": "Forza Horizon 5 system requirements",
+   "url": "https://www.pcgamesn.com/forza-horizon-5/system-requirements",
+   "domain": "pcgamesn.com",
+   "seenAt": "2023-03-29T23:00:00.000Z"
+  },
+  {
+   "title": "Pro Picks: Watch all of Friday big stock calls on CNBC",
+   "url": "https://www.cnbc.com/2023/03/31/pro-picks-watch-all-of-fridays-big-stock-calls-on-cnbc.html",
+   "domain": "cnbc.com",
+   "seenAt": "2023-03-31T22:15:00.000Z"
+  },
+  {
+   "title": "How to Fix the OBS Studio Woops, OBS Has Crashed Error in Windows 10 & 11",
+   "url": "https://www.makeuseof.com/obs-studio-woops-obs-crashed-windows/",
+   "domain": "makeuseof.com",
+   "seenAt": "2023-03-31T17:45:00.000Z"
+  },
+  {
+   "title": "April Fool! Were Not Buying the Rally in These 3 Growth Stocks",
+   "url": "https://www.fool.com/investing/2023/04/01/april-fool-not-buying-rally-in-growth-stocks/",
+   "domain": "fool.com",
+   "seenAt": "2023-04-01T13:45:00.000Z"
+  }
+ ]
+}

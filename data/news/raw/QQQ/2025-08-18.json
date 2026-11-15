@@ -1,0 +1,429 @@
+{
+ "ticker": "QQQ",
+ "query": "(\"Nasdaq 100\" OR \"Nasdaq Composite\")",
+ "from": "2025-08-11T20:00:00.000Z",
+ "to": "2025-08-18T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T01:38:31.599Z",
+ "articles": [
+  {
+   "title": "Stock futures are little changed as investors await more inflation data: Live updates",
+   "url": "https://biztoc.com/x/2cfe68b73362d082",
+   "domain": "biztoc.com",
+   "seenAt": "2025-08-14T01:45:00.000Z"
+  },
+  {
+   "title": "Stock market today: Live updates",
+   "url": "https://www.cnbc.com/2025/08/12/stock-market-today-live-updates.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-12T23:00:00.000Z"
+  },
+  {
+   "title": "S & P 500, Nasdaq hover near record highs on Fed rate cut hopes",
+   "url": "https://www.staradvertiser.com/2025/08/13/breaking-news/sp-500-nasdaq-hover-near-record-highs-on-fed-rate-cut-hopes/",
+   "domain": "staradvertiser.com",
+   "seenAt": "2025-08-13T19:00:00.000Z"
+  },
+  {
+   "title": "Thursday big stock stories: What likely to move the market in the next trading session",
+   "url": "https://www.cnbc.com/2025/08/13/thursdays-big-stock-stories-whats-likely-to-move-the-market-in-the-next-trading-session.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-14T00:00:00.000Z"
+  },
+  {
+   "title": "These stocks were pushing the Dow toward 45, 000 and maybe a record",
+   "url": "https://finance.yahoo.com/news/stocks-were-pushing-dow-toward-033211490.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-15T12:45:00.000Z"
+  },
+  {
+   "title": "Goldman says it time to play the meme stocks again",
+   "url": "https://www.cnbc.com/2025/08/13/goldman-says-its-time-to-play-the-meme-stocks-again.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-13T15:00:00.000Z"
+  },
+  {
+   "title": "Stock Market Jumps, Takes Latest Inflation Data In Stride; Small Caps Shine, But CoreWeave Falls Late",
+   "url": "https://www.investors.com:443/market-trend/the-big-picture/nasdaq-sp500-all-time-highs-stock-market-jumps-cpi-data/",
+   "domain": "investors.com",
+   "seenAt": "2025-08-13T05:00:00.000Z"
+  },
+  {
+   "title": "US stock futures rise ahead of crucial inflation data release",
+   "url": "https://inventorspot.com/us-stock-futures-rise-ahead-of-crucial-inflation-data-release/",
+   "domain": "inventorspot.com",
+   "seenAt": "2025-08-12T17:15:00.000Z"
+  },
+  {
+   "title": "How will markets open today? GIFT Nifty flat, Nikkei up 1%, US futures and 7 cues at this hour",
+   "url": "https://www.financialexpress.com/market/how-will-markets-open-today-gift-nifty-flat-nikkei-up-1-us-futures-and-7-cues-at-this-hour-3943819/",
+   "domain": "financialexpress.com",
+   "seenAt": "2025-08-12T05:15:00.000Z"
+  },
+  {
+   "title": "US Market Outlook: US Benchmark Indices Hit Record Highs - The Hindu BusinessLine",
+   "url": "https://www.thehindubusinessline.com/portfolio/technical-analysis/us-market-outlook-us-benchmark-indices-hit-record-highs/article69939565.ece",
+   "domain": "thehindubusinessline.com",
+   "seenAt": "2025-08-16T19:00:00.000Z"
+  },
+  {
+   "title": "Wall Street today: S & P 500, Nasdaq hit record high on Fed rate cut optimism",
+   "url": "https://www.livemint.com/market/stock-market-news/wall-street-today-s-p-500-nasdaq-hit-record-high-on-fed-rate-cut-optimism-11755093087355.html",
+   "domain": "livemint.com",
+   "seenAt": "2025-08-13T15:15:00.000Z"
+  },
+  {
+   "title": "CNBC Daily Open: The U. S. inflation jump scare is not here at least not yet",
+   "url": "https://www.cnbc.com/2025/08/13/cnbc-daily-open-the-us-inflation-jump-scare-is-not-here-at-least-not-yet.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-13T07:15:00.000Z"
+  },
+  {
+   "title": "Asia stock markets today: live updates",
+   "url": "https://www.cnbc.com/2025/08/14/asia-stock-markets-today-live-updates-nikkei-225-asx-200-kospi-hang-seng-csi-300-sensex-nifty-50.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-14T00:00:00.000Z"
+  },
+  {
+   "title": "Trending stocks amid a mixed week, even amid gains on Fed cut hopes",
+   "url": "https://seekingalpha.com/news/4486308-trending-stocks-amid-a-mixed-week-even-amid-gains-on-fed-cut-hopes",
+   "domain": "seekingalpha.com",
+   "seenAt": "2025-08-16T22:00:00.000Z"
+  },
+  {
+   "title": "Wall Street: Dow lifts on UnitedHealth, consumer sentiment unexpectedly falls",
+   "url": "https://www.afr.com/markets/equity-markets/dow-lifts-on-unitedhealth-consumer-sentiment-unexpectedly-falls-20250816-p5mneg",
+   "domain": "afr.com",
+   "seenAt": "2025-08-15T20:30:00.000Z"
+  },
+  {
+   "title": "Dow Jones Index Hits High As Warren Buffett Boosts This Stock Market Group; Fed Chair Powell Speech Due",
+   "url": "https://www.investors.com/market-trend/the-big-picture/dow-jones-new-high-nasdaq-sp500-warren-buffett-boosts-stock-market-jerome-powell-jackson-hole-speech-due/",
+   "domain": "investors.com",
+   "seenAt": "2025-08-15T23:30:00.000Z"
+  },
+  {
+   "title": "How Major US Stock Indexes Fared Aug. 12",
+   "url": "https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-aug-12-post-5900462",
+   "domain": "theepochtimes.com",
+   "seenAt": "2025-08-12T22:45:00.000Z"
+  },
+  {
+   "title": "How Major US Stock Indexes Fared Aug. 15",
+   "url": "https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-aug-15-post-5902007",
+   "domain": "theepochtimes.com",
+   "seenAt": "2025-08-15T23:00:00.000Z"
+  },
+  {
+   "title": "How Major US Stock Indexes Fared Aug. 14",
+   "url": "https://www.theepochtimes.com/bright/how-major-us-stock-indexes-fared-aug-14-post-5901515",
+   "domain": "theepochtimes.com",
+   "seenAt": "2025-08-14T23:30:00.000Z"
+  },
+  {
+   "title": "Europe markets live: FTSE 100, DAX, Renk earnings, European stocks",
+   "url": "https://www.cnbc.com/2025/08/13/europe-markets-live-ftse-100-dax-renk-earnings-european-stocks.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-13T07:15:00.000Z"
+  },
+  {
+   "title": "How major US stock indexes fared Tuesday, 8 / 12 / 2025",
+   "url": "https://insurancenewsnet.com/oarticle/how-major-us-stock-indexes-fared-tuesday-8-12-2025",
+   "domain": "insurancenewsnet.com",
+   "seenAt": "2025-08-13T00:30:00.000Z"
+  },
+  {
+   "title": "CPI report lifts Wall Street to new highs, September rate cut seen as likely",
+   "url": "https://www.moneycontrol.com/news/business/markets/cpi-report-lifts-wall-street-to-new-highs-september-rate-cut-seen-as-likely-13452810.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2025-08-13T14:45:00.000Z"
+  },
+  {
+   "title": "S & P 500, Nasdaq Back on Record Track",
+   "url": "https://www.barrons.com/livecoverage/stock-market-news-today-081225/card/s-p-500-nasdaq-back-on-record-track-OExatSpN4ONrfHoHhVY1",
+   "domain": "barrons.com",
+   "seenAt": "2025-08-12T15:30:00.000Z"
+  },
+  {
+   "title": "US: S & P 500, Nasdaq hit record highs at open on September rate cut hopes",
+   "url": "https://www.businesstimes.com.sg/companies-markets/us-sp-500-nasdaq-hit-record-highs-open-september-rate-cut-hopes",
+   "domain": "businesstimes.com.sg",
+   "seenAt": "2025-08-13T15:15:00.000Z"
+  },
+  {
+   "title": "US: S & P 500, Nasdaq retreat from record rally after hot producer inflation data",
+   "url": "https://www.businesstimes.com.sg/companies-markets/us-sp-500-nasdaq-retreat-record-rally-after-hot-producer-inflation-data",
+   "domain": "businesstimes.com.sg",
+   "seenAt": "2025-08-14T14:15:00.000Z"
+  },
+  {
+   "title": "Stock market today: Dow jumps 450 points as S & P 500, Nasdaq log back - to - back records on surging Fed rate cut bets",
+   "url": "https://finance.yahoo.com/news/live/stock-market-today-dow-jumps-450-points-as-sp-500-nasdaq-log-back-to-back-records-on-surging-fed-rate-cut-bets-200115170.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-15T08:30:00.000Z"
+  },
+  {
+   "title": "Seattle DJC. com local business news and data - Business - Wall Street ticks higher after a rally wrapped around the world",
+   "url": "https://www.djc.com/news/bu/12171445.html",
+   "domain": "djc.com",
+   "seenAt": "2025-08-14T08:00:00.000Z"
+  },
+  {
+   "title": "U. S. stocks close higher",
+   "url": "https://www.thestar.com.my/news/world/2025/08/14/us-stocks-close-higher",
+   "domain": "thestar.com.my",
+   "seenAt": "2025-08-13T22:15:00.000Z"
+  },
+  {
+   "title": "U. S. stocks close lower",
+   "url": "https://www.thestar.com.my/news/world/2025/08/12/us-stocks-close-lower",
+   "domain": "thestar.com.my",
+   "seenAt": "2025-08-11T21:30:00.000Z"
+  },
+  {
+   "title": "U. S. stocks close mixed",
+   "url": "https://www.thestar.com.my/news/world/2025/08/15/us-stocks-close-mixed",
+   "domain": "thestar.com.my",
+   "seenAt": "2025-08-14T22:30:00.000Z"
+  },
+  {
+   "title": "Asia markets mixed as investors await details of U. S.- Ukraine talks",
+   "url": "https://www.cnbc.com/2025/08/18/asia-stock-markets-today-live-updates-nikkei-225-asx-200-kospi-hang-seng-csi-300-sensex-nifty-50.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-18T01:00:00.000Z"
+  },
+  {
+   "title": "Nasdaq Forecast 14 / 08: Struggles to Hold onto Gains ( Chart)",
+   "url": "https://www.dailyforex.com/forex-technical-analysis/2025/08/nasdaq-forecast-14-august-2025/232649",
+   "domain": "dailyforex.com",
+   "seenAt": "2025-08-14T07:00:00.000Z"
+  },
+  {
+   "title": "Signal Advisors Loads Up on a 11. 1% Distribution ETF",
+   "url": "https://www.fool.com/coverage/filings/2025/08/12/signal-advisors-loads-up-on-a-11-1-distribution-etf/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-08-12T15:30:00.000Z"
+  },
+  {
+   "title": "Seattle DJC. com local business news and data - Business - Stocks rally to records on hopes for interest rate cuts",
+   "url": "https://www.djc.com/news/bu/12171419.html",
+   "domain": "djc.com",
+   "seenAt": "2025-08-13T07:45:00.000Z"
+  },
+  {
+   "title": "Markets today: S & P / TSX composite down as oil moves lower",
+   "url": "https://www.cp24.com/news/money/2025/08/15/sptsx-composite-down-as-oil-moves-lower-us-stock-markets-mixed/",
+   "domain": "cp24.com",
+   "seenAt": "2025-08-15T16:30:00.000Z"
+  },
+  {
+   "title": "TSX closes higher, U. S. markets slip",
+   "url": "https://www.bnnbloomberg.ca/markets/tsx/2025/08/11/sptsx-composite-closes-slightly-higher/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2025-08-11T21:00:00.000Z"
+  },
+  {
+   "title": "Tech stocks drive TSX lower, U. S. markets flat",
+   "url": "https://www.bnnbloomberg.ca/markets/2025/08/14/tech-stocks-drive-sptsx-composite-lower/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2025-08-14T20:45:00.000Z"
+  },
+  {
+   "title": "World equities hit record highs, US yields fall on optimism for Fed rate cut",
+   "url": "https://finance.yahoo.com/news/asian-shares-rise-dollar-defensive-022236569.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-14T09:45:00.000Z"
+  },
+  {
+   "title": "First Tick: Here are the top global cues for today trade",
+   "url": "https://www.moneycontrol.com/news/business/markets/first-tick-here-are-the-top-global-cues-for-today-s-trade-157-13449717.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2025-08-14T04:30:00.000Z"
+  },
+  {
+   "title": "European markets on Thurs Aug 14",
+   "url": "https://www.cnbc.com/2025/08/14/european-markets-on-thurs-aug-14.html",
+   "domain": "cnbc.com",
+   "seenAt": "2025-08-14T05:00:00.000Z"
+  },
+  {
+   "title": "Nasdaq Forecast 18 / 08: Drifted into the Weekend ( Chart)",
+   "url": "https://www.dailyforex.com/forex-technical-analysis/2025/08/nasdaq-forecast-18-august-2025/232793",
+   "domain": "dailyforex.com",
+   "seenAt": "2025-08-18T12:00:00.000Z"
+  },
+  {
+   "title": "16 equity mutual funds offer over 30% return since last independence day. Do you own any?",
+   "url": "https://economictimes.indiatimes.com/mf/analysis/16-equity-mutual-funds-offer-over-30-return-since-last-independence-day-do-you-own-any/articleshow/123316483.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-08-15T06:00:00.000Z"
+  },
+  {
+   "title": "Nasdaq Composite closes at record high driven by strong performances from key stocks",
+   "url": "https://inventorspot.com/nasdaq-composite-closes-at-record-high-driven-by-strong-performances-from-key-stocks/",
+   "domain": "inventorspot.com",
+   "seenAt": "2025-08-12T22:00:00.000Z"
+  },
+  {
+   "title": "3 fantastic ASX ETFs for beginner investors",
+   "url": "https://www.fool.com.au/2025/08/13/3-fantastic-asx-etfs-for-beginner-investors/",
+   "domain": "fool.com.au",
+   "seenAt": "2025-08-13T11:30:00.000Z"
+  },
+  {
+   "title": "3 ASX ETFs that give you instant access to the worldâ€™s best stocks",
+   "url": "https://www.fool.com.au/2025/08/14/3-asx-etfs-that-give-you-instant-access-to-the-worlds-best-stocks/",
+   "domain": "fool.com.au",
+   "seenAt": "2025-08-14T11:00:00.000Z"
+  },
+  {
+   "title": "Cognizant Signal 14 / 08: Breakout Lead to More Gains ( Chart)",
+   "url": "https://www.dailyforex.com/forex-technical-analysis/2025/08/cognizant-stock-signal-14-august-2025/232686",
+   "domain": "dailyforex.com",
+   "seenAt": "2025-08-14T11:15:00.000Z"
+  },
+  {
+   "title": "Seoul shares open higher on chip, auto gains",
+   "url": "https://www.koreaherald.com/article/10552002",
+   "domain": "koreaherald.com",
+   "seenAt": "2025-08-12T01:45:00.000Z"
+  },
+  {
+   "title": "Dow Jones record high UnitedHealth surge: US stock market today tumultuous: Dow hits record as UnitedHealth surges, S & P 500, Nasdaq, and semiconductor stocks fall due to inflation and looming Trump tariffs",
+   "url": "https://economictimes.indiatimes.com/news/international/us/us-stock-market-today-tumultuous-dow-hits-record-as-unitedhealth-surges-sp-500-nasdaq-and-semiconductor-stocks-fall-due-to-inflation-and-looming-trump-tariffs/articleshow/123323776.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2025-08-15T16:15:00.000Z"
+  },
+  {
+   "title": "Seoul shares open lower on tech losses",
+   "url": "https://www.koreaherald.com/article/10555615",
+   "domain": "koreaherald.com",
+   "seenAt": "2025-08-18T01:00:00.000Z"
+  },
+  {
+   "title": "This Is the 3rd Priciest Stock Market in 154 Years, Which Makes This High - Yield ETF a Genius Buy Right Now",
+   "url": "https://www.fool.com/investing/2025/08/15/3rd-priciest-stock-market-high-yield-etf-smart-buy/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-08-15T08:45:00.000Z"
+  },
+  {
+   "title": "5 AI Stocks Struggle To Hit New Highs: And Fail To Get There",
+   "url": "https://www.forbes.com/sites/johnnavin/2025/08/12/5-ai-stocks-struggle-to-hit-new-highs-and-fail-to-get-there/",
+   "domain": "forbes.com",
+   "seenAt": "2025-08-12T22:30:00.000Z"
+  },
+  {
+   "title": "US close: Stocks lower as Trump pauses China tariffs for another 90 days",
+   "url": "https://www.sharecast.com/news/market-report-us-close/us-close-stocks-lower-as-trump-pauses-china-tariffs-for-another-90-days--20621804.html",
+   "domain": "sharecast.com",
+   "seenAt": "2025-08-11T22:45:00.000Z"
+  },
+  {
+   "title": "US close: Stocks log winning session following July CPI reading",
+   "url": "https://www.sharecast.com/news/market-report-us-close/us-close-stocks-log-winning-session-following-july-cpi-reading--20638838.html",
+   "domain": "sharecast.com",
+   "seenAt": "2025-08-12T23:00:00.000Z"
+  },
+  {
+   "title": "Nifty near 24, 600 on weekly expiry, Sensex echoes muted Asian markets as volatility rises",
+   "url": "https://www.moneycontrol.com/news/business/markets/nifty-near-24-650-sensex-echoes-muted-asian-markets-while-broader-markets-outshine-13454970.html",
+   "domain": "moneycontrol.com",
+   "seenAt": "2025-08-14T04:30:00.000Z"
+  },
+  {
+   "title": "S & P / TSX composite up in late - morning trading, U. S. stock markets also higher",
+   "url": "https://www.niagarafallsreview.ca/business/s-p-tsx-composite-up-in-late-morning-trading-u-s-stock-markets-also-higher/article_7966a114-4595-5399-bc27-3ed8e5fc6c5c.html",
+   "domain": "niagarafallsreview.ca",
+   "seenAt": "2025-08-13T17:15:00.000Z"
+  },
+  {
+   "title": "Base metal and telecom stocks help S & P / TSX composite rise more than 100 points",
+   "url": "https://www.niagarafallsreview.ca/business/base-metal-and-telecom-stocks-help-s-p-tsx-composite-rise-more-than-100-points/article_43023f41-22c3-529c-ba42-540b9fb0826a.html",
+   "domain": "niagarafallsreview.ca",
+   "seenAt": "2025-08-12T17:00:00.000Z"
+  },
+  {
+   "title": "World equities hit record highs on Fed rate cut optimism",
+   "url": "https://bdnews24.com/business/cd2b3a3462e6",
+   "domain": "bdnews24.com",
+   "seenAt": "2025-08-14T07:00:00.000Z"
+  },
+  {
+   "title": "S & P / TSX composite down in late - morning trading, U. S. stock markets also lower",
+   "url": "https://www.niagarafallsreview.ca/business/s-p-tsx-composite-down-in-late-morning-trading-u-s-stock-markets-also-lower/article_0459d5a0-87db-5e6b-be7c-3ce0cdd2a4bb.html",
+   "domain": "niagarafallsreview.ca",
+   "seenAt": "2025-08-18T16:30:00.000Z"
+  },
+  {
+   "title": "Stock Market Today: Intel Climbs as White House Mulls Strategic Stake in Chipmaker",
+   "url": "https://www.fool.com/data-news/2025/08/14/stock-market-today-intel-climbs-as-white-house/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-08-14T22:30:00.000Z"
+  },
+  {
+   "title": "Wall Street ends lower ahead of inflation report, China trade talks",
+   "url": "https://www.staradvertiser.com/2025/08/11/breaking-news/wall-street-ends-lower-ahead-of-inflation-report-china-trade-talks/",
+   "domain": "staradvertiser.com",
+   "seenAt": "2025-08-12T01:00:00.000Z"
+  },
+  {
+   "title": "Seoul shares start higher on US gains",
+   "url": "https://www.koreaherald.com/article/10552954",
+   "domain": "koreaherald.com",
+   "seenAt": "2025-08-13T01:15:00.000Z"
+  },
+  {
+   "title": "Nasdaq Forecast Today 15 / 08: Volatile Session ( Chart)",
+   "url": "https://www.dailyforex.com/forex-technical-analysis/2025/08/nasdaq-forecast-15-august-2025/232722",
+   "domain": "dailyforex.com",
+   "seenAt": "2025-08-15T14:15:00.000Z"
+  },
+  {
+   "title": "How major US stock indexes fared Monday, 8 / 11 / 2025",
+   "url": "https://www.seattletimes.com/business/how-major-us-stock-indexes-fared-monday-8-11-2025/",
+   "domain": "seattletimes.com",
+   "seenAt": "2025-08-12T01:15:00.000Z"
+  },
+  {
+   "title": "Stock index futures rise ahead of CPI data ( SPX: null)",
+   "url": "https://seekingalpha.com/news/4483672-sp500-nasdaq-dow-jones-outlook-stock-market-cpi",
+   "domain": "seekingalpha.com",
+   "seenAt": "2025-08-12T11:00:00.000Z"
+  },
+  {
+   "title": "Dow Jones Futures: Tesla Stock Hits New Buy Point; CPI Inflation Data Next",
+   "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-tesla-tsla-stock-cpi-inflation/",
+   "domain": "investors.com",
+   "seenAt": "2025-08-11T22:30:00.000Z"
+  },
+  {
+   "title": "Asian shares mostly gain as eyes turn to meetings at the White House and Jackson Hole",
+   "url": "https://www.clickondetroit.com/business/2025/08/18/asian-shares-mostly-gain-as-eyes-turn-to-meetings-at-the-white-house-and-jackson-hole/",
+   "domain": "clickondetroit.com",
+   "seenAt": "2025-08-18T09:15:00.000Z"
+  },
+  {
+   "title": "How major US stock indexes fared Wednesday, 8 / 13 / 2025",
+   "url": "https://finance.yahoo.com/news/major-us-stock-indexes-fared-201817047.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2025-08-13T20:45:00.000Z"
+  },
+  {
+   "title": "Stock Market Today: TeraWulf Jumps on $3. 7 Billion AI Deal and Google Partnership",
+   "url": "https://www.fool.com/data-news/2025/08/14/stock-market-today-terawulf-jumps-on-37b-ai-deal-a/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2025-08-14T22:30:00.000Z"
+  },
+  {
+   "title": "US stocks fall ahead of inflation data",
+   "url": "http://www.china.org.cn/2025-08/12/content_118021339.shtml",
+   "domain": "china.org.cn",
+   "seenAt": "2025-08-12T06:30:00.000Z"
+  },
+  {
+   "title": "US Stocks Fall as Hotter - Than - Expected PPI Halts Record Run",
+   "url": "https://www.bloomberg.com/news/articles/2025-08-14/us-stocks-fall-as-hotter-than-expected-ppi-halts-record-run",
+   "domain": "bloomberg.com",
+   "seenAt": "2025-08-14T16:00:00.000Z"
+  }
+ ]
+}

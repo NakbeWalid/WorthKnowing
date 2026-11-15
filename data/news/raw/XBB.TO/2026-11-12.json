@@ -1,0 +1,375 @@
+{
+ "ticker": "XBB.TO",
+ "query": "(\"Bank of Canada\" OR \"Canadian bonds\")",
+ "from": "2026-11-05T20:00:00.000Z",
+ "to": "2026-11-12T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T01:46:30.361Z",
+ "articles": [
+  {
+   "title": "Bank of Canada keeps 2% inflation target in mandate renewal",
+   "url": "https://www.stcatharinesstandard.ca/business/bank-of-canada-keeps-2-inflation-target-in-mandate-renewal/article_1e76b553-d5c6-546a-967f-3ffc92ef6750.html",
+   "domain": "stcatharinesstandard.ca",
+   "seenAt": "2026-11-06T00:30:00.000Z"
+  },
+  {
+   "title": "Five things to watch for in the Canadian business world in the coming week – Winnipeg Free Press",
+   "url": "https://www.winnipegfreepress.com/business/2026/11/08/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week-416",
+   "domain": "winnipegfreepress.com",
+   "seenAt": "2026-11-08T15:30:00.000Z"
+  },
+  {
+   "title": "Bank of Canada proceeding carefully with future rate hikes, deliberations show",
+   "url": "https://calgarysun.com/economy/bank-of-canada-proceeding-carefully-with-future-rate-hikes-deliberations-show/wcm/06b8a5da-73eb-4b3f-9895-ffd9311e85fa",
+   "domain": "calgarysun.com",
+   "seenAt": "2026-11-11T02:00:00.000Z"
+  },
+  {
+   "title": "Comparing United Bankshares ( NASDAQ: UBSI) & Royal Bank Of Canada ( NYSE: RY)",
+   "url": "https://www.themarketsdaily.com/2026/11/08/comparing-united-bankshares-nasdaqubsi-royal-bank-of-canada-nysery.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-08T13:00:00.000Z"
+  },
+  {
+   "title": "Carney, Bank of Canada renew framework to focus on 2% inflation target",
+   "url": "https://calgarysun.com/economy/carney-bank-of-canada-renew-framework-to-focus-on-2-inflation-target/wcm/a35ac7f0-ddde-43ba-b3ca-45a71cf9f69a",
+   "domain": "calgarysun.com",
+   "seenAt": "2026-11-06T03:30:00.000Z"
+  },
+  {
+   "title": "Budget 2026: Ottawa promises reform to spur competition in banking sector",
+   "url": "https://www.theglobeandmail.com/business/article-ottawa-promises-legislative-changes-competition-banking-sector/",
+   "domain": "theglobeandmail.com",
+   "seenAt": "2026-11-06T02:00:00.000Z"
+  },
+  {
+   "title": "SmartStop Self Storage REIT Announces Pricing of Upsized Offering of Common Stock",
+   "url": "https://www.thewhig.com/press-releases/business-wire/smartstop-self-storage-reit-announces-pricing-of-upsized-offering-of-common-stock/",
+   "domain": "thewhig.com",
+   "seenAt": "2026-11-10T05:00:00.000Z"
+  },
+  {
+   "title": "Feds wont say whether EDC, BDC merger will mean job loss",
+   "url": "https://ottawasun.com/public-service/edc-bdc-merger-job-loss",
+   "domain": "ottawasun.com",
+   "seenAt": "2026-11-10T01:00:00.000Z"
+  },
+  {
+   "title": "Toronto Stock Exchange: National Bank Direct Brokerage Closes the Market",
+   "url": "https://www.finanznachrichten.de/nachrichten-2026-11/70051765-toronto-stock-exchange-national-bank-direct-brokerage-closes-the-market-296.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2026-11-05T22:00:00.000Z"
+  },
+  {
+   "title": "Christine Poole Top Picks for Nov. 10, 2026 – BNN Bloomberg",
+   "url": "https://www.bnnbloomberg.ca/markets/2026/11/10/christine-pooles-top-picks-for-nov-10-2026/",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2026-11-10T22:00:00.000Z"
+  },
+  {
+   "title": "Canada, Bank of Canada Renew Monetary Policy Framework",
+   "url": "https://www.miragenews.com/canada-bank-of-canada-renew-monetary-policy-1772952/",
+   "domain": "miragenews.com",
+   "seenAt": "2026-11-06T01:30:00.000Z"
+  },
+  {
+   "title": "Carney unveils budget to strengthen Canada economy as Trump trade war slows growth",
+   "url": "https://www.wral.com/news/ap/1ec61-carney-unveils-budget-to-strengthen-canadas-economy-as-trumps-trade-war-continues/",
+   "domain": "wral.com",
+   "seenAt": "2026-11-06T04:00:00.000Z"
+  },
+  {
+   "title": "Actually laughable: Budget 2026 gets mixed reactions from Calgary mayor, business community",
+   "url": "https://www.cbc.ca/news/canada/calgary/calgary-federal-budget-infrastructure-spending-9.7411238",
+   "domain": "cbc.ca",
+   "seenAt": "2026-11-06T02:00:00.000Z"
+  },
+  {
+   "title": "Carney unveils budget to strengthen Canada economy as Trump trade war continues",
+   "url": "https://abcnews.com/International/wireStory/carney-unveils-budget-strengthen-canadas-economy-trumps-trade-137894318",
+   "domain": "abcnews.com",
+   "seenAt": "2026-11-05T23:30:00.000Z"
+  },
+  {
+   "title": "Dow Jones Top Markets Headlines at 9 PM ET: Wall Street Gets $2. 5 Trillion AI Reality Check With Historic Rout of Tech Stocks | A...",
+   "url": "https://www.morningstar.com/news/dow-jones/2026110526443/dow-jones-top-markets-headlines-at-9-pm-et-wall-street-gets-25-trillion-ai-reality-check-with-historic-rout-of-tech-stocks-a",
+   "domain": "morningstar.com",
+   "seenAt": "2026-11-06T04:00:00.000Z"
+  },
+  {
+   "title": "Federal government to expand Canadian access to 30 - year insured mortgages | Daily Hive",
+   "url": "https://dailyhive.com/vancouver/canada-budget-2026-mortgage-rates-fees-rules-change",
+   "domain": "dailyhive.com",
+   "seenAt": "2026-11-06T04:00:00.000Z"
+  },
+  {
+   "title": "iShares MSCI Europe Small - Cap ETF ( NASDAQ: IEUS) Shares Cross Below Two Hundred Day Moving Average – Here What Happened",
+   "url": "https://www.dailypolitical.com/2026/11/08/ishares-msci-europe-small-cap-etf-nasdaqieus-shares-cross-below-two-hundred-day-moving-average-heres-what-happened.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-11-08T13:30:00.000Z"
+  },
+  {
+   "title": "iShares S & P 500 3% Capped ETF ( NYSEARCA: TOPC) Sees Significant Increase in Short Interest",
+   "url": "https://www.dailypolitical.com/2026/11/10/ishares-sp-500-3-capped-etf-nysearcatopc-sees-significant-increase-in-short-interest.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-11-11T03:00:00.000Z"
+  },
+  {
+   "title": "iShares S & P 500 3% Capped ETF ( NYSEARCA: TOPC) Stock Short Interest Report for October",
+   "url": "https://www.tickerreport.com/banking-finance/13658334/ishares-sp-500-3-capped-etf-nysearcatopc-stock-short-interest-report-for-october.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-11T03:00:00.000Z"
+  },
+  {
+   "title": "Global X HealthTech ETF ( NASDAQ: HEAL) Stock Short Interest Report for October",
+   "url": "https://www.themarketsdaily.com/2026/11/11/global-x-healthtech-etf-nasdaqheal-stock-short-interest-report-for-october.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-11T04:00:00.000Z"
+  },
+  {
+   "title": "Direxion Daily 20+ Year Treasury Bull 3X ETF ( NYSEARCA: TMF) Shares Up 0. 6% – Here What Happened",
+   "url": "https://www.dailypolitical.com/2026/11/05/direxion-daily-20-year-treasury-bull-3x-etf-nysearcatmf-shares-up-0-6-heres-what-happened.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-11-06T06:00:00.000Z"
+  },
+  {
+   "title": "John Hancock Multifactor Developed International ETF ( NYSEARCA: JHMD) Stock Breaks Above 200 Day Moving Average – Here Why",
+   "url": "https://www.themarketsdaily.com/2026/11/12/john-hancock-multifactor-developed-international-etf-nysearcajhmd-stock-breaks-above-200-day-moving-average-heres-why.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-12T03:00:00.000Z"
+  },
+  {
+   "title": "The Ottawa Citizen daily 5 p. m. roundup",
+   "url": "https://ottawacitizen.com/news/local-news/news-of-the-day-canadian-army-cutting-reserve-military-jobs-cancelling-some-training-feds-wont-say-whether-edc-bdc-merger-will-mean-job-loss-how-to-understand-remembrance-day-when-you-are-a-kid",
+   "domain": "ottawacitizen.com",
+   "seenAt": "2026-11-11T01:30:00.000Z"
+  },
+  {
+   "title": "Statistics Canada to release October labour force survey numbers today",
+   "url": "https://www.pentictonherald.ca/news/national_news/article_af4d3456-0db3-54d9-8aaa-50c667dde3f7.html",
+   "domain": "pentictonherald.ca",
+   "seenAt": "2026-11-06T11:00:00.000Z"
+  },
+  {
+   "title": "Direxion NASDAQ - 100 Equal Weighted Index ETF ( NASDAQ: QQQE) Shares Break Below 200 Day Moving Average – What Next?",
+   "url": "https://www.dailypolitical.com/2026/11/06/direxion-nasdaq-100-equal-weighted-index-etf-nasdaqqqqe-shares-break-below-200-day-moving-average-whats-next.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-11-06T12:00:00.000Z"
+  },
+  {
+   "title": "Allspring Multi - Sector Income Fund ( NYSEAMERICAN: ERC) Stock Price Up 1. 4% – Here What Happened",
+   "url": "https://www.tickerreport.com/banking-finance/13659993/allspring-multi-sector-income-fund-nyseamericanerc-stock-price-up-1-4-heres-what-happened.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-12T01:30:00.000Z"
+  },
+  {
+   "title": "Arrow Investment Advisors LLC Makes New Investment in iShares MSCI Austria ETF $EWO",
+   "url": "https://www.tickerreport.com/banking-finance/13653543/arrow-investment-advisors-llc-makes-new-investment-in-ishares-msci-austria-etf-ewo.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-07T11:30:00.000Z"
+  },
+  {
+   "title": "Feds considering change to Crown corporations",
+   "url": "https://ottawacitizen.com:443/public-service/crown-corporations-budget-2026",
+   "domain": "ottawacitizen.com",
+   "seenAt": "2026-11-05T23:30:00.000Z"
+  },
+  {
+   "title": "Former National Bank employee pays $330K in insider trading settlement",
+   "url": "https://edmontonjournal.com/finance/banking/former-national-bank-employee-in-calgary-pays-330000-in-insider-trading-settlement",
+   "domain": "edmontonjournal.com",
+   "seenAt": "2026-11-06T01:00:00.000Z"
+  },
+  {
+   "title": "Nuveen ESG Small - Cap ETF $NUSC Shares Sold by Abacus Wealth Partners LLC",
+   "url": "https://www.themarketsdaily.com/2026/11/07/nuveen-esg-small-cap-etf-nusc-shares-sold-by-abacus-wealth-partners-llc.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-07T18:00:00.000Z"
+  },
+  {
+   "title": "PGIM Ultra Short Bond ETF $PULS Shares Acquired by Ashton Thomas Private Wealth LLC",
+   "url": "https://www.tickerreport.com/banking-finance/13653533/pgim-ultra-short-bond-etf-puls-shares-acquired-by-ashton-thomas-private-wealth-llc.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-07T11:30:00.000Z"
+  },
+  {
+   "title": "PhotonPay Strengthens North American Regulatory Footprint with Canada RPAA Registration",
+   "url": "https://businessdayghana.com/photonpay-strengthens-north-american-regulatory-footprint-with-canadas-rpaa-registration/",
+   "domain": "businessdayghana.com",
+   "seenAt": "2026-11-10T04:30:00.000Z"
+  },
+  {
+   "title": "Mesabi Trust ( NYSE: MSB) Stock Falls 0. 7% – Here Why",
+   "url": "https://www.tickerreport.com/banking-finance/13659972/mesabi-trust-nysemsb-stock-falls-0-7-heres-why.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-12T00:30:00.000Z"
+  },
+  {
+   "title": "Canada updated immigration plan offers more chances to stay permanently | Daily Hive",
+   "url": "https://dailyhive.com/vancouver/2026-federal-budget-canada-immigration-levels-plan-update",
+   "domain": "dailyhive.com",
+   "seenAt": "2026-11-06T08:30:00.000Z"
+  },
+  {
+   "title": "National Bank Direct Brokerage Closes the Market",
+   "url": "https://www.intelligencer.ca/press-releases/newsfile/national-bank-direct-brokerage-closes-the-market/",
+   "domain": "intelligencer.ca",
+   "seenAt": "2026-11-05T22:00:00.000Z"
+  },
+  {
+   "title": "Vanguard FTSE Developed Markets ETF $VEA Stock: Plancorp LLC Grows Position",
+   "url": "https://www.themarketsdaily.com/2026/11/07/vanguard-ftse-developed-markets-etf-vea-stock-plancorp-llc-grows-position.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-07T18:00:00.000Z"
+  },
+  {
+   "title": "Phoenix Wealth Advisors Acquires 555, 561 Shares of JPMorgan Ultra - Short Income ETF $JPST",
+   "url": "https://www.themarketsdaily.com/2026/11/07/phoenix-wealth-advisors-acquires-555561-shares-of-jpmorgan-ultra-short-income-etf-jpst.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-07T17:30:00.000Z"
+  },
+  {
+   "title": "LightPath Technologies, Inc. $LPTH Stock Bought by CenterBook Partners LP",
+   "url": "https://www.themarketsdaily.com/2026/11/07/lightpath-technologies-inc-lpth-stock-bought-by-centerbook-partners-lp.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-07T18:00:00.000Z"
+  },
+  {
+   "title": "Mid Penn Bancorp ( NASDAQ: MPB) Stock Rated Moderate Buy by Sell - Side Brokerages",
+   "url": "https://www.tickerreport.com/banking-finance/13654925/mid-penn-bancorp-nasdaqmpb-stock-rated-moderate-buy-by-sell-side-brokerages.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-08T09:00:00.000Z"
+  },
+  {
+   "title": "Trisura Group ( TSE: TSU) Stock Gets Price Target Trim from Royal Bank Of Canada",
+   "url": "https://www.dailypolitical.com/2026/11/11/trisura-group-tsetsu-stock-gets-price-target-trim-from-royal-bank-of-canada.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-11-12T06:45:00.000Z"
+  },
+  {
+   "title": "Pason Systems ( OTCMKTS: PSYTF) Shares Cross Below Two Hundred Day Moving Average – Should You Sell?",
+   "url": "https://www.tickerreport.com/banking-finance/13653401/pason-systems-otcmktspsytf-shares-cross-below-two-hundred-day-moving-average-should-you-sell.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-07T05:00:00.000Z"
+  },
+  {
+   "title": "Avolta ( OTCMKTS: DUFRY) Share Price Crosses Above Two Hundred Day Moving Average – Here Why",
+   "url": "https://www.tickerreport.com/banking-finance/13653391/avolta-otcmktsdufry-share-price-crosses-above-two-hundred-day-moving-average-heres-why.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-07T05:00:00.000Z"
+  },
+  {
+   "title": "Pennon Group Plc ( OTCMKTS: PEGRF) Stock Rated Moderate Buy by Wall Street Brokerages",
+   "url": "https://www.dailypolitical.com/2026/11/07/pennon-group-plc-otcmktspegrf-stock-rated-moderate-buy-by-wall-street-brokerages.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-11-08T09:00:00.000Z"
+  },
+  {
+   "title": "Ex - Calgary banker pays $330, 000 in insider trading settlement",
+   "url": "https://calgarysun.com/news/former-calgary-investment-banker-and-his-mother-pay-330000-insider-trading-settlement",
+   "domain": "calgarysun.com",
+   "seenAt": "2026-11-05T23:30:00.000Z"
+  },
+  {
+   "title": "Headwater Exploration ( TSE: HWX) Stock Breaks Below Two Hundred Day Moving Average – Here What Happened",
+   "url": "https://www.tickerreport.com/banking-finance/13653389/headwater-exploration-tsehwx-stock-breaks-below-two-hundred-day-moving-average-heres-what-happened.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-07T05:00:00.000Z"
+  },
+  {
+   "title": "Liberals allow 200, 000 temporary residents to apply to stay",
+   "url": "https://www.wellandtribune.ca/thestar/politics/federal/carney-government-holds-immigration-targets-steady-allows-200-000-temporary-residents-to-apply-for-permanent-status/article_40b25bdc-619c-597c-900c-663458a5a8e8.html",
+   "domain": "wellandtribune.ca",
+   "seenAt": "2026-11-06T04:00:00.000Z"
+  },
+  {
+   "title": "Pan African Resources ( LON: PAF) Stock Breaks Above Fifty Day Moving Average – Here What Happened",
+   "url": "https://www.tickerreport.com/banking-finance/13660067/pan-african-resources-lonpaf-stock-breaks-above-fifty-day-moving-average-heres-what-happened.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-12T04:00:00.000Z"
+  },
+  {
+   "title": "International Consolidated Airlines Group ( IAG) Buy Rating Reiterated at Deutsche Bank",
+   "url": "https://www.dailypolitical.com/2026/11/11/international-consolidated-airlines-groups-iag-buy-rating-reiterated-at-deutsche-bank.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-11-12T06:45:00.000Z"
+  },
+  {
+   "title": "Federal budget extends foreign buyer ban on existing residential housing until 2029",
+   "url": "https://calgarysun.com/news/canadian-politics/federal-budget-extends-foreign-buyer-ban-on-existing-residential-housing-until-2029/wcm/ddb69480-1ca9-45b6-bb6e-1c6e4f6bc221",
+   "domain": "calgarysun.com",
+   "seenAt": "2026-11-05T23:30:00.000Z"
+  },
+  {
+   "title": "Bombardier ( OTCMKTS: BDRBF) Announces Earnings Results",
+   "url": "https://www.dailypolitical.com/2026/11/05/bombardier-otcmktsbdrbf-announces-earnings-results.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2026-11-06T03:00:00.000Z"
+  },
+  {
+   "title": "Fomento Economico Mexicano ( NYSE: FMX) Price Target Raised to $140. 00",
+   "url": "https://www.themarketsdaily.com/2026/11/06/fomento-economico-mexicano-nysefmx-price-target-raised-to-140-00.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-06T08:00:00.000Z"
+  },
+  {
+   "title": "Angel Oak Mortgage - Backed Securities ETF Stock to Reverse Split on Monday, November 16th ( NASDAQ: MBS)",
+   "url": "https://www.themarketsdaily.com/2026/11/12/angel-oak-mortgage-backed-securities-etf-stock-to-reverse-split-on-monday-november-16th-nasdaqmbs.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-12T06:45:00.000Z"
+  },
+  {
+   "title": "Baystreet. ca - Futures in Red to Start Thursday",
+   "url": "https://baystreet.ca/articles/marketupdates/125048/Futures-in-Red-to-Start-Thursday",
+   "domain": "baystreet.ca",
+   "seenAt": "2026-11-06T08:30:00.000Z"
+  },
+  {
+   "title": "Wedbush Issues Pessimistic Forecast for Arcus Biosciences ( NYSE: RCUS) Stock Price",
+   "url": "https://www.themarketsdaily.com/2026/11/07/wedbush-issues-pessimistic-forecast-for-arcus-biosciences-nysercus-stock-price.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-07T17:30:00.000Z"
+  },
+  {
+   "title": "DSV ( OTCMKTS: DSDVY) Stock Short Interest Climbs 2, 065. 1%",
+   "url": "https://www.tickerreport.com/banking-finance/13658271/dsv-otcmktsdsdvy-stock-short-interest-climbs-2065-1.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-11T01:00:00.000Z"
+  },
+  {
+   "title": "Leon Furniture ( TSE: LNF) Price Target Raised to C$36. 00",
+   "url": "https://www.themarketsdaily.com/2026/11/12/leons-furniture-tselnf-price-target-raised-to-c36-00.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-12T06:45:00.000Z"
+  },
+  {
+   "title": "A tabloid scandal bankrolled a Long Island Democrat. A tycoon backed a Republican who beat him.",
+   "url": "https://fortune.com/2026/11/10/lalota-gallant-ny-1-donors-outside-district-fec/",
+   "domain": "fortune.com",
+   "seenAt": "2026-11-11T00:00:00.000Z"
+  },
+  {
+   "title": "Caribou Biosciences ( NASDAQ: CRBU) Releases Earnings Results, Beats Estimates By $0. 02 EPS",
+   "url": "https://www.themarketsdaily.com/2026/11/07/caribou-biosciences-nasdaqcrbu-releases-earnings-results-beats-estimates-by-0-02-eps.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-07T22:00:00.000Z"
+  },
+  {
+   "title": "VIDEO: SGI considering move to SaskTel building in downtown Regina",
+   "url": "https://www.ckom.com/2026/11/09/sgi-considering-move-to-sasktel-building-in-downtown-regina/",
+   "domain": "ckom.com",
+   "seenAt": "2026-11-10T00:30:00.000Z"
+  },
+  {
+   "title": "Forterra ( LON: FORT) Stock Jumps 0. 4% – Should You Buy?",
+   "url": "https://www.themarketsdaily.com/2026/11/12/forterra-lonfort-stock-jumps-0-4-should-you-buy.html",
+   "domain": "themarketsdaily.com",
+   "seenAt": "2026-11-12T01:30:00.000Z"
+  },
+  {
+   "title": "Ag Growth International ( TSE: AFN) Announces Earnings Results",
+   "url": "https://www.tickerreport.com/banking-finance/13659997/ag-growth-international-tseafn-announces-earnings-results.html",
+   "domain": "tickerreport.com",
+   "seenAt": "2026-11-12T01:30:00.000Z"
+  }
+ ]
+}

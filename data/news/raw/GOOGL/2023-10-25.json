@@ -1,0 +1,417 @@
+{
+ "ticker": "GOOGL",
+ "query": "(\"Alphabet Inc\" OR \"Google parent\")",
+ "from": "2023-10-18T20:00:00.000Z",
+ "to": "2023-10-25T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T01:38:35.382Z",
+ "articles": [
+  {
+   "title": "Microsoft ( MSFT), Alphabet ( GOOGL) Stocks Diverge After Tech Earnings",
+   "url": "https://www.bloomberg.com/news/articles/2023-10-24/stock-pickers-delight-in-mixed-bag-from-first-big-tech-earnings",
+   "domain": "bloomberg.com",
+   "seenAt": "2023-10-24T21:30:00.000Z"
+  },
+  {
+   "title": "Big - tech results will decide where we go from here amid investor caution. They would fall if it werent for this one company",
+   "url": "https://www.marketwatch.com/story/big-tech-results-will-decide-where-we-go-from-here-amid-investor-caution-they-would-fall-if-it-werent-for-this-one-company-309e9940",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-22T15:15:00.000Z"
+  },
+  {
+   "title": "Amazon Joins Web Summit Defection Following Israel Comments",
+   "url": "https://www.bnnbloomberg.ca/amazon-joins-web-summit-defection-following-israel-comments-1.1987573",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-10-21T02:15:00.000Z"
+  },
+  {
+   "title": "Google parent Alphabet expected to report strong margins growth for 3Q",
+   "url": "https://www.proactiveinvestors.com/companies/news/1030397/google-parent-alphabet-expected-to-report-strong-margins-growth-for-3q-1030397.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2023-10-20T00:00:00.000Z"
+  },
+  {
+   "title": "Amazon Is Latest To Pull Out of Web Summit Following Israel Comments",
+   "url": "https://www.datacenterknowledge.com:443/business/amazon-latest-pull-out-web-summit-following-israel-comments",
+   "domain": "datacenterknowledge.com",
+   "seenAt": "2023-10-23T16:00:00.000Z"
+  },
+  {
+   "title": "Alphabet reports Q3 revenue with 11 pct growth",
+   "url": "https://www.thestar.com.my/news/world/2023/10/25/alphabet-reports-q3-revenue-with-11-pct-growth",
+   "domain": "thestar.com.my",
+   "seenAt": "2023-10-24T22:30:00.000Z"
+  },
+  {
+   "title": "Alphabet earnings: What to expect from the Google parent",
+   "url": "https://www.marketwatch.com/story/alphabet-earnings-what-to-expect-from-the-google-parent-627710c8",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-24T15:00:00.000Z"
+  },
+  {
+   "title": "Google parent Alphabet business growth is fastest in a year - plus on ad boost",
+   "url": "https://www.marketwatch.com/story/alphabet-earnings-what-to-expect-from-the-google-parent-627710c8?g=%7B1DCDD024-8E38-469F-A109-5DAF7F8D7717%7D&siteid=bulletrss",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-25T00:15:00.000Z"
+  },
+  {
+   "title": "Here Why Alphabet ( GOOG) Rose in Q3",
+   "url": "https://finance.yahoo.com/news/why-alphabet-goog-rose-q3-053941838.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-10-23T06:15:00.000Z"
+  },
+  {
+   "title": "Alphabet ( GOOG) Continued its Growth Trajectory in Q3",
+   "url": "https://finance.yahoo.com/news/alphabet-goog-continued-growth-trajectory-135621812.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-10-25T14:30:00.000Z"
+  },
+  {
+   "title": "Approach Alphabet With Caution in Advance of Earnings",
+   "url": "https://realmoney.thestreet.com/investing/stocks/approach-alphabet-with-caution-in-advance-of-earnings-16136253",
+   "domain": "realmoney.thestreet.com",
+   "seenAt": "2023-10-24T16:30:00.000Z"
+  },
+  {
+   "title": "Alphabet reports Q3 revenue with 11 pct growth - Xinhua",
+   "url": "https://english.news.cn/northamerica/20231025/de1d6e227b4d470ca7de3874bee58940/c.html",
+   "domain": "english.news.cn",
+   "seenAt": "2023-10-25T01:15:00.000Z"
+  },
+  {
+   "title": "Key Updates From Alphabet Q3 Earnings Call For Marketers",
+   "url": "https://www.searchenginejournal.com/key-updates-from-alphabets-q3-earnings-call-for-marketers/499261/",
+   "domain": "searchenginejournal.com",
+   "seenAt": "2023-10-24T23:30:00.000Z"
+  },
+  {
+   "title": "Which 2 top NASDAQ stocks rushed in opposite directions on earnings updates?",
+   "url": "https://www.fool.com.au/2023/10/25/which-2-top-nasdaq-stocks-rushed-in-opposite-directions-on-earnings-updates/",
+   "domain": "fool.com.au",
+   "seenAt": "2023-10-25T02:00:00.000Z"
+  },
+  {
+   "title": "Apple, Google, Meta ( AAPL, GOOGL, META) Win US Approval for Mobile VR Devices",
+   "url": "https://www.bloomberg.com/news/articles/2023-10-19/google-meta-and-apple-win-us-approval-for-mobile-vr-devices",
+   "domain": "bloomberg.com",
+   "seenAt": "2023-10-19T18:45:00.000Z"
+  },
+  {
+   "title": "Alphabet Inc. Cl A stock outperforms market despite losses on the day",
+   "url": "https://www.marketwatch.com/data-news/alphabet-inc-cl-a-stock-outperforms-market-despite-losses-on-the-day-36ec519a-22fefa983c23",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-18T21:30:00.000Z"
+  },
+  {
+   "title": "Alphabet Inc. Cl A stock underperforms Friday when compared to competitors",
+   "url": "https://www.marketwatch.com/data-news/alphabet-inc-cl-a-stock-underperforms-friday-when-compared-to-competitors-131a8a6b-f9df6d8204ef",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-20T21:00:00.000Z"
+  },
+  {
+   "title": "Google to start manufacturing smartphones in India with Pixel 8",
+   "url": "https://www.marketscreener.com/quote/stock/ALPHABET-INC-24203373/news/Google-to-start-manufacturing-smartphones-in-India-with-Pixel-8-45099761/",
+   "domain": "marketscreener.com",
+   "seenAt": "2023-10-19T07:30:00.000Z"
+  },
+  {
+   "title": "US Supreme Court Allows White House Social Media Contacts for Now",
+   "url": "https://www.bloomberg.com/news/articles/2023-10-20/supreme-court-allows-white-house-social-media-contacts-for-now",
+   "domain": "bloomberg.com",
+   "seenAt": "2023-10-20T21:00:00.000Z"
+  },
+  {
+   "title": "The EU requires almost $50 million this year to enforce DSA.",
+   "url": "https://www.theverge.com/2023/10/19/23923729/the-eu-requires-almost-50-million-this-year-to-enforce-dsa",
+   "domain": "theverge.com",
+   "seenAt": "2023-10-19T15:15:00.000Z"
+  },
+  {
+   "title": "Alphabet Waymo makes more job cuts",
+   "url": "https://www.marketwatch.com/story/alphabets-waymo-makes-more-job-cuts-b5e2ebea",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-19T16:30:00.000Z"
+  },
+  {
+   "title": "Google, Meta pull out of Web Summit over Israel controversy",
+   "url": "https://adage.com/article/digital-marketing-ad-tech-news/google-meta-pull-out-web-summit-over-israel-controversy/2523746",
+   "domain": "adage.com",
+   "seenAt": "2023-10-21T00:45:00.000Z"
+  },
+  {
+   "title": "Barclays, Microsoft, Google and more: Day Ahead on Tuesday",
+   "url": "https://www.proactiveinvestors.co.uk/companies/news/1030599/barclays-microsoft-google-and-more-day-ahead-on-tuesday-1030599.html",
+   "domain": "proactiveinvestors.co.uk",
+   "seenAt": "2023-10-23T16:15:00.000Z"
+  },
+  {
+   "title": "Twitch, YouTube Are Slowing Big - Money Deals for Gaming Talent",
+   "url": "https://www.bloomberg.com/news/articles/2023-10-23/twitch-youtube-are-slowing-big-money-deals-for-gaming-talent",
+   "domain": "bloomberg.com",
+   "seenAt": "2023-10-23T20:30:00.000Z"
+  },
+  {
+   "title": "Alphabet Inc. Cl A stock rises Monday, outperforms market",
+   "url": "https://www.marketwatch.com/data-news/alphabet-inc-cl-a-stock-rises-monday-outperforms-market-8a13dbd1-47534f574350",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-23T21:00:00.000Z"
+  },
+  {
+   "title": "Israel - Hamas War: Google Maps Disables Live Traffic Data in Israel, Gaza",
+   "url": "https://www.bloomberg.com/news/articles/2023-10-23/google-disables-live-traffic-in-israel-gaza-at-military-request",
+   "domain": "bloomberg.com",
+   "seenAt": "2023-10-23T19:30:00.000Z"
+  },
+  {
+   "title": "Google earnings just crushed two big bullish hopes for Alphabet stock",
+   "url": "https://www.marketwatch.com/story/google-earnings-just-crushed-two-big-bullish-hopes-for-alphabets-stock-9c387328",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-25T14:30:00.000Z"
+  },
+  {
+   "title": "Wall Street week ahead: Amazon, Microsoft, Boeing earnings and rising bond yields",
+   "url": "https://www.foxbusiness.com/markets/wall-street-week-ahead-amazon-microsoft-boeing-bond-yields",
+   "domain": "foxbusiness.com",
+   "seenAt": "2023-10-22T19:15:00.000Z"
+  },
+  {
+   "title": "Google ad business beat expectations but Cloud miss knocks stock in after - hours trading",
+   "url": "https://www.foxbusiness.com/markets/googles-ad-business-beat-expectations-cloud-miss-knocks-stock-after-hours-trading",
+   "domain": "foxbusiness.com",
+   "seenAt": "2023-10-25T02:15:00.000Z"
+  },
+  {
+   "title": "Dow futures tick higher, Microsoft gains 3. 5%, Alphabet sheds 6. 5% after earnings By Investing. com",
+   "url": "https://www.investing.com/news/stock-market-news/dow-futures-tick-higher-microsoft-gains-35-alphabet-sheds-65-after-earnings-3207747",
+   "domain": "investing.com",
+   "seenAt": "2023-10-25T01:30:00.000Z"
+  },
+  {
+   "title": "Stock Market Today: Dow, S & P Live Updates for October 25",
+   "url": "https://www.bloomberg.com/news/articles/2023-10-24/asia-stocks-set-to-rise-on-china-stimulus-plans-markets-wrap",
+   "domain": "bloomberg.com",
+   "seenAt": "2023-10-24T23:30:00.000Z"
+  },
+  {
+   "title": "EU Proposes Telecom Reform As Fair Share 5G Proposal Falls Flat",
+   "url": "https://www.bloomberg.com/news/articles/2023-10-24/eu-proposes-broader-telecom-reform-as-fair-share-falls-flat",
+   "domain": "bloomberg.com",
+   "seenAt": "2023-10-25T03:00:00.000Z"
+  },
+  {
+   "title": "Google, Meta and Apple win US approval for mobile VR devices",
+   "url": "https://www.thestar.com.my/tech/tech-news/2023/10/20/google-meta-and-apple-win-us-approval-for-mobile-vr-devices",
+   "domain": "thestar.com.my",
+   "seenAt": "2023-10-20T07:15:00.000Z"
+  },
+  {
+   "title": "Why Big Tech Earnings May Trigger a New Stock Surge for the Sector",
+   "url": "https://www.ai-cio.com/news/why-big-tech-earnings-may-trigger-a-new-stock-surge-for-the-sector/",
+   "domain": "ai-cio.com",
+   "seenAt": "2023-10-25T01:15:00.000Z"
+  },
+  {
+   "title": "Google to Manufacture Pixel Smartphones in India Next Year",
+   "url": "https://www.bnnbloomberg.ca/google-to-manufacture-pixel-smartphones-in-india-next-year-1.1986683",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-10-19T08:15:00.000Z"
+  },
+  {
+   "title": "UK Is Set to Reject Big Tech Call for Antitrust Appeals Route",
+   "url": "https://www.bloomberg.com/news/articles/2023-10-24/uk-is-set-to-reject-big-tech-call-for-antitrust-appeals-route",
+   "domain": "bloomberg.com",
+   "seenAt": "2023-10-24T11:15:00.000Z"
+  },
+  {
+   "title": "Google Cloud Sales Disappoint as Advertising Rebounds",
+   "url": "https://www.wsj.com/tech/alphabet-google-googl-q3-earnings-report-2023-103907cf",
+   "domain": "wsj.com",
+   "seenAt": "2023-10-24T22:30:00.000Z"
+  },
+  {
+   "title": "Google to manufacture smartphones in India starting with Pixel 8",
+   "url": "https://finance.yahoo.com/news/google-start-manufacturing-smartphones-india-070750031.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-10-19T08:45:00.000Z"
+  },
+  {
+   "title": "Nvidia, Microsoft, Google, Boeing, T - Mobile, IMAX, Meta, Snap – Stocks on the move",
+   "url": "https://www.proactiveinvestors.com/companies/news/1030927/nvidia-microsoft-google-boeing-t-mobile-imax-meta-snap-stocks-on-the-move-1030927.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2023-10-25T18:15:00.000Z"
+  },
+  {
+   "title": "Amazon stock sinks toward worst day in more than 8 months amid AWS fears",
+   "url": "https://www.marketwatch.com/story/amazons-stock-sinks-toward-worst-day-in-more-than-8-months-amid-aws-fears-bd96b7ca",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-25T18:30:00.000Z"
+  },
+  {
+   "title": "20 Jobs Artificial Intelligence Cant Replace",
+   "url": "https://www.insidermonkey.com/blog/20-jobs-artificial-intelligence-cant-replace-1209686/",
+   "domain": "insidermonkey.com",
+   "seenAt": "2023-10-24T12:45:00.000Z"
+  },
+  {
+   "title": "The GenAI Pursuit Comes With A New Set Of Challenges For Big Tech",
+   "url": "https://finance.yahoo.com/news/genai-pursuit-comes-set-challenges-185123321.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-10-23T19:30:00.000Z"
+  },
+  {
+   "title": "Alphabet stock sinks toward worst day in a year after evasive earnings call",
+   "url": "https://www.marketwatch.com/story/alphabets-stock-sinks-toward-worst-day-in-a-year-after-evasive-earnings-call-4d3aca7f",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-25T14:30:00.000Z"
+  },
+  {
+   "title": "Week ahead: Microsoft, Meta, Alphabet and Amazon headline packed earnings week",
+   "url": "https://www.proactiveinvestors.com/companies/news/1030525/week-ahead-microsoft-meta-alphabet-and-amazon-headline-packed-earnings-week-1030525.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2023-10-20T23:15:00.000Z"
+  },
+  {
+   "title": "Expedia Ex - COO Says Ad Fees Jumped After Google Remade Search",
+   "url": "https://www.bnnbloomberg.ca/expedia-s-ex-coo-says-ad-fees-jumped-after-google-remade-search-1.1986995",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-10-19T19:30:00.000Z"
+  },
+  {
+   "title": "US stocks slide after mixed tech earnings, but is a rally ahead?",
+   "url": "https://www.investmentnews.com/us-stocks-slide-after-mixed-tech-earnings-but-is-a-rally-ahead-244903",
+   "domain": "investmentnews.com",
+   "seenAt": "2023-10-25T11:15:00.000Z"
+  },
+  {
+   "title": "Alphabet, General Motors And 3 Stocks To Watch Heading Into Tuesday - Alphabet ( NASDAQ: GOOG), General Motors ( NYSE: GM)",
+   "url": "https://www.benzinga.com/news/earnings/23/10/35387145/alphabet-general-motors-and-3-stocks-to-watch-heading-into-tuesday",
+   "domain": "benzinga.com",
+   "seenAt": "2023-10-24T11:00:00.000Z"
+  },
+  {
+   "title": "Web Summit CEO Cosgrave Steps Down After Israel Controversy",
+   "url": "https://finance.yahoo.com/news/summit-ceo-cosgrave-steps-down-150255596.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-10-21T15:45:00.000Z"
+  },
+  {
+   "title": "AI and cloud spending a major focus of Big Tech earnings: analysts",
+   "url": "https://www.proactiveinvestors.com/companies/news/1030663/ai-and-cloud-spending-a-major-focus-of-big-tech-earnings-analysts-1030663.html",
+   "domain": "proactiveinvestors.com",
+   "seenAt": "2023-10-23T20:15:00.000Z"
+  },
+  {
+   "title": "Google, Bank Coalition Pledge Billions to Underserved Businesses",
+   "url": "https://www.bnnbloomberg.ca/google-bank-coalition-pledge-billions-to-underserved-businesses-1.1989195",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-10-25T11:15:00.000Z"
+  },
+  {
+   "title": "Google - parent Alphabet reports quarterly revenue above estimates",
+   "url": "https://www.theglobeandmail.com/business/article-google-parent-alphabet-reports-quarterly-revenue-above-estimates/",
+   "domain": "theglobeandmail.com",
+   "seenAt": "2023-10-24T21:30:00.000Z"
+  },
+  {
+   "title": "Marketmind - Bitcoin is back, stocks wobble",
+   "url": "https://www.marketscreener.com/news/latest/Marketmind-Bitcoin-is-back-stocks-wobble-45130199/",
+   "domain": "marketscreener.com",
+   "seenAt": "2023-10-24T07:30:00.000Z"
+  },
+  {
+   "title": "Tired Of YouTube Ads But Dont Want To Pay For Premium? Windows Phone Could Come To Your Rescue - Microsoft ( NASDAQ: MSFT), Alphabet ( NASDAQ: GOOG), Alphabet ( NASDAQ: GOOGL)",
+   "url": "https://www.benzinga.com/news/23/10/35387757/tired-of-youtube-ads-but-dont-want-to-pay-for-premium-windows-phone-could-come-to-your-rescue",
+   "domain": "benzinga.com",
+   "seenAt": "2023-10-24T08:00:00.000Z"
+  },
+  {
+   "title": "Boeing, Microsoft And 3 Stocks To Watch Heading Into Wednesday - Alphabet ( NASDAQ: GOOGL), Boeing ( NYSE: BA)",
+   "url": "https://www.benzinga.com/news/earnings/23/10/35409030/boeing-microsoft-and-3-stocks-to-watch-heading-into-wednesday",
+   "domain": "benzinga.com",
+   "seenAt": "2023-10-25T09:45:00.000Z"
+  },
+  {
+   "title": "Bezos - backed Convoy, once valued at $3. 8B, shuts down",
+   "url": "https://fortune.com/2023/10/19/convoy-trucking-tech-startup-shuts-down-jeff-bezos-investor/",
+   "domain": "fortune.com",
+   "seenAt": "2023-10-19T23:45:00.000Z"
+  },
+  {
+   "title": "AIA Group Ltd Buys 32, 713 Shares of Alphabet Inc. ( NASDAQ: GOOG)",
+   "url": "https://www.dailypolitical.com/2023/10/19/aia-group-ltd-buys-32713-shares-of-alphabet-inc-nasdaqgoog.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2023-10-19T10:15:00.000Z"
+  },
+  {
+   "title": "Fort Pitt Capital Group LLC Sells 700 Shares of Alphabet Inc. ( NASDAQ: GOOG)",
+   "url": "https://www.dailypolitical.com/2023/10/21/fort-pitt-capital-group-llc-sells-700-shares-of-alphabet-inc-nasdaqgoog.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2023-10-21T16:15:00.000Z"
+  },
+  {
+   "title": "Microsoft, Boeing, Amazon, Chipotle, Meta, Alphabet, and More Stocks to Watch This Week",
+   "url": "https://www.marketwatch.com/articles/alphabet-microsoft-meta-amazon-boeing-stocks-to-watch-e8b728ba",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-10-22T18:45:00.000Z"
+  },
+  {
+   "title": "Alphabet, Thermo Fisher fall; Microsoft, General Dynamics rise, Wednesday, 10 / 25 / 2023",
+   "url": "https://www.yakimaherald.com/news/nation_and_world/business/alphabet-thermo-fisher-fall-microsoft-general-dynamics-rise-wednesday-10-25-2023/article_bc383e4e-44bf-52e0-9e6a-035683c5050e.html",
+   "domain": "yakimaherald.com",
+   "seenAt": "2023-10-25T18:15:00.000Z"
+  },
+  {
+   "title": "Google - parent Alphabet cloud division misses revenue estimates, as Microsoft cloud booms",
+   "url": "https://dunyanews.tv/en/Technology/765358-Google-parent-Alphabet%5C",
+   "domain": "dunyanews.tv",
+   "seenAt": "2023-10-25T07:15:00.000Z"
+  },
+  {
+   "title": "Google ad sales growth accelerated in 3Q, but investors are unimpressed with the performance",
+   "url": "https://biztoc.com/x/69567969810c8869",
+   "domain": "biztoc.com",
+   "seenAt": "2023-10-24T23:15:00.000Z"
+  },
+  {
+   "title": "George Soros Net Worth and Top 10 Holdings Heading into 2024",
+   "url": "https://finance.yahoo.com/news/george-soros-net-worth-top-073509306.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-10-25T09:00:00.000Z"
+  },
+  {
+   "title": "Capital Investment Advisory Services LLC Acquires 2, 880 Shares of Alphabet Inc. ( NASDAQ: GOOG)",
+   "url": "https://www.dailypolitical.com/2023/10/19/capital-investment-advisory-services-llc-acquires-2880-shares-of-alphabet-inc-nasdaqgoog.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2023-10-19T10:15:00.000Z"
+  },
+  {
+   "title": "AlphaMark Advisors LLC Sells 1, 625 Shares of Alphabet Inc. ( NASDAQ: GOOG)",
+   "url": "https://theenterpriseleader.com/2023/10/21/alphamark-advisors-llc-sells-1625-shares-of-alphabet-inc-nasdaqgoog.html",
+   "domain": "theenterpriseleader.com",
+   "seenAt": "2023-10-21T16:00:00.000Z"
+  },
+  {
+   "title": "Private Capital Advisors Inc. Sells 800 Shares of Alphabet Inc. ( NASDAQ: GOOG)",
+   "url": "https://www.dailypolitical.com/2023/10/21/private-capital-advisors-inc-sells-800-shares-of-alphabet-inc-nasdaqgoog.html",
+   "domain": "dailypolitical.com",
+   "seenAt": "2023-10-21T16:15:00.000Z"
+  },
+  {
+   "title": "The Magnificent Seven - Apple ( NASDAQ: AAPL)",
+   "url": "https://www.benzinga.com/news/23/10/35416735/the-magnificent-seven",
+   "domain": "benzinga.com",
+   "seenAt": "2023-10-25T15:30:00.000Z"
+  },
+  {
+   "title": "MORNING BID EUROPE - Bitcoin is back, stocks wobble",
+   "url": "https://www.devdiscourse.com/article/business/2679764-morning-bid-europe-bitcoin-is-back-stocks-wobble",
+   "domain": "devdiscourse.com",
+   "seenAt": "2023-10-24T05:30:00.000Z"
+  },
+  {
+   "title": "Big Tech earnings whipsaw QQQ in late trading: Markets wrap",
+   "url": "https://www.thenewstribune.com/news/business/article280958618.html",
+   "domain": "thenewstribune.com",
+   "seenAt": "2023-10-24T23:45:00.000Z"
+  }
+ ]
+}

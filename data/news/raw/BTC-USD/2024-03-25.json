@@ -1,0 +1,441 @@
+{
+ "ticker": "BTC-USD",
+ "query": "Bitcoin",
+ "from": "2024-03-18T20:00:00.000Z",
+ "to": "2024-03-25T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T01:41:24.570Z",
+ "articles": [
+  {
+   "title": "The Most Useful Things New Bitcoin ETF Buyers Should Know",
+   "url": "https://www.forbes.com/sites/digital-assets/2024/03/19/the-most-useful-things-new-bitcoin-etf-buyers-should-know/",
+   "domain": "forbes.com",
+   "seenAt": "2024-03-19T21:00:00.000Z"
+  },
+  {
+   "title": "Cathie Wood Calls Bitcoin ( BTC) a Financial Super Highway, Reiterates $1. 5M Price Target",
+   "url": "https://www.coindesk.com/business/2024/03/22/cathie-wood-calls-bitcoin-a-financial-super-highway-reiterates-15m-price-target/",
+   "domain": "coindesk.com",
+   "seenAt": "2024-03-22T19:30:00.000Z"
+  },
+  {
+   "title": "MicroStrategy Michael Saylor Sees Bitcoin Volatility As Market Vitality: Bitcoin Is Winning - MicroStrategy ( NASDAQ: MSTR)",
+   "url": "https://www.benzinga.com/markets/cryptocurrency/24/03/37906286/microstrategys-michael-saylor-sees-bitcoins-volatility-as-market-vitality-bitcoin-is-winni",
+   "domain": "benzinga.com",
+   "seenAt": "2024-03-24T15:15:00.000Z"
+  },
+  {
+   "title": "Spot Bitcoin ETFs hit negative flows as GBTC sheds $642M in a day",
+   "url": "https://cointelegraph.com/news/grayscale-gbtc-outflow-highest-daily-record-spot-bitcoin-etfs",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-19T06:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin eyes 7 - month win streak for the first time",
+   "url": "https://cointelegraph.com/news/bitcoin-7-win-streak-month-first-time",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-22T18:15:00.000Z"
+  },
+  {
+   "title": "Despite Bitcoin Soaring Price, Some Companies Still Struggle To Hire",
+   "url": "https://www.forbes.com/sites/digital-assets/2024/03/19/despite-bitcoins-soaring-price-some-companies-still-struggle-to-hire/",
+   "domain": "forbes.com",
+   "seenAt": "2024-03-19T13:00:00.000Z"
+  },
+  {
+   "title": "Does the Bitcoin halving impact cross - chain interoperability solutions?",
+   "url": "https://cointelegraph.com/explained/does-the-bitcoin-halving-impact-cross-chain-interoperability-solutions",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-24T13:45:00.000Z"
+  },
+  {
+   "title": "Tron Bitcoin layer - 2 plan could see wrapped USDT flow into Bitcoin",
+   "url": "https://cointelegraph.com/news/tron-bitcoin-layer-2-roadmap-wrapped-tether-usdt",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-25T08:45:00.000Z"
+  },
+  {
+   "title": "Empowering Next Gen: Key Takeaways From Teaching Bitcoin At Texas A & M",
+   "url": "https://www.forbes.com/sites/digital-assets/2024/03/25/empowering-next-gen-key-takeaways-from-teaching-bitcoin-at-texas-am/",
+   "domain": "forbes.com",
+   "seenAt": "2024-03-25T14:00:00.000Z"
+  },
+  {
+   "title": "New Bitcoin Whales Emerge in the Corporate World",
+   "url": "https://oilprice.com/Finance/the-Markets/New-Bitcoin-Whales-Emerge-in-the-Corporate-World.html",
+   "domain": "oilprice.com",
+   "seenAt": "2024-03-23T19:15:00.000Z"
+  },
+  {
+   "title": "The Ultimate Cryptocurrency to Buy With $1, 000 Right Now",
+   "url": "https://www.fool.com/investing/2024/03/20/the-ultimate-cryptocurrency-to-buy-with-1000-right/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2024-03-20T19:00:00.000Z"
+  },
+  {
+   "title": "El Salvador Doubles Down on Bitcoin",
+   "url": "https://www.coindesk.com/consensus-magazine/2024/03/22/el-salvador-doubles-down-on-bitcoin/",
+   "domain": "coindesk.com",
+   "seenAt": "2024-03-22T19:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin ETF Inflows Drying Up as GBTC Records Largest Daily Outflow",
+   "url": "https://www.coinspeaker.com/bitcoin-etf-inflows-gbtc-outflow/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2024-03-19T16:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin mining yield set to be slashed in coming weeks",
+   "url": "https://www.jpost.com/business-and-innovation/article-792691",
+   "domain": "jpost.com",
+   "seenAt": "2024-03-19T13:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin traders anticipate volatility as BTC futures open interest tops $36B",
+   "url": "https://cointelegraph.com/news/bitcoin-traders-anticipate-volatility-as-btc-futures-open-interest-tops-36b",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-22T18:15:00.000Z"
+  },
+  {
+   "title": "Elastos Unveils BTC Oracle Enabling Dormant Bitcoin To Be Used on All Blockchains",
+   "url": "https://markets.businessinsider.com/news/stocks/elastos-unveils-btc-oracle-enabling-dormant-bitcoin-to-be-used-on-all-blockchains-1033187120",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2024-03-22T07:30:00.000Z"
+  },
+  {
+   "title": "BTC Maintains $65K as GBTC Outflows Hit Highest Level Ever",
+   "url": "https://www.coindesk.com/markets/2024/03/19/btc-maintains-65k-as-gbtc-outflows-hit-highest-level-ever/",
+   "domain": "coindesk.com",
+   "seenAt": "2024-03-19T07:00:00.000Z"
+  },
+  {
+   "title": "Becoming Proficient in Security Best Practices for Bitcoin: An In - Depth Guide",
+   "url": "https://thenationonlineng.net/becoming-proficient-in-security-best-practices-for-bitcoin-an-in-depth-guide/",
+   "domain": "thenationonlineng.net",
+   "seenAt": "2024-03-22T18:30:00.000Z"
+  },
+  {
+   "title": "Beyond Bitcoin ETFs: There Are Other Players Controlling This Market",
+   "url": "https://www.newsbtc.com/bitcoin-news/beyond-bitcoin-etfs-there-are-other-players/",
+   "domain": "newsbtc.com",
+   "seenAt": "2024-03-22T03:00:00.000Z"
+  },
+  {
+   "title": "Ahead of the Bitcoin Halving, Are Bitcoin Mining Stocks a Buy?",
+   "url": "https://www.fool.com/investing/2024/03/20/ahead-of-the-bitcoin-halving-are-bitcoin-mining-st/?source=iedfolrf0000001",
+   "domain": "fool.com",
+   "seenAt": "2024-03-20T12:45:00.000Z"
+  },
+  {
+   "title": "Why the Fears Around BTC Miners Outflow Are Overestimated By Bitget Gracy Chen",
+   "url": "https://markets.businessinsider.com/news/stocks/why-the-fears-around-btc-miners-outflow-are-overestimated-by-bitget-s-gracy-chen-1033177506",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2024-03-19T18:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin bull cycle is far from over thanks to the halving CryptoQuant research",
+   "url": "https://cointelegraph.com/news/bitcoin-bull-cycle-is-far-from-over-thanks-to-the-halving-cryptoquant-research",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-21T03:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin, Ethereum rebound but still show overheated signal K33 Research",
+   "url": "https://cointelegraph.com/news/bitcoin-ethereum-rebound-but-still-show-overheated-signals-k33-research",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-20T18:45:00.000Z"
+  },
+  {
+   "title": "Cathie Wood Calls Bitcoin a Financial Super Highway, Reiterates $1. 5M Price Target",
+   "url": "https://finance.yahoo.com/news/cathie-wood-calls-bitcoin-financial-190600359.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-03-23T00:00:00.000Z"
+  },
+  {
+   "title": "Blackrock Focuses on Bitcoin, Sidelines Other Cryptos Despite Market Expectations",
+   "url": "http://www.econotimes.com/Blackrock-Focuses-on-Bitcoin-Sidelines-Other-Cryptos-Despite-Market-Expectations-1674175",
+   "domain": "econotimes.com",
+   "seenAt": "2024-03-23T11:30:00.000Z"
+  },
+  {
+   "title": "MicroStrategy Now Owns 1% of All Bitcoin in the World After Latest Buys",
+   "url": "https://markets.businessinsider.com/news/currencies/bitcoin-microstrategy-holdings-michael-saylor-halving-mining-crypto-mstr-btc-2024-3",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2024-03-19T18:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin set for one of the worst weeks in 2024. Here why",
+   "url": "https://www.hindustantimes.com/business/bitcoin-set-for-one-of-the-worst-weeks-in-2024-heres-why-101711077207480.html",
+   "domain": "hindustantimes.com",
+   "seenAt": "2024-03-22T03:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin price retraces 30 days ahead of halving in historical pattern",
+   "url": "https://cointelegraph.com/news/bitcoin-price-30-day-halving-investment",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-20T14:45:00.000Z"
+  },
+  {
+   "title": "Rollercoaster Ride Of Bitcoin: What Lies Ahead?",
+   "url": "https://business.outlookindia.com/cryptocurrency/rollercoaster-ride-of-bitcoin-what-lies-ahead",
+   "domain": "business.outlookindia.com",
+   "seenAt": "2024-03-19T06:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin Might Be Poised For A Double Pump Cycle, Reveals Analyst",
+   "url": "https://www.newsbtc.com/bitcoin-news/bitcoin-might-be-poised-for-a-double-pump/",
+   "domain": "newsbtc.com",
+   "seenAt": "2024-03-19T23:45:00.000Z"
+  },
+  {
+   "title": "The History of Bitcoin, the First Cryptocurrency",
+   "url": "https://money.usnews.com/investing/articles/the-history-of-bitcoin",
+   "domain": "money.usnews.com",
+   "seenAt": "2024-03-21T19:15:00.000Z"
+  },
+  {
+   "title": "Bernstein Analysts Says Bitcoin Will Reach A New ATH By Year End, Here The Target",
+   "url": "https://www.newsbtc.com/news/bitcoin/bitcoin-new-ath-by-year-end/",
+   "domain": "newsbtc.com",
+   "seenAt": "2024-03-22T22:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin pre - halving correction narrative strengthens as BTC falls below $62K",
+   "url": "https://cointelegraph.com/news/bitcoin-halving-price-narrative-strengthens-crypto-market-falls",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-20T06:00:00.000Z"
+  },
+  {
+   "title": "ETF demand woes lead to Bitcoin worst week in 2024",
+   "url": "https://www.freemalaysiatoday.com/category/business/2024/03/22/etf-demand-woes-lead-to-bitcoins-worst-week-in-2024/",
+   "domain": "freemalaysiatoday.com",
+   "seenAt": "2024-03-22T05:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin reclaims $69, 000 as BTC halving month approaches",
+   "url": "https://www.fxstreet.com/cryptocurrencies/news/bitcoin-price-reclaims-69-000-as-btc-halving-month-approaches-202403251900",
+   "domain": "fxstreet.com",
+   "seenAt": "2024-03-25T19:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin On Track for Worst Week in Months as ETF Demand Falters",
+   "url": "https://www.bnnbloomberg.ca/bitcoin-on-track-for-worst-week-in-months-as-etf-demand-falters-1.2050180",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2024-03-21T22:45:00.000Z"
+  },
+  {
+   "title": "Top Reasons Why The Bitcoin Price Crashed Below $63, 000",
+   "url": "https://www.newsbtc.com/news/bitcoin/bitcoin-price-crashed-65000/",
+   "domain": "newsbtc.com",
+   "seenAt": "2024-03-19T14:30:00.000Z"
+  },
+  {
+   "title": "Cathie Wood says bitcoin could go as high as $3. 8 million",
+   "url": "https://www.aol.com/cathie-wood-says-bitcoin-could-184826271.html",
+   "domain": "aol.com",
+   "seenAt": "2024-03-22T21:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin set for one of worst weeks in 2024 as ETF demand falters",
+   "url": "https://www.businesstimes.com.sg/companies-markets/banking-finance/bitcoin-set-one-worst-weeks-2024-etf-demand-falters",
+   "domain": "businesstimes.com.sg",
+   "seenAt": "2024-03-22T04:00:00.000Z"
+  },
+  {
+   "title": "Standard Chartered: Bitcoin To $150k, ETH To $8k By Year - End",
+   "url": "https://www.newsbtc.com/news/standard-chartered-bitcoin-ethereum-prediction-year-end/",
+   "domain": "newsbtc.com",
+   "seenAt": "2024-03-18T20:00:00.000Z"
+  },
+  {
+   "title": "TeraWulf 2023 Net Loss Narrows, Revenue Increases; Shares Surge",
+   "url": "https://www.marketscreener.com/quote/stock/TERAWULF-INC-130728146/news/TeraWulf-2023-Net-Loss-Narrows-Revenue-Increases-Shares-Surge-46244655/",
+   "domain": "marketscreener.com",
+   "seenAt": "2024-03-21T06:00:00.000Z"
+  },
+  {
+   "title": "BlackRock ETF could flip GBTC in Bitcoin holdings within 3 weeks",
+   "url": "https://cointelegraph.com/news/blackrock-flip-grayscale-bitcoin-holdings-three-weeks",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-25T04:00:00.000Z"
+  },
+  {
+   "title": "Bitcoin ( BTC) Price Set to Enter Danger Zone – Time to Back - Off or Bag More Coins?",
+   "url": "https://techreport.com/crypto-news/bitcoin-btc-price-set-to-enter-danger-zone-time-to-back-off-or-bag-more-coins/",
+   "domain": "techreport.com",
+   "seenAt": "2024-03-19T05:00:00.000Z"
+  },
+  {
+   "title": "El Salvador Bitcoin Beach cheers cryptocurrency surge",
+   "url": "https://economictimes.indiatimes.com/markets/cryptocurrency/el-salvadors-bitcoin-beach-cheers-cryptocurrency-surge/articleshow/108632601.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2024-03-20T03:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin price reclaims $70K as Coinbase BTC supply hits 9 - year low",
+   "url": "https://cointelegraph.com/news/btc-accumulation-restarted-coinbase-btc-supply-9-year-low",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-25T18:15:00.000Z"
+  },
+  {
+   "title": "El Salvador Up BTC Holdings Up In 50% Profit, President Refuses To Sell",
+   "url": "https://menafn.com/1108016556/El-Salvador-Up-BTC-Holdings-Up-In-50-Profit-President-Refuses-To-Sell",
+   "domain": "menafn.com",
+   "seenAt": "2024-03-25T12:15:00.000Z"
+  },
+  {
+   "title": "Why Bitcoin Halving Will Change Crypto Forever?",
+   "url": "http://www.econotimes.com/Why-Bitcoin-Halving-Will-Change-Crypto-Forever-1673923",
+   "domain": "econotimes.com",
+   "seenAt": "2024-03-20T10:15:00.000Z"
+  },
+  {
+   "title": "Protocol Village: Fluence Cloudless Platform Goes Live as Alternative to AWS, Google Cloud",
+   "url": "https://finance.yahoo.com/news/protocol-village-morph-evm-raises-215038164.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-03-21T17:45:00.000Z"
+  },
+  {
+   "title": "Should You Buy Bitcoin While It $67, 000?",
+   "url": "https://finance.yahoo.com/news/buy-bitcoin-while-67-000-131500176.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2024-03-23T14:15:00.000Z"
+  },
+  {
+   "title": "Crypto market sheds $400 billion of value as bitcoin sell - off intensifies after all - time high",
+   "url": "https://www.nbcphiladelphia.com/news/business/money-report/crypto-market-sheds-400-billion-of-value-as-bitcoin-sell-off-intensifies-after-all-time-high/3807916/",
+   "domain": "nbcphiladelphia.com",
+   "seenAt": "2024-03-20T10:45:00.000Z"
+  },
+  {
+   "title": "Spot Bitcoin ETFs Registered Record Net Outflows on Tuesday Fueled by Grayscale Accelerated Dumps",
+   "url": "https://www.coinspeaker.com/spot-bitcoin-etfs-record-net-outflows-grayscale/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2024-03-20T15:30:00.000Z"
+  },
+  {
+   "title": "Uday Kotak sees Bitcoin rise as Argentina battles inflation",
+   "url": "https://www.livemint.com/economy/argentina-economy-crisis-uday-kotak-takes-aim-at-bad-macro-says-bitcoin-might-be-better-than-peso-during-inflation-11710904715869.html",
+   "domain": "livemint.com",
+   "seenAt": "2024-03-20T04:45:00.000Z"
+  },
+  {
+   "title": "Yala Strategic Roadmap Unveiled: Bring Bitcoin Liquidity across Blockchain with a Meta - Yield Stablecoin",
+   "url": "https://www.streetinsider.com/PRNewswire/Yalas+Strategic+Roadmap+Unveiled:+Bring+Bitcoin+Liquidity+across+Blockchain+with+a+Meta-Yield+Stablecoin/22966820.html",
+   "domain": "streetinsider.com",
+   "seenAt": "2024-03-22T13:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin Consolidation A Case Of Peaking Pre - Halving: Analyst Says King Crypto Has A Long, Massive Bull Market Ahead",
+   "url": "https://www.benzinga.com/analyst-ratings/analyst-color/24/03/37903559/bitcoin-consolidation-a-case-of-peaking-pre-halving-analyst-says-king-crypto-has-a-",
+   "domain": "benzinga.com",
+   "seenAt": "2024-03-23T09:30:00.000Z"
+  },
+  {
+   "title": "London Stock Exchange ( LSE) Will Start Market for Bitcoin and Ether ETN May 28",
+   "url": "https://www.coindesk.com/business/2024/03/25/london-stock-exchange-will-start-market-for-bitcoin-and-ether-etns-may-28/",
+   "domain": "coindesk.com",
+   "seenAt": "2024-03-25T18:00:00.000Z"
+  },
+  {
+   "title": "Analyst Bullish On Bitcoin Surge After Dip",
+   "url": "https://menafn.com/1108012521/Analyst-Bullish-On-Bitcoin-Surge-After-Dip",
+   "domain": "menafn.com",
+   "seenAt": "2024-03-23T10:45:00.000Z"
+  },
+  {
+   "title": "Inside Austin bitcoin underground",
+   "url": "https://www.cnbc.com/2024/03/24/inside-austins-bitcoin-underground.html",
+   "domain": "cnbc.com",
+   "seenAt": "2024-03-24T15:30:00.000Z"
+  },
+  {
+   "title": "BitMEX whale tanks Bitcoin price to $8. 9K during BTC sell - off",
+   "url": "https://cointelegraph.com/news/bitmex-whale-tanks-bitcoin-price",
+   "domain": "cointelegraph.com",
+   "seenAt": "2024-03-19T10:30:00.000Z"
+  },
+  {
+   "title": "Bitcoin Dominates the NFT Market With A Massive Sales Increase",
+   "url": "https://techreport.com/crypto-news/bitcoin-dominates-the-nft-market-with-a-massive-sales-increase/",
+   "domain": "techreport.com",
+   "seenAt": "2024-03-20T18:30:00.000Z"
+  },
+  {
+   "title": "The 4th Bitcoin Halving Explained",
+   "url": "https://www.zerohedge.com/crypto/4th-bitcoin-halving-explained",
+   "domain": "zerohedge.com",
+   "seenAt": "2024-03-19T03:45:00.000Z"
+  },
+  {
+   "title": "What to Expect for Bitcoin in the Next 12 Months",
+   "url": "https://investorplace.com/2024/03/what-to-expect-for-bitcoin-in-the-next-12-months/",
+   "domain": "investorplace.com",
+   "seenAt": "2024-03-20T23:15:00.000Z"
+  },
+  {
+   "title": "Bernstein Ups Year - End Bitcoin Price Projection To $90K, Sees Mild Halving Impact",
+   "url": "https://www.ibtimes.com/bernstein-ups-year-end-bitcoin-price-projection-90k-sees-mild-halving-impact-3727804",
+   "domain": "ibtimes.com",
+   "seenAt": "2024-03-22T05:15:00.000Z"
+  },
+  {
+   "title": "Analyzing Turbulent Waters of Bitcoin Recent Performance, BTC Price Around $64K",
+   "url": "https://www.coinspeaker.com/turbulent-bitcoin-performance-btc-price-64k/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2024-03-20T15:30:00.000Z"
+  },
+  {
+   "title": "Japan Trillion Dollar Pension Fund Considers Bitcoin For Diversification",
+   "url": "https://www.forbes.com/sites/digital-assets/2024/03/19/japans-trillion-dollar-pension-fund-considers-bitcoin-for-diversification/",
+   "domain": "forbes.com",
+   "seenAt": "2024-03-19T13:45:00.000Z"
+  },
+  {
+   "title": "Missing Out? Bitcoin Miner Stocks Offer Buying Opportunity Before Halving, Says JPMorgan",
+   "url": "https://www.benzinga.com/markets/cryptocurrency/24/03/37794565/missing-out-bitcoin-miner-stocks-offer-buying-opportunity-before-halving-says-jpmorgan",
+   "domain": "benzinga.com",
+   "seenAt": "2024-03-18T23:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin In Danger Zone Ahead Of Halving: Trader Warns Of Potential Price Drop",
+   "url": "https://www.benzinga.com/markets/cryptocurrency/24/03/37896732/bitcoin-in-danger-zone-ahead-of-halving-trader-warns-of-potential-price-drop",
+   "domain": "benzinga.com",
+   "seenAt": "2024-03-22T18:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin Whales Remove A Staggering $2. 3 Billion From Exchanges, Is It Time To Buy?",
+   "url": "https://www.newsbtc.com/news/bitcoin/bitcoin-whales-2-3-billion/",
+   "domain": "newsbtc.com",
+   "seenAt": "2024-03-25T17:00:00.000Z"
+  },
+  {
+   "title": "Protocol Village: Blockchain Project Elastos Announces BTC Oracle for Bitcoin L2",
+   "url": "https://markets.businessinsider.com/news/currencies/protocol-village-blockchain-project-elastos-announces-btc-oracle-for-bitcoin-l2-1033182397",
+   "domain": "markets.businessinsider.com",
+   "seenAt": "2024-03-20T23:15:00.000Z"
+  },
+  {
+   "title": "Bitcoin ETF Netflows May Experience Rebound If This Price Is Attained, Analyst Explains",
+   "url": "https://www.newsbtc.com/news/bitcoin/bitcoin-etf-netflows-may-experience-rebound-if-this-price-is-attained-analyst-explains/",
+   "domain": "newsbtc.com",
+   "seenAt": "2024-03-23T08:00:00.000Z"
+  },
+  {
+   "title": "MicroStrategy Owns About 1% of All Bitcoin With Latest Purchase",
+   "url": "https://www.bnnbloomberg.ca/microstrategy-owns-about-1-of-all-bitcoin-with-latest-purchase-1.2048786",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2024-03-19T14:15:00.000Z"
+  },
+  {
+   "title": "New cryptocurrency GBTC hits 5M: What is Green Bitcoin, and why are traders backing it for its upside potential?",
+   "url": "https://economictimes.indiatimes.com/wealth/invest/new-cryptocurrency-gbtc-hits-5m-what-is-green-bitcoin-and-why-are-traders-backing-it-for-its-upside-potential/articleshow/108622137.cms",
+   "domain": "economictimes.indiatimes.com",
+   "seenAt": "2024-03-19T13:45:00.000Z"
+  },
+  {
+   "title": "Bitcoin Sudden Decline to Below $63K and Its Market - Wide Impact",
+   "url": "https://www.coinspeaker.com/bitcoin-decline-63k-market/",
+   "domain": "coinspeaker.com",
+   "seenAt": "2024-03-19T16:00:00.000Z"
+  }
+ ]
+}

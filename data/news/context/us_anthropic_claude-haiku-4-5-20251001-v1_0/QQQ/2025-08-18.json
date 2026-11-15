@@ -1,0 +1,32 @@
+{
+ "value": {
+  "text": "Le Nasdaq a atteint des records historiques autour du 13 août, porté par l'optimisme concernant une baisse des taux de la Réserve fédérale en septembre. Cependant, des données d'inflation productrice ont provoqué un repli le 14 août.",
+  "sources": [
+   {
+    "title": "US: S & P 500, Nasdaq retreat from record rally after hot producer inflation data",
+    "source": "businesstimes.com.sg",
+    "url": "https://www.businesstimes.com.sg/companies-markets/us-sp-500-nasdaq-retreat-record-rally-after-hot-producer-inflation-data",
+    "date": "2025-08-14"
+   },
+   {
+    "title": "S & P 500, Nasdaq hover near record highs on Fed rate cut hopes",
+    "source": "staradvertiser.com",
+    "url": "https://www.staradvertiser.com/2025/08/13/breaking-news/sp-500-nasdaq-hover-near-record-highs-on-fed-rate-cut-hopes/",
+    "date": "2025-08-13"
+   },
+   {
+    "title": "Wall Street today: S & P 500, Nasdaq hit record high on Fed rate cut optimism",
+    "source": "livemint.com",
+    "url": "https://www.livemint.com/market/stock-market-news/wall-street-today-s-p-500-nasdaq-hit-record-high-on-fed-rate-cut-optimism-11755093087355.html",
+    "date": "2025-08-13"
+   },
+   {
+    "title": "US: S & P 500, Nasdaq hit record highs at open on September rate cut hopes",
+    "source": "businesstimes.com.sg",
+    "url": "https://www.businesstimes.com.sg/companies-markets/us-sp-500-nasdaq-hit-record-highs-open-september-rate-cut-hopes",
+    "date": "2025-08-13"
+   }
+  ],
+  "label": "Résumé généré par IA (Amazon Bedrock) à partir des manchettes citées — GDELT, 7 jours avant le 2025-08-18."
+ }
+}
