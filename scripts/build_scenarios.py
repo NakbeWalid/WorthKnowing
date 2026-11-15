@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONTEXT, FORWARD = 90, 60          # séances avant / après la décision
 MIN_GAP = 120                      # séances minimum entre deux scénarios d'un même actif
-MAX_PER_TYPE = 12                  # taille de la bibliothèque par type
+MAX_PER_TYPE = 1000                # pas de plafond artificiel : on garde tous les episodes distincts detectes
 
 SECTOR_FR = {
     "Financials": "Finance", "Energy": "Énergie", "Industrials": "Industrie",
