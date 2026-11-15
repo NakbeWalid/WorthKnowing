@@ -106,28 +106,34 @@ navigateur Boréal ── POST /api/trades/preview ──▶ TradingService.prev
 - Chaîne d'attente trop longue pour CloudFront (nouvelles 30 s + deux appels Bedrock de 25 s > 60 s) : le navigateur recevait une erreur alors que le trade était exécuté → 20 s + 15 s + 15 s (`NEWS_TIMEOUT_MS`, `BEDROCK_TIMEOUT_MS`).
 - Débordement horizontal sur mobile ; libellés bruts (`age : 45-59`) dans la vue admin.
 
-## 5. Hypothèses à vérifier sur AWS (rien de ceci n'a été exécuté)
+## 5. Vérification sur AWS (faite le 2026-11-15, compte 025066237985, us-east-1)
 
-Ce qui a été vérifié : compilation, e2e local (modes `json` / `local` / `mock` / `template`), parcours complet au
-navigateur, `cdk synth MiroirApp` avec le contexte en cache. Ce qui ne l'a pas été : tout appel réel à AWS, et GDELT
-(bloqué par le réseau de l'environnement de travail).
+Déployé avec `./deploy.sh` (image `0833e69`) ; `npm run test:e2e` **vert contre l'environnement déployé**
+(`MIROIR_URL`, `BANK_URL`, `PARTNER_API_KEY`, `ADMIN_PASSWORD` lus dans Secrets Manager). Miroir :
+`https://d282er2gpi2tj4.cloudfront.net` · Boréal : `https://ds5dvhgpln5xx.cloudfront.net`.
 
-| # | Hypothèse | Où | Comment vérifier |
-| --- | --- | --- | --- |
-| H1 | Une tâche Fargate à deux conteneurs (`miroir` :3000, `bank` :3001), deux écouteurs ALB (80, 8080), deux distributions CloudFront se déploie sans erreur | `infra/lib/app-stack.ts` | `./deploy.sh` ; les deux groupes cibles sont sains (`/api/health`) |
-| H2 | Le conteneur par défaut renommé `miroir` ne casse pas la mise à jour du service existant | idem (`containerName`) | observer le déploiement ECS ; sinon détruire et recréer `MiroirApp` |
-| H3 | Boréal joint Miroir par `http://localhost:3000` dans la même tâche (réseau `awsvpc`) | `MIROIR_API_URL` | ouvrir un compte Boréal lié, passer un ordre : statut « analysé » |
-| H4 | `PARTNER_RETURN_ORIGINS` (= adresse CloudFront de Boréal) correspond exactement à l'origine vue par le navigateur ; `BANK_PUBLIC_URL` / `MIROIR_PUBLIC_URL` sans barre finale | `app-stack.ts`, `addEnvironment` | la redirection de liaison aboutit ; sinon « Adresse de retour inconnue » sur la page de connexion Miroir |
-| H5 | Les 3 nouveaux secrets (`miroir/link-secret`, `miroir/partner-api-key`, `boreal/jwt-secret`) sont lisibles par le rôle d'exécution, et `PARTNER_API_KEY` a la même valeur dans les deux conteneurs | `app-stack.ts` | la tâche démarre ; l'échange du code ne répond pas 401 |
-| H6 | `DynamoBankStore` fonctionne (jamais exécuté) : tables `boreal-accounts` (index `email-index`) et `boreal-trades` | `src/bank/dynamo.store.ts`, `data-stack.ts` | ouvrir un compte, se reconnecter, passer deux ordres, relire l'historique |
-| H7 | Les utilisateurs déjà présents dans `miroir-users` (avec `portfolio`, sans `link`) restent lisibles | `publicUser`, `LinkService` (`user.link` absent = aucune liaison) | se connecter avec un ancien compte ; au besoin vider les tables |
-| H8 | Durée totale d'un ordre sous les 60 s de CloudFront : pré-contrôle (≤ 8 s) + enquête (≤ 50 s côté Boréal ; nouvelles ≤ 20 s + 2 appels Bedrock ≤ 15 s côté Miroir) | `src/bank/config.ts`, `src/miroir/config.ts` | mesurer dans CloudWatch ; si Haiku dépasse 15 s, le résumé gabarit est gardé (comportement voulu) |
-| H9 | Le parcours avec `NEWS_DRIVER=bedrock`, `INFLUENCE_DRIVER=bedrock`, `EXPLAINER_DRIVER=bedrock` fonctionne toujours : le code des agents n'a pas changé, mais il n'a été que compilé depuis le déplacement | `src/miroir/news`, `src/miroir/trades/agents` | un ordre NVDA au 2023-05-30 affiche de vraies manchettes dans le profil Miroir |
-| H10 | Le corpus de nouvelles couvre les dates de démo dans leur **nouvel ordre** (l'horloge ne recule plus) : XBB.TO 2023-01-10, NVDA 2023-05-30, BTC-USD 2024-03-25, TSLA 2024-12-17, ETH-USD 2025-08-22 | `scripts/prefetch_news.mjs` (chemins `dist/miroir/…` mis à jour, non exécuté) | `npm run build && node scripts/prefetch_news.mjs` ; XBB.TO au 2023-01-10 n'est pas dans le corpus actuel |
-| H11 | Mode Cognito : l'inscription Miroir en venant de Boréal, puis `POST /api/link/authorize` avec le jeton d'accès Cognito | `cognito-auth.service.ts` (inchangé) | parcours complet sur l'environnement déployé |
-| H12 | Boréal lit les cours depuis S3 (`DATA_BUCKET`) avec le rôle de la tâche | `src/shared/data-files.ts` | journal « dataset/prices_daily.csv ← s3://… » dans le flux `boreal` |
-| H13 | Le flux SSE de la vue admin passe toujours par la distribution Miroir | `admin.controller.ts` (inchangé) | la vue admin affiche les événements d'un ordre en direct |
-| H14 | `scripts/e2e.mjs` contre AWS : `MIROIR_URL`, `BANK_URL`, `PARTNER_API_KEY` (secret), `ADMIN_EMAIL`, `ADMIN_PASSWORD` | `scripts/e2e.mjs` | le test est vert ; il crée 3 comptes de test à supprimer ensuite |
+| # | Résultat | Preuve |
+| --- | --- | --- |
+| H1 | **Corrigée.** Le déploiement échouait d'avance : la liste de préfixes CloudFront pèse 55 règles et un groupe de sécurité en accepte 60, or le code en posait deux sur le groupe de l'ALB (ports 80 et 8080). Le port 8080 a maintenant son propre groupe de sécurité, attaché au même ALB. Ensuite : déploiement sans erreur, les deux groupes cibles sont sains sur `/api/health`. | `infra/lib/app-stack.ts`, `describe-target-health` |
+| H2 | **OK.** Renommer `web` en `miroir` et ajouter un second groupe cible se met à jour sans interruption : le service existant a été mis à jour, sans destruction de la pile. | `UPDATE_COMPLETE`, 1 tâche, 0 échec |
+| H3 | **OK.** Boréal joint Miroir par `localhost:3000` : les ordres liés sont analysés. | trades `miroir-trades` avec enquête, e2e |
+| H4 | **OK.** `/api/link/partner` accepte l'origine Boréal et refuse une origine inconnue ; la liaison complète passe dans l'e2e. | requêtes `curl` |
+| H5 | **OK.** Les 3 secrets existent et la tâche démarre ; une mauvaise clé partenaire donne « Clé partenaire invalide », la bonne arrive à la vérification du code. | `list-secrets`, `curl` |
+| H6 | **OK.** `DynamoBankStore` fonctionne : comptes, ordres, reconnexion et historique relus. Tables `boreal-accounts` (index `email-index`) et `boreal-trades`. | `scan` : 2 comptes, 6 ordres |
+| H7 | **OK.** Un ancien compte (avec `portfolio`, sans `link`) se connecte, `/api/me` et `/api/trades` répondent 200. Le champ `portfolio` hérité est encore renvoyé par `/api/me` (inoffensif, inutilisé). | login d'un compte de l'ancienne version |
+| H8 | **OK.** L'e2e complet (4 ordres analysés avec Bedrock) passe en 45 s ; chaque appel Bedrock dure 1 à 2,6 s. Aucune erreur 502/504 de CloudFront. | journaux CloudWatch |
+| H9 | **OK.** Avec `NEWS_DRIVER`, `INFLUENCE_DRIVER` et `EXPLAINER_DRIVER` = `bedrock`, NVDA au 2023-05-30 affiche 5 manchettes réelles (liens), un verdict et un résumé rédigé par IA. **Défaut corrigé** : l'agent d'influence écrivait un délai inventé (« 3-4 jours après ») ; `inventedDurations` (`src/miroir/ai/guards.ts`) rejette désormais toute durée absente des faits, pour l'agent d'influence et l'explicateur. | table `miroir-trades`, `node -e` sur le garde-fou |
+| H10 | **Corrigée.** XBB.TO au 2023-01-10 et ETH-USD au 2025-08-22 manquaient au corpus (GDELT répondait 429, repli sur des signaux simulés). Préchargés (5 nouvelles réelles chacun), commités et envoyés dans S3. Les 5 dates de démo sont couvertes. | `scripts/prefetch_news.mjs`, `data/news/` |
+| H11 | **OK.** Mode Cognito : inscription, connexion, groupe `admin` (l'admin a le rôle `admin`), liaison et autorisation passent dans l'e2e. | e2e, `/api/me` |
+| H12 | **OK.** Les deux conteneurs lisent `dataset/prices_daily.csv` depuis S3 avec le rôle de la tâche. | journal « ← s3://miroir-data-025066237985/… » |
+| H13 | **OK.** Le flux SSE passe par la distribution Miroir (`text/event-stream`, 200) ; l'e2e reçoit 20 événements. | `curl`, e2e |
+| H14 | **OK.** `scripts/e2e.mjs` vert contre AWS. Il crée des comptes de test dans Cognito et DynamoDB (voir ci-dessous). | e2e |
+
+**Autres constats**
+- L'ALB n'est pas joignable directement (ports 80 et 8080 fermés hors CloudFront).
+- `data/bank-db.json` (comptes de test locaux) n'était exclu ni de l'envoi vers S3, ni de l'archive CodeBuild : corrigé dans `data-stack.ts` et `build-stack.ts`.
+- Les tests e2e laissent des comptes dans Cognito (`robert+…@test.local`) et dans les tables `miroir-*` et `boreal-*`. À supprimer avant la démo finale si l'on veut une vue admin propre.
+- GDELT limite le débit depuis ces adresses (429) : un ordre à une date absente du corpus retombe sur des signaux simulés (étiquetés). Les dates de la démo sont toutes dans le corpus.
 
 ## 6. Limites connues, par ordre d'intérêt
 
@@ -160,8 +166,8 @@ navigateur, `cdk synth MiroirApp` avec le contexte en cache. Ce qui ne l'a pas �
 
 ## 8. Définition de « terminé »
 
-- [ ] `npm run test:e2e` vert en local, puis contre l'environnement déployé (H14).
-- [ ] Chaque ligne H1–H14 cochée, ou corrigée avec une note dans ce fichier.
-- [ ] Un ordre lié affiche au moins une vraie manchette sourcée dans l'enquête (ou dit clairement qu'il n'y en a pas).
-- [ ] README à jour si une hypothèse a conduit à changer l'architecture.
+- [x] `npm run test:e2e` vert en local, puis contre l'environnement déployé (H14).
+- [x] Chaque ligne H1–H14 cochée, ou corrigée avec une note dans ce fichier (section 5).
+- [x] Un ordre lié affiche au moins une vraie manchette sourcée dans l'enquête (NVDA 2023-05-30 : 5 manchettes avec lien).
+- [x] README à jour si une hypothèse a conduit à changer l'architecture.
 - [ ] Livrables du défi : vidéo, documentation technique, one-pager, schéma d'architecture (celui du README est à jour).

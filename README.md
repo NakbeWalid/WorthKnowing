@@ -213,7 +213,7 @@ Si Miroir est injoignable, l'ordre passe quand même et est marqué « non analy
 | --- | --- |
 | `MiroirData` | Tables DynamoDB de Miroir (3) et de Boréal (2), User Pool + groupe `admin`, bucket S3 privé et envoi de `dataset/` et `data/` |
 | `MiroirBuild` | Dépôt ECR, projet CodeBuild qui construit le `Dockerfile` (une image pour les deux applications) |
-| `MiroirApp` | VPC sans NAT, une tâche Fargate à deux conteneurs, ALB (ports 80 et 8080) accessible seulement depuis CloudFront, deux distributions CloudFront, 4 secrets |
+| `MiroirApp` | VPC sans NAT, une tâche Fargate à deux conteneurs, ALB (ports 80 et 8080) accessible seulement depuis CloudFront, deux distributions CloudFront, 4 secrets. La liste de préfixes CloudFront pèse 55 règles sur 60 par groupe de sécurité : chaque port a donc son propre groupe, attaché au même ALB |
 
 Déploiement : `cd infra && ./deploy.sh` (affiche les deux adresses). La topologie à deux conteneurs a été écrite sans accès à AWS
 et validée seulement par `cdk synth` : voir les hypothèses à vérifier dans `KIRO_HANDOFF.md`.

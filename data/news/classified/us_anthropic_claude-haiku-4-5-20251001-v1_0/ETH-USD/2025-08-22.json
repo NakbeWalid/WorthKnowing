@@ -1,0 +1,52 @@
+[
+ {
+  "date": "2025-08-22",
+  "title": "XRP, Ethereum spike as investors bet on dovish Powell and September interest rate cut",
+  "source": "finance.yahoo.com",
+  "url": "https://finance.yahoo.com/news/xrp-ethereum-spike-investors-bet-155605173.html",
+  "impact": "élevé",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T16:41:47.437Z",
+  "summary": "XRP et Ethereum montent alors que les investisseurs parient sur une politique monétaire dovish et une baisse des taux."
+ },
+ {
+  "date": "2025-08-22",
+  "title": "Peter Thiel leads pack of investors piling into ether",
+  "source": "livemint.com",
+  "url": "https://www.livemint.com/market/peter-thiel-leads-pack-of-investors-piling-into-ether-11755843104648.html",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T16:41:47.437Z",
+  "summary": "Peter Thiel et d'autres investisseurs accumulent de l'ether massivement."
+ },
+ {
+  "date": "2025-08-22",
+  "title": "Ethereum Price Battles Key Barrier as Bulls Eye a Breakout Attempt",
+  "source": "newsbtc.com",
+  "url": "https://www.newsbtc.com/analysis/eth/ethereum-price-battles-barrier-4300/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T16:41:47.437Z",
+  "summary": "Le prix d'Ethereum affronte une barrière clé tandis que les haussiers tentent une percée."
+ },
+ {
+  "date": "2025-08-22",
+  "title": "Ether, Solana, BNB Outshine Bitcoin as Cryptos Rebound",
+  "source": "finance.yahoo.com",
+  "url": "https://finance.yahoo.com/news/ether-solana-bnb-outshine-bitcoin-220621511.html",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T16:41:47.437Z",
+  "summary": "Ether, Solana et BNB surpassent Bitcoin lors du rebond des cryptomonnaies."
+ },
+ {
+  "date": "2025-08-21",
+  "title": "Ether bounces off $4, 100, targets new highs; Check forecast",
+  "source": "invezz.com",
+  "url": "https://invezz.com/news/2025/08/21/ether-bounces-off-4100-targets-new-highs-check-forecast/",
+  "impact": "moyen",
+  "simulated": false,
+  "retrievedAt": "2026-11-15T16:41:47.437Z",
+  "summary": "Ether rebondit à partir de 4 100 dollars et vise de nouveaux sommets."
+ }
+]

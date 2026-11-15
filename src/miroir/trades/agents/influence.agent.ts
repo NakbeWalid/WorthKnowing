@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { BedrockClient } from '../../ai/bedrock.client';
-import { inventedNumbers } from '../../ai/guards';
+import { inventedDurations, inventedNumbers } from '../../ai/guards';
 import {
   clamp, Finding, InfluenceVerdict, NewsItem, PARAM_INFO, ParamKey, pct, Profile, Trade,
 } from '../../domain/types';
@@ -49,6 +49,7 @@ Ta question : ce trade montre-t-il un changement de comportement de l'investisse
 Règles absolues :
 - Tu ne t'appuies QUE sur les faits et nouvelles fournis, cités par leur numéro. Aucun autre fait, chiffre ni cause.
 - Tu recopies les chiffres tels quels ; tu ne calcules aucun nouveau chiffre.
+- N'indique aucun délai entre une nouvelle et le trade (« 3 jours après ») : seules les dates fournies comptent.
 - Une nouvelle ne prouve pas que l'investisseur l'a lue : parle d'influence « possible » ou « probable », jamais de cause certaine.
 - C'est un profil de comportement, pas un diagnostic psychologique : n'emploie pas le mot « psychologique ».
 - Si la recherche de nouvelles était indisponible, tu ne peux rien conclure sur une influence externe.
@@ -109,8 +110,8 @@ Format : {"verdict":"...","rationale":"...","refs":["F1"],"findings":[]}`;
       verdict = 'indetermine';
     }
     let rationale = typeof out.rationale === 'string' ? out.rationale.trim().slice(0, 400) : '';
-    // Un chiffre absent des faits = chiffre inventé ou recalculé : on ne montre que les références.
-    if (!rationale || inventedNumbers(rationale, factsText).length) {
+    // Un chiffre ou un délai absent des faits = inventé ou recalculé : on ne montre que les références.
+    if (!rationale || inventedNumbers(rationale, factsText).length || inventedDurations(rationale, factsText).length) {
       rationale = refs.length ? `Appuyé sur : ${refs.join(', ')}.` : 'Les données fournies ne permettent pas de conclure.';
     }
     return { verdict, rationale, refs, model: this.bedrock.modelId };

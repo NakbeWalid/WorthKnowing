@@ -1,0 +1,369 @@
+{
+ "ticker": "XBB.TO",
+ "query": "(\"Bank of Canada\" OR \"Canadian bonds\")",
+ "from": "2023-01-03T20:00:00.000Z",
+ "to": "2023-01-10T20:00:00.000Z",
+ "retrievedAt": "2026-11-15T16:40:36.780Z",
+ "articles": [
+  {
+   "title": "Dont neglect bonds now despite tough 2022: experts",
+   "url": "https://www.ctvnews.ca/business/don-t-neglect-bonds-this-year-despite-tough-2022-experts-say-1.6218862",
+   "domain": "ctvnews.ca",
+   "seenAt": "2023-01-05T22:15:00.000Z"
+  },
+  {
+   "title": "Dont neglect bonds this year despite tough 2022, experts say",
+   "url": "https://www.bnnbloomberg.ca/don-t-neglect-bonds-this-year-despite-tough-2022-experts-say-1.1866163",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-05T16:00:00.000Z"
+  },
+  {
+   "title": "Canada job gains blow past expectations",
+   "url": "https://financialpost.com/news/economy/canada-job-gains-december",
+   "domain": "financialpost.com",
+   "seenAt": "2023-01-06T16:30:00.000Z"
+  },
+  {
+   "title": "Interest rates headed higher after Canada job gains blow past expectations",
+   "url": "https://vancouversun.com:443/news/economy/canada-job-gains-december/wcm/103d36ef-f3ac-4542-9999-dba0c467553e",
+   "domain": "vancouversun.com",
+   "seenAt": "2023-01-06T16:15:00.000Z"
+  },
+  {
+   "title": "National Bank of Canada stock rises Wednesday, outperforms market",
+   "url": "https://www.marketwatch.com/story/national-bank-of-canada-stock-rises-wednesday-outperforms-market-01672868017-501481c29664",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-01-05T01:45:00.000Z"
+  },
+  {
+   "title": "Surprise jobs gain increases the odds of a Bank of Canada rate hike: experts",
+   "url": "https://www.bnnbloomberg.ca/surprise-jobs-gain-increases-the-odds-of-a-bank-of-canada-rate-hike-experts-1.1866637",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-06T16:15:00.000Z"
+  },
+  {
+   "title": "Economists expecting labour slowdown in Friday jobs report",
+   "url": "https://www.bnnbloomberg.ca/economists-expecting-labour-slowdown-in-friday-jobs-report-1.1866290",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-05T20:00:00.000Z"
+  },
+  {
+   "title": "More Lenders See Bank of Canada Hiking After Blowout Jobs Report",
+   "url": "https://www.bnnbloomberg.ca/more-lenders-see-bank-of-canada-hiking-after-blowout-jobs-report-1.1866745",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-06T19:45:00.000Z"
+  },
+  {
+   "title": "Will the Bank of Canada raise mortgage rates again in 2023? Here what industry experts predict",
+   "url": "https://www.iheartradio.ca/ctv-news-content/will-the-bank-of-canada-raise-mortgage-rates-again-in-2023-here-s-what-industry-experts-predict-1.19024623",
+   "domain": "iheartradio.ca",
+   "seenAt": "2023-01-04T00:30:00.000Z"
+  },
+  {
+   "title": "OPINION: Get ready for an economically challenging 2023",
+   "url": "https://torontosun.com/opinion/columnists/opinion-get-ready-for-an-economically-challenging-2023",
+   "domain": "torontosun.com",
+   "seenAt": "2023-01-10T04:45:00.000Z"
+  },
+  {
+   "title": "Beat the TSX With This Unstoppable Dividend Payer",
+   "url": "https://www.fool.ca/2023/01/06/beat-the-tsx-with-this-unstoppable-dividend-payer/",
+   "domain": "fool.ca",
+   "seenAt": "2023-01-06T16:15:00.000Z"
+  },
+  {
+   "title": "BlackRock Nears Canada ETF Milestone After Tumultuous Year",
+   "url": "https://www.bnnbloomberg.ca/blackrock-nears-canada-etf-milestone-after-tumultuous-year-1.1866323",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-05T22:15:00.000Z"
+  },
+  {
+   "title": "Canada adds 100, 000 jobs in December, exceeds expectations",
+   "url": "https://www.cbc.ca/player/play/2158965827699",
+   "domain": "cbc.ca",
+   "seenAt": "2023-01-07T05:30:00.000Z"
+  },
+  {
+   "title": "Five things to watch for in the Canadian business world in the coming week - Business News",
+   "url": "http://www.castanet.net/edition/news-story-405227-6-.htm",
+   "domain": "castanet.net",
+   "seenAt": "2023-01-09T14:45:00.000Z"
+  },
+  {
+   "title": "Cheques Make a Comeback as Small Businesses Look to Avoid High Credit Card Transaction Fees: Bank of Canada",
+   "url": "https://canadafreepress.com/article/cheques-make-a-comeback-as-small-businesses-look-to-avoid-high-credit-card-transaction-fees-bank-of-canada",
+   "domain": "canadafreepress.com",
+   "seenAt": "2023-01-09T00:00:00.000Z"
+  },
+  {
+   "title": "Will Shopify Stock Price Soar in 2023?",
+   "url": "https://www.fool.ca/2023/01/06/will-shopifys-stock-price-soar-in-2023/",
+   "domain": "fool.ca",
+   "seenAt": "2023-01-06T16:15:00.000Z"
+  },
+  {
+   "title": "Canadian economy added 104, 000 jobs in December: Statistics Canada",
+   "url": "https://calgarysun.com/business/money-news/canadian-economy-added-104000-jobs-in-december-statistics-canada/wcm/2e7d4bf5-9b99-423c-821c-53ad1496ed1a",
+   "domain": "calgarysun.com",
+   "seenAt": "2023-01-06T16:45:00.000Z"
+  },
+  {
+   "title": "Home sales off to more predictable start this year, Waterloo region realtor association president says",
+   "url": "https://www.cbc.ca/news/canada/kitchener-waterloo/waterloo-region-2023-housing-market-home-sales-forecast-1.6704605",
+   "domain": "cbc.ca",
+   "seenAt": "2023-01-08T12:45:00.000Z"
+  },
+  {
+   "title": "Canada Labor Market Crushes Forecasts With 104, 000 Job Gain",
+   "url": "https://www.bloomberg.com/news/articles/2023-01-06/canada-labor-market-crushes-forecasts-with-104-000-job-gain",
+   "domain": "bloomberg.com",
+   "seenAt": "2023-01-06T14:15:00.000Z"
+  },
+  {
+   "title": "Canadian economy added 104, 000 jobs in December",
+   "url": "https://www.ctvnews.ca/business/labour-market-kept-roaring-to-end-off-the-year-with-104-000-jobs-added-in-december-1.6220003",
+   "domain": "ctvnews.ca",
+   "seenAt": "2023-01-06T17:00:00.000Z"
+  },
+  {
+   "title": "Victoria unemployment rate drops slightly to 3. 4 per cent",
+   "url": "https://www.timescolonist.com/business/victorias-unemployment-rate-drops-slightly-to-34-per-cent-6340942",
+   "domain": "timescolonist.com",
+   "seenAt": "2023-01-07T02:00:00.000Z"
+  },
+  {
+   "title": "Canada labour market crushes forecasts, sending Loonie higher",
+   "url": "https://www.bnnbloomberg.ca/canada-labour-market-crushes-forecasts-sending-loonie-higher-1.1866524",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-06T16:15:00.000Z"
+  },
+  {
+   "title": "USD / CAD hovers around the 20 - day EMA around 1. 3420s",
+   "url": "https://www.fxstreet.com/news/usd-cad-hovers-around-the-20-day-ema-around-13420s-202301101744",
+   "domain": "fxstreet.com",
+   "seenAt": "2023-01-10T19:15:00.000Z"
+  },
+  {
+   "title": "Statistics Canada to release December jobs report Friday morning",
+   "url": "https://www.ctvnews.ca/business/statistics-canada-to-release-december-jobs-report-friday-morning-1.6220003",
+   "domain": "ctvnews.ca",
+   "seenAt": "2023-01-06T12:15:00.000Z"
+  },
+  {
+   "title": "Bank of Canada Interest Rate | Current & Historical Rates of BOC",
+   "url": "https://www.dailyfx.com/central-bank-calendar/boc-interest-rates",
+   "domain": "dailyfx.com",
+   "seenAt": "2023-01-10T15:00:00.000Z"
+  },
+  {
+   "title": "Metro Vancouver home sales struggled mightily in 2022",
+   "url": "https://dailyhive.com/vancouver/metro-vancouver-home-sales-statistics-december-2022",
+   "domain": "dailyhive.com",
+   "seenAt": "2023-01-04T23:45:00.000Z"
+  },
+  {
+   "title": "Making sense of the markets this week: January 8, 2023",
+   "url": "https://www.moneysense.ca/save/investing/making-sense-of-the-markets-this-week-january-8-2023/",
+   "domain": "moneysense.ca",
+   "seenAt": "2023-01-08T16:45:00.000Z"
+  },
+  {
+   "title": "GTA home sales down 48. 2 per cent in December from previous year: TRREB",
+   "url": "https://www.bnnbloomberg.ca/gta-home-sales-down-48-2-per-cent-in-december-from-previous-year-trreb-1.1866037",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-05T11:45:00.000Z"
+  },
+  {
+   "title": "Why BNS Stock Fell 26% in 2022",
+   "url": "https://www.fool.ca/2023/01/04/why-bns-stock-fell-26-in-2022/",
+   "domain": "fool.ca",
+   "seenAt": "2023-01-04T17:00:00.000Z"
+  },
+  {
+   "title": "CIBC now sees the Bank of Canada hiking 25 basis points this month",
+   "url": "https://www.forexlive.com/centralbank/cibc-now-sees-the-bank-of-canada-hiking-25-basis-points-this-month-20230106/",
+   "domain": "forexlive.com",
+   "seenAt": "2023-01-06T20:15:00.000Z"
+  },
+  {
+   "title": "Canada labour market crushes forecasts with 104, 000 job gain",
+   "url": "https://www.bnnbloomberg.ca/canada-added-104-000-jobs-in-december-statscan-1.1866524",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-06T14:45:00.000Z"
+  },
+  {
+   "title": "Vicinity Motor Corp. Partners with RBC and Export Development Canada to Finance Production of VMC 1200 EV Trucks",
+   "url": "https://www.finanznachrichten.de/nachrichten-2023-01/57978932-vicinity-motor-corp-partners-with-rbc-and-export-development-canada-to-finance-production-of-vmc-1200-ev-trucks-200.htm",
+   "domain": "finanznachrichten.de",
+   "seenAt": "2023-01-04T13:00:00.000Z"
+  },
+  {
+   "title": "National Bank of Canada ( TSE: NA): Plenty of Upside Potential Ahead",
+   "url": "https://www.tipranks.com/news/article/national-bank-of-canada-tsena-plenty-of-upside-potential-ahead",
+   "domain": "tipranks.com",
+   "seenAt": "2023-01-10T08:00:00.000Z"
+  },
+  {
+   "title": "Canada Unemployment Rate Unexpectedly Slips in December -- Update",
+   "url": "https://www.marketwatch.com/story/canada-unemployment-rate-unexpectedly-slips-in-december-update-271673012328",
+   "domain": "marketwatch.com",
+   "seenAt": "2023-01-06T14:00:00.000Z"
+  },
+  {
+   "title": "Converge Stock: A Severely Oversold Growth Bargain to Buy and Hold",
+   "url": "https://www.fool.ca/2023/01/10/converge-stock-a-severely-oversold-growth-bargain-to-buy-and-hold/",
+   "domain": "fool.ca",
+   "seenAt": "2023-01-10T19:30:00.000Z"
+  },
+  {
+   "title": "Here how far Toronto overblown housing market declined in 2022",
+   "url": "https://www.blogto.com/real-estate-toronto/2023/01/torontos-housing-market-declined-2022/",
+   "domain": "blogto.com",
+   "seenAt": "2023-01-05T18:30:00.000Z"
+  },
+  {
+   "title": "Letter: Today inflation beyond the scope of Bank of Canada governor",
+   "url": "https://thestarphoenix.com/opinion/letters/letter-todays-inflation-beyond-the-scope-of-bank-of-canada-governor",
+   "domain": "thestarphoenix.com",
+   "seenAt": "2023-01-07T16:00:00.000Z"
+  },
+  {
+   "title": "The Best - Returning Canadian Bank Stocks in 2022",
+   "url": "https://www.fool.ca/2023/01/06/the-best-returning-canadian-bank-stocks-in-2022/",
+   "domain": "fool.ca",
+   "seenAt": "2023-01-06T17:45:00.000Z"
+  },
+  {
+   "title": "Labour market posts one last surprise for 2022, adds 104, 000 jobs in December",
+   "url": "https://www.timescolonist.com/national-business/labour-market-posts-one-last-surprise-for-2022-adds-104000-jobs-in-december-6335760",
+   "domain": "timescolonist.com",
+   "seenAt": "2023-01-06T18:15:00.000Z"
+  },
+  {
+   "title": "Vancouver December Home Sales Down 52% From Year Ago: BC Real Estate Board",
+   "url": "https://www.theepochtimes.com/vancouvers-december-home-sales-down-52-from-year-ago-bc-real-estate-board_4961903.html",
+   "domain": "theepochtimes.com",
+   "seenAt": "2023-01-04T19:00:00.000Z"
+  },
+  {
+   "title": "Housing demand remains high in northeastern Ontario, but situation improving, say Realtors",
+   "url": "https://www.cbc.ca/news/canada/sudbury/real-estate-northeast-ontario-2023-1.6704635",
+   "domain": "cbc.ca",
+   "seenAt": "2023-01-05T21:30:00.000Z"
+  },
+  {
+   "title": "Annual data shows Greater Toronto Area home sales down nearly 40%",
+   "url": "https://www.toronto.com/news/annual-data-shows-greater-toronto-area-home-sales-down-nearly-40/article_2b1233d8-6166-5597-8aae-5a4c65bc6abd.html",
+   "domain": "toronto.com",
+   "seenAt": "2023-01-07T13:00:00.000Z"
+  },
+  {
+   "title": "Metro Vancouver home sales slumped 34% in 2022, year - end figures show",
+   "url": "https://leaderpost.com:443/real-estate/metro-vancouver-home-sales-slumped-34-2022-year-end-figures-show",
+   "domain": "leaderpost.com",
+   "seenAt": "2023-01-04T19:00:00.000Z"
+  },
+  {
+   "title": "Royal Bank of Canada to close Guernsey offices putting 89 jobs at risk",
+   "url": "https://www.itv.com/news/channel/2023-01-10/rbc-to-close-guernsey-office-putting-89-jobs-at-risk",
+   "domain": "itv.com",
+   "seenAt": "2023-01-10T16:30:00.000Z"
+  },
+  {
+   "title": "Metro Kelowna unemployment rate falls but remains highest in province - Kelowna News",
+   "url": "https://www.castanet.net/news/Kelowna/404939/Metro-Kelowna-s-unemployment-rate-falls-but-remains-highest-in-province",
+   "domain": "castanet.net",
+   "seenAt": "2023-01-06T23:00:00.000Z"
+  },
+  {
+   "title": "Vancouver December home sales down 52% from year ago - Business News",
+   "url": "http://www.castanet.net/edition/news-story-404467-6-.htm",
+   "domain": "castanet.net",
+   "seenAt": "2023-01-04T20:00:00.000Z"
+  },
+  {
+   "title": "More employers plan to hire than fire in Q1 despite recession worries",
+   "url": "https://financialpost.com/executive/executive-summary/more-employers-hire-q1-recession-worries",
+   "domain": "financialpost.com",
+   "seenAt": "2023-01-05T19:00:00.000Z"
+  },
+  {
+   "title": "JPMorgan Leads Canadian M & A for the First Time in Five Years",
+   "url": "https://finance.yahoo.com/news/jpmorgan-leads-canadian-m-first-145951737.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-01-03T22:15:00.000Z"
+  },
+  {
+   "title": "Real estate: Bank regulator weighs new rules as housing risks rise",
+   "url": "https://www.bnnbloomberg.ca/real-estate-bank-regulator-weighs-new-rules-as-housing-risks-rise-1.1867739",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-09T19:45:00.000Z"
+  },
+  {
+   "title": "RBC GAM launches RBC Emerging Markets ex - China Equity Fund in U. S.",
+   "url": "https://www.prnewswire.com:443/news-releases/rbc-gam-launches-rbc-emerging-markets-ex-china-equity-fund-in-us-301715582.html",
+   "domain": "prnewswire.com",
+   "seenAt": "2023-01-09T14:30:00.000Z"
+  },
+  {
+   "title": "Windsor home sales, prices plummet to cap off 2022",
+   "url": "https://www.cbc.ca/news/canada/windsor/windsor-housing-sales-1.6705081",
+   "domain": "cbc.ca",
+   "seenAt": "2023-01-06T00:00:00.000Z"
+  },
+  {
+   "title": "Canaccord managers make $1. 2b buyout offer after stock plunge",
+   "url": "https://www.afr.com/companies/professional-services/canaccord-managers-make-1-2b-buyout-offer-after-stock-plunge-20230110-p5cbil",
+   "domain": "afr.com",
+   "seenAt": "2023-01-10T01:00:00.000Z"
+  },
+  {
+   "title": "Incoming Scotiabank CEO sees room to refine international operations",
+   "url": "https://finance.yahoo.com/news/incoming-scotiabank-ceo-sees-room-195034833.html",
+   "domain": "finance.yahoo.com",
+   "seenAt": "2023-01-10T00:15:00.000Z"
+  },
+  {
+   "title": "Canadian economy added 104, 000 jobs in December: Statistics Canada - Business News",
+   "url": "https://www.castanet.net/news/Business/404854/Canadian-economy-added-104-000-jobs-in-December-Statistics-Canada",
+   "domain": "castanet.net",
+   "seenAt": "2023-01-06T16:15:00.000Z"
+  },
+  {
+   "title": "What does high inflation mean for your retirement savings?",
+   "url": "https://www.moneysense.ca/columns/the-fourth-estate/high-inflation-and-retirement-savings/",
+   "domain": "moneysense.ca",
+   "seenAt": "2023-01-06T17:00:00.000Z"
+  },
+  {
+   "title": "Toronto region home sales down 48. 2 per cent in December from previous year",
+   "url": "https://www.bnnbloomberg.ca/toronto-region-home-sales-down-48-2-per-cent-in-december-from-previous-year-1.1866037",
+   "domain": "bnnbloomberg.ca",
+   "seenAt": "2023-01-05T17:00:00.000Z"
+  },
+  {
+   "title": "Safehold Announces New $500 Million Unsecured Revolving Credit Facility",
+   "url": "https://www.prnewswire.com/news-releases/safehold-announces-new-500-million-unsecured-revolving-credit-facility-301716978.html",
+   "domain": "prnewswire.com",
+   "seenAt": "2023-01-09T21:45:00.000Z"
+  },
+  {
+   "title": "Investegate |Ten Lifestyle Group Announcements | Ten Lifestyle Group: Total Voting Rights",
+   "url": "https://www.investegate.co.uk/ten-lifestyle-group--teng-/rns/total-voting-rights/202301091430001315M/",
+   "domain": "investegate.co.uk",
+   "seenAt": "2023-01-09T15:15:00.000Z"
+  },
+  {
+   "title": "Central Okanagan home prices fall, but different story in North Okanagan - Kelowna News",
+   "url": "https://www.castanet.net/news/Kelowna/404928/Central-Okanagan-home-prices-fall-but-different-story-in-North-Okanagan",
+   "domain": "castanet.net",
+   "seenAt": "2023-01-06T23:00:00.000Z"
+  },
+  {
+   "title": "Homebuyers Hope Patience Pays Off as Prices Drop, Recession Predictions Loom",
+   "url": "https://www.theepochtimes.com/homebuyers-hope-patience-pays-off-as-prices-drop-recession-predictions-loom_4970941.html",
+   "domain": "theepochtimes.com",
+   "seenAt": "2023-01-09T05:45:00.000Z"
+  }
+ ]
+}

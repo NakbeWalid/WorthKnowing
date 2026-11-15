@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { BedrockClient } from '../../ai/bedrock.client';
-import { inventedNumbers } from '../../ai/guards';
+import { inventedDurations, inventedNumbers } from '../../ai/guards';
 import { InfluenceVerdict, Investigation, PARAM_INFO, Trade } from '../../domain/types';
 
 type Draft = Omit<Investigation, 'explanation'>;
@@ -118,8 +118,8 @@ et l'évolution du score de dérive. Format : {"summary":"..."}`;
       const out = await this.bedrock.json<{ summary?: unknown }>(SYSTEM, prompt, 400);
       const summary = typeof out.summary === 'string' ? out.summary.trim() : '';
       if (!summary) throw new Error('résumé vide');
-      const unknown = inventedNumbers(summary, facts.join(' '));
-      if (unknown.length) throw new Error(`chiffres absents des faits : ${unknown.join(', ')}`);
+      const unknown = [...inventedNumbers(summary, facts.join(' ')), ...inventedDurations(summary, facts.join(' '))];
+      if (unknown.length) throw new Error(`chiffres ou durées absents des faits : ${unknown.join(', ')}`);
       return { ...base, summary: `${summary.slice(0, 600)} (Résumé rédigé par IA à partir des faits ci-dessous.)` };
     } catch (err) {
       this.log.warn(`résumé gabarit conservé : ${(err as Error).message}`);
