@@ -269,9 +269,25 @@ infra/          AWS CDK ; Dockerfile : une image, deux commandes
 - Seuils des constats fixés à la main (`PARAM_CHECKS`) ; « spéculatif » = crypto ou volatilité annualisée ≥ 45 % ; poids d'un constat = 35 %.
 - Le profil mesure un comportement, pas un rendement. Cinq situations donnent un signal, pas un diagnostic psychologique.
 - Miroir fait confiance au portefeuille que la plateforme lui envoie ; il ne peut pas le vérifier.
-- Un ordre passé pendant que Miroir est injoignable n'est pas analysé après coup.
 - Nouvelles : anglais uniquement, couverture inégale selon les actifs ; une nouvelle publiée avant l'ordre ne prouve pas que l'investisseur l'a lue.
 - L'impact des nouvelles et le verdict d'influence sont des estimations d'un modèle, bornées et vérifiées par le code.
 - Montants non convertis entre CAD et USD ; biais du survivant dans l'univers d'actifs ; aucune donnée ESG.
 - Inscription Cognito confirmée par le serveur (pas de code envoyé par courriel) : simplification de démo.
 - Une seule tâche Fargate : le flux temps réel de la vue admin est en mémoire.
+
+### Limites connues et assumées (non corrigées dans cette version)
+Ces trois points sont connus, décrits ici pour que personne n'ait à les découvrir. Chacun a une piste de correction
+dans `KIRO_HANDOFF.md`, section 6.
+
+1. **Ordre non analysé si Miroir est injoignable.** Boréal exécute l'ordre, puis l'envoie à Miroir. Si Miroir ne
+   répond pas à cet instant, l'ordre reste exécuté mais marqué « non analysé » et n'est jamais renvoyé : le profil et
+   le score de dérive ne le voient pas. Il n'y a ni file d'attente ni nouvelle tentative. *Piste : file SQS entre les
+   deux applications ; le renvoi serait sans danger, car chaque ordre porte déjà un `externalId` qui le rend idempotent.*
+2. **Écritures concurrentes dans DynamoDB.** Deux ordres du même investisseur traités au même moment peuvent
+   s'écraser : Miroir lit le profil, calcule, puis réécrit le document entier, sans contrôle de version. Le profil et
+   le score de dérive peuvent alors perdre une mise à jour. Le risque est faible avec un seul utilisateur qui clique à
+   la main, réel si des ordres arrivent en parallèle. *Piste : numéro de version et `ConditionExpression` à l'écriture.*
+3. **Un seul rôle IAM pour les deux applications.** Elles tournent dans la même tâche ECS, donc partagent le même
+   rôle. Boréal a ainsi, en théorie, accès à Bedrock, à Cognito et aux tables `miroir-*`, dont elle n'a pas besoin.
+   Le code de Boréal ne les utilise pas, mais l'isolation est faite par le code et non par les droits.
+   *Piste : deux services ECS, un rôle chacun.*
