@@ -5,9 +5,7 @@ import { Evaluation, Trade, User } from '../domain/types';
 
 /**
  * Contrat de persistance. Toute l'application ne dépend que de cette classe abstraite.
- *
- * ▶ POINT D'INTÉGRATION AWS (Kiro) : créer `DynamoStore extends Store` (DynamoDB)
- *   et changer le `useClass` dans app.module.ts. Rien d'autre à modifier.
+ * Implémentation AWS : `DynamoStore` (dynamo.store.ts), choisie par STORAGE_DRIVER=dynamodb.
  */
 export abstract class Store {
   abstract listUsers(): Promise<User[]>;

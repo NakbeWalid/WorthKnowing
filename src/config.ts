@@ -20,6 +20,13 @@ export const config = {
 
   // --- AWS ---------------------------------------------------------------------
   awsRegion: process.env.AWS_REGION ?? 'us-east-1',
+  /** json = data/db.json (local) ; dynamodb = tables DynamoDB ci-dessous. */
+  storageDriver: (process.env.STORAGE_DRIVER ?? 'json') as 'json' | 'dynamodb',
+  tables: {
+    users: process.env.USERS_TABLE ?? 'miroir-users',
+    evaluations: process.env.EVALUATIONS_TABLE ?? 'miroir-evaluations',
+    trades: process.env.TRADES_TABLE ?? 'miroir-trades',
+  },
   /** mock = signaux dérivés des prix ; bedrock = vraies nouvelles (GDELT) analysées par Bedrock. */
   newsDriver,
   /** template = résumé gabarit ; bedrock = résumé rédigé par Bedrock à partir des faits. */

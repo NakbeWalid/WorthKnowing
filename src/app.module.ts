@@ -16,6 +16,7 @@ import { GdeltClient } from './news/gdelt.client';
 import { NewsCache } from './news/news-cache';
 import { MockNewsProvider, NewsProvider } from './news/news.provider';
 import { EventsService } from './realtime/events.service';
+import { DynamoStore } from './storage/dynamo.store';
 import { JsonStore, Store } from './storage/store';
 import { BehaviorAgent } from './trades/agents/behavior.agent';
 import { BedrockExplainer, Explainer, TemplateExplainer } from './trades/agents/explainer';
@@ -29,7 +30,7 @@ import { TradesService } from './trades/trades.service';
   controllers: [AuthController, EvaluationController, MarketController, TradesController, AdminController],
   providers: [
     // ▶ Points de branchement AWS, choisis par variable d'environnement (voir README).
-    { provide: Store, useClass: JsonStore },               // -> DynamoStore (DynamoDB)
+    { provide: Store, useClass: config.storageDriver === 'dynamodb' ? DynamoStore : JsonStore },
     { provide: NewsProvider, useClass: config.newsDriver === 'bedrock' ? BedrockNewsProvider : MockNewsProvider },
     { provide: Explainer, useClass: config.explainerDriver === 'bedrock' ? BedrockExplainer : TemplateExplainer },
     { provide: InfluenceAgent, useClass: config.influenceDriver === 'bedrock' ? BedrockInfluenceAgent : NoInfluenceAgent },
