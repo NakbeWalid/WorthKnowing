@@ -8,16 +8,17 @@ import { EventsService } from '../realtime/events.service';
 import { readDataFile } from '../../shared/data-files';
 import { Store } from '../storage/store';
 import { QUESTIONS } from './questions';
-import { PARAM_CHECKS } from './rule-templates';
+import { buildRules, RuleInput } from '../rules/rules.service';
+import { PARAM_CHECKS, ruleText } from './rule-templates';
 import { overallReliability, Reading, Reliability, reliabilityOf, CONFIDENCE_LEVELS } from './reliability';
 import { eventSentence, outcomeOf, SCENARIO_TYPES, STAKE } from './scenario-types';
 
 /**
  * Évaluation du profil en 4 temps :
- *   1. questionnaire  -> profil DÉCLARÉ (comment l'utilisateur se voit)
+ *   1. auto-notation  -> profil DÉCLARÉ (l'utilisateur se note de 0 à 10 sur chaque paramètre) + quelques questions
  *   2. simulations    -> profil OBSERVÉ (comment il agit réellement)
  *   3. révélation     -> ce qui s'est vraiment passé + résultat de chaque décision
- *   4. règles         -> l'utilisateur encadre lui-même ses paramètres fragiles
+ *   4. règles         -> l'utilisateur écrit lui-même les règles qui encadrent ses paramètres fragiles
  * La même mécanique sert à la réévaluation déclenchée par le score de dérive.
  * La bibliothèque de scénarios est lue au démarrage (S3 si DATA_BUCKET, sinon disque local).
  */
@@ -34,13 +35,13 @@ export class EvaluationService implements OnModuleInit {
   questions() { return QUESTIONS; }
 
   /** Démarre une évaluation : enregistre le profil déclaré et tire les mises en situation (2 par type de comportement). */
-  async start(user: User, answers?: Record<string, string>) {
+  async start(user: User, answers?: Record<string, string | number>) {
     const kind = user.profile ? 'reevaluation' : 'initial';
     let declared = user.profile?.declared;
     if (answers) {
       declared = this.declaredFrom(answers);
       user.preferences = Object.fromEntries(
-        QUESTIONS.filter((q) => q.kind === 'info').map((q) => [q.id, answers[q.id]]));
+        QUESTIONS.filter((q) => q.kind === 'info').map((q) => [q.id, String(answers[q.id])]));
       await this.store.saveUser(user);
     }
     if (!declared) throw new BadRequestException('Le questionnaire est requis pour la première évaluation.');
@@ -176,7 +177,7 @@ export class EvaluationService implements OnModuleInit {
   }
 
   /** Dernière étape : l'utilisateur valide ses propres règles. Le profil devient la nouvelle référence. */
-  async finalize(user: User, evaluationId: string, rules: { param: ParamKey; text: string; threshold: number }[]) {
+  async finalize(user: User, evaluationId: string, rules: Partial<RuleInput>[]) {
     const evaluation = await this.load(user, evaluationId);
     const result = evaluation.result as { observed: ParamScores } | null;
     if (!result) throw new BadRequestException('Terminez les simulations avant de définir vos règles.');
@@ -184,12 +185,7 @@ export class EvaluationService implements OnModuleInit {
     if (evaluation.completedAt) throw new BadRequestException('Cette évaluation est déjà terminée.');
     const now = new Date().toISOString();
 
-    user.rules = (rules ?? []).map((r): Rule => {
-      if (!PARAMS.includes(r.param) || !r.text?.trim() || !(Number(r.threshold) > 0)) {
-        throw new BadRequestException('Règle invalide (paramètre, texte et seuil requis).');
-      }
-      return { id: randomUUID(), param: r.param, text: r.text.trim().slice(0, 300), threshold: Number(r.threshold), createdAt: now };
-    });
+    user.rules = buildRules(rules, now); // des phrases rattachées à un comportement : aucun seuil à régler
     // Référence = comportement observé en simulation, uniquement. Le CV n'entre pas ici : voir cvProfile.expertise,
     // utilisé seulement lors de l'enquête sur les trades (TradesService → InfluenceAgent), jamais pour le profil.
     const baseline = { ...result.observed };
@@ -209,12 +205,20 @@ export class EvaluationService implements OnModuleInit {
   }
 
   // ---------------------------------------------------------------- privé
-  private declaredFrom(answers: Record<string, string>): ParamScores {
+  /** Profil déclaré : la note que l'utilisateur se donne sur chaque paramètre (0 à 10), ramenée sur 100. */
+  private declaredFrom(answers: Record<string, string | number>): ParamScores {
     const scores = {} as ParamScores;
     for (const q of QUESTIONS) {
-      const option = q.options.find((o) => o.id === answers[q.id]);
-      if (!option) throw new BadRequestException(`Réponse manquante : ${q.text}`);
-      if (q.param) scores[q.param] = option.score!;
+      const answer = answers?.[q.id];
+      if (q.kind === 'self') {
+        const note = typeof answer === 'number' ? answer : answer?.trim() ? Number(answer) : NaN;
+        if (!Number.isInteger(note) || note < q.scale!.min || note > q.scale!.max) {
+          throw new BadRequestException(`Donnez-vous une note de ${q.scale!.min} à ${q.scale!.max} : ${q.text}`);
+        }
+        scores[q.param!] = Math.round((note / q.scale!.max) * 100);
+      } else if (!q.options.some((o) => o.id === answer)) {
+        throw new BadRequestException(`Réponse manquante : ${q.text}`);
+      }
     }
     return scores;
   }
@@ -257,7 +261,7 @@ export class EvaluationService implements OnModuleInit {
       return {
         param, label: PARAM_INFO[param].label, high: PARAM_INFO[param].high,
         declared: declared[param], observed: observed[param], gap, atRisk: reason !== '', reason,
-        suggestedRule: { text: existing?.text ?? check.ruleText, threshold: existing?.threshold ?? check.defaultThreshold, unit: check.unit },
+        suggestedRule: { text: existing ? ruleText(existing) : check.ruleText, trigger: check.trigger },
       };
     });
     // Toujours au moins deux garde-fous : on complète avec les paramètres les plus élevés.

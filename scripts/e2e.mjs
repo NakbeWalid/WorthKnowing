@@ -88,8 +88,12 @@ await miroir.call('POST', '/api/link/authorize', { state, returnUrl }, [409]);
 step('Compte Miroir créé', 'liaison impossible avant la fin de l’évaluation');
 
 const questions = await miroir.call('GET', '/api/evaluation/questions');
-const answers = Object.fromEntries(questions.map((q) => [q.id, q.options[0].id]));
-Object.assign(answers, { age: '45-59', horizon: '3-5', crypto: 'no' });
+// Étape 1 : six notes de 0 à 10 (ici 2 : une personne qui se décrit comme prudente), puis quelques questions.
+assert(questions.filter((q) => q.kind === 'self').length === 6 && questions.filter((q) => q.kind === 'info').length <= 5, 'six curseurs et quelques questions');
+const answers = Object.fromEntries(questions.map((q) => [q.id, q.kind === 'self' ? 2 : q.options[0].id]));
+Object.assign(answers, { horizon: '3-5', crypto: 'no' });
+await miroir.call('POST', '/api/evaluation/start', { answers: { ...answers, fomo: 11 } }, [400]);
+await miroir.call('POST', '/api/evaluation/start', { answers: { ...answers, fomo: undefined } }, [400]);
 const session = await miroir.call('POST', '/api/evaluation/start', { answers });
 assert(session.scenarios.length === 10 && !JSON.stringify(session).includes('reveal'), '10 scénarios masqués (2 par type)');
 await miroir.call('POST', `/api/evaluation/${session.evaluationId}/decisions`,
@@ -111,7 +115,8 @@ assert(weak.length >= 2, 'paramètres fragiles détectés');
 assert(result.params.every((p) => p.reliability?.label) && result.reliability?.summary, 'fiabilité fournie pour chaque paramètre et pour l’ensemble');
 step('Fiabilité du profil', `${result.reliability.label} — ${result.reliability.summary}`);
 await miroir.call('POST', `/api/evaluation/${session.evaluationId}/rules`,
-  { rules: weak.map((p) => ({ param: p.param, text: p.suggestedRule.text, threshold: p.suggestedRule.threshold })) });
+  { rules: weak.map((p) => ({ param: p.param, text: p.suggestedRule.text })) });
+assert(weak.every((p) => p.suggestedRule.text && p.suggestedRule.trigger && !('threshold' in p.suggestedRule)), 'règles proposées : un texte, aucun seuil');
 step('Évaluation', `${result.reveals.map((r) => r.reveal.ticker).join(', ')} révélés ; ${weak.length} règles ; réponses figées après la révélation`);
 
 // === 4. Retour à la plateforme : code à usage unique -> code persona ======================
@@ -127,6 +132,24 @@ await client(MIROIR).call('POST', '/api/partner/v1/link/exchange', { code }, [40
 me = await bank.call('GET', '/api/me');
 assert(me.miroir.status === 'linked' && !JSON.stringify(me).includes('mir_'), 'le code persona ne sort jamais du serveur');
 step('Liaison', 'state vérifié, code à usage unique, clé partenaire exigée, code persona gardé côté serveur');
+
+// === 4b. Règles gérées depuis WorthKnowing : ajouter, modifier, retirer — visibles aussitôt côté plateforme ===
+const mine = await miroir.call('POST', '/api/rules', { param: 'impulsivity', text: 'Je relis mon ordre à voix haute.' });
+assert(mine.rule.id && mine.rules.length === weak.length + 1 && !('threshold' in mine.rule), 'règle ajoutée : un texte, aucun seuil');
+await miroir.call('POST', '/api/rules', { param: 'impulsivity', text: '   ' }, [400]);
+await miroir.call('POST', '/api/rules', { text: 'sans comportement' }, [400]);
+const renamed = await miroir.call('PUT', `/api/rules/${mine.rule.id}`, { text: 'Je relis mon ordre deux fois.' });
+assert(renamed.rule.id === mine.rule.id && renamed.rule.text === 'Je relis mon ordre deux fois.', 'règle modifiée, même identifiant');
+const seen = (await bank.call('GET', '/api/miroir/persona')).persona;
+assert(seen.rules.some((r) => r.text === 'Je relis mon ordre deux fois.'), 'la plateforme voit la règle modifiée');
+const hasty = await bank.call('POST', '/api/trades/preview', { ticker: 'XBB.TO', side: 'buy', amount: 500, marketDate: '2023-01-10', decisionTimeMs: 2000 });
+assert(hasty.miroir.triggeredRules.some((r) => r.ruleId === mine.rule.id && r.text === 'Je relis mon ordre deux fois.'), 'la règle écrite à la main est rappelée avant un ordre trop rapide');
+await miroir.call('DELETE', `/api/rules/${mine.rule.id}`);
+await miroir.call('DELETE', `/api/rules/${mine.rule.id}`, undefined, [404]);
+await client(MIROIR).call('POST', '/api/rules', { param: 'fomo', text: 'x' }, [401]);
+const after = await miroir.call('GET', '/api/rules');
+assert(after.rules.length === weak.length && after.drift.score === 0, 'règle retirée ; la dérive ne bouge pas');
+step('Règles', 'ajoutée, modifiée, rappelée avant un ordre, retirée — depuis WorthKnowing, sans seuil');
 
 // === 5. Trades : pré-contrôle des règles, puis enquête (en arrière-plan) ====================
 out = await bank.call('POST', '/api/trades', { ticker: 'XBB.TO', side: 'buy', amount: 5000, marketDate: '2023-01-10', decisionTimeMs: 45000 });
@@ -168,7 +191,7 @@ for (const s of again.scenarios) {
 }
 const result2 = await miroir.call('POST', `/api/evaluation/${again.evaluationId}/complete`);
 await miroir.call('POST', `/api/evaluation/${again.evaluationId}/rules`, {
-  rules: result2.params.filter((p) => p.atRisk).map((p) => ({ param: p.param, text: p.suggestedRule.text, threshold: p.suggestedRule.threshold })),
+  rules: result2.params.filter((p) => p.atRisk).map((p) => ({ param: p.param, text: p.suggestedRule.text })),
 });
 const profile = await miroir.call('GET', '/api/me');
 assert(profile.status === 'active' && profile.drift.score === 0 && profile.profile.evaluationCount === 2, 'dérive remise à zéro');

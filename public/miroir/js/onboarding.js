@@ -1,25 +1,27 @@
-// Évaluation en 4 étapes : questionnaire -> simulations -> révélation -> règles.
-// Sert aussi à la réévaluation (le questionnaire est alors sauté).
+// Évaluation en 4 étapes : comment vous vous voyez (notes de 0 à 10, puis quelques questions)
+// -> simulations -> révélation -> règles.
+// Sert aussi à la réévaluation (l'étape 1 est alors sautée).
 // L'évaluation en cours est mémorisée dans l'onglet : recharger la page reprend là où on en était.
 
 const view = $('#view');
 const state = { questions: [], answers: {}, session: null, index: 0, shownAt: 0, result: null, cv: null };
 const partner = pending.get()?.partner; // défini si l'utilisateur vient de la plateforme de courtage
+const selfQuestions = () => state.questions.filter((q) => q.kind === 'self');
+const infoQuestions = () => state.questions.filter((q) => q.kind === 'info');
 
-
-// Profils de démonstration (les 3 personas de l'énoncé) pour remplir le questionnaire en un clic.
+// Profils de démonstration (les 3 personas de l'énoncé) pour remplir l'étape 1 en un clic : notes de 0 à 10, puis réponses.
 const PERSONAS = {
   Amira: {
-    age: '18-29', horizon: '15+', objective: 'growth', experience: 'intermediate', esg: 'low', crypto: 'yes', follows: 'weekly',
-    riskTolerance: '3', lossAversion: '1', fomo: '2', concentration: '1', impulsivity: '2', newsSensitivity: '1',
+    riskTolerance: 8, lossAversion: 4, fomo: 6, concentration: 4, impulsivity: 6, newsSensitivity: 4,
+    horizon: '15+', objective: 'growth', esg: 'low', crypto: 'yes',
   },
   Mateo: {
-    age: '30-44', horizon: '8-12', objective: 'balanced', experience: 'intermediate', esg: 'high', crypto: 'no', follows: 'weekly',
-    riskTolerance: '1', lossAversion: '1', fomo: '1', concentration: '1', impulsivity: '1', newsSensitivity: '1',
+    riskTolerance: 4, lossAversion: 4, fomo: 3, concentration: 3, impulsivity: 3, newsSensitivity: 4,
+    horizon: '8-12', objective: 'balanced', esg: 'high', crypto: 'no',
   },
   Robert: {
-    age: '45-59', horizon: '3-5', objective: 'preserve', experience: 'advanced', esg: 'medium', crypto: 'no', follows: 'daily',
-    riskTolerance: '1', lossAversion: '1', fomo: '1', concentration: '0', impulsivity: '0', newsSensitivity: '1',
+    riskTolerance: 3, lossAversion: 4, fomo: 3, concentration: 1, impulsivity: 1, newsSensitivity: 4,
+    horizon: '3-5', objective: 'preserve', esg: 'medium', crypto: 'no',
   },
 };
 
@@ -39,18 +41,30 @@ function showError(err, retry) {
   $('#retry').onclick = retry;
 }
 
-// ------------------------------------------------------------------ Étape 1 : questionnaire
-function showQuestion() {
+// ------------------------------------------------------------------ Étape 1a : se noter de 0 à 10
+function showSelf() {
   setStep(1);
-  const q = state.questions[state.index];
-  const isLast = state.index + 1 === state.questions.length;
-  const isAnswered = state.answers[q.id] !== undefined;
-
+  const qs = selfQuestions();
   view.innerHTML = `
-    ${state.index === 0 && partner ? `<div class="card partner"><p style="margin:0">Vous venez de ${esc(partner)}.
+    ${partner ? `<div class="card partner"><p style="margin:0">Vous venez de ${esc(partner)}.
       Comptez une dizaine de minutes ; à la fin, vous y serez ramené et vos ordres pourront être analysés.</p></div>` : ''}
-
-    ${state.index === 0 ? `
+    <div class="card">
+      <h1>Comment vous voyez-vous ?</h1>
+      <p class="muted">Donnez-vous une note de 0 à 10 sur chacun de ces six traits. Aucune note n’est meilleure qu’une autre :
+        les mises en situation montreront ensuite comment vous agissez, et on comparera les deux.</p>
+      ${qs.map((q) => {
+        const v = state.answers[q.id];
+        const set = v !== undefined;
+        return `<div class="scale ${set ? 'set' : ''}" data-id="${esc(q.id)}">
+          <div class="scale-head"><label for="s-${esc(q.id)}">${esc(q.text)}</label>
+            <output for="s-${esc(q.id)}">${set ? `${v} / ${q.scale.max}` : 'à noter'}</output></div>
+          <input type="range" id="s-${esc(q.id)}" min="${q.scale.min}" max="${q.scale.max}" step="1" value="${set ? v : (q.scale.min + q.scale.max) / 2}">
+          <div class="scale-ends"><span>${q.scale.min} · ${esc(q.scale.low)}</span><span>${esc(q.scale.high)} · ${q.scale.max}</span></div>
+        </div>`;
+      }).join('')}
+      <div class="error" id="error" role="alert"></div>
+      <div class="actions"><button class="primary" id="next">Continuer</button></div>
+    </div>
     <div class="card quiet">
       <h2>Votre CV (facultatif)</h2>
       <p class="small muted">Vous pouvez passer cette étape. Si vous fournissez un CV, il ne remplit <b>aucune</b> de vos réponses et
@@ -58,69 +72,78 @@ function showQuestion() {
         Il sert uniquement à détecter votre niveau d’expertise en trading, utilisé plus tard pour mettre en contexte
         l’analyse de vos trades. Le texte du CV n’est pas conservé.</p>
       <div id="cvBox">${cvBoxHtml(state.cv)}</div>
-    </div>` : ''}
-    <div class="card" id="questionCard">
-      <div class="progress"><i style="width:${((state.index + 1) / state.questions.length) * 100}%"></i></div>
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
-        <p class="small muted" style="margin:0;">Question ${state.index + 1} sur ${state.questions.length}</p>
-      </div>
-      <h1 style="margin-top:12px;">${esc(q.text)}</h1>
-      <div class="choices">
-        ${q.options.map((o) => {
-          const isSelected = state.answers[q.id] === o.id;
-          return `<button data-id="${esc(o.id)}" class="${isSelected ? 'primary' : ''}">${esc(o.label)}</button>`;
-        }).join('')}
-      </div>
-
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:22px; flex-wrap:wrap; gap:10px;">
-        <div>
-          ${state.index ? '<button class="link" id="back" style="padding:0;">← Question précédente</button>' : ''}
-        </div>
-        <div>
-          ${isAnswered ? `
-            <button class="primary" id="btnNextQuestion">
-              ${isLast ? 'Confirmer et passer aux simulations (Étape 2) →' : 'Valider ce choix et Suivant →'}
-            </button>
-          ` : ''}
-        </div>
-      </div>
     </div>
+    <p class="small muted" style="margin-top:14px;">Pour la démonstration, pré-remplir comme un persona de l’énoncé :
+      ${Object.keys(PERSONAS).map((p) => `<button class="link" data-persona="${p}">${p}</button>`).join(', ')}.</p>`;
 
-    ${state.index === 0 ? `<p class="small muted" style="margin-top:14px;">Pour la démonstration, pré-remplir comme un persona de l’énoncé :
-      ${Object.keys(PERSONAS).map((p) => `<button class="link" data-persona="${p}">${p}</button>`).join(', ')}.</p>` : ''}`;
-
-  // Gestion des clics sur les choix de réponses
-  view.querySelectorAll('.choices button').forEach((b) => (b.onclick = () => {
-    state.answers[q.id] = b.dataset.id;
-    state.index++;
-    state.index < state.questions.length ? showQuestion() : startSimulations(state.answers);
-  }));
-
-  // Gestion du bouton Valider et Suivant
-  const btnNext = $('#btnNextQuestion');
-  if (btnNext) {
-    btnNext.onclick = () => {
-      state.index++;
-      state.index < state.questions.length ? showQuestion() : startSimulations(state.answers);
+  // Une note n'est enregistrée que si la personne a touché le curseur : la position de départ n'est pas une réponse.
+  view.querySelectorAll('.scale').forEach((el) => {
+    const input = el.querySelector('input');
+    const q = qs.find((x) => x.id === el.dataset.id);
+    const record = () => {
+      state.answers[q.id] = Number(input.value);
+      el.classList.add('set');
+      el.querySelector('output').textContent = `${input.value} / ${q.scale.max}`;
+      $('#error').textContent = '';
     };
-  }
+    input.oninput = input.onpointerdown = input.onkeydown = record;
+  });
 
-  // Précédent
-  if ($('#back')) {
-    $('#back').onclick = () => {
-      state.index--;
-      showQuestion();
-    };
-  }
+  $('#next').onclick = () => {
+    const missing = qs.filter((q) => state.answers[q.id] === undefined);
+    if (missing.length) {
+      $('#error').textContent = missing.length === 1
+        ? `Il reste une note à donner : « ${missing[0].text} ».`
+        : `Il reste ${missing.length} notes à donner (curseurs marqués « à noter »).`;
+      return;
+    }
+    state.index = 0;
+    showQuestion();
+  };
 
-
-  // Pré-remplissage via persona démo
   view.querySelectorAll('[data-persona]').forEach((b) => (b.onclick = () => {
     state.answers = { ...PERSONAS[b.dataset.persona] };
-    showQuestion();
+    showSelf();
   }));
+  setupCvBox();
+}
 
-  if (state.index === 0) setupCvBox();
+// ------------------------------------------------------------------ Étape 1b : quelques questions
+function showQuestion() {
+  setStep(1);
+  const qs = infoQuestions();
+  if (!qs.length) return startSimulations(state.answers);
+  const q = qs[state.index];
+  const isLast = state.index + 1 === qs.length;
+  const advance = () => {
+    state.index++;
+    state.index < qs.length ? showQuestion() : startSimulations(state.answers);
+  };
+
+  view.innerHTML = `
+    <div class="card" id="questionCard">
+      <div class="progress"><i style="width:${((state.index + 1) / qs.length) * 100}%"></i></div>
+      <p class="small muted" style="margin:0;">Question ${state.index + 1} sur ${qs.length}</p>
+      <h1 style="margin-top:12px;">${esc(q.text)}</h1>
+      <div class="choices">
+        ${q.options.map((o) => `<button data-id="${esc(o.id)}" class="${state.answers[q.id] === o.id ? 'primary' : ''}">${esc(o.label)}</button>`).join('')}
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:22px; flex-wrap:wrap; gap:10px;">
+        <button class="link" id="back">← ${state.index ? 'Question précédente' : 'Revenir à mes notes'}</button>
+        ${state.answers[q.id] !== undefined ? `<button class="primary" id="btnNextQuestion">${isLast ? 'Passer aux mises en situation' : 'Suivant'}</button>` : ''}
+      </div>
+    </div>`;
+
+  view.querySelectorAll('.choices button').forEach((b) => (b.onclick = () => {
+    state.answers[q.id] = b.dataset.id;
+    advance();
+  }));
+  if ($('#btnNextQuestion')) $('#btnNextQuestion').onclick = advance;
+  $('#back').onclick = () => {
+    if (!state.index) return showSelf();
+    state.index--;
+    showQuestion();
+  };
 }
 
 // CV facultatif : analysé côté serveur, conservé à part, jamais utilisé pour remplir les réponses.
@@ -145,7 +168,7 @@ function setupCvBox() {
   if (!$('#cvSend')) return;
   $('#cvSend').onclick = async () => {
     const file = $('#cvFile').files?.[0];
-    if (!file) return ($('#cvError').textContent = 'Choisissez un fichier, ou passez directement au questionnaire.');
+    if (!file) return ($('#cvError').textContent = 'Choisissez un fichier, ou continuez sans CV.');
     if (file.size > 5 * 1024 * 1024) return ($('#cvError').textContent = 'Fichier trop volumineux (5 Mo maximum).');
     $('#cvSend').disabled = true;
     try {
@@ -278,7 +301,7 @@ async function showReveal() {
         </table>
       </div>`).join('')}
     <button class="primary" id="next">Voir mon profil et définir mes règles</button>`;
-  $('#next').onclick = showRules;
+  $('#next').onclick = () => showRules().catch((err) => showError(err, showRules));
 }
 
 // ------------------------------------------------------------------ Étape 4 : règles auto-définies
@@ -287,20 +310,46 @@ function reliabilityHtml(r) {
   if (!r) return '';
   return `<p class="small" style="margin:0 0 10px"><b>Fiabilité de ce profil : ${esc(r.label)}.</b> <span class="muted">${esc(r.summary)}</span></p>`;
 }
-function showRules() {
+/** Une règle dans l'écran de fin d'évaluation : une case, le comportement encadré et une phrase libre. */
+function ruleRowHtml(row, params) {
+  const p = params.find((x) => x.param === row.param);
+  return `<div class="rule ${row.risk ? 'risk' : ''} ${row.on ? '' : 'off'}" data-param="${esc(row.param ?? '')}">
+    <div class="row">
+      <input type="checkbox" class="on" ${row.on ? 'checked' : ''} aria-label="Activer cette règle">
+      ${row.custom
+        ? `<select class="param" aria-label="Comportement encadré">${params.map((x) => `<option value="${x.param}">${esc(x.label)}</option>`).join('')}</select>`
+        : `<b>${esc(p.label)}</b>`}
+      ${row.risk ? '<span class="badge warn" style="flex:none">à encadrer</span>' : ''}
+    </div>
+    ${row.reason ? `<p class="small muted">${esc(row.reason)}</p>` : ''}
+    <div class="editor">
+      <textarea class="text" rows="2" maxlength="300" placeholder="Écrivez votre règle, avec vos mots." aria-label="Texte de la règle">${esc(row.text)}</textarea>
+      <p class="small muted when" style="margin:6px 0 0"></p>
+    </div>
+  </div>`;
+}
+
+async function showRules() {
   setStep(4);
   const params = state.result.params;
-  const declaredScores = state.session?.declared || (state.result && state.result.observed) || {};
+  // Le profil déclaré vient du résultat : il est aussi disponible après un rechargement de page.
+  const declaredScores = Object.fromEntries(params.map((p) => [p.param, p.declared]));
   const observedScores = state.result.observed;
+  // Réévaluation : on repart des règles déjà écrites (toutes, même plusieurs sur un même comportement).
+  let mine = [];
+  if (state.session.kind === 'reevaluation') mine = (await api('GET', '/rules').catch(() => ({ rules: [] }))).rules;
+  const rows = params.flatMap((p) => {
+    const existing = mine.filter((r) => r.param === p.param);
+    return existing.length
+      ? existing.map((r) => ({ param: p.param, text: r.text, on: true, risk: p.atRisk, reason: p.reason }))
+      : [{ param: p.param, text: p.suggestedRule.text, on: p.atRisk, risk: p.atRisk, reason: p.reason }];
+  });
 
   view.innerHTML = `
     <div class="card">
       <h1>Votre reflet</h1>
       <p class="muted">À gauche, comment vous vous décriviez. À droite, comment vous avez agi. Plus les deux côtés diffèrent, plus le paramètre mérite une règle.</p>
-      
-      <!-- Graphique Hexagonal à 6 critères : what you think vs what you are -->
       ${hexagonChart(declaredScores, observedScores)}
-
       ${reliabilityHtml(state.result.reliability)}
       ${mirrorHead('Vous disiez', 'Vous avez fait')}
       ${params.map((p) => mirror(esc(p.label), p.declared, p.observed, p.reliability ? `fiabilité ${esc(p.reliability.label)}` : '')).join('')}
@@ -308,24 +357,10 @@ function showRules() {
     </div>
     <div class="card">
       <h2>Vos règles</h2>
-      <p class="muted">Pour chaque point fragile, fixez-vous une règle. ${partner ? `${esc(partner)} vous la rappellera` : 'Elle vous sera rappelée'}
-        avant tout ordre qui la concerne. Le texte et le seuil sont les vôtres : modifiez-les à tout moment.</p>
-      ${params.map((p) => `
-        <div class="rule ${p.atRisk ? 'risk' : 'off'}" data-param="${p.param}">
-          <div class="row">
-            <input type="checkbox" id="on-${p.param}" ${p.atRisk ? 'checked' : ''}>
-            <label for="on-${p.param}" style="margin:0; color:var(--ink); font-size:16px"><b>${esc(p.label)}</b>
-              ${p.atRisk ? '<span class="badge warn">à encadrer</span>' : ''}</label>
-          </div>
-          ${p.reason ? `<p class="small muted">${esc(p.reason)}</p>` : ''}
-          <div class="editor">
-            <div class="row"><textarea class="text" rows="2" maxlength="300" aria-label="Texte de la règle : ${esc(p.label)}">${esc(p.suggestedRule.text)}</textarea></div>
-            <div class="row small muted"><span style="flex:none">Seuil</span>
-              <input class="threshold" type="number" min="1" step="any" value="${p.suggestedRule.threshold}" aria-label="Seuil : ${esc(p.label)}">
-              <span>${esc(p.suggestedRule.unit)}. Il remplace <code>{seuil}</code> dans le texte.</span></div>
-            <p class="small preview" style="margin-bottom:0"></p>
-          </div>
-        </div>`).join('')}
+      <p class="muted">Pour chaque point fragile, écrivez-vous une règle, avec vos mots. ${partner ? `${esc(partner)} vous la rappellera` : 'Elle vous sera rappelée'}
+        avant tout ordre qui met ce comportement en jeu. Vous pourrez en ajouter, les modifier ou les retirer à tout moment depuis WorthKnowing.</p>
+      <div id="ruleRows">${rows.map((r) => ruleRowHtml(r, params)).join('')}</div>
+      <button class="mini" id="addRule">Ajouter une autre règle</button>
       <div class="error" id="error" role="alert"></div>
       <div class="actions">
         <button class="primary" id="save">${partner ? `Activer mon profil et retourner à ${esc(partner)}` : 'Activer mon profil'}</button>
@@ -335,26 +370,30 @@ function showRules() {
         et la composition de votre portefeuille à WorthKnowing, et à recevoir l’état de votre profil, votre score de dérive et le texte de vos règles.</p>` : ''}
     </div>`;
 
-  view.querySelectorAll('.rule').forEach((el) => {
-    const box = el.querySelector('input[type=checkbox]');
-    box.onchange = () => el.classList.toggle('off', !box.checked);
-    const preview = () => {
-      el.querySelector('.preview').textContent =
-        'Vous lirez : « ' + el.querySelector('.text').value.replace('{seuil}', el.querySelector('.threshold').value) + ' »';
+  const wire = (el) => {
+    const box = el.querySelector('.on');
+    const select = el.querySelector('.param');
+    const paramOf = () => (select ? select.value : el.dataset.param);
+    const when = () => {
+      el.querySelector('.when').textContent = 'Rappelée avant : ' + params.find((p) => p.param === paramOf()).suggestedRule.trigger + '.';
     };
-    el.querySelector('.text').oninput = el.querySelector('.threshold').oninput = preview;
-    preview();
-  });
+    box.onchange = () => el.classList.toggle('off', !box.checked);
+    if (select) select.onchange = when;
+    when();
+  };
+  view.querySelectorAll('#ruleRows .rule').forEach(wire);
+  $('#addRule').onclick = () => {
+    $('#ruleRows').insertAdjacentHTML('beforeend', ruleRowHtml({ custom: true, text: '', on: true }, params));
+    const el = $('#ruleRows').lastElementChild;
+    wire(el);
+    el.querySelector('.text').focus();
+  };
 
   $('#backToReveal').onclick = showReveal;
   $('#save').onclick = async () => {
-    const rules = [...view.querySelectorAll('.rule')]
-      .filter((el) => el.querySelector('input[type=checkbox]').checked)
-      .map((el) => ({
-        param: el.dataset.param,
-        text: el.querySelector('.text').value,
-        threshold: Number(el.querySelector('.threshold').value),
-      }));
+    const rules = [...view.querySelectorAll('#ruleRows .rule')]
+      .filter((el) => el.querySelector('.on').checked)
+      .map((el) => ({ param: el.querySelector('.param')?.value ?? el.dataset.param, text: el.querySelector('.text').value }));
     $('#save').disabled = true;
     $('#error').textContent = '';
     try {
@@ -387,7 +426,7 @@ async function init() {
         state.session = resumed;
         state.result = resumed.result;
         state.index = resumed.scenarios.findIndex((s) => !resumed.answered.includes(s.id));
-        if (state.result) return showRules();
+        if (state.result) return await showRules();
         return state.index < 0 ? showReveal() : showScenario();
       }
     }
@@ -405,7 +444,7 @@ async function init() {
         <button onclick="location.href='/profile.html'">Plus tard</button></div></div>`;
     $('#go').onclick = () => startSimulations(null);
   } else {
-    showQuestion();
+    showSelf();
   }
 }
 init();

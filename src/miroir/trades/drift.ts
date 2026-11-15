@@ -21,29 +21,3 @@ export function computeDrift(baseline: ParamScores, current: ParamScores, overri
 export const SIGNAL_WEIGHT = 0.35;
 /** Un trade sans écart rapproche les paramètres de la référence. */
 export const CALM_DECAY = 0.15;
-
-/** Calcule l'impact direct sur le facteur de dérive en cas de bris de garde-fou. */
-export function calculateDerivationImpact(
-  baseline: ParamScores,
-  current: ParamScores,
-  currentOverrides: number,
-  breachedCount: number,
-  threshold = 60,
-) {
-  const currentDriftScore = computeDrift(baseline, current, currentOverrides);
-  const projectedDriftScore = computeDrift(baseline, current, currentOverrides + breachedCount);
-  const addedDriftPoints = breachedCount * GUARDRAIL_BREACH_PENALTY;
-  const exceedsThreshold = projectedDriftScore >= threshold;
-  return {
-    guardrailsTriggered: breachedCount,
-    penaltyPerGuardrail: GUARDRAIL_BREACH_PENALTY,
-    addedDriftPoints,
-    currentDriftScore,
-    projectedDriftScore,
-    threshold,
-    exceedsThreshold,
-    warning: breachedCount > 0
-      ? `Attention : outrepasser ${breachedCount} garde-fou(s) ajoutera +${addedDriftPoints} points de pénalité à votre dérive (score projeté : ${projectedDriftScore}/${threshold}).`
-      : null,
-  };
-}

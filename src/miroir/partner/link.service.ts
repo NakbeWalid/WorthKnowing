@@ -1,4 +1,5 @@
 import { BadRequestException, ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { ruleText } from '../evaluation/rule-templates';
 import { randomUUID } from 'crypto';
 import { signToken, verifyToken } from '../../shared/local-auth';
 import { config } from '../config';
@@ -106,7 +107,7 @@ export class LinkService {
       status: user.status,
       drift: { score: user.drift.score, threshold: config.driftThreshold },
       evaluatedAt: user.profile?.evaluatedAt ?? null,
-      rules: user.rules.map((r) => ({ id: r.id, param: r.param, text: r.text.replace('{seuil}', String(r.threshold)) })),
+      rules: user.rules.map((r) => ({ id: r.id, param: r.param, text: ruleText(r) })),
     };
   }
 }

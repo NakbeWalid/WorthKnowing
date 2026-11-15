@@ -11,7 +11,7 @@ import { BehaviorAgent } from './agents/behavior.agent';
 import { Explainer } from './agents/explainer';
 import { GovernanceAgent } from './agents/governance.agent';
 import { InfluenceAgent } from './agents/influence.agent';
-import { CALM_DECAY, calculateDerivationImpact, computeDrift, GUARDRAIL_BREACH_PENALTY, SIGNAL_WEIGHT } from './drift';
+import { CALM_DECAY, computeDrift, GUARDRAIL_BREACH_PENALTY, SIGNAL_WEIGHT } from './drift';
 
 /** Portefeuille du client AVANT le trade, valorisé par la plateforme de courtage à la date de marché. */
 export interface PortfolioSnapshot {
@@ -61,24 +61,19 @@ export class TradesService {
     private events: EventsService,
   ) {}
 
-  /** Pré-contrôle sans effet : quelles règles rappeler au client AVANT qu'il confirme ? */
+  /**
+   * Pré-contrôle sans effet : quelles règles rappeler au client AVANT qu'il confirme ?
+   * Aucune projection du score de dérive ici : son évolution dépend de l'enquête (constats, nouvelles, influence),
+   * qui n'a lieu qu'après l'ordre. Avant, on rappelle les règles, rien de plus.
+   */
   async check(user: User, req: TradeRequest) {
     const metrics = this.metrics(user, req);
     const triggeredRules = this.governance.triggeredRules(user, metrics);
-    const derivationImpact = calculateDerivationImpact(
-      user.profile!.baseline,
-      user.profile!.current,
-      user.drift.overrides,
-      triggeredRules.length,
-      config.driftThreshold,
-    );
     return {
       triggeredRules,
       warnings: this.governance.coherenceWarnings(user, metrics),
       reevaluationRequired: user.status === 'reevaluation_required',
       drift: { score: user.drift.score, threshold: config.driftThreshold },
-      derivationImpact,
-      derivationFactorImpact: derivationImpact,
     };
   }
 
@@ -148,7 +143,8 @@ export class TradesService {
       // Math.floor (et non Math.round) garantit une convergence reelle vers 0, sans rester bloque a 1.
       user.drift.overrides = Math.floor(user.drift.overrides * (1 - CALM_DECAY));
     }
-    user.drift.overrides += triggeredRules.length;
+    const breached = breaches(triggeredRules);
+    user.drift.overrides += breached;
     user.drift.score = computeDrift(profile.baseline, profile.current, user.drift.overrides);
     if (user.drift.score >= config.driftThreshold) user.status = 'reevaluation_required';
 
@@ -159,8 +155,8 @@ export class TradesService {
         .map((p) => ({ param: p, before: before[p], after: profile.current[p] })),
       driftBefore, driftAfter: user.drift.score,
       derivationImpact: {
-        guardrailsBreached: triggeredRules.length,
-        penaltyAdded: triggeredRules.length * GUARDRAIL_BREACH_PENALTY,
+        guardrailsBreached: breached,
+        penaltyAdded: breached * GUARDRAIL_BREACH_PENALTY,
         exceededThreshold: user.drift.score >= config.driftThreshold,
       },
     };
@@ -207,5 +203,11 @@ export class TradesService {
     try { return this.market.context(ticker, date).speculative; } catch { return false; }
   }
 }
+
+/**
+ * Garde-fous outrepassés, comptés par comportement : plusieurs règles écrites sur le même comportement
+ * sont toutes rappelées, mais passer outre ne pèse qu'une fois dans la dérive.
+ */
+const breaches = (rules: { param: string }[]) => new Set(rules.map((r) => r.param)).size;
 
 const pause = () => new Promise((resolve) => setTimeout(resolve, config.pipelineStepDelayMs));

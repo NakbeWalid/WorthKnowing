@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TriggeredRule, User } from '../../domain/types';
-import { PARAM_CHECKS, TradeMetrics } from '../../evaluation/rule-templates';
+import { PARAM_CHECKS, ruleCrossed, ruleText, TradeMetrics } from '../../evaluation/rule-templates';
 
 /**
  * Agent de gouvernance — vérifie AVANT l'exécution que le trade respecte :
@@ -12,10 +12,10 @@ import { PARAM_CHECKS, TradeMetrics } from '../../evaluation/rule-templates';
 export class GovernanceAgent {
   triggeredRules(user: User, m: TradeMetrics): TriggeredRule[] {
     return user.rules
-      .filter((rule) => PARAM_CHECKS[rule.param].crossed(m, rule.threshold))
+      .filter((rule) => ruleCrossed(rule, m))
       .map((rule) => ({
         ruleId: rule.id, param: rule.param,
-        text: rule.text.replace('{seuil}', String(rule.threshold)),
+        text: ruleText(rule),
         reason: PARAM_CHECKS[rule.param].evidence(m),
       }));
   }

@@ -82,8 +82,8 @@ function renderMiroir(persona) {
     notice = `<div class="panel miroir">
       <h2>Ajouter WorthKnowing à votre compte ?</h2>
       <p>WorthKnowing est un service indépendant qui compare ce que vous dites de vous comme investisseur à ce que vous faites vraiment.
-        Vous y créez un compte, répondez à quelques questions et à cinq mises en situation, puis vous fixez vos propres règles intelligentes.
-        Ensuite, avant chaque ordre qui touche une de vos règles, nous vous la rappelons avec l'impact direct sur votre facteur de dérive.</p>
+        Vous y créez un compte, vous vous notez sur six traits, répondez à quelques questions et à dix mises en situation, puis vous écrivez vos propres règles.
+        Ensuite, avant chaque ordre qui touche une de vos règles, nous vous la rappelons ; après l’ordre, WorthKnowing l’analyse et met à jour votre score de dérive.</p>
       <p class="small muted">Si vous l’activez, nous envoyons à WorthKnowing vos ordres et la composition de votre portefeuille.
         Sans WorthKnowing, votre compte fonctionne normalement. Vous pourrez l’ajouter ou le retirer à tout moment.</p>
       <div class="actions"><button class="miroir" data-miroir="start">Activer WorthKnowing</button>
@@ -99,9 +99,9 @@ function renderMiroir(persona) {
   } else if (status === 'linked' && persona?.status === 'reevaluation_required') {
     notice = `<div class="panel alert">
       <h2>WorthKnowing : Seuil de dérive dépassé (${persona.drift.score} / ${persona.drift.threshold})</h2>
-      <p>Votre comportement récent a dépassé vos garde-fous. Vos ordres sont temporairement suspendus.
-        <b>Vous êtes invité à réajuster vos règles</b> sur WorthKnowing pour réaligner votre profil et réinitialiser votre dérive à 0.</p>
-      <div class="actions"><a class="button primary" href="${esc(urls.reevaluate)}">Réajuster mes règles sur WorthKnowing (Reset à 0)</a></div>
+      <p>Votre comportement récent s’est trop éloigné de votre profil. Vos ordres sont temporairement suspendus.
+        <b>Refaites votre évaluation</b> sur WorthKnowing : votre profil sera remis à jour et votre dérive repartira de 0.</p>
+      <div class="actions"><a class="button primary" href="${esc(urls.reevaluate)}">Refaire mon évaluation sur WorthKnowing</a></div>
     </div>`;
   }
 
@@ -110,8 +110,8 @@ function renderMiroir(persona) {
       <p style="margin:0"><b class="num" style="font-size:22px">${persona.drift.score}</b> <span class="muted">sur 100, score de dérive</span></p>
       <div class="meter"><i class="${persona.drift.score >= persona.drift.threshold ? 'high' : ''}" style="width:${persona.drift.score}%"></i>
         <b style="left:${persona.drift.threshold}%"></b></div>
-      <p class="small muted">À ${persona.drift.threshold}, WorthKnowing demande un réajustement des règles.</p>
-      <details><summary>Vos ${persona.rules.length} règle(s) intelligentes</summary>
+      <p class="small muted">À ${persona.drift.threshold}, WorthKnowing demande une réévaluation.</p>
+      <details><summary>Vos ${persona.rules.length} règle(s)</summary>
         <ul>${persona.rules.map((r) => `<li>${esc(r.text)}</li>`).join('') || '<li>Aucune règle définie.</li>'}</ul></details>`
       : '<p class="small muted">WorthKnowing ne répond pas pour le moment. Vos ordres passent normalement ; ils ne seront pas analysés.</p>'}
       <div class="actions"><a href="${esc(urls.profile)}" target="_blank" rel="noopener">Ouvrir mon profil WorthKnowing</a>
@@ -185,7 +185,6 @@ function confirmOrder(t, preview) {
   const m = preview.miroir;
   const rules = m.status === 'ok' ? m.triggeredRules : [];
   const warnings = m.status === 'ok' ? m.warnings : [];
-  const impact = m.status === 'ok' ? (m.derivationImpact || m.derivationFactorImpact) : null;
 
   return new Promise((resolve) => {
     $('#modalBody').innerHTML = `
@@ -200,16 +199,7 @@ function confirmOrder(t, preview) {
       ${rules.map((r) => `<div class="rule"><span class="badge miroir">${esc(PARAM_LABELS[r.param] ?? r.param)}</span>
         <p><b>« ${esc(r.text)} »</b></p><p class="small muted">${esc(r.reason)}</p></div>`).join('')}
 
-      ${rules.length && impact ? `
-        <div style="margin:12px 0; padding:10px; background:#fff1f2; border:1px solid #fecaca; border-radius:6px;">
-          <p style="margin:0; font-weight:700; color:#b91c1c;">
-            ⚠️ Impact sur le facteur de dérive : +${impact.addedDriftPoints} points de pénalité
-          </p>
-          <p class="small" style="margin:4px 0 0; color:#7f1d1d;">
-            Outrepasser ${impact.guardrailsTriggered} garde-fou(s) fera passer votre score de dérive de <b>${impact.currentDriftScore}</b> à <b>${impact.projectedDriftScore}</b> sur ${impact.threshold}.
-            ${impact.exceedsThreshold ? '<br><b style="color:#dc2626;">Attention : cet ordre dépassera le seuil de dérive. Vos ordres seront suspendus jusqu’à ce que vous réajustiez vos règles sur WorthKnowing.</b>' : ''}
-          </p>
-        </div>` : ''}
+      ${rules.length ? '<p class="small muted">Si vous passez outre, WorthKnowing en tiendra compte dans l’analyse de cet ordre. Son effet sur votre score de dérive ne sera connu qu’une fois l’analyse terminée.</p>' : ''}
 
       ${warnings.map((w) => `<div class="notice">${esc(w)}</div>`).join('')}
       ${m.status === 'unavailable' ? '<p class="small muted">WorthKnowing ne répond pas : cet ordre ne sera pas vérifié contre vos règles.</p>' : ''}
@@ -249,7 +239,7 @@ function verdictHtml(trade) {
     <p>${esc(m.summary)}</p>
     <p class="small muted">Score de dérive de cet ordre : <b>${m.driftBefore} → ${m.driftAfter}</b>.
       ${m.overrodeRules ? ' <span class="badge warn">garde-fou outrepassé</span>' : ''}
-      ${m.reevaluationRequired ? ' <span class="badge danger">Seuil dépassé — réajustement des règles exigé</span>' : ''}</p>
+      ${m.reevaluationRequired ? ' <span class="badge danger">Seuil dépassé — réévaluation exigée</span>' : ''}</p>
     <a href="${esc(me.miroir.urls.profile)}" target="_blank" rel="noopener">Consulter l’enquête complète sur mon profil WorthKnowing</a>
   </div>`;
 }

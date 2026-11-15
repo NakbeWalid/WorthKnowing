@@ -26,17 +26,6 @@ export interface MiroirCheck {
   warnings: string[];
   reevaluationRequired: boolean;
   drift: { score: number; threshold: number };
-  derivationImpact?: {
-    guardrailsTriggered: number;
-    penaltyPerGuardrail: number;
-    addedDriftPoints: number;
-    currentDriftScore: number;
-    projectedDriftScore: number;
-    threshold: number;
-    exceedsThreshold: boolean;
-    warning?: string | null;
-  };
-  derivationFactorImpact?: MiroirCheck['derivationImpact'];
 }
 export interface MiroirPersona {
   status: 'onboarding' | 'active' | 'reevaluation_required';

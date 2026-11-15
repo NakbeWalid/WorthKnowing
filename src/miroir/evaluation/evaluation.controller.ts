@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '../auth/auth.guard';
-import { Decision, ParamKey } from '../domain/types';
+import { Decision } from '../domain/types';
+import { RuleInput } from '../rules/rules.service';
 import { EvaluationService } from './evaluation.service';
 
 @Controller('api/evaluation')
@@ -14,7 +15,7 @@ export class EvaluationController {
 
   /** Étape 2 — démarre les simulations (answers facultatif lors d'une réévaluation). */
   @Post('start')
-  start(@Req() req: any, @Body() body: { answers?: Record<string, string> }) {
+  start(@Req() req: any, @Body() body: { answers?: Record<string, string | number> }) {
     return this.evaluation.start(req.user, body?.answers);
   }
 
@@ -38,7 +39,7 @@ export class EvaluationController {
   /** Étape 4 — règles auto-définies ; active le profil et remet la dérive à zéro. */
   @Post(':id/rules')
   finalize(@Req() req: any, @Param('id') id: string,
-    @Body() body: { rules: { param: ParamKey; text: string; threshold: number }[] }) {
+    @Body() body: { rules: Partial<RuleInput>[] }) {
     return this.evaluation.finalize(req.user, id, body?.rules);
   }
 }

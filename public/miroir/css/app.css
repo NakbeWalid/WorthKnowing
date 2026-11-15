@@ -128,3 +128,39 @@ details summary .grow { flex: 1; min-width: 180px; }
 svg.chart { width: 100%; height: auto; display: block; margin: 6px 0; }
 .disclaimer { text-align: center; font-size: 13px; color: var(--muted); padding: 6px 0 28px; }
 .empty { color: var(--muted); padding: 8px 0; }
+
+/* Onglets de l'espace personnel */
+.tabs { display: flex; gap: 4px; margin: -8px 0 24px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.tabs button { border: 0; border-bottom: 3px solid transparent; border-radius: 0; background: none; padding: 10px 16px; color: var(--muted); white-space: nowrap; margin-bottom: -1px; }
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-selected=true] { color: var(--ink); font-weight: 600; border-bottom-color: var(--accent); }
+.tabs .count:not(:empty) { margin-left: 4px; padding: 1px 8px; border-radius: 99px; background: var(--accent-soft); color: var(--accent); font-size: 12.5px; font-weight: 600; }
+section.column { max-width: 720px; }
+
+button.mini { padding: 6px 12px; font-size: 14px; border-radius: 8px; }
+ul.plain { list-style: none; margin: 0 0 14px; padding: 0; }
+ul.plain li { padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+ul.plain li:last-child { border-bottom: 0; }
+ul.platforms li { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 8px 22px; margin: 0; }
+dl.facts dt { color: var(--muted); font-size: 14px; } dl.facts dd { margin: 0; }
+code { font: 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #f1f0f6; padding: 2px 6px; border-radius: 6px; }
+code.key { display: block; padding: 10px 12px; word-break: break-all; }
+
+/* Règles : des phrases, avec leurs actions */
+.rule-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.rule-edit label:first-child { margin-top: 0; }
+.rule .editor { margin-top: 10px; }
+.rule .row select { max-width: 320px; }
+
+/* Auto-notation de 0 à 10 */
+.scale { padding: 16px 0; border-top: 1px solid var(--line); }
+.scale:first-of-type { margin-top: 18px; }
+.scale-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.scale-head label { margin: 0; font-size: 16px; color: var(--ink); font-weight: 600; }
+.scale-head output { font: 600 15px var(--sans); font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+.scale.set .scale-head output { color: var(--accent); }
+.scale input[type=range] { padding: 0; border: 0; background: none; height: 28px; margin: 6px 0 0; accent-color: var(--silver); cursor: pointer; }
+.scale.set input[type=range] { accent-color: var(--accent); }
+.scale-ends { display: flex; justify-content: space-between; gap: 16px; font-size: 13px; color: var(--muted); }
+.scale-ends span:last-child { text-align: right; }

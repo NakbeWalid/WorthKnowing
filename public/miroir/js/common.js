@@ -201,8 +201,8 @@ function hexagonChart(declared = {}, actual = {}, options = {}) {
   const legendY = H - 18;
 
   return `<div class="hexagon-chart-card" style="margin:16px 0; background:var(--card-bg, #fff); border-radius:8px; padding:12px;">
-    <h3 style="margin:0 0 4px; text-align:center; font-size:15px;">Hexagone Comportemental : Ce que vous pensez vs Ce que vous êtes</h3>
-    <p class="small muted" style="margin:0 0 10px; text-align:center;">Comparaison des 6 critères psychologiques d'investisseur (0 à 100)</p>
+    <h3 style="margin:0 0 4px; text-align:center; font-size:15px;">Ce que vous pensez et ce que vous faites</h3>
+    <p class="small muted" style="margin:0 0 10px; text-align:center;">Les 6 paramètres de votre profil d’investisseur, de 0 à 100</p>
     <div style="text-align:center; overflow-x:auto;">
       <svg viewBox="0 0 ${W} ${H}" style="width:100%; max-width:520px; height:auto; font-family:inherit;" role="img" aria-label="Hexagone 6 critères">
         ${gridPolys}
@@ -212,14 +212,14 @@ function hexagonChart(declared = {}, actual = {}, options = {}) {
         <polygon points="${actualPoly}" fill="rgba(217, 119, 6, 0.22)" stroke="#d97706" stroke-width="2.5" />
         ${actualDots}
         ${labelElems}
-        <g transform="translate(${cx - 165}, ${legendY})">
+        <g transform="translate(${cx - 150}, ${legendY})">
           <line x1="0" y1="0" x2="20" y2="0" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="4,3" />
           <circle cx="10" cy="0" r="4" fill="#2563eb" />
-          <text x="26" y="4" font-size="12" font-weight="600" fill="#2563eb">Ce que vous pensez (Déclaré)</text>
+          <text x="26" y="4" font-size="12" font-weight="600" fill="#2563eb">Ce que vous pensez</text>
 
-          <line x1="190" y1="0" x2="210" y2="0" stroke="#d97706" stroke-width="2.5" />
-          <circle cx="200" cy="0" r="4" fill="#d97706" />
-          <text x="216" y="4" font-size="12" font-weight="600" fill="#d97706">Ce que vous êtes (Comportement)</text>
+          <line x1="170" y1="0" x2="190" y2="0" stroke="#d97706" stroke-width="2.5" />
+          <circle cx="180" cy="0" r="4" fill="#d97706" />
+          <text x="196" y="4" font-size="12" font-weight="600" fill="#d97706">Ce que vous faites</text>
         </g>
       </svg>
     </div>

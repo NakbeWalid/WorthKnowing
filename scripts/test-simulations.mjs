@@ -79,7 +79,7 @@ let saved;
 svc.store.saveEvaluation = async (e) => { saved = e; };
 svc.store.saveUser = async () => {};
 const questions = svc.questions();
-const answers = Object.fromEntries(questions.map((q) => [q.id, q.options[0].id]));
+const answers = Object.fromEntries(questions.map((q) => [q.id, q.kind === 'self' ? 2 : q.options[0].id]));
 const session = await svc.start(user, answers);
 check(session.scenarios.length === 10, 'start : 10 situations envoyées au navigateur', `${session.scenarios.length}`);
 check(session.scenarios.map((s) => s.alias).join() === aliases.join(), 'start : alias « Titre A » à « Titre J » dans l’ordre');

@@ -1,7 +1,27 @@
-// Page de profil WorthKnowing : dérive, hexagone à 6 critères, règles intelligentes, intégration bancaire.
+// Espace WorthKnowing, en trois onglets :
+//   Tableau de bord — score de dérive, profil d'investisseur, ordres analysés ;
+//   Mes règles      — ajouter, modifier, retirer ses règles (des phrases, sans seuil) ;
+//   Profil          — le compte, la clé WorthKnowing (user id) et les plateformes de trading.
 
-let cachedRulesData = null;
+// ------------------------------------------------------------------ Onglets (mémorisés dans l'adresse : #regles, #profil)
+const TABS = ['reflet', 'regles', 'profil'];
+function showTab(name, push = true) {
+  const tab = TABS.includes(name) ? name : 'reflet';
+  TABS.forEach((t) => {
+    $(`#tab-${t}`).classList.toggle('hidden', t !== tab);
+    $(`#tabbtn-${t}`).setAttribute('aria-selected', String(t === tab));
+  });
+  if (push) history.replaceState(null, '', tab === 'reflet' ? location.pathname : '#' + tab);
+}
+document.querySelectorAll('.tabs [data-tab]').forEach((b) => (b.onclick = () => showTab(b.dataset.tab)));
+document.addEventListener('click', (e) => {
+  const go = e.target.closest('[data-goto]');
+  if (go) { showTab(go.dataset.goto); window.scrollTo(0, 0); }
+});
+window.addEventListener('hashchange', () => showTab(location.hash.slice(1), false));
+showTab(location.hash.slice(1), false);
 
+// ------------------------------------------------------------------ Tableau de bord
 async function refresh() {
   const me = await api('GET', '/me');
   if (me.role === 'admin' || !me.profile) return route(me);
@@ -23,13 +43,11 @@ async function refresh() {
   } else if (me.status === 'reevaluation_required' || me.drift.score >= me.driftThreshold) {
     top = `<div class="banner">
       <div>
-        <b>Seuil de dérive dépassé (${me.drift.score} sur ${me.driftThreshold}).</b> Votre comportement s’est trop éloigné de vos garde-fous.<br>
-        Vos ordres sont suspendus chez votre courtier jusqu’à ce que vous refassiez l’évaluation complète
-        (questionnaire et simulations). Modifier vos règles ne remet pas la dérive à zéro.
+        <b>Seuil de dérive dépassé (${me.drift.score} sur ${me.driftThreshold}).</b> Votre comportement s’est trop éloigné de votre profil de référence.<br>
+        Vos ordres sont suspendus chez votre courtier jusqu’à ce que vous refassiez les mises en situation.
+        Modifier vos règles ne remet pas la dérive à zéro.
       </div>
-      <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
-        <button class="primary" onclick="location.href='/onboarding.html'">Refaire l’évaluation complète</button>
-      </div>
+      <button class="primary" onclick="location.href='/onboarding.html'">Refaire l’évaluation</button>
     </div>`;
   } else if (p) {
     top = `<div class="card partner"><div class="row"><p style="margin:0">Votre profil est à jour.</p>
@@ -46,239 +64,191 @@ async function refresh() {
   $('#driftScore').textContent = me.drift.score;
   $('#driftNeedle').style.left = `calc(${me.drift.score}% - 2px)`;
   $('#driftLimit').style.left = me.driftThreshold + '%';
-  $('#driftText').textContent = `Écart entre votre comportement récent et votre dernière évaluation. À ${me.driftThreshold}, une réévaluation complète est exigée.`
+  $('#driftText').textContent = `Écart entre votre comportement récent et votre dernière évaluation. À ${me.driftThreshold}, une réévaluation est exigée.`
     + (me.drift.overrides ? ` Règles outrepassées depuis : ${me.drift.overrides}.` : '');
 
-
-  // Liaison avec le courtier
-  $('#link').innerHTML = me.link
-    ? `<p><span class="badge ok">Lié</span> ${esc(me.link.partner)}, depuis le ${esc(day(me.link.linkedAt))}.</p>
-       <p class="small muted">Vos ordres passés chez ${esc(me.link.partner)} sont analysés ici.</p>
-       <button id="revoke">Retirer l’accès de ${esc(me.link.partner)}</button>`
-    : `<p class="muted">Aucun compte de courtage lié. Pour que vos ordres soient analysés, activez WorthKnowing depuis les réglages de votre plateforme de courtage.</p>`;
-  if ($('#revoke')) $('#revoke').onclick = async () => {
-    if (!confirm(`Retirer l’accès de ${me.link.partner} ? Vos ordres ne seront plus analysés.`)) return;
-    await api('DELETE', '/link').catch((err) => alert(err.message));
-    refresh(); renderConnect().catch(() => {});
-  };
-
-  // Hexagone 6 critères (Ce que vous pensez vs Ce que vous êtes)
+  // Hexagone 6 critères (ce que vous pensez / ce que vous êtes) et barres miroir
   const { current, baseline, declared } = me.profile;
   $('#hexagonContainer').innerHTML = hexagonChart(declared || baseline, current || baseline);
-
-  // Barres miroir classiques
   $('#params').innerHTML = mirrorHead('À la dernière évaluation', 'Aujourd’hui')
     + Object.keys(PARAM_LABELS).map((k) => mirror(PARAM_LABELS[k], baseline[k], current[k])).join('');
   $('#evaluated').textContent = `Dernière évaluation le ${day(me.profile.evaluatedAt)} (${me.profile.evaluationCount} au total).`;
 
-  // Expertise détectée au CV : contexte pour l'analyse de vos futurs trades, n'entre pas dans ce profil.
-  const enrichBox = $('#enrichmentProfileBox');
-  if (enrichBox) {
-    const expertise = me.cvProfile?.expertise;
-    const label = { novice: 'novice', intermediate: 'intermédiaire', advanced: 'avancée' }[expertise];
-    enrichBox.innerHTML = label
-      ? `<p class="small muted">Expertise en trading détectée au CV : ${label}. Ce profil de référence n'en tient pas compte ;
-         elle sert uniquement à mettre en contexte l'analyse de vos futurs trades.</p>`
-      : '';
-  }
+  // Expertise détectée au CV : contexte pour l'analyse des futurs trades, n'entre pas dans ce profil.
+  const expertise = { novice: 'novice', intermediate: 'intermédiaire', advanced: 'avancée' }[me.cvProfile?.expertise];
+  $('#enrichmentProfileBox').innerHTML = expertise
+    ? `<p class="small muted">Expertise en trading détectée au CV : ${expertise}. Ce profil n’en tient pas compte ;
+       elle sert uniquement à mettre en contexte l’analyse de vos ordres.</p>`
+    : '';
 
-  // Règles actives
-  renderActiveRules(me.rules);
-
-  // Historique des ordres
+  // Ordres analysés
   $('#history').innerHTML = trades.length
     ? trades.map((t) => tradeRow(t)).join('')
     : `<p class="empty">Aucun ordre analysé pour l’instant. ${me.link ? `Passez un ordre chez ${esc(me.link.partner)} : son enquête apparaîtra ici.` : ''}</p>`;
 
-  // Configuration bouton d'édition des règles
-  $('#btnToggleRuleEditor').onclick = () => toggleSmartRuleEditor();
+  // Onglet Profil : le compte
+  $('#account').innerHTML = `
+    <dt>Nom</dt><dd>${esc(me.name)}</dd>
+    <dt>Courriel</dt><dd>${esc(me.email)}</dd>
+    <dt>Inscrit le</dt><dd>${esc(day(me.createdAt))}</dd>
+    <dt>État du profil</dt><dd>${statusBadge(me.status)}</dd>`;
 }
 
-function renderActiveRules(rules) {
+// ------------------------------------------------------------------ Mes règles : ajouter, modifier, retirer
+let rulesData = null;
+
+async function loadRules() {
+  rulesData = await api('GET', '/rules');
+  renderRules();
+}
+
+function renderRules() {
+  const { rules, suggestions, maxRules } = rulesData;
+  $('#rulesCount').textContent = rules.length ? rules.length : '';
+
+  // Résumé sur le tableau de bord
+  $('#rulesSummary').innerHTML = rules.length
+    ? `<ul class="plain">${rules.map((r) => `<li>${esc(r.text)}</li>`).join('')}</ul>`
+    : '<p class="empty">Aucune règle pour l’instant.</p>';
+
+  // Liste complète
   $('#rules').innerHTML = rules.length
-    ? rules.map((r) => `<div class="rule"><span class="badge grey">${PARAM_LABELS[r.param] ?? r.param}</span>
-        <p>${esc(r.text.replace('{seuil}', r.threshold))}</p></div>`).join('')
-    : '<p class="empty">Aucune règle active. Cliquez sur « Modifier mes règles » pour en définir.</p>';
-}
+    ? rules.map((r) => `<div class="rule" data-id="${esc(r.id)}">
+        <div class="rule-view">
+          <span class="badge grey">${esc(r.label)}</span>
+          <p>${esc(r.text)}</p>
+          <p class="small muted">Rappelée avant : ${esc(r.trigger)}.</p>
+          <div class="rule-actions"><button class="mini" data-edit>Modifier</button><button class="mini" data-remove>Retirer</button></div>
+        </div>
+      </div>`).join('')
+    : '<p class="empty">Aucune règle pour l’instant. Ajoutez-en une ci-dessous.</p>';
 
-async function openSmartRuleEditor(focusReset = false) {
-  const editor = $('#ruleEditor');
-  editor.classList.remove('hidden');
-  editor.scrollIntoView({ behavior: 'smooth' });
-  await loadAndRenderRuleEditor(focusReset);
-}
-
-function toggleSmartRuleEditor() {
-  const editor = $('#ruleEditor');
-  if (editor.classList.contains('hidden')) {
-    openSmartRuleEditor(false);
-  } else {
-    editor.classList.add('hidden');
-  }
-}
-
-async function loadAndRenderRuleEditor(focusReset = false) {
-  const editor = $('#ruleEditor');
-  editor.innerHTML = '<p class="small muted">Chargement des suggestions intelligentes…</p>';
-  try {
-    cachedRulesData = await api('GET', '/rules');
-  } catch (err) {
-    editor.innerHTML = `<p class="error">${esc(err.message)}</p>`;
-    return;
-  }
-
-  const { suggestions, rules, drift, status } = cachedRulesData;
-
-  editor.innerHTML = `
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-      <h3 style="margin:0; font-size:16px;">💡 Éditeur de règles intelligentes</h3>
-      <button class="mini" id="btnCloseEditor" style="flex:none;">Fermer</button>
-    </div>
-    <p class="small muted" style="margin:0 0 14px;">
-      Vous pouvez modifier, activer ou désactiver vos règles <b>à n'importe quel moment</b>.
-      Des suggestions intelligentes sont calculées automatiquement selon l'évolution de vos paramètres.
-    </p>
-
-    <div class="smart-rules-list">
-      ${suggestions.map((s) => {
-        const active = rules.find((r) => r.param === s.param);
-        const isChecked = Boolean(active);
-        const thresholdVal = active ? active.threshold : s.suggestion.threshold;
-        const textVal = active ? active.text : s.suggestion.text;
-
-        return `
-          <div class="rule-edit-card" data-param="${s.param}" style="margin-bottom:12px; padding:10px; background:white; border:1px solid ${s.isAtRisk ? '#f59e0b' : '#e2e8f0'}; border-radius:6px;">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <label style="margin:0; font-weight:600; display:flex; align-items:center; gap:6px; cursor:pointer;">
-                <input type="checkbox" class="chk-rule" ${isChecked ? 'checked' : ''}>
-                <span>${esc(s.label)}</span>
-                ${s.isAtRisk ? '<span class="badge warn" style="font-size:10px;">Point fragile</span>' : ''}
-              </label>
-              <span class="small muted">Score actuel : <b>${s.currentScore}/100</b></span>
-            </div>
-
-            ${s.suggestion.rationale ? `<p class="small" style="margin:6px 0; color:#475569;">💡 <b>Suggestion :</b> ${esc(s.suggestion.rationale)}</p>` : ''}
-
-            <div class="rule-fields ${isChecked ? '' : 'hidden'}" style="margin-top:8px;">
-              <textarea class="rule-text" rows="2" style="width:100%; font-size:13px;" aria-label="Texte de la règle">${esc(textVal)}</textarea>
-              <div style="display:flex; gap:8px; align-items:center; margin-top:6px;">
-                <span class="small muted">Seuil :</span>
-                <input type="number" class="rule-threshold" min="1" step="any" value="${thresholdVal}" style="width:90px;">
-                <span class="small muted">${esc(s.suggestion.unit)}</span>
-                <button type="button" class="mini btn-apply-smart" data-threshold="${s.suggestion.threshold}" data-text="${esc(s.suggestion.text)}" style="margin-left:auto;">Appliquer suggestion</button>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('')}
-    </div>
-
-    <p class="small muted">Modifier vos règles ne change ni votre score de dérive ni le blocage de vos ordres.</p>
-    <div style="display:flex; gap:8px; align-items:center;">
-      <button class="primary" id="btnSaveSmartRules">Enregistrer mes règles</button>
-      <button id="btnCancelEditor">Annuler</button>
-      <span class="small error" id="ruleEditorError" style="margin-left:8px;"></span>
-    </div>
-  `;
-
-  $('#btnCloseEditor').onclick = () => editor.classList.add('hidden');
-  $('#btnCancelEditor').onclick = () => editor.classList.add('hidden');
-
-  editor.querySelectorAll('.chk-rule').forEach((chk) => {
-    chk.onchange = () => {
-      const fields = chk.closest('.rule-edit-card').querySelector('.rule-fields');
-      fields.classList.toggle('hidden', !chk.checked);
+  $('#rules').querySelectorAll('.rule').forEach((el) => {
+    const rule = rules.find((r) => r.id === el.dataset.id);
+    el.querySelector('[data-edit]').onclick = () => editRule(el, rule);
+    el.querySelector('[data-remove]').onclick = async () => {
+      if (!confirm(`Retirer cette règle ?\n\n« ${rule.text} »`)) return;
+      try { rulesData = { ...rulesData, ...(await api('DELETE', `/rules/${encodeURIComponent(rule.id)}`)) }; await loadRules(); }
+      catch (err) { alert(err.message); }
     };
   });
 
-  editor.querySelectorAll('.btn-apply-smart').forEach((btn) => {
-    btn.onclick = () => {
-      const card = btn.closest('.rule-edit-card');
-      card.querySelector('.rule-threshold').value = btn.dataset.threshold;
-      card.querySelector('.rule-text').value = btn.dataset.text;
-      const chk = card.querySelector('.chk-rule');
-      if (!chk.checked) {
-        chk.checked = true;
-        card.querySelector('.rule-fields').classList.remove('hidden');
-      }
-    };
-  });
+  // Formulaire d'ajout
+  const select = $('#newRuleParam');
+  const keep = select.value;
+  select.innerHTML = suggestions.map((s) => `<option value="${s.param}">${esc(s.label)}</option>`).join('');
+  if (keep) select.value = keep;
+  const chosen = () => suggestions.find((s) => s.param === select.value);
+  const when = () => { $('#newRuleWhen').textContent = `Rappelée avant : ${chosen().trigger}.`; };
+  select.onchange = when;
+  when();
+  $('#useSuggestion').onclick = () => { $('#newRuleText').value = chosen().suggestion.text; $('#newRuleText').focus(); };
+  const full = rules.length >= maxRules;
+  $('#addRuleForm').querySelector('button.primary').disabled = full;
+  if (full) $('#addRuleError').textContent = `Vous avez ${maxRules} règles, le maximum. Retirez-en une pour en ajouter.`;
 
-  $('#btnSaveSmartRules').onclick = async () => {
-    const errorSpan = $('#ruleEditorError');
-    errorSpan.textContent = '';
-    const updatedRules = [];
+  // Règles proposées : les comportements marqués qui n'ont pas encore de règle
+  const proposed = suggestions.filter((s) => s.suggestion.recommended);
+  $('#ruleSuggestions').innerHTML = proposed.length && !full ? `<div class="card quiet">
+      <h2>Règles proposées</h2>
+      <p class="small muted">D’après votre profil actuel, ces comportements gagneraient à être encadrés.</p>
+      ${proposed.map((s) => `<div class="rule risk">
+        <span class="badge warn">${esc(s.label)}</span>
+        <p>${esc(s.suggestion.text)}</p>
+        <p class="small muted">${esc(s.suggestion.rationale)}</p>
+        <div class="rule-actions"><button class="mini" data-adopt="${s.param}">Ajouter cette règle</button>
+          <button class="mini" data-adapt="${s.param}">L’adapter d’abord</button></div>
+      </div>`).join('')}</div>` : '';
+  $('#ruleSuggestions').querySelectorAll('[data-adopt]').forEach((b) => (b.onclick = async () => {
+    const s = suggestions.find((x) => x.param === b.dataset.adopt);
+    b.disabled = true;
+    try { await api('POST', '/rules', { param: s.param, text: s.suggestion.text }); await loadRules(); }
+    catch (err) { alert(err.message); b.disabled = false; }
+  }));
+  $('#ruleSuggestions').querySelectorAll('[data-adapt]').forEach((b) => (b.onclick = () => {
+    const s = suggestions.find((x) => x.param === b.dataset.adapt);
+    select.value = s.param; when();
+    $('#newRuleText').value = s.suggestion.text;
+    $('#newRuleText').focus();
+  }));
+}
 
-    editor.querySelectorAll('.rule-edit-card').forEach((card) => {
-      const isChecked = card.querySelector('.chk-rule').checked;
-      if (isChecked) {
-        const param = card.dataset.param;
-        const text = card.querySelector('.rule-text').value.trim();
-        const threshold = Number(card.querySelector('.rule-threshold').value);
-        if (text && threshold > 0) {
-          updatedRules.push({ param, text, threshold });
-        }
-      }
-    });
-
-    $('#btnSaveSmartRules').disabled = true;
-
+/** Passe une règle en mode édition, sur place. */
+function editRule(el, rule) {
+  const { suggestions } = rulesData;
+  el.innerHTML = `<form class="rule-edit">
+    <label for="edit-param-${esc(rule.id)}">Comportement encadré</label>
+    <select id="edit-param-${esc(rule.id)}">${suggestions.map((s) => `<option value="${s.param}" ${s.param === rule.param ? 'selected' : ''}>${esc(s.label)}</option>`).join('')}</select>
+    <label for="edit-text-${esc(rule.id)}">Ma règle</label>
+    <textarea id="edit-text-${esc(rule.id)}" rows="2" maxlength="300" required>${esc(rule.text)}</textarea>
+    <div class="error" role="alert"></div>
+    <div class="rule-actions"><button class="mini primary">Enregistrer</button><button type="button" class="mini" data-cancel>Annuler</button></div>
+  </form>`;
+  const form = el.querySelector('form');
+  form.querySelector('textarea').focus();
+  form.querySelector('[data-cancel]').onclick = renderRules;
+  form.onsubmit = async (e) => {
+    e.preventDefault();
     try {
-      await api('PUT', '/rules', { rules: updatedRules });
-      editor.classList.add('hidden');
-      await refresh();
-      alert('Règles mises à jour. Votre score de dérive n’a pas changé.');
-    } catch (err) {
-      errorSpan.textContent = err.message;
-    } finally {
-      $('#btnSaveSmartRules').disabled = false;
-    }
+      await api('PUT', `/rules/${encodeURIComponent(rule.id)}`, { param: form.querySelector('select').value, text: form.querySelector('textarea').value });
+      await loadRules();
+    } catch (err) { form.querySelector('.error').textContent = err.message; }
   };
 }
 
-(async () => {
-  if (!session.token) return (location.href = '/');
-  refresh().catch((err) => {
-    $('#top').innerHTML = `<div class="banner"><div>${esc(err.message)}</div><button onclick="location.reload()">Réessayer</button></div>`;
-  });
-})();
+$('#addRuleForm').onsubmit = async (e) => {
+  e.preventDefault();
+  $('#addRuleError').textContent = '';
+  try {
+    await api('POST', '/rules', { param: $('#newRuleParam').value, text: $('#newRuleText').value });
+    $('#newRuleText').value = '';
+    await loadRules();
+  } catch (err) { $('#addRuleError').textContent = err.message; }
+};
 
-// ------------------------------------------------------------------ User id et identifiants institution
-// User id : vous représente auprès des institutions. Créé automatiquement, toujours visible, seulement régénérable.
-// ID institution : votre identifiant chez une plateforme. Reçu automatiquement quand vous liez la plateforme,
-// ou ajouté à la main pour qu'une autre plateforme puisse faire analyser vos trades.
+// ------------------------------------------------------------------ Profil : clé WorthKnowing et plateformes de trading
+// User id : vous représente auprès des plateformes. Créé automatiquement, toujours visible, seulement régénérable.
+// Identifiant plateforme : votre identifiant chez une plateforme. Reçu automatiquement quand vous la liez,
+// ou ajouté à la main pour qu'une autre plateforme puisse faire analyser vos ordres.
 async function renderConnect() {
   const c = await api('GET', '/connect');
   $('#token').innerHTML = c.token
-    ? `<div class="row"><code style="flex:1; word-break:break-all">${esc(c.token.value)}</code><button class="mini" id="copyToken">Copier</button></div>
-       <p class="small muted">Créé le ${esc(day(c.token.createdAt))}. Ne le donnez qu’aux institutions de la liste ci-dessous.</p>
-       <button class="mini" id="regenToken">Régénérer</button><div class="error" id="tokenError"></div>`
-    : '<p class="muted">Votre user id sera créé automatiquement à la fin de votre évaluation.</p>';
+    ? `<div class="row"><code class="key">${esc(c.token.value)}</code><button class="mini" id="copyToken" style="flex:none">Copier</button></div>
+       <p class="small muted" style="margin-top:8px">Créée le ${esc(day(c.token.createdAt))}. Ne la donnez qu’aux plateformes de la liste ci-dessous.</p>
+       <button class="mini" id="regenToken">Régénérer</button><div class="error" id="tokenError" role="alert"></div>`
+    : '<p class="muted">Votre clé sera créée automatiquement à la fin de votre évaluation.</p>';
   if ($('#copyToken')) $('#copyToken').onclick = () => navigator.clipboard.writeText(c.token.value).then(() => { $('#copyToken').textContent = 'Copié'; });
   if ($('#regenToken')) $('#regenToken').onclick = async () => {
     const linked = c.platforms.find((p) => p.source === 'link');
-    if (!confirm(`Régénérer votre user id ? L’ancien cessera aussitôt de fonctionner.${linked ? ` ${linked.name} recevra automatiquement le nouveau.` : ''}`)) return;
+    if (!confirm(`Régénérer votre clé ? L’ancienne cessera aussitôt de fonctionner.${linked ? ` ${linked.name} recevra automatiquement la nouvelle.` : ''}`)) return;
     try {
       const r = await api('POST', '/connect/token/regenerate');
-      if (r.manualPlatforms.length) alert(`Nouveau user id créé. Donnez-le à : ${r.manualPlatforms.join(', ')} (plateformes ajoutées à la main).`);
+      if (r.manualPlatforms.length) alert(`Nouvelle clé créée. Donnez-la à : ${r.manualPlatforms.join(', ')} (plateformes ajoutées à la main).`);
       renderConnect();
     } catch (err) { $('#tokenError').textContent = err.message; }
   };
 
   $('#platforms').innerHTML = `
-    ${c.platforms.length ? `<ul>${c.platforms.map((p) => `<li><b>${esc(p.name)}</b> — ID institution <code>${esc(p.accountId)}</code>
-        ${p.source === 'link' ? '<span class="badge ok">lié automatiquement</span>'
-          : `<span class="badge grey">ajouté à la main</span> <button class="mini" data-remove="${esc(p.id)}">Retirer</button>`}</li>`).join('')}</ul>`
-      : '<p class="muted">Aucune institution. Liez votre compte depuis votre plateforme de courtage, ou ajoutez-en une ci-dessous.</p>'}
+    ${c.platforms.length ? `<ul class="plain platforms">${c.platforms.map((p) => `<li>
+        <div><b>${esc(p.name)}</b> ${p.source === 'link' ? '<span class="badge ok">liée</span>' : '<span class="badge grey">ajoutée à la main</span>'}<br>
+          <span class="small muted">Mon identifiant :</span> <code>${esc(p.accountId)}</code></div>
+        ${p.source === 'link' ? `<button class="mini" data-unlink="${esc(p.name)}">Retirer l’accès</button>`
+          : `<button class="mini" data-remove="${esc(p.id)}">Retirer</button>`}</li>`).join('')}</ul>`
+      : '<p class="muted">Aucune plateforme. Activez WorthKnowing depuis les réglages de votre plateforme de courtage, ou ajoutez-en une ci-dessous.</p>'}
     ${c.token ? `<form id="addPlatform">
-      <p class="small muted" style="margin:0">Une autre plateforme ? Ajoutez votre identifiant chez elle pour que vos trades soient aussi analysés.</p>
-      <label for="pfName">Institution</label><input id="pfName" maxlength="60" placeholder="ex. Wealthsimple" required>
-      <label for="pfAccount">Mon ID chez cette institution</label><input id="pfAccount" maxlength="100" required>
-      <div class="error" id="pfError"></div>
+      <h3 style="margin-top:18px">Ajouter une plateforme</h3>
+      <label for="pfName">Plateforme</label><input id="pfName" maxlength="60" placeholder="ex. Wealthsimple" required>
+      <label for="pfAccount">Mon identifiant chez elle</label><input id="pfAccount" maxlength="100" required>
+      <div class="error" id="pfError" role="alert"></div>
       <button class="mini primary">Ajouter</button>
     </form>` : ''}`;
+  $('#platforms').querySelectorAll('[data-unlink]').forEach((b) => (b.onclick = async () => {
+    if (!confirm(`Retirer l’accès de ${b.dataset.unlink} ? Vos ordres n’y seront plus analysés.`)) return;
+    await api('DELETE', '/link').catch((err) => alert(err.message));
+    refresh().catch(() => {}); renderConnect().catch(() => {});
+  }));
   $('#platforms').querySelectorAll('[data-remove]').forEach((b) => (b.onclick = async () => {
-    if (!confirm('Retirer cette institution ? Ses trades ne seront plus analysés.')) return;
+    if (!confirm('Retirer cette plateforme ? Ses ordres ne seront plus analysés.')) return;
     await api('DELETE', `/connect/platforms/${encodeURIComponent(b.dataset.remove)}`).catch((err) => alert(err.message));
     renderConnect();
   }));
@@ -290,4 +260,14 @@ async function renderConnect() {
     } catch (err) { $('#pfError').textContent = err.message; }
   };
 }
-renderConnect().catch(() => {});
+
+// ------------------------------------------------------------------ Démarrage
+(async () => {
+  if (!session.token) return (location.href = '/');
+  try {
+    await refresh();
+    await Promise.all([loadRules(), renderConnect()]);
+  } catch (err) {
+    $('#top').innerHTML = `<div class="banner"><div>${esc(err.message)}</div><button onclick="location.reload()">Réessayer</button></div>`;
+  }
+})();

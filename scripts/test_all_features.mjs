@@ -11,7 +11,7 @@ import { BehaviorAgent } from '../dist/miroir/trades/agents/behavior.agent.js';
 import { TemplateExplainer } from '../dist/miroir/trades/agents/explainer.js';
 import { NoInfluenceAgent } from '../dist/miroir/trades/agents/influence.agent.js';
 import { newUser } from '../dist/miroir/auth/auth.service.js';
-import { calculateDerivationImpact, GUARDRAIL_BREACH_PENALTY } from '../dist/miroir/trades/drift.js';
+import { computeDrift, GUARDRAIL_BREACH_PENALTY } from '../dist/miroir/trades/drift.js';
 import { ParserController } from '../dist/miroir/parser/parser.controller.js';
 
 let passed = 0;
@@ -50,14 +50,8 @@ console.log('\n--- 3. Test Derivation Factor Impact & Guardrail Penalty ---');
 assert(GUARDRAIL_BREACH_PENALTY === 8, 'Pénalité de 8 points par garde-fou brisé');
 const baseline = { riskTolerance: 50, lossAversion: 40, fomo: 30, concentration: 30, impulsivity: 20, newsSensitivity: 30 };
 const current = { riskTolerance: 50, lossAversion: 40, fomo: 30, concentration: 30, impulsivity: 20, newsSensitivity: 30 };
-const impact0 = calculateDerivationImpact(baseline, current, 0, 0, 60);
-assert(impact0.addedDriftPoints === 0, '0 garde-fou brisé = 0 point ajouté');
-assert(impact0.currentDriftScore === 0, 'Dérive courante 0');
-
-const impact2 = calculateDerivationImpact(baseline, current, 0, 2, 60);
-assert(impact2.guardrailsTriggered === 2, '2 garde-fous déclenchés');
-assert(impact2.addedDriftPoints === 16, 'Pénalité ajoutée = 2 x 8 = 16 points');
-assert(impact2.projectedDriftScore >= 16, 'Score projeté >= 16');
+assert(computeDrift(baseline, current, 0) === 0, 'Profil inchangé, aucune règle outrepassée : dérive 0');
+assert(computeDrift(baseline, current, 2) === 16, '2 garde-fous outrepassés = 2 x 8 = 16 points');
 
 console.log('\n--- 4. Test Smart Rules & Editable Anytime ---');
 const store = new JsonStore();
@@ -85,12 +79,12 @@ const smartRules = await rulesService.getSmartRules(testUser);
 assert(smartRules.suggestions.length === 6, '6 critères avec suggestions intelligentes');
 const fomoSug = smartRules.suggestions.find((s) => s.param === 'fomo');
 assert(fomoSug.isAtRisk === true, 'FOMO détecté comme point fragile');
-assert(fomoSug.suggestion.threshold <= 15, 'Seuil FOMO intelligent abaissé');
+assert(fomoSug.suggestion.recommended === true && fomoSug.suggestion.text && !('threshold' in fomoSug.suggestion), 'Règle FOMO proposée : un texte, aucun seuil');
 
 // Modification des règles n'importe quand
 const updated = await rulesService.saveRules(testUser, [
-  { param: 'fomo', text: 'Je n’achète pas d’actif en hausse de {seuil} %', threshold: 12 },
-  { param: 'impulsivity', text: 'J’attends au moins {seuil} secondes', threshold: 15 },
+  { param: 'fomo', text: 'Je n’achète pas un actif qui vient de s’envoler.' },
+  { param: 'impulsivity', text: 'Je prends le temps de réfléchir avant un ordre.' },
 ]);
 assert(updated.ok === true, 'Enregistrement des règles anytime réussi');
 assert(testUser.rules.length === 2, '2 règles sauvegardées sur l’utilisateur');
@@ -99,22 +93,28 @@ console.log('\n--- 5. Modifier ses règles ne remet pas la dérive à zéro ---'
 testUser.drift = { score: 65, overrides: 4 }; // dépassement du seuil (60)
 testUser.status = 'reevaluation_required';
 await store.saveUser(testUser);
-await rulesService.saveRules(testUser, [{ param: 'fomo', text: 'Pas d’achat après +{seuil} %', threshold: 10 }]);
+await rulesService.saveRules(testUser, [{ param: 'fomo', text: 'Pas d’achat au sommet.' }, { param: 'impulsivity', text: 'Je prends mon temps.' }, { param: 'impulsivity', text: 'Jamais d’ordre à la hâte.' }]);
 assert(testUser.drift.score === 65 && testUser.drift.overrides === 4, 'Dérive inchangée après édition des règles');
 assert(testUser.status === 'reevaluation_required', 'Statut reevaluation_required conservé');
 testUser.status = 'active';
-console.log('\n--- 6. Test pré-contrôle : impact sur la dérive ---');
+console.log('\n--- 6. Test pré-contrôle : rappel des règles, sans projection de la dérive ---');
 const checkRes = await trades.check(testUser, {
   ticker: 'NVDA',
   side: 'buy',
   amount: 25000,
   marketDate: '2023-05-30',
   portfolio: { cash: 100000, positions: [] },
-  decisionTimeMs: 1000, // 1 seconde -> déclenche la règle d'impulsivité (seuil 15s)
+  decisionTimeMs: 1000, // 1 seconde -> met l'impulsivité en jeu : ses deux règles sont rappelées
 });
-assert(checkRes.triggeredRules.length > 0, 'Règle d’impulsivité déclenchée');
-assert(checkRes.derivationImpact !== undefined, 'Impact facteur de dérive calculé');
-assert(checkRes.derivationImpact.addedDriftPoints >= 8, 'Pénalité calculée (+8 points)');
+assert(checkRes.triggeredRules.filter((r) => r.param === 'impulsivity').length === 2, 'Les deux règles d’impulsivité sont rappelées');
+assert(!('derivationImpact' in checkRes) && !('derivationFactorImpact' in checkRes), 'Avant l’ordre : aucune projection de la dérive (elle dépend de l’enquête)');
+const driftBeforeOrder = testUser.drift.score;
+const overridesBefore = testUser.drift.overrides;
+const done = await trades.submit(testUser, { ticker: 'NVDA', side: 'buy', amount: 25000, marketDate: '2023-05-30', portfolio: { cash: 100000, positions: [] }, decisionTimeMs: 1000 });
+const inv = done.trade.investigation;
+assert(inv.driftBefore === driftBeforeOrder && typeof inv.driftAfter === 'number', 'Après l’ordre : l’enquête donne la dérive avant et après');
+assert(testUser.drift.overrides - overridesBefore === new Set(inv.triggeredRules.map((r) => r.param)).size
+  && inv.derivationImpact.guardrailsBreached === testUser.drift.overrides - overridesBefore, 'Pénalité comptée une fois par comportement, pas par règle');
 
 console.log('\n--- 7. Test ParserController : CV conservé à part, expertise seule, sans réponses suggérées ---');
 const parserCtrl = new ParserController(cvParser, store);

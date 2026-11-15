@@ -60,7 +60,7 @@ async function loadDetail() {
         <div>
           <h3>Règles auto-définies</h3>
           ${user.rules.map((r) => `<div class="rule"><span class="badge grey">${PARAM_LABELS[r.param]}</span>
-            <p>${esc(r.text.replace('{seuil}', r.threshold))}</p></div>`).join('') || '<p class="empty">Aucune règle.</p>'}
+            <p>${esc(r.text.replace('{seuil}', r.threshold ?? ''))}</p></div>`).join('') || '<p class="empty">Aucune règle.</p>'}
         </div>
       </div>` : '<p class="empty">Évaluation initiale non terminée.</p>'}
       <h3 style="margin-top:22px">Ordres reçus et enquêtes</h3>

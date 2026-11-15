@@ -16,14 +16,18 @@ export const PARAM_INFO: Record<ParamKey, { label: string; high: string }> = {
   newsSensitivity: { label: 'Sensibilité aux nouvelles', high: 'réagit à chaud aux manchettes' },
 };
 
-/** Règle que l'utilisateur se définit lui-même pour encadrer un paramètre fragile. */
+/**
+ * Règle que l'utilisateur se définit lui-même : une phrase, rattachée à un comportement (`param`).
+ * Elle lui est rappelée quand un ordre met ce comportement en jeu. Aucun seuil à régler.
+ */
 export interface Rule {
   id: string;
   param: ParamKey;
-  /** Texte libre ; « {seuil} » est remplacé par la valeur du seuil à l'affichage. */
   text: string;
-  threshold: number;
+  /** Uniquement sur les règles créées avant les règles textuelles (leur texte contient « {seuil} »). */
+  threshold?: number;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export interface Profile {
@@ -113,17 +117,6 @@ export interface ExternalPlatform {
   accountId: string;
   addedAt: string;
   lastUsedAt?: string;
-}
-
-export interface DerivationFactorImpact {
-  guardrailsTriggered: number;
-  penaltyPerGuardrail: number;
-  addedDriftPoints: number;
-  currentDriftScore: number;
-  projectedDriftScore: number;
-  threshold: number;
-  exceedsThreshold: boolean;
-  warning?: string | null;
 }
 
 export type ScenarioType = 'crash' | 'hype' | 'shock' | 'flat' | 'winner';

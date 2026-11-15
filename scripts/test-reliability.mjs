@@ -42,7 +42,7 @@ check(ov.counts.high === 2 && ov.counts.low === 2 && /2 paramètres sur 6/.test(
 console.log('\n# Enregistrement de la confiance et calcul du profil');
 const svc = new EvaluationService(new JsonStore(), { emit() {} });
 await svc.onModuleInit();
-const answers = Object.fromEntries(svc.questions().map((q) => [q.id, q.options[0].id]));
+const answers = Object.fromEntries(svc.questions().map((q) => [q.id, q.kind === 'self' ? 2 : q.options[0].id]));
 let saved;
 svc.store.saveEvaluation = async (e) => { saved = e; };
 svc.store.saveUser = async () => {};
