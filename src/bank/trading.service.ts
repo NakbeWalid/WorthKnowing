@@ -126,7 +126,37 @@ export class TradingService {
   /** Cotation d'un actif à une date de marché. */
   quote(ticker: string, date?: string) {
     const c = this.market.context(String(ticker), date || this.market.lastDate);
-    return { ticker: c.ticker, name: c.name, price: c.price, currency: c.currency, date: c.date, ret1d: c.ret1d, ret30d: c.ret30d, vol30d: c.vol30d };
+    return {
+      ticker: c.ticker, name: c.name, price: c.price, currency: c.currency, date: c.date, ret1d: c.ret1d, ret30d: c.ret30d, vol30d: c.vol30d,
+      history: this.market.history(c.ticker, c.date, 90),
+    };
+  }
+
+  /**
+   * Valeur du compte dans le temps : on rejoue les ordres (dans l'ordre où ils ont été passés) et on
+   * valorise le portefeuille à chaque séance, de la veille du premier ordre jusqu'à l'horloge du compte.
+   * Échantillonné à ~120 points au plus.
+   */
+  async valueHistory(account: Account, startingCash: number) {
+    const trades = [...(await this.store.listTrades(account.id))].sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+    if (!trades.length || !account.asOf) return { points: [] as { date: string; value: number }[] };
+    const days = this.market.sessions(trades[0].marketDate, account.asOf);
+    const step = Math.max(1, Math.ceil(days.length / 120));
+    const sampled = days.filter((_, i) => i % step === 0 || i === days.length - 1);
+    let cash = startingCash;
+    const qty: Record<string, number> = {};
+    let k = 0;
+    const points = [{ date: trades[0].marketDate, value: startingCash, start: true }] as { date: string; value: number; start?: boolean }[];
+    for (const date of sampled) {
+      while (k < trades.length && trades[k].marketDate <= date) {
+        const t = trades[k++];
+        cash += t.side === 'buy' ? -t.amount : t.amount;
+        qty[t.ticker] = (qty[t.ticker] ?? 0) + (t.side === 'buy' ? t.qty : -t.qty);
+      }
+      const value = cash + Object.entries(qty).reduce((sum, [ticker, q]) => sum + (q > 1e-9 ? q * this.market.priceAt(ticker, date) : 0), 0);
+      points.push({ date, value });
+    }
+    return { points: points.map(({ date, value }) => ({ date, value: Math.round(value * 100) / 100 })) };
   }
 
   // ------------------------------------------------------------------ privé

@@ -64,6 +64,18 @@ export class MarketService implements OnModuleInit {
     };
   }
 
+  /** Les `n` dernières clôtures jusqu'à `date` incluse (graphiques côté navigateur). */
+  history(ticker: string, date: string, n = 90) {
+    const { series, i } = this.locate(ticker, date);
+    const from = Math.max(0, i - n + 1);
+    return { dates: series.dates.slice(from, i + 1), close: series.close.slice(from, i + 1) };
+  }
+
+  /** Séances du calendrier de référence (SPY) entre deux dates incluses. */
+  sessions(from: string, to: string) {
+    return this.series.get('SPY')!.dates.filter((d) => d >= from && d <= to);
+  }
+
   private locate(ticker: string, date: string) {
     const series = this.series.get(ticker);
     if (!series) throw new BadRequestException(`Actif inconnu : ${ticker}`);

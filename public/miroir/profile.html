@@ -3,97 +3,73 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WorthKnowing — Mon espace</title>
+  <link rel="stylesheet" href="/shared/ui.css">
   <link rel="stylesheet" href="/css/app.css">
 </head>
-<body>
-<header class="top">
-  <a class="brand" href="/profile.html">WorthKnowing</a>
-  <span class="muted" id="hello"></span><div class="spacer"></div>
-  <button class="link" onclick="session.clear()">Déconnexion</button>
-</header>
-<main>
-  <nav class="tabs" role="tablist" aria-label="Sections de mon espace">
-    <button role="tab" id="tabbtn-reflet" data-tab="reflet" aria-controls="tab-reflet">Tableau de bord</button>
-    <button role="tab" id="tabbtn-regles" data-tab="regles" aria-controls="tab-regles">Mes règles <span class="count" id="rulesCount"></span></button>
-    <button role="tab" id="tabbtn-profil" data-tab="profil" aria-controls="tab-profil">Profil</button>
-  </nav>
+<body class="wk">
+<header class="nav"></header>
+<main class="page">
   <div id="top"></div>
 
-  <section id="tab-reflet" role="tabpanel" aria-labelledby="tabbtn-reflet">
-    <div class="grid side">
-      <div>
-        <div class="card">
-          <h2>Score de dérive</h2>
-          <div class="drift"><span class="score num" id="driftScore">0</span><span class="muted">sur 100</span></div>
-          <div class="gauge"><i id="driftNeedle"></i><b id="driftLimit"></b></div>
-          <p class="small muted" id="driftText" style="margin:0"></p>
-        </div>
-        <div class="card">
-          <h2>Mes règles</h2>
-          <div id="rulesSummary"></div>
-          <button class="mini" data-goto="regles">Gérer mes règles</button>
-        </div>
+  <!-- ================================================ Tableau de bord -->
+  <section id="tab-reflet" class="view">
+    <div class="section-head"><h1 id="greeting">Bonjour</h1><span class="muted" id="evaluated"></span></div>
+
+    <div class="grid g-side stagger">
+      <div class="widget">
+        <div class="widget-head"><h3>Score de dérive</h3><span id="driftPill"></span></div>
+        <div id="gauge"></div>
+        <p class="small muted" style="text-align:center;margin-top:12px" id="driftText"></p>
       </div>
-      <div>
-        <div class="card">
-          <h2>Mon profil d’investisseur</h2>
-          <div id="hexagonContainer"></div>
+      <div class="widget">
+        <div class="widget-head"><h3>Ce que vous dites, ce que vous faites</h3>
+          <div class="legend"><span><i class="dash"></i>Déclaré</span><span><i style="background:var(--red)"></i>Aujourd’hui</span></div></div>
+        <div class="grid g-2" style="align-items:center">
+          <div class="chart-box" style="height:280px"><canvas id="radar"></canvas></div>
           <div id="params"></div>
-          <p class="small muted" id="evaluated"></p>
-          <div id="enrichmentProfileBox"></div>
-          <button onclick="location.href='/onboarding.html'">Refaire une évaluation</button>
         </div>
-        <div class="card">
-          <h2>Mes ordres analysés</h2>
-          <div id="history"></div>
-        </div>
+      </div>
+    </div>
+
+    <div class="grid g-side section stagger">
+      <div class="widget">
+        <div class="widget-head"><h3>Mes règles</h3><button class="btn link sm" data-goto="regles">Gérer ›</button></div>
+        <div id="rulesSummary"></div>
+      </div>
+      <div class="widget">
+        <div class="widget-head"><h3>Suivi de mes ordres</h3>
+          <div class="legend"><span><i style="background:var(--ink)"></i>Dérive</span><span><i style="background:var(--red)"></i>Règle outrepassée</span></div></div>
+        <div id="driftChartBox" class="chart-box hidden" style="height:200px;margin-bottom:12px"><canvas id="driftChart"></canvas></div>
+        <div class="list" id="history"></div>
       </div>
     </div>
   </section>
 
-  <section id="tab-regles" role="tabpanel" aria-labelledby="tabbtn-regles" class="hidden column">
-    <div class="card">
-      <h2>Mes règles</h2>
-      <p class="muted">Vos règles sont des phrases que vous écrivez pour vous-même. Chacune est rattachée à un comportement
-        et vous est rappelée avant tout ordre qui le met en jeu. Ajoutez-en, modifiez-les ou retirez-les quand vous voulez.</p>
+  <!-- ================================================ Mes règles -->
+  <section id="tab-regles" class="view hidden">
+    <div class="section-head"><h1>Mes <em>règles</em></h1>
+      <button class="btn primary" id="addRuleBtn"></button></div>
+    <p class="muted" style="margin:-4px 0 22px;max-width:60ch">Des phrases écrites pour vous-même, rappelées avant chaque ordre concerné.</p>
+    <div class="grid g-main">
       <div id="rules"></div>
-      <p class="small muted" style="margin:14px 0 0">Modifier vos règles ne change ni votre score de dérive ni un éventuel blocage de vos ordres.</p>
-    </div>
-    <div class="card">
-      <h2>Ajouter une règle</h2>
-      <form id="addRuleForm">
-        <label for="newRuleParam">Comportement encadré</label>
-        <select id="newRuleParam"></select>
-        <p class="small muted" id="newRuleWhen" style="margin:6px 0 0"></p>
-        <label for="newRuleText">Ma règle</label>
-        <textarea id="newRuleText" rows="2" maxlength="300" placeholder="Écrivez votre règle, avec vos mots." required></textarea>
-        <div class="row" style="margin-top:8px"><button type="button" class="link" id="useSuggestion" style="flex:none">Partir de la règle type</button></div>
-        <div class="error" id="addRuleError" role="alert"></div>
-        <button class="primary">Ajouter la règle</button>
-      </form>
-    </div>
-    <div id="ruleSuggestions"></div>
-  </section>
-
-  <section id="tab-profil" role="tabpanel" aria-labelledby="tabbtn-profil" class="hidden column">
-    <div class="card">
-      <h2>Mon compte</h2>
-      <dl class="facts" id="account"></dl>
-    </div>
-    <div class="card">
-      <h2>Ma clé WorthKnowing</h2>
-      <p class="small muted">Votre user id : il vous représente auprès des plateformes de trading qui font analyser vos ordres.</p>
-      <div id="token"></div>
-    </div>
-    <div class="card">
-      <h2>Mes plateformes de trading</h2>
-      <p class="small muted">Pour chaque plateforme, votre identifiant chez elle. Ses ordres sont analysés ici.</p>
-      <div id="platforms"></div>
+      <aside id="ruleSuggestions"></aside>
     </div>
   </section>
 
-  <p class="disclaimer">Simulation uniquement : aucune transaction réelle, aucun conseil financier.</p>
+  <!-- ================================================ Compte -->
+  <section id="tab-profil" class="view hidden">
+    <div class="section-head"><h1>Mon <em>compte</em></h1></div>
+    <div class="grid g-2 stagger">
+      <div class="widget"><div class="widget-head"><h3>Identité</h3></div><dl class="facts" id="account"></dl></div>
+      <div class="widget"><div class="widget-head"><h3>Ma clé WorthKnowing</h3><span class="icon"></span></div><div id="token"></div></div>
+      <div class="widget span-2"><div class="widget-head"><h3>Mes plateformes de trading</h3></div><div id="platforms"></div></div>
+    </div>
+  </section>
+
+  <p class="footer-note">Simulation uniquement · aucun conseil financier</p>
 </main>
+<script src="/shared/vendor/chartjs/chart.umd.js"></script>
+<script src="/shared/ui.js"></script>
 <script src="/js/common.js"></script>
 <script src="/js/investigation.js"></script>
 <script src="/js/profile.js"></script>

@@ -1,148 +1,299 @@
-// Page principale de Boréal Courtage : portefeuille, ticket d'ordre, historique, et service Miroir (facultatif).
+// Page principale de Boréal Courtage : portefeuille, ticket d'ordre, activité, et service WorthKnowing (facultatif).
 //
 // Parcours d'un ordre :
-//   1. « Vérifier l'ordre »  -> POST /api/trades/preview : cotation + (si le compte est lié) règles Miroir à rappeler
+//   1. « Vérifier l'ordre »  -> POST /api/trades/preview : cotation + (si le compte est lié) règles WorthKnowing à rappeler
 //   2. fenêtre de confirmation : récapitulatif, et rappel de la règle que le client s'est fixée
-//   3. « Confirmer »         -> POST /api/trades : exécution, puis enquête Miroir affichée sous le bandeau
-//      « Annuler »           -> POST /api/trades/cancel : Miroir note que la règle a été respectée
+//   3. « Confirmer »         -> POST /api/trades : exécution ; l'analyse WorthKnowing arrive ensuite par SSE
+//      « Renoncer »          -> POST /api/trades/cancel : WorthKnowing note que la règle a été respectée
 
 let me = null;
+let trades = [];
+let persona = null;
 let ticketTouchedAt = Date.now(); // début de la réflexion pour l'ordre en cours
 let market = null; // { firstDate, lastDate, assets }
+let historyFilter = 'all';
+let openResult = null; // fenêtre « ordre exécuté » ouverte : { tradeId, el }
 
 const PARAM_LABELS = {
   riskTolerance: 'Appétit pour le risque', lossAversion: 'Réaction aux pertes', fomo: 'Attrait pour le « hype »',
   concentration: 'Concentration', impulsivity: 'Impulsivité', newsSensitivity: 'Sensibilité aux nouvelles',
 };
+const ALLOC_COLORS = ['#d7001f', '#1d1714', '#e8707f', '#7a6a5e', '#f2b3bb', '#b5a596', '#9e0018', '#d9cbbb'];
+const shortDate = (d) => new Date(d + 'T12:00:00').toLocaleDateString('fr-CA', { day: 'numeric', month: 'short' });
+
+// ------------------------------------------------------------------ Navigation entre les vues
+function showView(name) {
+  document.querySelectorAll('.nav-links [data-view]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.view === name)));
+  document.querySelectorAll('.view').forEach((v) => {
+    const on = v.id === 'view-' + name;
+    v.classList.toggle('hidden', !on);
+    if (on) { v.classList.remove('view-enter'); void v.offsetWidth; v.classList.add('view-enter'); }
+  });
+  history.replaceState(null, '', name === 'portfolio' ? location.pathname : '#' + name);
+  if (name === 'activity') renderActivity();
+}
+document.querySelectorAll('.nav-links [data-view]').forEach((b) => (b.onclick = () => showView(b.dataset.view)));
 
 // ------------------------------------------------------------------ Affichage du compte
-
 async function refresh() {
   me = await api('GET', '/me');
-  const [trades, miroir] = await Promise.all([
+  const [list, p, valueHistory] = await Promise.all([
     api('GET', '/trades'),
     me.miroir.status === 'linked' ? api('GET', '/miroir/persona').then((r) => r.persona).catch(() => null) : null,
+    api('GET', '/portfolio/history').catch(() => ({ points: [] })),
   ]);
-  // La liaison a pu être révoquée côté Miroir pendant l'appel : on relit l'état.
-  if (me.miroir.status === 'linked' && !miroir) me = await api('GET', '/me');
+  trades = list;
+  persona = p;
+  // La liaison a pu être révoquée côté WorthKnowing pendant l'appel : on relit l'état.
+  if (me.miroir.status === 'linked' && !persona) me = await api('GET', '/me');
 
   const pf = me.portfolio;
+  const gain = pf.total - me.startingCash;
+  const invested = pf.positions.reduce((s, x) => s + x.value, 0);
   $('#hello').textContent = me.name;
-  $('#total').textContent = money(pf.total);
+  $('#avatar').textContent = UI.initials(me.name);
+  UI.countUp($('#total'), pf.total, bigMoney);
+  $('#gain').innerHTML = `<span class="pill ${gain >= 0 ? 'gain' : 'loss'}">${UI.icon(gain >= 0 ? 'arrowUp' : 'arrowDown', 'sm')}${money(Math.abs(gain), 2)} · ${pct(gain / me.startingCash)}</span>
+    <span class="tiny faint">depuis l’ouverture</span>`;
   $('#cash').textContent = money(pf.cash);
-  $('#gain').innerHTML = signed(pf.total - me.startingCash);
-  $('#asOf').textContent = me.clock ? `Valorisé au cours de clôture du ${day(me.clock + 'T12:00:00')}, date de marché de votre dernier ordre.` : '';
+  $('#invested').textContent = money(invested);
+  $('#asOf').textContent = me.clock ? `Valorisé à la clôture du ${day(me.clock + 'T12:00:00')}` : '';
   syncClock();
 
-  $('#positions').innerHTML = pf.positions.length ? `<table>
-    <tr><th>Actif</th><th class="right">Valeur</th><th class="right">Poids</th><th class="right">Gain ou perte</th><th></th></tr>
-    ${pf.positions.map((p) => `<tr>
-      <td><b>${esc(p.ticker)}</b></td><td class="right">${money(p.value)}</td>
-      <td class="right">${(p.weight * 100).toFixed(0)} %</td><td class="right">${signed(p.gain)}</td>
-      <td class="right"><button class="mini" data-sell="${esc(p.ticker)}" data-value="${p.value.toFixed(2)}">Vendre</button></td>
-    </tr>`).join('')}</table>`
-    : '<p class="empty">Aucune position. Passez un premier ordre avec le ticket.</p>';
-  document.querySelectorAll('[data-sell]').forEach((b) => (b.onclick = () => {
-    $('#sell').checked = true;
-    $('#ticker').value = b.dataset.sell;
-    $('#amount').value = b.dataset.value;
-    touchTicket();
-    $('#amount').focus();
-  }));
-
-  $('#history').innerHTML = trades.length ? `<table>
-    <tr><th>Date de marché</th><th>Ordre</th><th class="right">Montant</th><th class="right">Cours</th><th>Miroir</th></tr>
-    ${trades.map((t) => `<tr>
-      <td>${esc(t.marketDate)}</td>
-      <td><span class="badge ${t.side}">${t.side === 'buy' ? 'Achat' : 'Vente'}</span> <b>${esc(t.ticker)}</b></td>
-      <td class="right">${money(t.amount)}</td><td class="right">${money(t.price, 2).replace(' $', '')} ${esc(t.currency)}</td>
-      <td>${historyMiroir(t.miroir)}</td>
-    </tr>`).join('')}</table>`
-    : '<p class="empty">Aucun ordre pour l’instant.</p>';
-
-  renderMiroir(miroir);
+  renderValueChart(valueHistory.points);
+  renderAllocation(pf, invested);
+  renderPositions(pf);
+  renderMiroir();
+  if (!$('#view-activity').classList.contains('hidden')) renderActivity();
 }
 
-function historyMiroir(m) {
-  if (m.status === 'analysed') {
-    return `<span class="badge miroir">dérive ${m.driftBefore} → ${m.driftAfter}</span>`
-      + (m.overrodeRules ? ' <span class="badge warn">règle outrepassée</span>' : '');
-  }
-  if (m.status === 'pending') return '<span class="badge grey">analyse en cours…</span>';
-  return m.status === 'unavailable' ? '<span class="badge grey">non analysé</span>' : '<span class="muted">—</span>';
+function renderValueChart(points) {
+  const empty = points.length < 2;
+  $('#valueEmpty').classList.toggle('hidden', !empty);
+  if (empty) return UI.chart($('#valueChart'), { type: 'line', data: { labels: [], datasets: [] }, options: { scales: { x: { display: false }, y: { display: false } } } });
+  const up = points.at(-1).value >= points[0].value;
+  UI.area($('#valueChart'), points.map((p) => shortDate(p.date)), points.map((p) => p.value), {
+    color: up ? UI.C.red : UI.C.ink, format: (v) => money(v),
+  });
 }
 
+function renderAllocation(pf, invested) {
+  const top = pf.positions.slice(0, 5);
+  const rest = pf.positions.slice(5).reduce((s, p) => s + p.value, 0);
+  const labels = [...top.map((p) => p.ticker), ...(rest ? ['Autres'] : []), 'Liquidités'];
+  const values = [...top.map((p) => p.value), ...(rest ? [rest] : []), pf.cash];
+  const colors = labels.map((l, i) => (l === 'Liquidités' ? '#e6d9c6' : ALLOC_COLORS[i % ALLOC_COLORS.length]));
+  UI.donut($('#allocChart'), labels, values, colors);
+  $('#allocCash').textContent = `${Math.round((pf.cash / pf.total) * 100)} %`;
+  $('#allocCount').textContent = `${pf.positions.length} actif${pf.positions.length > 1 ? 's' : ''}`;
+  $('#allocLegend').innerHTML = labels.map((l, i) => `<div><i style="background:${colors[i]}"></i><span>${esc(l)}</span>
+    <b>${Math.round((values[i] / pf.total) * 100)} %</b></div>`).join('');
+}
+
+function renderPositions(pf) {
+  $('#positions').innerHTML = pf.positions.length ? pf.positions.map((p) => {
+    const ret = p.invested ? p.gain / p.invested : 0;
+    return `<div class="list-item clickable position" data-sell="${esc(p.ticker)}" data-value="${p.value.toFixed(2)}" tabindex="0">
+      <div class="ticker-badge">${esc(p.ticker.replace(/[-.].*$/, '').slice(0, 5))}</div>
+      <div class="grow"><div class="title">${esc(p.ticker)}</div><div class="sub">${esc(assetName(p.ticker))}</div></div>
+      <div class="end weight"><span class="tiny faint">${(p.weight * 100).toFixed(0)} %</span><div class="bar"><i style="width:${Math.min(100, p.weight * 100)}%"></i></div></div>
+      <div class="end" style="min-width:110px"><b>${money(p.value)}</b><span class="tiny ${ret >= 0 ? 'gain' : 'loss'}">${pct(ret)}</span></div>
+    </div>`;
+  }).join('')
+    : `<div class="empty-state">${UI.icon('pie')}<p>Aucune position. Passez un premier ordre avec le ticket.</p></div>`;
+  document.querySelectorAll('[data-sell]').forEach((row) => {
+    const go = () => {
+      $('#sell').checked = true;
+      $('#ticker').value = row.dataset.sell;
+      setAmount(row.dataset.value);
+      touchTicket();
+      $('#ticket').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      $('#amount').focus();
+    };
+    row.onclick = go;
+    row.onkeydown = (e) => { if (e.key === 'Enter') go(); };
+  });
+}
+const assetName = (ticker) => market?.assets.find((a) => a.ticker === ticker)?.name ?? '';
+
+// ------------------------------------------------------------------ WorthKnowing
 /** Le service WorthKnowing selon l'état du compte : offre, activation en attente, lié, ou désactivé. */
-function renderMiroir(persona) {
+function renderMiroir() {
   const { status, urls } = me.miroir;
+  const blocked = status === 'linked' && persona?.status === 'reevaluation_required';
   let notice = '';
-  let panel = '';
+  let widget = '';
 
-  if (status === 'none') {
-    notice = `<div class="panel miroir">
-      <h2>Ajouter WorthKnowing à votre compte ?</h2>
-      <p>WorthKnowing est un service indépendant qui compare ce que vous dites de vous comme investisseur à ce que vous faites vraiment.
-        Vous y créez un compte, vous vous notez sur six traits, répondez à quelques questions et à dix mises en situation, puis vous écrivez vos propres règles.
-        Ensuite, avant chaque ordre qui touche une de vos règles, nous vous la rappelons ; après l’ordre, WorthKnowing l’analyse et met à jour votre score de dérive.</p>
-      <p class="small muted">Si vous l’activez, nous envoyons à WorthKnowing vos ordres et la composition de votre portefeuille.
-        Sans WorthKnowing, votre compte fonctionne normalement. Vous pourrez l’ajouter ou le retirer à tout moment.</p>
-      <div class="actions"><button class="miroir" data-miroir="start">Activer WorthKnowing</button>
-        <button data-miroir="decline">Non merci</button></div>
+  if (status === 'none' || status === 'pending') {
+    const pendingNow = status === 'pending';
+    notice = `<div class="wk-offer rise">
+      <div class="grow">
+        <span class="eyebrow" style="color:rgba(247,241,232,.55)">Service partenaire</span>
+        <h3>${pendingNow ? 'Terminez votre profil <i>WorthKnowing</i>' : 'Investissez-vous comme vous le pensez ?'}</h3>
+        <p>${pendingNow ? 'Il ne reste que quelques minutes. Vous serez ramené ici automatiquement.'
+          : 'WorthKnowing compare ce que vous dites de vous à ce que vous faites, et vous rappelle vos propres règles avant chaque ordre.'}</p>
+        ${pendingNow ? '' : `<div class="steps-mini"><span><b>1</b>Profil en 10 min</span><span><b>2</b>Vos règles</span><span><b>3</b>Rappels avant l’ordre</span></div>`}
+      </div>
+      <div class="row wrap">
+        <button class="btn primary" data-miroir="start">${pendingNow ? 'Continuer' : 'Activer WorthKnowing'} ${UI.icon('arrowRight', 'sm')}</button>
+        <button class="btn ghost" data-miroir="decline">${pendingNow ? 'Annuler' : 'Non merci'}</button>
+      </div>
     </div>`;
-  } else if (status === 'pending') {
-    notice = `<div class="panel miroir">
-      <h2>Activation de WorthKnowing en attente</h2>
-      <p>Terminez la création de votre profil chez WorthKnowing : vous serez ramené ici automatiquement.</p>
-      <div class="actions"><button class="miroir" data-miroir="start">Continuer chez WorthKnowing</button>
-        <button data-miroir="decline">Annuler l’activation</button></div>
-    </div>`;
-  } else if (status === 'linked' && persona?.status === 'reevaluation_required') {
-    notice = `<div class="panel alert">
-      <h2>WorthKnowing : Seuil de dérive dépassé (${persona.drift.score} / ${persona.drift.threshold})</h2>
-      <p>Votre comportement récent s’est trop éloigné de votre profil. Vos ordres sont temporairement suspendus.
-        <b>Refaites votre évaluation</b> sur WorthKnowing : votre profil sera remis à jour et votre dérive repartira de 0.</p>
-      <div class="actions"><a class="button primary" href="${esc(urls.reevaluate)}">Refaire mon évaluation sur WorthKnowing</a></div>
+  } else if (blocked) {
+    notice = `<div class="banner rise">${UI.icon('pause', 'lg')}
+      <div class="grow"><h3>Ordres suspendus</h3>
+        <p>Votre dérive atteint ${persona.drift.score} / ${persona.drift.threshold}. Refaites votre évaluation WorthKnowing pour reprendre.</p></div>
+      <a class="btn white" href="${esc(urls.reevaluate)}">Refaire l’évaluation ${UI.icon('arrowRight', 'sm')}</a>
     </div>`;
   }
 
   if (status === 'linked') {
-    panel = `<div class="panel miroir"><h2>Service WorthKnowing</h2>${persona ? `
-      <p style="margin:0"><b class="num" style="font-size:22px">${persona.drift.score}</b> <span class="muted">sur 100, score de dérive</span></p>
-      <div class="meter"><i class="${persona.drift.score >= persona.drift.threshold ? 'high' : ''}" style="width:${persona.drift.score}%"></i>
-        <b style="left:${persona.drift.threshold}%"></b></div>
-      <p class="small muted">À ${persona.drift.threshold}, WorthKnowing demande une réévaluation.</p>
-      <details><summary>Vos ${persona.rules.length} règle(s)</summary>
-        <ul>${persona.rules.map((r) => `<li>${esc(r.text)}</li>`).join('') || '<li>Aucune règle définie.</li>'}</ul></details>`
-      : '<p class="small muted">WorthKnowing ne répond pas pour le moment. Vos ordres passent normalement ; ils ne seront pas analysés.</p>'}
-      <div class="actions"><a href="${esc(urls.profile)}" target="_blank" rel="noopener">Ouvrir mon profil WorthKnowing</a>
-        <button class="link" data-miroir="unlink" style="margin-left:auto">Retirer WorthKnowing</button></div></div>`;
+    widget = persona ? `
+      <div class="widget-head"><span class="logo">${UI.wkMark(true)}<span class="logo-word">Worth<i>Knowing</i></span></span>
+        <span class="pill" style="background:rgba(247,241,232,.1);color:var(--cream)"><span class="dot live"></span>actif</span></div>
+      ${UI.gauge(persona.drift.score, persona.drift.threshold)}
+      <p class="tiny faint" style="text-align:center;margin-top:4px">Score de dérive</p>
+      <div class="rules-mini"><span>${persona.rules.length} règle${persona.rules.length > 1 ? 's' : ''} active${persona.rules.length > 1 ? 's' : ''}</span>
+        <button class="btn link sm" id="showRules">Voir ${UI.icon('chevron', 'sm')}</button></div>
+      <div class="row between" style="margin-top:10px">
+        <a class="btn ghost sm" href="${esc(urls.profile)}" target="_blank" rel="noopener">Mon profil ${UI.icon('external', 'sm')}</a>
+        <button class="btn link sm" data-miroir="unlink">Retirer</button></div>`
+      : `<div class="widget-head"><span class="logo">${UI.wkMark(true)}<span class="logo-word">Worth<i>Knowing</i></span></span></div>
+        <p class="small muted">Le service ne répond pas pour le moment. Vos ordres passent normalement, sans analyse.</p>`;
   } else if (status === 'declined') {
-    panel = `<div class="panel"><h2>Service WorthKnowing</h2>
-      <p class="small muted">WorthKnowing n’est pas activé sur ce compte : vos ordres ne quittent pas la plateforme et sont simplement conservés dans votre historique.</p>
-      <button data-miroir="start">Activer WorthKnowing</button></div>`;
+    widget = `<div class="widget-head"><span class="logo">${UI.wkMark(true)}<span class="logo-word">Worth<i>Knowing</i></span></span></div>
+      <p class="small muted" style="margin-bottom:16px">Non activé. Vos ordres restent sur la plateforme.</p>
+      <button class="btn primary sm" data-miroir="start">Activer ${UI.icon('arrowRight', 'sm')}</button>`;
+  } else {
+    widget = `<div class="widget-head"><span class="logo">${UI.wkMark(true)}<span class="logo-word">Worth<i>Knowing</i></span></span></div>
+      <p class="small muted">${status === 'pending' ? 'Activation en cours.' : 'Service facultatif, proposé ci-dessus.'}</p>`;
   }
+
   $('#notices').innerHTML = notice;
-  $('#miroirPanel').innerHTML = panel;
-  $('#orderButton').disabled = status === 'linked' && persona?.status === 'reevaluation_required';
+  const w = $('#wkWidget');
+  w.className = 'widget wk-widget' + (status === 'linked' ? '' : ' offer');
+  w.innerHTML = widget;
+  UI.animateGauges(w);
+  $('#wkPill').innerHTML = status === 'linked' && persona
+    ? `<span class="pill ${blocked ? 'red' : 'outline'}" title="Score de dérive WorthKnowing">${UI.wkMark()}<span class="num">${persona.drift.score}</span></span>` : '';
+  $('#wkPill').querySelector('svg')?.setAttribute('style', 'width:16px;height:16px');
+  $('#orderButton').disabled = blocked;
+  if ($('#showRules')) $('#showRules').onclick = () => UI.modal({
+    title: 'Vos règles',
+    body: persona.rules.length ? persona.rules.map((r) => `<div class="rule-reminder"><q>${esc(r.text)}</q></div>`).join('')
+      : '<p class="muted">Aucune règle définie.</p>',
+    actions: [{ label: 'Gérer dans WorthKnowing', value: 'go', kind: '' }],
+  }).then((v) => { if (v === 'go') window.open(urls.profile, '_blank', 'noopener'); });
 
   document.querySelectorAll('[data-miroir]').forEach((b) => (b.onclick = async () => {
     const action = b.dataset.miroir;
-    if (action === 'unlink' && !confirm('Retirer WorthKnowing de votre compte ? Vos ordres ne seront plus analysés. Vous pourrez le réactiver plus tard.')) return;
+    if (action === 'unlink' && !(await UI.confirm('Retirer WorthKnowing ?', 'Vos ordres ne seront plus analysés. Vous pourrez le réactiver plus tard.', { ok: 'Retirer', danger: true }))) return;
     b.disabled = true;
     try {
       if (action === 'start') return (location.href = (await api('POST', '/miroir/link/start')).redirectUrl);
       await api('POST', action === 'decline' ? '/miroir/decline' : '/miroir/unlink');
-      if (action === 'unlink') toast('WorthKnowing a été retiré de votre compte.');
+      if (action === 'unlink') toast('WorthKnowing a été retiré de votre compte.', 'ok');
     } catch (err) { toast(err.message); }
     await refresh().catch(() => {});
   }));
 }
 
-// ------------------------------------------------------------------ Ticket d'ordre
+// ------------------------------------------------------------------ Activité : suivi des ordres
+function renderActivity() {
+  if (!me) return;
+  const linked = me.miroir.status === 'linked';
+  const analysed = trades.filter((t) => t.miroir.status === 'analysed');
+  const overrides = analysed.filter((t) => t.miroir.overrodeRules).length;
+  const volume = trades.reduce((s, t) => s + t.amount, 0);
+  const stats = [
+    ['Ordres passés', trades.length, 'list'],
+    ['Volume échangé', money(volume), 'activity'],
+    ['Analysés par WorthKnowing', linked || analysed.length ? analysed.length : '—', 'eye'],
+    ['Règles outrepassées', linked || analysed.length ? overrides : '—', 'alert'],
+  ];
+  $('#activityStats').innerHTML = stats.map(([label, v, ico]) => `<div class="widget stat">
+    <div class="widget-head" style="margin-bottom:6px"><h3>${label}</h3>${UI.icon(ico, 'sm')}</div><div class="kpi">${v}</div></div>`).join('');
 
+  // Dérive dans le temps : chronologique, un point par ordre analysé.
+  const chrono = [...analysed].reverse();
+  $('#driftWidget').classList.toggle('hidden', chrono.length < 1);
+  if (chrono.length) {
+    const threshold = persona?.drift.threshold ?? 60;
+    UI.driftLine($('#driftChart'), ['Départ', ...chrono.map((t) => `${t.ticker} · ${shortDate(t.marketDate)}`)],
+      [chrono[0].miroir.driftBefore, ...chrono.map((t) => t.miroir.driftAfter)], threshold, [false, ...chrono.map((t) => t.miroir.overrodeRules)]);
+  }
+
+  const filtered = trades.filter((t) => historyFilter === 'all' || (historyFilter === 'flag' ? t.miroir.overrodeRules : t.side === historyFilter));
+  $('#history').innerHTML = filtered.length ? filtered.map((t) => `<div class="list-item clickable history-item" data-trade="${esc(t.id)}" tabindex="0">
+      <div class="side-icon ${t.side}">${UI.icon(t.side === 'buy' ? 'arrowDown' : 'arrowUp', 'sm')}</div>
+      <div class="grow"><div class="title">${t.side === 'buy' ? 'Achat' : 'Vente'} · ${esc(t.ticker)}</div>
+        <div class="sub">${esc(day(t.marketDate + 'T12:00:00'))}</div></div>
+      <div class="end">${historyMiroir(t.miroir)}</div>
+      <div class="end" style="min-width:104px"><b class="${t.side === 'sell' ? 'gain' : ''}">${t.side === 'sell' ? '+' : '−'}${money(t.amount)}</b>
+        <span class="tiny faint">${price(t.price)} ${esc(t.currency)}</span></div>
+    </div>`).join('')
+    : `<div class="empty-state">${UI.icon('list')}<p>${trades.length ? 'Aucun ordre pour ce filtre.' : 'Aucun ordre pour l’instant.'}</p></div>`;
+  document.querySelectorAll('[data-trade]').forEach((row) => {
+    const open = () => tradeDrawer(trades.find((t) => t.id === row.dataset.trade));
+    row.onclick = open;
+    row.onkeydown = (e) => { if (e.key === 'Enter') open(); };
+  });
+}
+document.querySelectorAll('#historyFilter [data-filter]').forEach((b) => (b.onclick = () => {
+  historyFilter = b.dataset.filter;
+  document.querySelectorAll('#historyFilter .chip').forEach((c) => c.classList.toggle('on', c === b));
+  renderActivity();
+}));
+
+function historyMiroir(m) {
+  if (m.status === 'analysed') {
+    const up = m.driftAfter > m.driftBefore;
+    return `<span class="pill ${m.overrodeRules ? 'red' : up ? 'amber' : 'outline'}" title="Dérive WorthKnowing">
+      ${m.overrodeRules ? UI.icon('alert', 'sm') : ''}${m.driftBefore} → ${m.driftAfter}</span>`;
+  }
+  if (m.status === 'pending') return '<span class="pill outline"><span class="spinner" style="width:10px;height:10px"></span>analyse</span>';
+  return m.status === 'unavailable' ? '<span class="pill outline faint">non analysé</span>' : '';
+}
+
+function tradeDrawer(t) {
+  if (!t) return;
+  const m = t.miroir;
+  UI.drawer(`<div class="side-icon ${t.side}">${UI.icon(t.side === 'buy' ? 'arrowDown' : 'arrowUp', 'sm')}</div>
+      <div><div class="eyebrow">${t.side === 'buy' ? 'Achat' : 'Vente'}</div><h2>${esc(t.ticker)}</h2></div>`,
+  `<div class="kpi">${money(t.amount, 2)}</div><p class="small muted" style="margin-top:4px">${esc(assetName(t.ticker))}</p>
+    <dl class="facts" style="margin-top:20px">
+      <dt>Date de marché</dt><dd>${esc(day(t.marketDate + 'T12:00:00'))}</dd>
+      <dt>Cours</dt><dd>${price(t.price)} ${esc(t.currency)}</dd>
+      <dt>Quantité</dt><dd>${t.qty.toLocaleString('fr-CA', { maximumFractionDigits: 4 })}</dd>
+      <dt>Temps de décision</dt><dd>${Math.round(t.decisionTimeMs / 1000)} s</dd>
+    </dl>
+    ${t.note ? `<div class="notice ink" style="margin-top:16px">${UI.icon('edit', 'sm')}<span>« ${esc(t.note)} »</span></div>` : ''}
+    ${analysisHtml(t)}`);
+}
+
+/** Bloc « Analyse WorthKnowing » d'un ordre (fenêtre de résultat et tiroir). */
+function analysisHtml(trade) {
+  const m = trade.miroir;
+  if (m.status === 'not_linked') return '';
+  if (m.status === 'pending') return `<div class="analysis" data-pending-trade="${esc(trade.id)}">
+      <div class="eyebrow" style="color:rgba(247,241,232,.5)">Analyse WorthKnowing</div>
+      <p style="margin-top:10px"><span class="spinner" style="border-color:#ff8a98;border-top-color:transparent"></span>&nbsp; Enquête en cours…</p></div>`;
+  if (m.status === 'unavailable') return `<div class="notice" style="margin-top:16px">${UI.icon('info', 'sm')}<span>WorthKnowing n’a pas répondu : ordre non analysé.</span></div>`;
+  return `<div class="analysis">
+    <div class="row between"><span class="eyebrow" style="color:rgba(247,241,232,.5)">Analyse WorthKnowing</span>
+      ${m.overrodeRules ? '<span class="pill red">règle outrepassée</span>' : ''}</div>
+    <div class="drift-move"><span class="muted">${m.driftBefore}</span>${UI.icon('arrowRight')}<span style="color:${m.driftAfter >= m.driftBefore ? '#ff8a98' : '#8fe0b5'}">${m.driftAfter}</span>
+      <span class="tiny muted" style="font-family:var(--sans)">dérive</span></div>
+    <p class="small" style="margin-top:10px;opacity:.85">${esc(m.summary)}</p>
+    ${m.reevaluationRequired ? '<p class="small" style="margin-top:10px;color:#ff8a98"><b>Seuil dépassé : réévaluation exigée.</b></p>' : ''}
+    <a class="small" style="display:inline-flex;gap:6px;margin-top:12px" href="${esc(me.miroir.urls.profile)}" target="_blank" rel="noopener">Enquête complète ${UI.icon('external', 'sm')}</a>
+  </div>`;
+}
+
+// ------------------------------------------------------------------ Ticket d'ordre
 /** La date du ticket ne peut pas être antérieure au dernier ordre (horloge de marché simulée). */
 function syncClock() {
-  if (!market) return;
+  if (!market || !me) return;
   const min = me.clock ?? market.firstDate;
   $('#date').min = min;
   $('#date').max = market.lastDate;
@@ -154,9 +305,24 @@ const ticket = () => ({
   marketDate: $('#date').value, note: $('#note').value,
 });
 
+function setAmount(v) {
+  $('#amount').value = v;
+  document.querySelectorAll('#amountChips .chip').forEach((c) => c.classList.toggle('on', Number(c.dataset.amt) === Number(v)));
+}
+document.querySelectorAll('#amountChips .chip').forEach((c) => (c.onclick = () => {
+  if (c.dataset.amt === 'max') {
+    const t = ticket();
+    const held = me?.portfolio.positions.find((p) => p.ticker === t.ticker)?.value ?? 0;
+    setAmount((t.side === 'buy' ? Math.floor(me?.portfolio.cash ?? 0) : held).toFixed(2).replace(/\.00$/, ''));
+    c.classList.add('on');
+  } else setAmount(c.dataset.amt);
+  $('#ticketError').textContent = '';
+}));
+
 function touchTicket() {
   ticketTouchedAt = Date.now();
   $('#ticketError').textContent = '';
+  $('#orderButton').textContent = $('#sell').checked ? 'Vérifier la vente' : 'Vérifier l’achat';
   showQuote();
 }
 
@@ -168,84 +334,64 @@ async function showQuote() {
   try {
     const q = await api('GET', `/market/quote?ticker=${encodeURIComponent(t.ticker)}&date=${encodeURIComponent(t.marketDate)}`);
     if (call !== quoteCall) return;
-    $('#quote').innerHTML = `<b>${esc(q.name)}</b> : ${q.price.toFixed(2)} ${esc(q.currency)} à la clôture du ${esc(q.date)}<br>
-      <span class="muted">${pct(q.ret1d)} sur la séance, ${pct(q.ret30d)} sur 30 séances</span>`;
+    $('#quote').innerHTML = `<div class="q-top"><div><div class="q-name">${esc(q.name)}</div>
+        <div class="q-price">${price(q.price)} <span class="tiny faint" style="font-family:var(--sans)">${esc(q.currency)}</span></div></div>
+        <div style="text-align:right"><span class="pill ${q.ret30d >= 0 ? 'gain' : 'loss'}">${pct(q.ret30d)}</span><div class="tiny faint" style="margin-top:4px">30 séances</div></div></div>
+      <div class="chart-box spark"><canvas id="spark"></canvas></div>`;
+    if (q.history?.close?.length) {
+      UI.area($('#spark'), q.history.dates, q.history.close, { minimal: true, color: q.ret30d >= 0 ? UI.C.gain : UI.C.red });
+    }
   } catch (err) {
-    if (call === quoteCall) $('#quote').textContent = err.message;
+    if (call === quoteCall) $('#quote').innerHTML = `<p class="small loss">${esc(err.message)}</p>`;
   }
 }
-
-function closeModal() { $('#modal').classList.add('hidden'); }
 
 /**
  * Fenêtre de confirmation. Avec un compte lié, c'est ici que la règle que le client s'est fixée lui est rappelée.
  * Résout à true (confirmer) ou false (annuler).
  */
-function confirmOrder(t, preview) {
+async function confirmOrder(t, preview) {
   const m = preview.miroir;
   const rules = m.status === 'ok' ? m.triggeredRules : [];
   const warnings = m.status === 'ok' ? m.warnings : [];
-
-  return new Promise((resolve) => {
-    $('#modalBody').innerHTML = `
-      <h2>Confirmer l’ordre</h2>
-      <dl class="recap">
-        <dt>Ordre</dt><dd>${t.side === 'buy' ? 'Achat' : 'Vente'} de ${esc(t.ticker)}</dd>
-        <dt>Montant</dt><dd>${money(t.amount, 2)}</dd>
-        <dt>Cours</dt><dd>${preview.quote.price.toFixed(2)} ${esc(preview.quote.currency)} (clôture du ${esc(preview.quote.date)})</dd>
-        <dt>Quantité</dt><dd>${(t.amount / preview.quote.price).toLocaleString('fr-CA', { maximumFractionDigits: 4 })}</dd>
-      </dl>
-      ${rules.length ? `<h3 style="color:#b91c1c">Rappel de WorthKnowing : ${rules.length > 1 ? 'garde-fous que vous vous êtes fixés' : 'un garde-fou que vous vous êtes fixé'}</h3>` : ''}
-      ${rules.map((r) => `<div class="rule"><span class="badge miroir">${esc(PARAM_LABELS[r.param] ?? r.param)}</span>
-        <p><b>« ${esc(r.text)} »</b></p><p class="small muted">${esc(r.reason)}</p></div>`).join('')}
-
-      ${rules.length ? '<p class="small muted">Si vous passez outre, WorthKnowing en tiendra compte dans l’analyse de cet ordre. Son effet sur votre score de dérive ne sera connu qu’une fois l’analyse terminée.</p>' : ''}
-
-      ${warnings.map((w) => `<div class="notice">${esc(w)}</div>`).join('')}
-      ${m.status === 'unavailable' ? '<p class="small muted">WorthKnowing ne répond pas : cet ordre ne sera pas vérifié contre vos règles.</p>' : ''}
-      <div class="actions">
-        <button id="cancelOrder">${rules.length ? 'Renoncer à cet ordre' : 'Annuler'}</button>
-        <button class="${rules.length ? 'danger' : 'primary'}" id="confirmOrder">${rules.length ? 'Passer outre et confirmer' : 'Confirmer l’ordre'}</button>
-      </div>`;
-    $('#modal').classList.remove('hidden');
-    $('#confirmOrder').focus();
-    $('#cancelOrder').onclick = () => { closeModal(); resolve(false); };
-    $('#confirmOrder').onclick = () => { closeModal(); resolve(true); };
+  const body = `
+    <div class="row" style="gap:14px;margin-bottom:18px">
+      <div class="side-icon ${t.side}">${UI.icon(t.side === 'buy' ? 'arrowDown' : 'arrowUp', 'sm')}</div>
+      <div><div class="kpi" style="margin:0">${money(t.amount, 2)}</div><div class="small muted">${t.side === 'buy' ? 'Achat' : 'Vente'} de ${esc(t.ticker)}</div></div>
+    </div>
+    <dl class="facts">
+      <dt>Cours</dt><dd>${price(preview.quote.price)} ${esc(preview.quote.currency)}</dd>
+      <dt>Clôture du</dt><dd>${esc(day(preview.quote.date + 'T12:00:00'))}</dd>
+      <dt>Quantité</dt><dd>${(t.amount / preview.quote.price).toLocaleString('fr-CA', { maximumFractionDigits: 4 })}</dd>
+    </dl>
+    ${rules.length ? `<div style="margin-top:22px"><span class="pill red">${UI.icon('shield', 'sm')}Rappel WorthKnowing</span>
+      ${rules.map((r) => `<div class="rule-reminder"><span class="tiny faint">${esc(PARAM_LABELS[r.param] ?? r.param)}</span>
+        <q>${esc(r.text)}</q><p class="tiny muted">${esc(r.reason)}</p></div>`).join('')}</div>` : ''}
+    ${warnings.map((w) => `<div class="notice" style="margin-top:10px">${UI.icon('alert', 'sm')}<span>${esc(w)}</span></div>`).join('')}
+    ${m.status === 'unavailable' ? `<p class="tiny faint" style="margin-top:14px">WorthKnowing ne répond pas : ordre non vérifié contre vos règles.</p>` : ''}`;
+  const value = await UI.modal({
+    title: rules.length ? 'Un instant…' : 'Confirmer l’ordre', body,
+    actions: [
+      { label: rules.length ? 'Renoncer' : 'Annuler', value: false, kind: rules.length ? '' : 'ghost' },
+      { label: rules.length ? 'Passer outre' : 'Confirmer', value: true, kind: rules.length ? 'ghost' : 'primary' },
+    ],
   });
+  return value === true;
 }
 
-/**
- * Ce que WorthKnowing a conclu de l'ordre, résumé pour le client (l'enquête complète reste chez
- * WorthKnowing). L'ordre est confirmé tout de suite (quelques centaines de ms) ; l'enquête WorthKnowing
- * se termine en arrière-plan (jusqu'à 50 s) et met ce bloc à jour via SSE une fois prête — voir connectMiroirStream().
- */
-function verdictHtml(trade) {
-  const head = `<h2>Ordre exécuté</h2>
-    <p><b>${trade.side === 'buy' ? 'Achat' : 'Vente'} de ${money(trade.amount, 2)} de ${esc(trade.ticker)}</b>
-      à ${trade.price.toFixed(2)} ${esc(trade.currency)}, clôture du ${esc(trade.marketDate)}.</p>`;
-  const m = trade.miroir;
-  if (m.status === 'not_linked') return head;
-  if (m.status === 'pending') {
-    return head + `<div class="verdict" data-pending-trade="${esc(trade.id)}">
-      <h3>Analyse WorthKnowing</h3>
-      <p class="small muted"><span class="spinner" aria-hidden="true"></span> Analyse en cours…</p>
-    </div>`;
-  }
-  if (m.status === 'unavailable') {
-    return head + '<div class="notice">WorthKnowing n’a pas répondu : cet ordre est exécuté mais n’a pas été analysé.</div>';
-  }
-  return head + `<div class="verdict">
-    <h3>Analyse WorthKnowing</h3>
-    <p>${esc(m.summary)}</p>
-    <p class="small muted">Score de dérive de cet ordre : <b>${m.driftBefore} → ${m.driftAfter}</b>.
-      ${m.overrodeRules ? ' <span class="badge warn">garde-fou outrepassé</span>' : ''}
-      ${m.reevaluationRequired ? ' <span class="badge danger">Seuil dépassé — réévaluation exigée</span>' : ''}</p>
-    <a href="${esc(me.miroir.urls.profile)}" target="_blank" rel="noopener">Consulter l’enquête complète sur mon profil WorthKnowing</a>
-  </div>`;
+/** Fenêtre « Ordre exécuté » : se met à jour en direct quand l'analyse WorthKnowing arrive (SSE). */
+function showResult(trade) {
+  const html = () => `<svg class="check-anim" viewBox="0 0 64 64"><circle cx="32" cy="32" r="29"/><path d="M20 33l8 8 16-17"/></svg>
+    <div style="text-align:center"><h2 class="display" style="font-size:26px">Ordre exécuté</h2>
+      <p class="muted small" style="margin-top:6px">${trade.side === 'buy' ? 'Achat' : 'Vente'} de ${money(trade.amount, 2)} de ${esc(trade.ticker)}
+        à ${price(trade.price)} ${esc(trade.currency)}</p></div>
+    <div id="resultAnalysis">${analysisHtml(trade)}</div>
+    <div class="modal-actions"><button class="btn" data-close>Fermer</button></div>`;
+  const s = UI.sheet(html(), { onClose: () => { openResult = null; } });
+  openResult = { tradeId: trade.id, el: s.el };
 }
 
 // ------------------------------------------------------------------ Analyse WorthKnowing en arrière-plan (SSE)
-
 let miroirStream = null;
 
 /** Un seul flux par session, ouvert une fois connecté. Notifie quand une enquête « pending » se termine. */
@@ -256,10 +402,12 @@ function connectMiroirStream() {
     let event;
     try { event = JSON.parse(message.data); } catch { return; }
     if (!event?.trade) return; // ligne « ping » de maintien de connexion : rien à faire
-    // Le bloc d'analyse affiché après la confirmation, s'il correspond à ce trade.
-    const pending = document.querySelector(`[data-pending-trade="${event.tradeId}"]`);
-    if (pending) $('#resultPanel').innerHTML = verdictHtml(event.trade);
-    refresh().catch(() => {}); // met aussi à jour l'historique et le bandeau de dérive
+    if (openResult?.tradeId === event.tradeId) {
+      UI.swap(openResult.el.querySelector('#resultAnalysis'), analysisHtml(event.trade));
+    } else if (event.trade.miroir?.status === 'analysed') {
+      toast(`Analyse terminée pour ${event.trade.ticker} : dérive ${event.trade.miroir.driftBefore} → ${event.trade.miroir.driftAfter}.`, 'ok');
+    }
+    refresh().catch(() => {}); // met aussi à jour l'historique et la jauge de dérive
   };
   miroirStream.onerror = () => {
     if (miroirStream.readyState === EventSource.CLOSED) setTimeout(connectMiroirStream, 5000);
@@ -269,7 +417,9 @@ function connectMiroirStream() {
 $('#ticket').onsubmit = async (e) => {
   e.preventDefault();
   if ($('#orderButton').disabled) return; // double clic ou envoi déjà en cours
+  const label = $('#orderButton').textContent;
   $('#orderButton').disabled = true;
+  $('#orderButton').innerHTML = '<span class="spinner" style="border-color:#fff;border-top-color:transparent"></span>';
   $('#ticketError').textContent = '';
   const t = ticket();
   try {
@@ -281,36 +431,33 @@ $('#ticket').onsubmit = async (e) => {
     if (!(await confirmOrder(t, preview))) {
       if (rules.length) {
         await api('POST', '/trades/cancel', { ...t, decisionTimeMs: Date.now() - ticketTouchedAt }).catch(() => {});
-        toast('Ordre abandonné. WorthKnowing a noté que vous avez respecté votre règle.');
+        toast('Ordre abandonné. WorthKnowing note que vous avez respecté votre règle.', 'ok');
       }
       return;
     }
-    // 3. Exécution — confirmée tout de suite. L'enquête WorthKnowing, si le compte est lié, se
-    //    termine ensuite en arrière-plan et met le bloc ci-dessous à jour via SSE (connectMiroirStream).
-    $('#orderButton').textContent = 'Exécution…';
+    // 3. Exécution — confirmée tout de suite ; l'analyse arrive ensuite par SSE.
     const out = await api('POST', '/trades', {
       ...t, decisionTimeMs: Date.now() - ticketTouchedAt, acknowledgedRuleIds: rules.map((r) => r.ruleId),
     });
-    $('#resultPanel').classList.remove('hidden');
-    $('#resultPanel').innerHTML = verdictHtml(out.trade);
-    $('#resultPanel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    showResult(out.trade);
     $('#note').value = '';
   } catch (err) {
     $('#ticketError').textContent = err.message;
   } finally {
-    $('#orderButton').textContent = 'Vérifier l’ordre';
+    $('#orderButton').textContent = label;
     $('#orderButton').disabled = false; // refresh() le verrouille de nouveau si une réévaluation est requise
     ticketTouchedAt = Date.now();
     await refresh().catch((err) => { $('#ticketError').textContent ||= err.message; });
   }
 };
 
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('#modal').classList.contains('hidden')) $('#cancelOrder')?.click(); });
-
 // ------------------------------------------------------------------ Démarrage
-
 (async () => {
   if (!session.token) return (location.href = '/');
+  $('#navLogo').innerHTML = UI.logo('boreal', { href: '/app.html' });
+  $('#logout').innerHTML = UI.icon('logout', 'sm');
+  $('#logout').onclick = () => session.clear();
+  if (location.hash === '#activity') showView('activity');
   connectMiroirStream();
 
   // Retour de WorthKnowing après la création du profil : ?code=…&state=… -> on termine la liaison côté serveur.
@@ -319,19 +466,28 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('#mod
     history.replaceState(null, '', '/app.html'); // le code ne reste pas dans la barre d'adresse ni dans l'historique
     try {
       await api('POST', '/miroir/link/complete', { code: query.get('code'), state: query.get('state') });
-      toast('WorthKnowing est activé : vos règles vous seront rappelées avant chaque ordre concerné.');
+      UI.modal({
+        icon: `<div class="avatar" style="width:48px;height:48px;margin-bottom:14px">${UI.icon('shield')}</div>`,
+        title: 'WorthKnowing est activé',
+        body: '<p class="muted">Vos règles vous seront rappelées avant chaque ordre concerné, et chaque ordre sera analysé.</p>',
+        actions: [{ label: 'Parfait', value: true, kind: 'primary' }],
+      });
     } catch (err) { toast('Liaison avec WorthKnowing impossible : ' + err.message); }
   }
 
-  const [account, assets] = await Promise.allSettled([refresh(), api('GET', '/market/assets')]);
+  const assets = await api('GET', '/market/assets').then((v) => ({ status: 'fulfilled', value: v }), (r) => ({ status: 'rejected', reason: r }));
   if (assets.status === 'fulfilled') {
     market = assets.value;
-    $('#ticker').innerHTML = market.assets.map((a) => `<option value="${esc(a.ticker)}">${esc(a.ticker)} — ${esc(a.name)}</option>`).join('');
-    if (me) syncClock();
+    const CLASSES = { equity: 'Actions', etf_equity: 'FNB d’actions', etf_bond: 'FNB d’obligations', etf_commodity: 'FNB de matières premières', crypto: 'Cryptoactifs' };
+    const groups = {};
+    for (const a of market.assets) (groups[a.asset_class] ??= []).push(a);
+    $('#ticker').innerHTML = Object.entries(groups).map(([k, list]) => `<optgroup label="${esc(CLASSES[k] ?? k)}">
+      ${list.map((a) => `<option value="${esc(a.ticker)}">${esc(a.ticker)} · ${esc(a.name)}</option>`).join('')}</optgroup>`).join('');
     for (const id of ['#ticker', '#date', '#buy', '#sell']) $(id).onchange = touchTicket;
-    $('#amount').oninput = () => { $('#ticketError').textContent = ''; };
-    showQuote();
+    $('#amount').oninput = () => { $('#ticketError').textContent = ''; setAmount($('#amount').value); };
   }
+  const account = await refresh().then(() => ({ status: 'fulfilled' }), (r) => ({ status: 'rejected', reason: r }));
+  if (market) { syncClock(); touchTicket(); }
   const failure = [account, assets].find((r) => r.status === 'rejected');
   if (failure) $('#ticketError').textContent = failure.reason.message;
 })();

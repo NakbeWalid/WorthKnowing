@@ -17,7 +17,12 @@ import { TradingService } from './trading.service';
  * Ne dépend d'aucun module de Miroir : elle lui parle uniquement par HTTP (miroir.client.ts).
  */
 @Module({
-  imports: [ServeStaticModule.forRoot({ rootPath: join(process.cwd(), 'public', 'bank'), exclude: ['/api/(.*)'] })],
+  imports: [ServeStaticModule.forRoot(
+    // Système de design commun aux deux applications (polices, couleurs, composants, graphiques).
+    { rootPath: join(process.cwd(), 'node_modules', 'chart.js', 'dist'), serveRoot: '/shared/vendor/chartjs', exclude: ['/api/(.*)'] },
+    { rootPath: join(process.cwd(), 'public', 'shared'), serveRoot: '/shared', exclude: ['/api/(.*)'] },
+    { rootPath: join(process.cwd(), 'public', 'bank'), exclude: ['/api/(.*)'] },
+  )],
   controllers: [BankHealthController, BankAuthController, TradingController, MiroirController, PartnerWebhookController],
   providers: [
     { provide: BankStore, useClass: config.storageDriver === 'dynamodb' ? DynamoBankStore : JsonBankStore },

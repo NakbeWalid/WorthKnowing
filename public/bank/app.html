@@ -3,65 +3,117 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Boréal Courtage — Mon compte</title>
+  <link rel="stylesheet" href="/shared/ui.css">
   <link rel="stylesheet" href="/css/app.css">
 </head>
-<body>
-<header class="top">
-  <a class="brand" href="/app.html">Boréal Courtage</a><span class="tag">plateforme fictive de démonstration</span>
-  <div class="spacer"></div>
-  <span id="hello" class="small"></span>
-  <button class="link" onclick="session.clear()">Fermer la session</button>
+<body class="boreal">
+<header class="nav">
+  <span id="navLogo"></span>
+  <nav class="nav-links" role="tablist" aria-label="Sections">
+    <button role="tab" data-view="portfolio" aria-selected="true">Portefeuille</button>
+    <button role="tab" data-view="activity" aria-selected="false">Activité</button>
+  </nav>
+  <span class="spacer"></span>
+  <span id="wkPill"></span>
+  <div class="user-chip"><span id="hello"></span><div class="avatar" id="avatar">·</div></div>
+  <button class="btn soft icon-only" id="logout" title="Fermer la session" aria-label="Fermer la session"></button>
 </header>
-<main>
+
+<main class="page">
   <div id="notices"></div>
 
-  <div class="summary">
-    <div><span>Valeur du compte</span><b id="total">…</b></div>
-    <div><span>Liquidités</span><b id="cash">…</b></div>
-    <div><span>Gain ou perte depuis l’ouverture</span><b id="gain">…</b></div>
-  </div>
-
-  <div class="layout">
-    <div>
-      <div class="panel hidden" id="resultPanel"></div>
-      <div class="panel">
-        <h2>Positions</h2>
-        <div class="scroll" id="positions"></div>
-        <p class="small muted" id="asOf" style="margin:10px 0 0"></p>
+  <!-- ===================================================== Portefeuille -->
+  <section id="view-portfolio" class="view">
+    <div class="widget pad-lg hero rise">
+      <div class="hero-top">
+        <div>
+          <div class="kpi-label">Valeur totale du compte</div>
+          <div class="kpi xl" id="total"><span class="skeleton" style="display:inline-block;width:240px;height:52px"></span></div>
+          <div class="kpi-sub row wrap" id="gain"></div>
+        </div>
+        <div class="hero-stats">
+          <div><span class="kpi-label">Liquidités</span><b class="num" id="cash">—</b></div>
+          <div><span class="kpi-label">Investi</span><b class="num" id="invested">—</b></div>
+        </div>
       </div>
-      <div class="panel">
-        <h2>Historique des ordres</h2>
-        <div class="scroll" id="history"></div>
-      </div>
+      <div class="chart-box hero-chart"><canvas id="valueChart" aria-label="Valeur du compte dans le temps"></canvas>
+        <div class="empty-chart hidden" id="valueEmpty"><span>Votre courbe apparaîtra après votre premier ordre.</span></div></div>
+      <p class="tiny faint" id="asOf"></p>
     </div>
 
-    <div>
-      <form class="panel" id="ticket">
-        <h2>Passer un ordre</h2>
-        <div class="sides">
-          <input type="radio" name="side" id="buy" value="buy" checked><label for="buy">Acheter</label>
-          <input type="radio" name="side" id="sell" value="sell"><label for="sell">Vendre</label>
+    <div class="grid g-main section">
+      <div class="stack">
+        <div class="grid g-2 stagger" style="gap:18px">
+          <div class="widget">
+            <div class="widget-head"><h3>Répartition</h3><span id="allocCount" class="pill outline"></span></div>
+            <div class="alloc">
+              <div class="chart-box donut-box"><canvas id="allocChart"></canvas><div class="donut-center"><b id="allocCash">—</b><span class="tiny faint">en liquidités</span></div></div>
+              <div class="alloc-legend" id="allocLegend"></div>
+            </div>
+          </div>
+          <div class="widget" id="wkWidget"></div>
         </div>
-        <label for="ticker">Actif</label><select id="ticker"></select>
-        <div class="row">
-          <div><label for="amount">Montant ($)</label><input id="amount" type="number" min="1" step="any" inputmode="decimal" value="5000" required></div>
-          <div><label for="date">Date de marché simulée</label><input id="date" type="date"></div>
-        </div>
-        <p class="small muted" style="margin:6px 0 0">L’ordre est exécuté au cours de clôture de cette date. Elle peut avancer jusqu’en novembre 2026, jamais reculer.</p>
-        <label for="note">Pourquoi cet ordre ? (facultatif)</label><input id="note" maxlength="280">
-        <div class="quote" id="quote"></div>
-        <div class="error" id="ticketError" role="alert"></div>
-        <button class="primary" style="width:100%" id="orderButton">Vérifier l’ordre</button>
-      </form>
 
-      <div id="miroirPanel"></div>
+        <div class="widget rise">
+          <div class="widget-head"><h3>Positions</h3><span class="tiny faint">Cliquez pour vendre</span></div>
+          <div class="list" id="positions"></div>
+        </div>
+      </div>
+
+      <!-- Ticket d'ordre -->
+      <aside class="stack sticky">
+        <form class="widget ticket rise" id="ticket" novalidate>
+          <div class="widget-head"><h3>Passer un ordre</h3></div>
+          <div class="segmented side-switch">
+            <input type="radio" name="side" id="buy" value="buy" checked><label for="buy">Acheter</label>
+            <input type="radio" name="side" id="sell" value="sell"><label for="sell">Vendre</label>
+          </div>
+          <div class="field" style="margin-top:16px"><label for="ticker">Actif</label><select id="ticker"></select></div>
+          <div class="quote" id="quote"><div class="skeleton" style="height:64px"></div></div>
+          <div class="field">
+            <label for="amount">Montant</label>
+            <div class="money-input"><input id="amount" type="number" min="1" step="any" inputmode="decimal" value="5000" required><span>$</span></div>
+            <div class="chips" id="amountChips">
+              <button type="button" class="chip" data-amt="1000">1 000</button>
+              <button type="button" class="chip on" data-amt="5000">5 000</button>
+              <button type="button" class="chip" data-amt="10000">10 000</button>
+              <button type="button" class="chip" data-amt="max">Max</button>
+            </div>
+          </div>
+          <div class="field"><label for="date">Date de marché simulée</label><input id="date" type="date">
+            <span class="hint">Au cours de clôture. Elle avance, jamais ne recule.</span></div>
+          <details class="note-box"><summary>Ajouter une note</summary>
+            <div class="field" style="margin-top:8px"><input id="note" maxlength="280" placeholder="Pourquoi cet ordre ?"></div></details>
+          <div class="error" id="ticketError" role="alert"></div>
+          <button class="btn primary lg block" style="margin-top:18px" id="orderButton">Vérifier l’ordre</button>
+        </form>
+      </aside>
     </div>
-  </div>
-  <p class="disclaimer">Plateforme de démonstration : capital fictif, aucun ordre réel, aucun conseil financier.</p>
+  </section>
+
+  <!-- ===================================================== Activité -->
+  <section id="view-activity" class="view hidden">
+    <div class="grid g-4 stagger" id="activityStats"></div>
+    <div class="widget section hidden" id="driftWidget">
+      <div class="widget-head"><h3>Dérive WorthKnowing, ordre après ordre</h3>
+        <div class="legend"><span><i style="background:var(--ink)"></i>Dérive</span><span><i style="background:var(--red)"></i>Règle outrepassée</span></div></div>
+      <div class="chart-box" style="height:220px"><canvas id="driftChart"></canvas></div>
+    </div>
+    <div class="widget section">
+      <div class="widget-head"><h3>Historique des ordres</h3>
+        <div class="chips" id="historyFilter">
+          <button class="chip on" data-filter="all">Tous</button><button class="chip" data-filter="buy">Achats</button>
+          <button class="chip" data-filter="sell">Ventes</button><button class="chip" data-filter="flag">Règle outrepassée</button>
+        </div></div>
+      <div class="list" id="history"></div>
+    </div>
+  </section>
+
+  <p class="footer-note">Plateforme de démonstration · capital fictif · aucun conseil financier</p>
 </main>
 
-<div class="modal hidden" id="modal" role="dialog" aria-modal="true"><div class="panel" id="modalBody"></div></div>
-
+<script src="/shared/vendor/chartjs/chart.umd.js"></script>
+<script src="/shared/ui.js"></script>
 <script src="/js/common.js"></script>
 <script src="/js/app.js"></script>
 </body>

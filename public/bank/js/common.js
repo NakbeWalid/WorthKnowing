@@ -39,10 +39,13 @@ const pct = (n) => `${n >= 0 ? '+' : '−'}${Math.abs(n * 100).toFixed(1)} %`;
 const day = (iso) => new Date(iso).toLocaleDateString('fr-CA', { day: 'numeric', month: 'short', year: 'numeric' });
 
 /** Message bref en bas de l'écran, qui disparaît seul. */
-function toast(message) {
-  document.querySelector('.toast')?.remove();
-  const el = Object.assign(document.createElement('div'), { className: 'toast', textContent: message });
-  el.setAttribute('role', 'status');
-  document.body.append(el);
-  setTimeout(() => el.remove(), 6000);
-}
+const toast = (message, kind = '') => UI.toast(esc(message), kind);
+
+/** Montant découpé en dollars + cents plus discrets (gros chiffres du tableau de bord). */
+const bigMoney = (n) => {
+  const [int, dec] = Math.abs(n).toFixed(2).split('.');
+  return `${n < 0 ? '−' : ''}${Number(int).toLocaleString('fr-CA')}<span class="cents">,${dec} $</span>`;
+};
+
+/** Cours au format québécois : 519,77 */
+const price = (n) => Number(n).toLocaleString('fr-CA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });

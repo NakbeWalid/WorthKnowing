@@ -18,6 +18,7 @@ export class AdminController {
     return Promise.all(users.map(async (u) => ({
       id: u.id, name: u.name, email: u.email, status: u.status, createdAt: u.createdAt,
       drift: u.drift.score, rules: u.rules.length, linked: u.link?.status === 'active', trades: (await this.store.listTrades(u.id)).length,
+      profile: u.profile?.current ?? null,
     })));
   }
 

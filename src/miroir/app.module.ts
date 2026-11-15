@@ -50,7 +50,12 @@ class HealthController {
  *   partenaire  : /api/partner/v1 (clé d'API + code persona) — seule entrée des trades
  */
 @Module({
-  imports: [ServeStaticModule.forRoot({ rootPath: join(process.cwd(), 'public', 'miroir'), exclude: ['/api/(.*)'] })],
+  imports: [ServeStaticModule.forRoot(
+    // Système de design commun aux deux applications (polices, couleurs, composants, graphiques).
+    { rootPath: join(process.cwd(), 'node_modules', 'chart.js', 'dist'), serveRoot: '/shared/vendor/chartjs', exclude: ['/api/(.*)'] },
+    { rootPath: join(process.cwd(), 'public', 'shared'), serveRoot: '/shared', exclude: ['/api/(.*)'] },
+    { rootPath: join(process.cwd(), 'public', 'miroir'), exclude: ['/api/(.*)'] },
+  )],
   controllers: [
     HealthController, AuthController, EvaluationController, LinkController, TradesController,
     PartnerController, AdminController, RulesController, ParserController,

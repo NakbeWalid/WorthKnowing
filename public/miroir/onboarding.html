@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WorthKnowing — Évaluation</title>
+  <link rel="stylesheet" href="/shared/ui.css">
   <link rel="stylesheet" href="/css/app.css">
 </head>
-<body>
-<header class="top">
-  <a class="brand" href="/">WorthKnowing</a><div class="spacer"></div>
-  <button class="link" onclick="session.clear()">Déconnexion</button>
-</header>
-<main class="narrow">
-  <ol class="steps" id="steps">
-    <li>Comment vous vous voyez</li><li>Mises en situation</li><li>Ce qui s’est vraiment passé</li><li>Vos règles</li>
+<body class="wk">
+<header class="nav"></header>
+<main class="page narrow">
+  <ol class="stepper" id="steps">
+    <li><span>Vous</span></li><li><span>Situations</span></li><li><span>Révélation</span></li><li><span>Vos règles</span></li>
   </ol>
-  <div id="view"><p class="muted">Chargement…</p></div>
-  <p class="disclaimer">Simulation uniquement : aucune transaction réelle, aucun conseil financier.</p>
+  <div id="view"><div class="step-card"><div class="skeleton" style="height:28px;width:60%"></div><div class="skeleton" style="height:120px;margin-top:20px"></div></div></div>
+  <p class="footer-note">Simulation uniquement · aucun conseil financier</p>
 </main>
+<script src="/shared/vendor/chartjs/chart.umd.js"></script>
+<script src="/shared/ui.js"></script>
 <script src="/js/common.js"></script>
 <script src="/js/onboarding.js"></script>
 </body>

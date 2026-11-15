@@ -3,30 +3,28 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WorthKnowing — Administration</title>
+  <link rel="stylesheet" href="/shared/ui.css">
   <link rel="stylesheet" href="/css/app.css">
 </head>
-<body>
-<header class="top">
-  <a class="brand" href="/admin.html">WorthKnowing</a> <span class="badge grey">Admin</span>
-  <span class="badge" id="live">● en direct</span><div class="spacer"></div>
-  <button class="link" onclick="session.clear()">Déconnexion</button>
-</header>
-<main>
-  <div class="grid" style="grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr)">
-    <div class="card">
-      <h2>Personas</h2>
-      <table>
-        <thead><tr><th>Nom</th><th>Statut</th><th class="right">Dérive</th><th class="right">Règles</th><th class="right">Ordres</th></tr></thead>
-        <tbody id="users"></tbody>
-      </table>
+<body class="wk">
+<header class="nav"></header>
+<main class="page">
+  <div class="section-head"><h1>Les <em>personas</em></h1><span class="muted small" id="updated"></span></div>
+  <div class="grid g-4 stagger" id="kpis"></div>
+
+  <div class="admin-layout section">
+    <div>
+      <div class="arch-filter" id="archFilter"></div>
+      <div id="gallery"><div class="persona-grid"></div></div>
     </div>
-    <div class="card">
-      <h2>Activité en temps réel</h2>
-      <div class="feed" id="feed"><p class="muted">En attente d’événements…</p></div>
-    </div>
+    <aside class="widget sticky-feed" style="position:sticky;top:88px">
+      <div class="widget-head"><h3>Activité en direct</h3><span class="pill red" id="live"><span class="dot live"></span>en direct</span></div>
+      <div class="feed" id="feed"><div class="empty-state"><p>En attente d’événements…</p></div></div>
+    </aside>
   </div>
-  <div id="detail"></div>
 </main>
+<script src="/shared/vendor/chartjs/chart.umd.js"></script>
+<script src="/shared/ui.js"></script>
 <script src="/js/common.js"></script>
 <script src="/js/investigation.js"></script>
 <script src="/js/admin.js"></script>

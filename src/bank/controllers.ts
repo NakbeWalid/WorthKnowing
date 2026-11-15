@@ -39,6 +39,10 @@ export class TradingController {
   @Get('market/quote')
   quote(@Query('ticker') ticker: string, @Query('date') date?: string) { return this.trading.quote(ticker, date); }
 
+  /** Valeur du compte dans le temps (graphique du tableau de bord). */
+  @Get('portfolio/history')
+  valueHistory(@Req() req: { account: Account }) { return this.trading.valueHistory(req.account, config.startingCash); }
+
   @Get('trades')
   history(@Req() req: { account: Account }) { return this.trading.history(req.account); }
 
