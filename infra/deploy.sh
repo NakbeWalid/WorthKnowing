@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Déploie Miroir de bout en bout (aucun Docker requis en local).
+# Déploie Miroir et Boréal Courtage de bout en bout (aucun Docker requis en local).
 #   1. données (DynamoDB, Cognito, S3 + envoi du dataset et du corpus) et chaîne de build (ECR, CodeBuild) ;
 #   2. construction de l'image dans CodeBuild, étiquetée avec le commit git ;
 #   3. application (ECS Fargate + ALB + CloudFront) ;
@@ -33,5 +33,6 @@ echo "▶ 4/4 Compte admin"
 PASSWORD=$(aws secretsmanager get-secret-value --secret-id miroir/admin-password --query SecretString --output text)
 aws cognito-idp admin-set-user-password --user-pool-id "$POOL" --username admin@miroir.local --password "$PASSWORD" --permanent
 
-echo "✔ Déployé : $(node -p "require('./app-outputs.json').MiroirApp.Url")"
+echo "✔ Miroir          : $(node -p "require('./app-outputs.json').MiroirApp.Url")"
+echo "✔ Boréal Courtage : $(node -p "require('./app-outputs.json').MiroirApp.BankUrl")"
 echo "  Mot de passe admin : aws secretsmanager get-secret-value --secret-id miroir/admin-password --query SecretString --output text"

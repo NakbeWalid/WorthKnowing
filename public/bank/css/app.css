@@ -16,6 +16,7 @@ a { color: var(--accent); }
 .muted { color: var(--muted); } .small { font-size: 13px; } .right { text-align: right; }
 .gain { color: var(--gain); } .loss { color: var(--loss); }
 .num, td.right, th.right { font-variant-numeric: tabular-nums; }
+td.right { white-space: nowrap; }
 .hidden { display: none !important; }
 
 header.top { display: flex; align-items: center; gap: 14px; padding: 0 24px; height: 56px; background: var(--navy); color: #fff; }
@@ -102,6 +103,6 @@ dl.recap { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; margin
 dl.recap dt { color: var(--muted); } dl.recap dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
 details summary { cursor: pointer; color: var(--accent); font-size: 14px; }
 details ul { margin: 6px 0; padding-left: 20px; } details li { margin: 3px 0; font-size: 14px; }
-.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--navy); color: #fff; padding: 12px 18px; border-radius: var(--radius); z-index: 20; max-width: 90vw; }
+.toast { position: fixed; left: 50%; top: 68px; transform: translateX(-50%); background: var(--navy); color: #fff; padding: 12px 18px; border-radius: var(--radius); z-index: 20; max-width: 90vw; }
 .disclaimer { text-align: center; font-size: 12.5px; color: var(--muted); padding: 4px 0 24px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
