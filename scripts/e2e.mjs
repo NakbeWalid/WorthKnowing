@@ -109,7 +109,7 @@ assert(me.miroir.status === 'linked' && !JSON.stringify(me).includes('mir_'), 'l
 step('Liaison', 'state vérifié, code à usage unique, clé partenaire exigée, code persona gardé côté serveur');
 
 // === 5. Trades : pré-contrôle des règles, puis enquête ====================================
-out = await bank.call('POST', '/api/trades', { ticker: 'XBB.TO', side: 'buy', amount: 5000, decisionTimeMs: 45000 });
+out = await bank.call('POST', '/api/trades', { ticker: 'XBB.TO', side: 'buy', amount: 5000, marketDate: '2023-01-10', decisionTimeMs: 45000 });
 assert(out.trade.miroir.status === 'analysed' && out.miroir.drift.score === 0, 'trade conforme : enquête sans dérive');
 step('Trade conforme', out.miroir.investigation.explanation.summary);
 
@@ -121,6 +121,8 @@ await bank.call('POST', '/api/trades', risky, [409]);
 await bank.call('POST', '/api/trades/cancel', risky);
 assert((await bank.call('GET', '/api/trades')).length === 1, 'trade annulé : rien n’est exécuté');
 step('Rappel de règle', 'trade bloqué sans confirmation (409), puis annulé par le client');
+await bank.call('POST', '/api/trades/preview', { ticker: 'SPY', side: 'buy', amount: 100, marketDate: '2022-06-01' }, [400]);
+step('Horloge de marché simulée', 'un ordre ne peut pas être daté avant le précédent');
 
 const orders = [['NVDA', '2023-05-30'], ['BTC-USD', '2024-03-25'], ['TSLA', '2024-12-17'], ['ETH-USD', '2025-08-22']];
 let n = 0;

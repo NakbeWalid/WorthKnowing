@@ -1,135 +1,75 @@
-// Tableau de bord personnel : profil, dérive, règles, et simulation de trades.
-
-let me = null;
-let formTouchedAt = Date.now(); // début de la réflexion pour le trade en cours
+// Page de profil Miroir : dérive, profil, règles, enquêtes, et liaison avec la plateforme de courtage.
+// Les ordres se passent chez le courtier ; ici on ne fait que consulter.
 
 async function refresh() {
-  me = await api('GET', '/me');
+  const me = await api('GET', '/me');
   if (me.role === 'admin' || !me.profile) return route(me);
-  const [portfolio, trades] = await Promise.all([api('GET', '/portfolio'), api('GET', '/trades')]);
-  const blocked = me.status === 'reevaluation_required';
+  const trades = await api('GET', '/trades');
+  const p = pending.get();
 
   $('#hello').textContent = `Bonjour ${me.name}`;
-  $('#banner').classList.toggle('hidden', !blocked);
-  $('#tradeButton').disabled = blocked;
+
+  // Bandeau du haut : demande de liaison en attente, réévaluation exigée, ou retour au courtier.
+  let top = '';
+  if (p?.link) {
+    top = `<div class="card partner">
+      <h2>${esc(p.partner)} demande à lier votre profil Miroir</h2>
+      <p>Si vous acceptez, ${esc(p.partner)} enverra à Miroir vos ordres et la composition de votre portefeuille,
+        et recevra l’état de votre profil, votre score de dérive et le texte de vos règles. Rien d’autre.</p>
+      <div class="actions"><button class="primary" id="allow">Autoriser et retourner à ${esc(p.partner)}</button>
+        <button id="refuse">Refuser</button></div>
+      <div class="error" id="linkError" role="alert"></div></div>`;
+  } else if (me.status === 'reevaluation_required') {
+    top = `<div class="banner"><div><b>Réévaluation requise.</b> Votre comportement s’est trop éloigné de votre profil de référence.
+      Vos ordres sont suspendus chez votre courtier jusqu’à la réévaluation.</div>
+      <button class="danger" onclick="location.href='/onboarding.html'">Refaire l’évaluation</button></div>`;
+  } else if (p) {
+    top = `<div class="card partner"><div class="row"><p style="margin:0">Votre profil est à jour.</p>
+      <button class="primary" style="flex:none" id="goBack">Retourner à ${esc(p.partner)}</button></div></div>`;
+  }
+  $('#top').innerHTML = top;
+  if ($('#allow')) {
+    $('#allow').onclick = () => finishAndReturn().catch((err) => { $('#linkError').textContent = err.message; });
+    $('#refuse').onclick = () => { pending.clear(); refresh(); };
+  }
+  if ($('#goBack')) $('#goBack').onclick = () => finishAndReturn();
 
   // Score de dérive
   $('#driftScore').textContent = me.drift.score;
   $('#driftNeedle').style.left = `calc(${me.drift.score}% - 2px)`;
   $('#driftLimit').style.left = me.driftThreshold + '%';
-  $('#driftText').textContent = `Écart entre votre comportement actuel et votre dernière évaluation. À ${me.driftThreshold}, une réévaluation est demandée.`
-    + (me.drift.overrides ? ` ${me.drift.overrides} règle(s) outrepassée(s).` : '');
+  $('#driftText').textContent = `Écart entre votre comportement récent et votre dernière évaluation. À ${me.driftThreshold}, une réévaluation est demandée.`
+    + (me.drift.overrides ? ` Règles outrepassées depuis : ${me.drift.overrides}.` : '');
 
-  // Profil et règles
+  // Liaison avec le courtier
+  $('#link').innerHTML = me.link
+    ? `<p><span class="badge ok">Lié</span> ${esc(me.link.partner)}, depuis le ${esc(day(me.link.linkedAt))}.</p>
+       <p class="small muted">Vos ordres passés chez ${esc(me.link.partner)} sont analysés ici.</p>
+       <button id="revoke">Retirer l’accès de ${esc(me.link.partner)}</button>`
+    : `<p class="muted">Aucun compte de courtage lié. Pour que vos ordres soient analysés, activez Miroir depuis les réglages de votre plateforme de courtage.</p>`;
+  if ($('#revoke')) $('#revoke').onclick = async () => {
+    if (!confirm(`Retirer l’accès de ${me.link.partner} ? Vos ordres ne seront plus analysés.`)) return;
+    await api('DELETE', '/link').catch((err) => alert(err.message));
+    refresh();
+  };
+
+  // Profil : référence à gauche de l'axe, aujourd'hui à droite
   const { current, baseline } = me.profile;
-  $('#params').innerHTML = Object.keys(PARAM_LABELS).map((p) => paramBar(PARAM_LABELS[p], current[p], baseline[p])).join('');
+  $('#params').innerHTML = mirrorHead('À la dernière évaluation', 'Aujourd’hui')
+    + Object.keys(PARAM_LABELS).map((k) => mirror(PARAM_LABELS[k], baseline[k], current[k])).join('');
+  $('#evaluated').textContent = `Dernière évaluation le ${day(me.profile.evaluatedAt)} (${me.profile.evaluationCount} au total).`;
+
   $('#rules').innerHTML = me.rules.length
     ? me.rules.map((r) => `<div class="rule"><span class="badge grey">${PARAM_LABELS[r.param]}</span>
-        <p style="margin:6px 0 0">${esc(r.text.replace('{seuil}', r.threshold))}</p></div>`).join('')
-    : '<p class="muted">Aucune règle définie.</p>';
+        <p>${esc(r.text.replace('{seuil}', r.threshold))}</p></div>`).join('')
+    : '<p class="empty">Aucune règle. Refaites une évaluation pour en définir.</p>';
 
-  // Portefeuille
-  $('#portfolio').innerHTML = `<table>
-    <tr><th>Actif</th><th class="right">Valeur</th><th class="right">Poids</th></tr>
-    ${portfolio.positions.map((p) => `<tr><td>${esc(p.ticker)}</td><td class="right">${money(p.value)}</td><td class="right">${(p.weight * 100).toFixed(0)} %</td></tr>`).join('')}
-    <tr><td>Liquidités</td><td class="right">${money(portfolio.cash)}</td><td class="right">${((portfolio.cash / portfolio.total) * 100).toFixed(0)} %</td></tr>
-    <tr><td><b>Total</b></td><td class="right"><b>${money(portfolio.total)}</b></td><td></td></tr>
-  </table><p class="small muted" style="margin:8px 0 0">Valorisé au ${portfolio.date} (date de marché de votre dernier trade).</p>`;
-
-  // Historique
-  $('#history').innerHTML = trades.length ? trades.map((t) => `
-    <details>
-      <summary>
-        <span class="badge ${t.side === 'buy' ? '' : 'grey'}">${t.side === 'buy' ? 'Achat' : 'Vente'}</span>
-        <span class="grow"><b>${esc(t.ticker)}</b> · ${money(t.amount)} <span class="muted small">· marché du ${t.marketDate}</span></span>
-        ${t.overrodeRules ? '<span class="badge danger">règle outrepassée</span>' : ''}
-        <span class="muted small">dérive ${t.investigation.driftBefore} → ${t.investigation.driftAfter}</span>
-      </summary>
-      ${investigationHtml(t.investigation)}
-    </details>`).join('') : '<p class="muted">Aucun trade pour l’instant.</p>';
+  $('#history').innerHTML = trades.length
+    ? trades.map((t) => tradeRow(t)).join('')
+    : `<p class="empty">Aucun ordre analysé pour l’instant. ${me.link ? `Passez un ordre chez ${esc(me.link.partner)} : son enquête apparaîtra ici.` : ''}</p>`;
 }
-
-/** Affiche le contexte de marché de l'actif choisi (faits tirés des prix). */
-let contextCall = 0;
-async function showContext() {
-  const ticker = $('#ticker').value;
-  if (!ticker) return;
-  const call = ++contextCall; // une réponse plus ancienne que la dernière demande est ignorée
-  $('#context').textContent = 'Chargement…';
-  try {
-    const c = await api('GET', `/market/context?ticker=${encodeURIComponent(ticker)}&date=${encodeURIComponent($('#date').value)}`);
-    if (call !== contextCall) return;
-    $('#context').innerHTML = `${esc(c.name)} · ${c.price.toFixed(2)} ${esc(c.currency)} au ${esc(c.date)} · 30 séances : ${pct(c.ret30d)} · volatilité : ${(c.vol30d * 100).toFixed(0)} %/an`;
-  } catch (err) {
-    if (call === contextCall) $('#context').textContent = err.message;
-  }
-}
-/** Fenêtre de rappel : la règle que l'utilisateur s'est fixée, avant de le laisser poursuivre. */
-function confirmRules(check) {
-  return new Promise((resolve) => {
-    $('#modalBody').innerHTML = `
-      <h2>Avant de poursuivre</h2>
-      ${check.triggeredRules.length ? `<p>Ce trade touche ${check.triggeredRules.length > 1 ? 'des règles' : 'une règle'} que <b>vous vous êtes fixée${check.triggeredRules.length > 1 ? 's' : ''}</b> :</p>` : ''}
-      ${check.triggeredRules.map((r) => `<div class="rule risk"><span class="badge warn">${PARAM_LABELS[r.param]}</span>
-        <p style="margin:6px 0 2px"><b>« ${esc(r.text)} »</b></p><p class="small muted" style="margin:0">${esc(r.reason)}</p></div>`).join('')}
-      ${check.warnings.map((w) => `<div class="notice">${esc(w)}</div>`).join('')}
-      <div class="actions">
-        <button id="cancel">Annuler le trade</button>
-        <button class="danger" id="proceed">Poursuivre quand même</button>
-      </div>`;
-    $('#modal').classList.remove('hidden');
-    const close = (answer) => { $('#modal').classList.add('hidden'); resolve(answer); };
-    $('#cancel').onclick = () => close(false);
-    $('#proceed').onclick = () => close(true);
-  });
-}
-
-$('#tradeForm').onsubmit = async (e) => {
-  e.preventDefault();
-  if ($('#tradeButton').disabled) return; // double clic ou envoi déjà en cours
-  $('#tradeError').textContent = '';
-  $('#tradeButton').disabled = true;
-  const request = {
-    ticker: $('#ticker').value, side: $('#side').value, amount: Number($('#amount').value),
-    marketDate: $('#date').value, note: $('#note').value,
-  };
-  try {
-    // 1. Pré-contrôle : rappel des règles concernées.
-    const check = await api('POST', '/trades/check', request);
-    if (check.triggeredRules.length || check.warnings.length) {
-      if (!(await confirmRules(check))) { formTouchedAt = Date.now(); return; }
-    }
-    // 2. Envoi du trade : le backend exécute, enquête, met à jour le profil et la dérive.
-    $('#tradeButton').textContent = 'Enquête en cours…';
-    const out = await api('POST', '/trades', {
-      ...request, decisionTimeMs: Date.now() - formTouchedAt,
-      acknowledgedRuleIds: check.triggeredRules.map((r) => r.ruleId),
-    });
-    $('#resultCard').classList.remove('hidden');
-    $('#result').innerHTML = investigationHtml(out.trade.investigation);
-    $('#resultCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    $('#note').value = '';
-  } catch (err) {
-    $('#tradeError').textContent = err.message;
-  } finally {
-    $('#tradeButton').textContent = 'Envoyer le trade';
-    $('#tradeButton').disabled = false; // refresh() le verrouille de nouveau si une réévaluation est requise
-    formTouchedAt = Date.now();
-    await refresh().catch((err) => { $('#tradeError').textContent ||= err.message; });
-  }
-};
 
 (async () => {
   if (!session.token) return (location.href = '/');
-  // Le formulaire doit fonctionner même si le rafraîchissement du tableau échoue (et inversement).
-  const [dash, market] = await Promise.allSettled([refresh(), api('GET', '/market/assets')]);
-  if (market.status === 'fulfilled') {
-    const { assets, lastDate } = market.value;
-    $('#ticker').innerHTML = assets.map((a) => `<option value="${esc(a.ticker)}">${esc(a.ticker)} — ${esc(a.name)}</option>`).join('');
-    $('#date').max = lastDate; $('#date').value = lastDate;
-    $('#ticker').onchange = $('#date').onchange = () => { formTouchedAt = Date.now(); showContext(); };
-    showContext();
-  }
-  const failure = [dash, market].find((r) => r.status === 'rejected');
-  if (failure) $('#tradeError').textContent = failure.reason.message;
+  refresh().catch((err) => { $('#top').innerHTML = `<div class="banner"><div>${esc(err.message)}</div><button onclick="location.reload()">Réessayer</button></div>`; });
 })();

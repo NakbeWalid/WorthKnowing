@@ -31,7 +31,7 @@ export function validateRegistration(email: string, password: string, name: stri
 /** Nouvel utilisateur métier (stocké dans le Store, quel que soit le fournisseur d'identité). */
 export function newUser(id: string, email: string, name: string, role: 'user' | 'admin', passwordHash = ''): User {
   return {
-    id, email: email.toLowerCase(), name, role,
+    id, email: email.trim().toLowerCase(), name, role,
     passwordHash, createdAt: new Date().toISOString(),
     status: 'onboarding', preferences: {}, profile: null, rules: [],
     drift: { score: 0, overrides: 0 },

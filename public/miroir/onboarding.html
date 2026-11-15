@@ -7,15 +7,15 @@
 </head>
 <body>
 <header class="top">
-  <div class="brand">Miroir<span>.</span></div><div class="spacer"></div>
+  <a class="brand" data-word="Miroir" href="/">Miroir</a><div class="spacer"></div>
   <button class="link" onclick="session.clear()">Déconnexion</button>
 </header>
 <main class="narrow">
-  <div class="steps" id="steps">
-    <div>1 · Comment vous vous voyez</div><div>2 · Mises en situation</div><div>3 · Ce qui s’est vraiment passé</div><div>4 · Vos règles</div>
-  </div>
-  <div id="view"></div>
-  <p class="disclaimer">Simulation uniquement — aucune transaction réelle, aucun conseil financier.</p>
+  <ol class="steps" id="steps">
+    <li>Comment vous vous voyez</li><li>Mises en situation</li><li>Ce qui s’est vraiment passé</li><li>Vos règles</li>
+  </ol>
+  <div id="view"><p class="muted">Chargement…</p></div>
+  <p class="disclaimer">Simulation uniquement : aucune transaction réelle, aucun conseil financier.</p>
 </main>
 <script src="/js/common.js"></script>
 <script src="/js/onboarding.js"></script>

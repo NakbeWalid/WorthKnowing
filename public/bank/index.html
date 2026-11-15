@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boréal Courtage — Connexion</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/">Boréal Courtage</a><span class="tag">plateforme fictive de démonstration</span>
+</header>
+<main style="max-width:440px; padding-top:7vh">
+  <h1 id="title">Accéder à votre compte</h1>
+  <p class="muted" id="lead">Courtage en ligne pour investisseurs autonomes. Actions, fonds négociés en bourse et cryptoactifs.</p>
+  <form class="panel" id="form">
+    <div id="nameField" class="hidden"><label for="name">Prénom</label><input id="name" autocomplete="given-name"></div>
+    <label for="email" style="margin-top:0">Courriel</label><input id="email" type="email" autocomplete="email" required>
+    <label for="password">Mot de passe</label><input id="password" type="password" minlength="8" autocomplete="current-password" required>
+    <p class="small muted hidden" id="passwordHint" style="margin:6px 0 0">8 caractères minimum.</p>
+    <div class="error" id="error" role="alert"></div>
+    <button class="primary" style="width:100%" id="submit">Ouvrir une session</button>
+  </form>
+  <p class="small"><span id="switchText">Nouveau client ?</span> <button type="button" class="link" id="switch">Ouvrir un compte</button></p>
+  <p class="disclaimer" style="text-align:left">Boréal Courtage n’existe pas : c’est une plateforme de démonstration. Capital fictif de 100 000 $, aucun ordre réel, aucun conseil financier.</p>
+</main>
+<script src="/js/common.js"></script>
+<script>
+  if (session.token) location.href = '/app.html';
+  let registering = false;
+  $('#switch').onclick = () => {
+    registering = !registering;
+    $('#nameField').classList.toggle('hidden', !registering);
+    $('#passwordHint').classList.toggle('hidden', !registering);
+    $('#password').autocomplete = registering ? 'new-password' : 'current-password';
+    $('#title').textContent = registering ? 'Ouvrir un compte' : 'Accéder à votre compte';
+    $('#lead').textContent = registering
+      ? 'Votre compte est crédité de 100 000 $ fictifs. Vous pourrez ensuite ajouter le service Miroir, ou non.'
+      : 'Courtage en ligne pour investisseurs autonomes. Actions, fonds négociés en bourse et cryptoactifs.';
+    $('#submit').textContent = registering ? 'Ouvrir mon compte' : 'Ouvrir une session';
+    $('#switchText').textContent = registering ? 'Déjà client ?' : 'Nouveau client ?';
+    $('#switch').textContent = registering ? 'Ouvrir une session' : 'Ouvrir un compte';
+    $('#error').textContent = '';
+  };
+  $('#form').onsubmit = async (e) => {
+    e.preventDefault();
+    $('#submit').disabled = true;
+    try {
+      const data = await api('POST', registering ? '/auth/register' : '/auth/login',
+        { email: $('#email').value, password: $('#password').value, name: $('#name').value });
+      session.save(data.token);
+      location.href = '/app.html';
+    } catch (err) {
+      $('#error').textContent = err.message;
+      $('#submit').disabled = false;
+    }
+  };
+</script>
+</body>
+</html>

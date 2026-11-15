@@ -19,6 +19,8 @@ export class TradingController {
     return {
       name: a.name, email: a.email, createdAt: a.createdAt,
       portfolio: this.trading.portfolio(a),
+      /** Date de marché simulée du dernier ordre : les suivants ne peuvent pas être antérieurs. */
+      clock: a.asOf ?? null,
       // Le code persona ne quitte jamais le serveur : le navigateur ne voit que l'état de la liaison.
       miroir: { status: a.miroir.status, linkedAt: a.miroir.linkedAt ?? null, urls: this.links.urls() },
       startingCash: config.startingCash,
@@ -26,7 +28,7 @@ export class TradingController {
   }
 
   @Get('market/assets')
-  assets() { return { lastDate: this.market.lastDate, assets: this.market.listAssets() }; }
+  assets() { return { firstDate: this.market.firstDate, lastDate: this.market.lastDate, assets: this.market.listAssets() }; }
 
   @Get('market/quote')
   quote(@Query('ticker') ticker: string, @Query('date') date?: string) { return this.trading.quote(ticker, date); }

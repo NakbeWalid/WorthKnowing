@@ -2,80 +2,51 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Miroir — Tableau de bord</title>
+  <title>Miroir — Mon profil</title>
   <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
 <header class="top">
-  <div class="brand">Miroir<span>.</span></div>
+  <a class="brand" data-word="Miroir" href="/profile.html">Miroir</a>
   <span class="muted" id="hello"></span><div class="spacer"></div>
   <button class="link" onclick="session.clear()">Déconnexion</button>
 </header>
 <main>
-  <div class="banner hidden" id="banner">
-    <div><b>Réévaluation requise.</b> Votre comportement s’est trop éloigné de votre profil de référence. Les trades sont suspendus jusqu’à la réévaluation.</div>
-    <button class="danger" onclick="location.href='/onboarding.html'">Refaire l’évaluation</button>
-  </div>
-
-  <div class="grid wide-right">
+  <div id="top"></div>
+  <div class="grid side">
     <div>
       <div class="card">
         <h2>Score de dérive</h2>
-        <div class="drift"><span class="score" id="driftScore">0</span><span class="muted">/ 100</span></div>
+        <div class="drift"><span class="score num" id="driftScore">0</span><span class="muted">sur 100</span></div>
         <div class="gauge"><i id="driftNeedle"></i><b id="driftLimit"></b></div>
-        <p class="small muted" id="driftText"></p>
+        <p class="small muted" id="driftText" style="margin:0"></p>
       </div>
+      <div class="card">
+        <h2>Compte de courtage</h2>
+        <div id="link"></div>
+      </div>
+    </div>
+    <div>
       <div class="card">
         <h2>Mon profil</h2>
         <div id="params"></div>
-        <div class="legend"><span>Aujourd’hui</span><span class="tick">Référence (dernière évaluation)</span></div>
-        <p style="margin:14px 0 0"><button class="link" onclick="location.href='/onboarding.html'">Refaire une évaluation</button></p>
+        <p class="small muted" id="evaluated"></p>
+        <button onclick="location.href='/onboarding.html'">Refaire une évaluation</button>
       </div>
       <div class="card">
         <h2>Mes règles</h2>
         <div id="rules"></div>
       </div>
-    </div>
-
-    <div>
       <div class="card">
-        <h2>Simuler un trade</h2>
-        <form id="tradeForm">
-          <div class="row">
-            <div><label for="ticker">Actif</label><select id="ticker"></select></div>
-            <div style="flex:.6"><label for="side">Sens</label>
-              <select id="side"><option value="buy">Acheter</option><option value="sell">Vendre</option></select></div>
-          </div>
-          <div class="row">
-            <div><label for="amount">Montant ($)</label><input id="amount" type="number" min="1" step="any" value="5000" required></div>
-            <div><label for="date">Date de marché simulée</label><input id="date" type="date" min="2022-04-01"></div>
-          </div>
-          <label for="note">Pourquoi ce trade ? (facultatif)</label><input id="note" maxlength="280" placeholder="Votre raisonnement">
-          <p class="small muted" id="context" style="margin:12px 0 0; min-height:20px"></p>
-          <div class="error" id="tradeError"></div>
-          <button class="primary" id="tradeButton">Envoyer le trade</button>
-        </form>
-      </div>
-
-      <div class="card hidden" id="resultCard"><h2>Résultat de l’enquête</h2><div id="result"></div></div>
-
-      <div class="card">
-        <h2>Portefeuille fictif</h2>
-        <div id="portfolio"></div>
-      </div>
-      <div class="card">
-        <h2>Historique des trades</h2>
+        <h2>Mes ordres analysés</h2>
         <div id="history"></div>
       </div>
     </div>
   </div>
-  <p class="disclaimer">Simulation uniquement — aucune transaction réelle, aucun conseil financier.</p>
+  <p class="disclaimer">Simulation uniquement : aucune transaction réelle, aucun conseil financier.</p>
 </main>
-
-<div class="modal hidden" id="modal"><div class="card" id="modalBody"></div></div>
-
 <script src="/js/common.js"></script>
-<script src="/js/dashboard-shared.js"></script>
-<script src="/js/dashboard.js"></script>
+<script src="/js/investigation.js"></script>
+<script src="/js/profile.js"></script>
 </body>
 </html>

@@ -163,7 +163,7 @@ export class EvaluationService implements OnModuleInit {
       if (!PARAMS.includes(r.param) || !r.text?.trim() || !(Number(r.threshold) > 0)) {
         throw new BadRequestException('Règle invalide (paramètre, texte et seuil requis).');
       }
-      return { id: randomUUID(), param: r.param, text: r.text.trim(), threshold: Number(r.threshold), createdAt: now };
+      return { id: randomUUID(), param: r.param, text: r.text.trim().slice(0, 300), threshold: Number(r.threshold), createdAt: now };
     });
     user.profile = {
       declared: evaluation.declared, baseline: { ...result.observed }, current: { ...result.observed },

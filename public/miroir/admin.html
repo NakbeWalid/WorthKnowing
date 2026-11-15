@@ -7,16 +7,16 @@
 </head>
 <body>
 <header class="top">
-  <div class="brand">Miroir<span>.</span> <span class="badge grey">Admin</span></div>
+  <a class="brand" data-word="Miroir" href="/admin.html">Miroir</a> <span class="badge grey">Admin</span>
   <span class="badge" id="live">● en direct</span><div class="spacer"></div>
   <button class="link" onclick="session.clear()">Déconnexion</button>
 </header>
 <main>
-  <div class="grid" style="grid-template-columns: 1.4fr 1fr">
+  <div class="grid" style="grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr)">
     <div class="card">
-      <h2>Utilisateurs inscrits</h2>
+      <h2>Personas</h2>
       <table>
-        <thead><tr><th>Nom</th><th>Statut</th><th class="right">Dérive</th><th class="right">Règles</th><th class="right">Trades</th></tr></thead>
+        <thead><tr><th>Nom</th><th>Statut</th><th class="right">Dérive</th><th class="right">Règles</th><th class="right">Ordres</th></tr></thead>
         <tbody id="users"></tbody>
       </table>
     </div>
@@ -28,7 +28,7 @@
   <div id="detail"></div>
 </main>
 <script src="/js/common.js"></script>
-<script src="/js/dashboard-shared.js"></script>
+<script src="/js/investigation.js"></script>
 <script src="/js/admin.js"></script>
 </body>
 </html>

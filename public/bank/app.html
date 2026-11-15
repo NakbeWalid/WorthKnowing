@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boréal Courtage — Mon compte</title>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/app.html">Boréal Courtage</a><span class="tag">plateforme fictive de démonstration</span>
+  <div class="spacer"></div>
+  <span id="hello" class="small"></span>
+  <button class="link" onclick="session.clear()">Fermer la session</button>
+</header>
+<main>
+  <div id="notices"></div>
+
+  <div class="summary">
+    <div><span>Valeur du compte</span><b id="total">…</b></div>
+    <div><span>Liquidités</span><b id="cash">…</b></div>
+    <div><span>Gain ou perte depuis l’ouverture</span><b id="gain">…</b></div>
+  </div>
+
+  <div class="layout">
+    <div>
+      <div class="panel hidden" id="resultPanel"></div>
+      <div class="panel">
+        <h2>Positions</h2>
+        <div class="scroll" id="positions"></div>
+        <p class="small muted" id="asOf" style="margin:10px 0 0"></p>
+      </div>
+      <div class="panel">
+        <h2>Historique des ordres</h2>
+        <div class="scroll" id="history"></div>
+      </div>
+    </div>
+
+    <div>
+      <form class="panel" id="ticket">
+        <h2>Passer un ordre</h2>
+        <div class="sides">
+          <input type="radio" name="side" id="buy" value="buy" checked><label for="buy">Acheter</label>
+          <input type="radio" name="side" id="sell" value="sell"><label for="sell">Vendre</label>
+        </div>
+        <label for="ticker">Actif</label><select id="ticker"></select>
+        <div class="row">
+          <div><label for="amount">Montant ($)</label><input id="amount" type="number" min="1" step="any" inputmode="decimal" value="5000" required></div>
+          <div><label for="date">Date de marché simulée</label><input id="date" type="date"></div>
+        </div>
+        <p class="small muted" style="margin:6px 0 0">L’ordre est exécuté au cours de clôture de cette date. Elle peut avancer jusqu’en novembre 2026, jamais reculer.</p>
+        <label for="note">Pourquoi cet ordre ? (facultatif)</label><input id="note" maxlength="280">
+        <div class="quote" id="quote"></div>
+        <div class="error" id="ticketError" role="alert"></div>
+        <button class="primary" style="width:100%" id="orderButton">Vérifier l’ordre</button>
+      </form>
+
+      <div id="miroirPanel"></div>
+    </div>
+  </div>
+  <p class="disclaimer">Plateforme de démonstration : capital fictif, aucun ordre réel, aucun conseil financier.</p>
+</main>
+
+<div class="modal hidden" id="modal" role="dialog" aria-modal="true"><div class="panel" id="modalBody"></div></div>
+
+<script src="/js/common.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

@@ -15,6 +15,8 @@ export class MarketService implements OnModuleInit {
   private assets: Asset[] = [];
   private series = new Map<string, Series>();
   lastDate = '';
+  /** Première date où chaque actif a les 90 séances d'historique exigées par context(). */
+  firstDate = '';
 
   async onModuleInit() {
     this.assets = JSON.parse(await readDataFile('data/assets.json'));
@@ -26,7 +28,9 @@ export class MarketService implements OnModuleInit {
       const s = this.series.get(c[1])!;
       s.dates.push(c[0]); s.close.push(Number(c[5])); s.adj.push(Number(c[6]));
     }
-    this.lastDate = this.series.get('SPY')!.dates.at(-1)!;
+    const calendar = this.series.get('SPY')!.dates;
+    this.lastDate = calendar.at(-1)!;
+    this.firstDate = calendar[95];
   }
 
   listAssets() { return this.assets; }

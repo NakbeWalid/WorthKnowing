@@ -37,16 +37,20 @@ export class JsonStore extends Store {
     renameSync(`${this.file}.tmp`, this.file);
   }
 
-  async listUsers() { return Object.values(this.db.users); }
-  async getUser(id: string) { return this.db.users[id]; }
+  // Les objets sont copiés à la lecture et à l'écriture, comme avec une vraie base : une requête qui échoue
+  // en cours de route ne laisse aucune modification à moitié appliquée en mémoire.
+  async listUsers() { return structuredClone(Object.values(this.db.users)); }
+  async getUser(id: string) { return clone(this.db.users[id]); }
   async getUserByEmail(email: string) {
-    return Object.values(this.db.users).find((u) => u.email === email.toLowerCase());
+    return clone(Object.values(this.db.users).find((u) => u.email === String(email).trim().toLowerCase()));
   }
-  async saveUser(user: User) { this.db.users[user.id] = user; this.persist(); }
-  async getEvaluation(id: string) { return this.db.evaluations[id]; }
-  async saveEvaluation(e: Evaluation) { this.db.evaluations[e.id] = e; this.persist(); }
+  async saveUser(user: User) { this.db.users[user.id] = structuredClone(user); this.persist(); }
+  async getEvaluation(id: string) { return clone(this.db.evaluations[id]); }
+  async saveEvaluation(e: Evaluation) { this.db.evaluations[e.id] = structuredClone(e); this.persist(); }
   async listTrades(userId: string) {
     return this.db.trades.filter((t) => t.userId === userId).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
   }
   async saveTrade(trade: Trade) { this.db.trades.push(trade); this.persist(); }
 }
+
+const clone = <T>(value: T | undefined): T | undefined => (value === undefined ? undefined : structuredClone(value));

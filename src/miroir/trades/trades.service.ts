@@ -82,7 +82,7 @@ export class TradesService {
     user.drift.score = computeDrift(profile.baseline, profile.current, user.drift.overrides);
     await this.store.saveUser(user);
     this.events.emit('rule.respected', user,
-      `Trade ${req.ticker} annulé après rappel — ${respected.length} règle(s) respectée(s)`);
+      `Ordre ${req.ticker} annulé après rappel — ${respected.length} règle(s) respectée(s)`);
     return { respected: respected.length, drift: user.drift.score };
   }
 

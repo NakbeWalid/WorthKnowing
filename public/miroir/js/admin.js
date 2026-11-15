@@ -2,14 +2,23 @@
 
 let selectedId = null;
 
+/** Libellés français des réponses factuelles du questionnaire (chargés une fois). */
+let prefLabels = {};
+async function loadPrefLabels() {
+  const questions = await api('GET', '/evaluation/questions');
+  for (const q of questions.filter((x) => x.kind === 'info')) {
+    prefLabels[q.id] = { text: q.text, options: Object.fromEntries(q.options.map((o) => [o.id, o.label])) };
+  }
+}
+
 async function loadUsers(flashId) {
   const users = await api('GET', '/admin/users');
   $('#users').innerHTML = users.length ? users.map((u) => `
-    <tr class="clickable ${u.id === selectedId ? 'selected' : ''} ${u.id === flashId ? 'flash' : ''}" data-id="${u.id}">
-      <td><b>${esc(u.name)}</b><br><span class="small muted">${esc(u.email)}</span></td>
+    <tr class="clickable ${u.id === selectedId ? 'selected' : ''} ${u.id === flashId ? 'flash' : ''}" data-id="${esc(u.id)}">
+      <td><b>${esc(u.name)}</b> ${u.linked ? '<span class="badge ok">lié</span>' : ''}<br><span class="small muted">${esc(u.email)}</span></td>
       <td>${statusBadge(u.status)}</td>
       <td class="right"><b>${u.drift}</b></td><td class="right">${u.rules}</td><td class="right">${u.trades}</td>
-    </tr>`).join('') : '<tr><td colspan="5" class="muted">Aucun utilisateur inscrit.</td></tr>';
+    </tr>`).join('') : '<tr><td colspan="5" class="muted">Aucun persona pour l’instant.</td></tr>';
   document.querySelectorAll('#users tr.clickable').forEach((row) => (row.onclick = () => {
     selectedId = row.dataset.id;
     refreshAll();
@@ -21,16 +30,19 @@ async function loadDetail() {
   if (!selectedId) return;
   const call = ++detailCall;
   const id = selectedId;
-  const { user, portfolio, trades } = await api('GET', '/admin/users/' + id);
+  const { user, trades } = await api('GET', '/admin/users/' + id);
   if (call !== detailCall || id !== selectedId) return; // une réponse plus récente (ou un autre utilisateur) a pris le relais
   const p = user.profile;
+  const prefs = Object.entries(user.preferences)
+    .map(([k, v]) => `<tr><td class="muted">${esc(prefLabels[k]?.text ?? k)}</td><td>${esc(prefLabels[k]?.options[v] ?? v)}</td></tr>`).join('');
   $('#detail').innerHTML = `
     <div class="card">
-      <h2>${esc(user.name)} ${statusBadge(user.status)} <span class="badge ${user.drift.score >= user.driftThreshold ? 'danger' : 'grey'}">dérive ${user.drift.score} / 100</span></h2>
-      <p class="small muted">${esc(user.email)} · inscrit le ${user.createdAt.slice(0, 10)}
-        ${p ? ` · ${p.evaluationCount} évaluation(s), dernière le ${p.evaluatedAt.slice(0, 10)}` : ''}
-        · portefeuille ${money(portfolio.total)}
-        ${Object.entries(user.preferences).map(([k, v]) => ` · ${esc(k)} : ${esc(v)}`).join('')}</p>
+      <h2>${esc(user.name)} ${statusBadge(user.status)}
+        <span class="badge ${user.drift.score >= user.driftThreshold ? 'danger' : 'grey'}">dérive ${user.drift.score} sur 100</span>
+        ${user.link ? `<span class="badge ok">lié à ${esc(user.link.partner)}</span>` : '<span class="badge grey">aucun compte de courtage lié</span>'}</h2>
+      <p class="small muted">${esc(user.email)}, inscrit le ${esc(day(user.createdAt))}.
+        ${p ? `${p.evaluationCount} évaluation(s), la dernière le ${esc(day(p.evaluatedAt))}.` : ''}
+        ${user.drift.overrides ? `Règles outrepassées depuis : ${user.drift.overrides}.` : ''}</p>
       ${p ? `<div class="grid">
         <div>
           <h3>Paramètres du profil</h3>
@@ -39,26 +51,18 @@ async function loadDetail() {
             <td class="right">${p.baseline[k]}</td>
             <td class="right"><b class="${Math.abs(p.current[k] - p.baseline[k]) >= 10 ? 'neg' : ''}">${p.current[k]}</b></td></tr>`).join('')}
           </table>
+          ${prefs ? `<h3 style="margin-top:20px">Ce que le persona a déclaré</h3><table>${prefs}</table>` : ''}
         </div>
         <div>
           <h3>Règles auto-définies</h3>
           ${user.rules.map((r) => `<div class="rule"><span class="badge grey">${PARAM_LABELS[r.param]}</span>
-            <p style="margin:6px 0 0">${esc(r.text.replace('{seuil}', r.threshold))}</p></div>`).join('') || '<p class="muted">Aucune règle.</p>'}
+            <p>${esc(r.text.replace('{seuil}', r.threshold))}</p></div>`).join('') || '<p class="empty">Aucune règle.</p>'}
         </div>
-      </div>` : '<p class="muted">Évaluation initiale non terminée.</p>'}
-      <h3 style="margin-top:18px">Historique des trades et enquêtes</h3>
-      ${trades.map((t) => `
-        <details>
-          <summary>
-            <span class="badge ${t.side === 'buy' ? '' : 'grey'}">${t.side === 'buy' ? 'Achat' : 'Vente'}</span>
-            <span class="grow"><b>${esc(t.ticker)}</b> · ${money(t.amount)}
-              <span class="muted small">· marché du ${t.marketDate} · envoyé à ${new Date(t.createdAt).toLocaleTimeString('fr-CA')} · décision en ${(t.decisionTimeMs / 1000).toFixed(0)} s</span></span>
-            ${t.overrodeRules ? '<span class="badge danger">règle outrepassée</span>' : ''}
-            <span class="muted small">dérive ${t.investigation.driftBefore} → ${t.investigation.driftAfter}</span>
-          </summary>
-          ${t.note ? `<p class="quote">${esc(t.note)}</p>` : ''}
-          ${investigationHtml(t.investigation)}
-        </details>`).join('') || '<p class="muted">Aucun trade.</p>'}
+      </div>` : '<p class="empty">Évaluation initiale non terminée.</p>'}
+      <h3 style="margin-top:22px">Ordres reçus et enquêtes</h3>
+      ${trades.map((t) => tradeRow(t,
+        `, reçu à ${new Date(t.createdAt).toLocaleTimeString('fr-CA')}, décision en ${(t.decisionTimeMs / 1000).toFixed(0)} s`)).join('')
+        || '<p class="empty">Aucun ordre reçu.</p>'}
     </div>`;
 }
 
@@ -114,6 +118,7 @@ function connect() {
   try {
     const me = await api('GET', '/me');
     if (me.role !== 'admin') return route(me);
+    await loadPrefLabels().catch(() => {}); // sans libellés, on affiche les clés brutes
     await loadUsers();
   } catch (err) {
     $('#live').className = 'badge danger'; $('#live').textContent = '● ' + err.message;

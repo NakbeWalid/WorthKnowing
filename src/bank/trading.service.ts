@@ -31,7 +31,7 @@ export class TradingService {
     private links: MiroirLinkService,
   ) {}
 
-  /** Portefeuille valorisé à une date de marché (par défaut : celle du dernier trade). */
+  /** Portefeuille valorisé à une date de marché (par défaut : celle du dernier ordre). */
   portfolio(account: Account, date = account.asOf ?? this.market.lastDate) {
     const positions = Object.entries(account.positions).map(([ticker, p]) => {
       const value = p.qty * this.market.priceAt(ticker, date);
@@ -138,7 +138,11 @@ export class TradingService {
     if (!input || !['buy', 'sell'].includes(input.side)) throw new BadRequestException('Sens de l’ordre invalide.');
     const amount = Math.round(Number(input.amount) * 100) / 100;
     if (!(amount > 0) || !Number.isFinite(amount)) throw new BadRequestException('Montant invalide.');
-    const quote = this.quote(input.ticker, input.marketDate);
+    const quote = this.quote(input.ticker, input.marketDate || account.asOf);
+    // L'horloge de marché simulée n'avance que dans un sens : sinon le portefeuille serait valorisé à deux dates à la fois.
+    if (account.asOf && quote.date < account.asOf) {
+      throw new BadRequestException(`La date de marché simulée ne peut pas reculer : votre dernier ordre est daté du ${account.asOf}.`);
+    }
     const pf = this.portfolio(account, quote.date);
     const held = pf.positions.find((p) => p.ticker === input.ticker)?.value ?? 0;
     if (input.side === 'buy' && amount > pf.cash + 0.005) {
