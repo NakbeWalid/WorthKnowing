@@ -1,31 +1,21 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8"><script>try{document.documentElement.dataset.theme=localStorage.getItem('wk-theme')==='dark'?'dark':'light'}catch(e){}</script><script>try{if(localStorage.getItem('miroir.token'))document.documentElement.classList.add('booting')}catch(e){}</script><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WorthKnowing — Connexion</title>
   <link rel="stylesheet" href="/shared/ui.css">
   <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="auth-page wk-auth">
-<div class="auth-bg" aria-hidden="true">
-  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
-  <div class="mesh"></div><div class="grain"></div>
-</div>
+<div class="auth-bg" aria-hidden="true"><canvas id="globe"></canvas><div class="grain"></div></div>
 
 <div class="auth">
   <section class="auth-stage">
     <div id="artLogo"></div>
     <div class="stage-main">
       <div class="pitch">
-        <h1>Ce que vous dites.<br><em>Ce que vous faites.</em></h1>
+        <h1>L’écart entre qui vous êtes<br>et <em>comment vous investissez</em>.</h1>
         <p>Six agents enquêtent sur chacun de vos ordres et tiennent votre profil d’investisseur à jour.</p>
-      </div>
-      <div class="visual" aria-hidden="true">
-        <!-- Constellation d'agents : chacun envoie ses constats au profil central (dessinée par le script) -->
-        <svg id="constellation" viewBox="0 0 680 500" preserveAspectRatio="xMidYMid meet"></svg>
-        <div class="verdict-chip glass v1"><i style="background:#ff5a6e"></i><div><b>Influence externe possible</b><span>Agent Influence · IA</span></div></div>
-        <div class="verdict-chip glass v2"><i style="background:#b48cf0"></i><div><b>Règle rappelée avant l’ordre</b><span>Agent Gouvernance</span></div></div>
-        <div class="verdict-chip glass v3"><i style="background:#8fe0b5"></i><div><b>Dérive 12 → 18</b><span>Agent Profil</span></div></div>
       </div>
     </div>
     <div class="foot"><span id="f1"></span><span id="f2"></span><span>Simulation uniquement · aucun conseil financier</span></div>
@@ -54,6 +44,7 @@
 
 <script src="/shared/ui.js"></script>
 <script src="/js/common.js"></script>
+<script src="/js/globe.js"></script>
 <script>
   $('#artLogo').innerHTML = UI.logo('wk', { light: true });
   $('#f1').innerHTML = UI.icon('spark', 'sm') + ' Agents propulsés par Amazon Bedrock';
@@ -120,49 +111,12 @@
       if (p.link) setMode(true);
     }
     // Déjà connecté : on poursuit directement.
-    if (session.token) api('GET', '/me').then(route).catch(() => {});
+    if (session.token) api('GET', '/me').then(route).catch(() => document.documentElement.classList.remove('booting'));
+    else document.documentElement.classList.remove('booting');
   })();
 
-  // ---------------------------------------------------------------- Scène : la constellation d'agents (décorative)
-  (() => {
-    const svg = $('#constellation');
-    const cx = 340, cy = 250, R = 86, rx = 262, ry = 190;
-    const keys = ['marche', 'nouvelles', 'gouvernance', 'comportement', 'influence', 'profil'];
-    const pos = keys.map((_, i) => { const a = (-90 + i * 60) * Math.PI / 180; return [cx + rx * Math.cos(a), cy + ry * Math.sin(a)]; });
-    const hex = (k) => Array.from({ length: 6 }, (_, i) => { const a = (-90 + i * 60) * Math.PI / 180; return `${(cx + R * k * Math.cos(a)).toFixed(1)},${(cy + R * k * Math.sin(a)).toFixed(1)}`; }).join(' ');
-    svg.innerHTML = `
-      <defs>
-        <radialGradient id="core"><stop offset="0" stop-color="#ff3048" stop-opacity=".55"/><stop offset="1" stop-color="#ff3048" stop-opacity="0"/></radialGradient>
-        <linearGradient id="obs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a6b"/><stop offset="1" stop-color="#d7001f"/></linearGradient>
-      </defs>
-      <ellipse class="orbit o1" cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/>
-      <ellipse class="orbit o2" cx="${cx}" cy="${cy}" rx="${rx - 70}" ry="${ry - 52}"/>
-      <circle cx="${cx}" cy="${cy}" r="150" fill="url(#core)"/>
-      ${pos.map(([x, y]) => `<line class="beam" x1="${x}" y1="${y}" x2="${cx}" y2="${cy}"/>`).join('')}
-      ${pos.map(([x, y], i) => `<circle r="3.6" fill="${UI.AGENTS[keys[i]].color}" class="pulse"><animateMotion dur="2.8s" begin="${(i * 0.47).toFixed(2)}s" repeatCount="indefinite" path="M${x} ${y} L${cx} ${cy}"/>
-        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.8;1" dur="2.8s" begin="${(i * 0.47).toFixed(2)}s" repeatCount="indefinite"/></circle>`).join('')}
-      <g fill="none" stroke="rgba(255,255,255,.14)">${[0.34, 0.67, 1].map((k) => `<polygon points="${hex(k)}"/>`).join('')}</g>
-      <polygon id="declared" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.7)" stroke-width="1.6" stroke-dasharray="6 5"/>
-      <polygon id="observed" fill="url(#obs)" fill-opacity=".34" stroke="#ff4a5e" stroke-width="2.4" stroke-linejoin="round"/>
-      <g id="dots"></g>
-      ${pos.map(([x, y], i) => { const a = UI.AGENTS[keys[i]]; const below = y >= cy; return `<g class="node" style="--d:${(i * -1.1).toFixed(1)}s">
-        <circle cx="${x}" cy="${y}" r="26" fill="${a.color}" fill-opacity=".22" stroke="${a.color}" stroke-opacity=".7" stroke-width="1.2"/>
-        <g transform="translate(${x - 11} ${y - 11}) scale(.92)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${UI.paths[a.icon]}</g>
-        <text x="${x}" y="${below ? y + 54 : y - 44}" text-anchor="middle">${a.name}</text></g>`; }).join('')}`;
-
-    // Le profil « observé » respire : chaque axe oscille doucement autour de sa valeur.
-    const base = [0.86, 0.38, 0.72, 0.5, 0.78, 0.42], declared = [0.62, 0.55, 0.42, 0.6, 0.4, 0.52];
-    const pt = (i, k) => { const a = (-90 + i * 60) * Math.PI / 180; return [cx + R * k * Math.cos(a), cy + R * k * Math.sin(a)]; };
-    $('#declared').setAttribute('points', declared.map((k, i) => pt(i, k).map((n) => n.toFixed(1)).join(',')).join(' '));
-    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function frame(t) {
-      const pts = base.map((b, i) => pt(i, Math.max(0.18, Math.min(1, b + 0.13 * Math.sin(t / 1300 + i * 1.7)))));
-      $('#observed').setAttribute('points', pts.map((p) => p.map((n) => n.toFixed(1)).join(',')).join(' '));
-      $('#dots').innerHTML = pts.map(([x, y]) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="#ff4a5e" stroke="#fff" stroke-width="1.5"/>`).join('');
-      if (!still) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  })();
+  // ---------------------------------------------------------------- Scène : la planète et ses agents (décorative)
+  AsciiGlobe.mount($('#globe'), { names: Object.fromEntries(Object.entries(UI.AGENTS).map(([k, a]) => [k, a.name])) });
 </script>
 </body>
 </html>

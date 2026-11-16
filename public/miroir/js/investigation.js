@@ -129,8 +129,8 @@ function mountInvestigation(root, t, opts = {}) {
     <div class="inv-head">${sideIcon(t.side)}
       <div class="grow"><div class="eyebrow">${t.side === 'buy' ? 'Achat' : 'Vente'} · ${esc(day(t.marketDate + 'T12:00:00'))} · décidé en ${Math.round(t.decisionTimeMs / 1000)} s${opts.meta ? ' · ' + opts.meta(t) : ''}</div>
         <h2>${esc(t.ticker)} · ${money(t.amount)}</h2></div>
-      ${t.overrodeRules ? `<span class="pill" style="background:#ff5a6e;color:#fff">${UI.icon('alert', 'sm')}règle outrepassée</span>` : ''}
-      <div class="inv-drift"><div class="move"><span style="opacity:.6">${inv.driftBefore}</span>${UI.icon('arrowRight')}<span style="color:${up ? '#ff8a98' : down ? '#8fe0b5' : '#fff'}">${inv.driftAfter}</span></div><small>score de dérive</small></div>
+      ${t.overrodeRules ? `<span class="pill" style="background:var(--red);color:#fff">${UI.icon('alert', 'sm')}règle outrepassée</span>` : ''}
+      <div class="inv-drift"><div class="move"><span style="opacity:.6">${inv.driftBefore}</span>${UI.icon('arrowRight')}<span style="color:${up ? 'var(--red)' : down ? 'var(--gain)' : 'inherit'}">${inv.driftAfter}</span></div><small>score de dérive</small></div>
     </div>
     <div class="inv-team">
       <div class="team-label"><span class="eyebrow">${keys.length} agents ont enquêté sur cet ordre</span><span class="tiny faint">Cliquez sur un agent pour lire son rapport</span></div>

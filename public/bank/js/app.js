@@ -22,7 +22,7 @@ const PARAM_LABELS = {
 };
 /** Les agents de WorthKnowing qui enquêtent sur chaque ordre (la plateforme n'en reçoit que la conclusion). */
 const WK_AGENTS = ['marche', 'nouvelles', 'gouvernance', 'comportement', 'influence', 'profil'];
-const ALLOC_COLORS = ['#ff4763', '#a98bf5', '#f5b84a', '#2ec4b6', '#ff7a59', '#5b8def', '#f2b3bb', '#3ccf8e'];
+const ALLOC_COLORS = ['#e0312b', '#8b9099', '#c3c7cd', '#5d626b', '#f0605a', '#dfe2e6', '#3f434b', '#a64040']; // rouge sobre et gris
 const shortDate = (d) => new Date(d + 'T12:00:00').toLocaleDateString('fr-CA', { day: 'numeric', month: 'short' });
 const wkLogo = () => `<span class="logo">${UI.wkMark(true)}<span class="logo-word">Worth<i>Knowing</i></span></span>`;
 const sideIcon = (side) => `<div class="side-icon ${side}">${UI.icon(side === 'buy' ? 'arrowDown' : 'arrowUp', 'sm')}</div>`;
@@ -90,7 +90,7 @@ function renderAllocation(pf) {
   const rest = pf.positions.slice(5).reduce((s, p) => s + p.value, 0);
   const labels = [...top.map((p) => p.ticker), ...(rest ? ['Autres'] : []), 'Liquidités'];
   const values = [...top.map((p) => p.value), ...(rest ? [rest] : []), pf.cash];
-  const colors = labels.map((l, i) => (l === 'Liquidités' ? 'rgba(247,239,245,.20)' : ALLOC_COLORS[i % ALLOC_COLORS.length]));
+  const colors = labels.map((l, i) => (l === 'Liquidités' ? `rgba(${getComputedStyle(document.documentElement).getPropertyValue('--ink-rgb').trim()},.20)` : ALLOC_COLORS[i % ALLOC_COLORS.length]));
   UI.donut($('#allocChart'), labels, values, colors);
   $('#allocCash').textContent = `${Math.round((pf.cash / pf.total) * 100)} %`;
   $('#allocCount').textContent = `${pf.positions.length} actif${pf.positions.length > 1 ? 's' : ''}`;
@@ -321,11 +321,11 @@ function wkBlock(t) {
   if (m.status === 'unavailable') return `${head()}
     <p class="summary" style="margin-top:6px">WorthKnowing n’a pas répondu : cet ordre est exécuté, mais n’a pas été analysé.</p>
     ${me.miroir.status === 'linked' ? `<div class="wk-cta"><span></span><button class="btn primary sm" data-backfill>Réessayer l’analyse</button></div>` : ''}`;
-  return `${head(m.overrodeRules ? `<span class="pill" style="background:#ff5a6e;color:#fff">${UI.icon('alert', 'sm')}règle outrepassée</span>` : '<span class="pill glass">enquête terminée</span>')}
+  return `${head(m.overrodeRules ? `<span class="pill" style="background:var(--red);color:#fff">${UI.icon('alert', 'sm')}règle outrepassée</span>` : '<span class="pill glass">enquête terminée</span>')}
     ${UI.agents(WK_AGENTS, { size: 'sm', dark: true })}
-    <div class="drift-move"><span class="muted">${m.driftBefore}</span>${UI.icon('arrowRight')}<span style="color:${m.driftAfter > m.driftBefore ? '#ff8a98' : m.driftAfter < m.driftBefore ? '#8fe0b5' : '#fff'}">${m.driftAfter}</span><small>score de dérive</small></div>
+    <div class="drift-move"><span class="muted">${m.driftBefore}</span>${UI.icon('arrowRight')}<span style="color:${m.driftAfter > m.driftBefore ? 'var(--red-deep)' : m.driftAfter < m.driftBefore ? 'var(--gain)' : '#fff'}">${m.driftAfter}</span><small>score de dérive</small></div>
     <p class="summary">${esc(m.summary)}</p>
-    ${m.reevaluationRequired ? '<p class="small" style="color:#ff8a98"><b>Seuil dépassé : réévaluation exigée.</b></p>' : ''}
+    ${m.reevaluationRequired ? '<p class="small" style="color:var(--red-deep)"><b>Seuil dépassé : réévaluation exigée.</b></p>' : ''}
     <div class="wk-cta"><span class="tiny muted">Le détail de chaque agent reste chez WorthKnowing.</span>
       <a class="btn white sm" href="${esc(investigationUrl(m))}" target="_blank" rel="noopener">Voir l’enquête complète ${UI.icon('external', 'sm')}</a></div>`;
 }
@@ -429,11 +429,11 @@ function resultWk(trade) {
       ${UI.agents(WK_AGENTS, { size: 'sm', dark: true, mode: 'working' })}
       <p class="small muted" style="margin-top:8px;text-align:center">Six agents enquêtent sur votre ordre…</p></div>`;
   return `<div class="result-wk">
-    <div class="row between">${wkLogo()}${m.overrodeRules ? '<span class="pill" style="background:#ff5a6e;color:#fff">règle outrepassée</span>' : '<span class="pill glass">enquête terminée</span>'}</div>
+    <div class="row between">${wkLogo()}${m.overrodeRules ? '<span class="pill" style="background:var(--red);color:#fff">règle outrepassée</span>' : '<span class="pill glass">enquête terminée</span>'}</div>
     ${UI.agents(WK_AGENTS, { size: 'sm', dark: true })}
-    <div class="drift-move"><span class="muted">${m.driftBefore}</span>${UI.icon('arrowRight')}<span style="color:${m.driftAfter > m.driftBefore ? '#ff8a98' : '#8fe0b5'}">${m.driftAfter}</span><small>score de dérive</small></div>
+    <div class="drift-move"><span class="muted">${m.driftBefore}</span>${UI.icon('arrowRight')}<span style="color:${m.driftAfter > m.driftBefore ? 'var(--red-deep)' : 'var(--gain)'}">${m.driftAfter}</span><small>score de dérive</small></div>
     <p class="small" style="margin-top:8px;opacity:.9">${esc(m.summary)}</p>
-    ${m.reevaluationRequired ? '<p class="small" style="margin-top:8px;color:#ff8a98"><b>Seuil dépassé : réévaluation exigée.</b></p>' : ''}
+    ${m.reevaluationRequired ? '<p class="small" style="margin-top:8px;color:var(--red-deep)"><b>Seuil dépassé : réévaluation exigée.</b></p>' : ''}
   </div>`;
 }
 

@@ -22,9 +22,9 @@ function setLive(ok, text) {
 
 /** Chaque type d'événement du pipeline a son icône et sa couleur (celles de l'agent concerné). */
 const EVENT_STYLE = {
-  'trade.received': ['arrowDown', '#c98a2b'], 'investigation.completed': ['spark', '#d7001f'], 'profile.updated': ['target', '#1c7a4c'],
-  'rule.respected': ['shield', '#6a3fa0'], 'rules.updated': ['edit', '#6a3fa0'], 'evaluation.completed': ['check', '#14716f'],
-  'user.registered': ['user', '#9aa3c7'], 'link.created': ['link', '#14716f'], 'link.revoked': ['unlink', '#84102f'], 'drift.reset': ['refresh', '#1c7a4c'],
+  'trade.received': ['arrowDown', 'var(--gold)'], 'investigation.completed': ['spark', 'var(--red)'], 'profile.updated': ['target', '#1c7a4c'],
+  'rule.respected': ['shield', 'var(--plum)'], 'rules.updated': ['edit', 'var(--plum)'], 'evaluation.completed': ['check', 'var(--teal)'],
+  'user.registered': ['user', '#9aa3c7'], 'link.created': ['link', 'var(--teal)'], 'link.revoked': ['unlink', 'var(--bordeaux)'], 'drift.reset': ['refresh', '#1c7a4c'],
 };
 
 // ------------------------------------------------------------------ Galerie

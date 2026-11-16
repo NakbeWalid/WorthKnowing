@@ -2,3 +2,4 @@ node_modules
 cdk.out
 outputs.json
 app-outputs.json
+cdk.context.json

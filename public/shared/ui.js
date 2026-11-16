@@ -22,6 +22,8 @@ const UI = (() => {
     book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/><path d="M20 17v5H6.5a2.5 2.5 0 0 1 0-5"/>',
     user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
     users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+    sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
     logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',
     link: '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
     unlink: '<path d="m18.8 13.4 1.7-1.7a5 5 0 0 0-7-7l-1.7 1.7M5.2 10.6l-1.7 1.7a5 5 0 0 0 7 7l1.7-1.7M8 2v3M2 8h3M16 22v-3M22 16h-3"/>',
@@ -56,21 +58,23 @@ const UI = (() => {
   // ---------------------------------------------------------------- Logos
   /** Boréal : trois traits qui montent, comme une aurore et comme un cours. */
   const borealMark = (light = false) => `<svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-    <rect width="32" height="32" rx="9" fill="${light ? '#fff' : '#d7001f'}"/>
-    <rect x="8" y="17" width="4" height="8" rx="2" fill="${light ? '#d7001f' : '#fff'}" opacity=".6"/>
-    <rect x="14" y="12" width="4" height="13" rx="2" fill="${light ? '#d7001f' : '#fff'}" opacity=".8"/>
-    <rect x="20" y="7" width="4" height="18" rx="2" fill="${light ? '#d7001f' : '#fff'}"/></svg>`;
+    <rect width="32" height="32" rx="9" fill="${light ? '#fff' : 'var(--a1)'}"/>
+    <rect x="8" y="17" width="4" height="8" rx="2" fill="${light ? 'var(--a1)' : '#fff'}" opacity=".6"/>
+    <rect x="14" y="12" width="4" height="13" rx="2" fill="${light ? 'var(--a1)' : '#fff'}" opacity=".8"/>
+    <rect x="20" y="7" width="4" height="18" rx="2" fill="${light ? 'var(--a1)' : '#fff'}"/></svg>`;
   /** WorthKnowing : un cercle coupé par un axe ; à gauche ce que vous dites, à droite ce que vous faites. */
   const wkMark = (light = false) => `<svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-    <circle cx="16" cy="16" r="13" fill="none" stroke="${light ? '#fff' : '#f7eff5'}" stroke-width="2"/>
-    <path d="M16 3a13 13 0 0 1 0 26z" fill="${light ? '#fff' : '#d7001f'}"/>
-    <path d="M16 1v30" stroke="${light ? '#fff' : '#f7eff5'}" stroke-width="2"/></svg>`;
+    <circle cx="16" cy="16" r="13" fill="none" stroke="${light ? '#fff' : 'var(--ink)'}" stroke-width="2"/>
+    <path d="M16 3a13 13 0 0 1 0 26z" fill="${light ? '#fff' : 'var(--a1)'}"/>
+    <path d="M16 1v30" stroke="${light ? '#fff' : 'var(--ink)'}" stroke-width="2"/></svg>`;
   const logo = (app, { href = '/', light = false, size = '' } = {}) => app === 'boreal'
     ? `<a class="logo ${light ? 'light' : ''} ${size}" href="${href}" aria-label="Boréal Courtage">${borealMark(light)}<span class="logo-word">Boréal <i>Courtage</i></span></a>`
     : `<a class="logo ${light ? 'light' : ''} ${size}" href="${href}" aria-label="WorthKnowing">${wkMark(light)}<span class="logo-word">Worth<i>Knowing</i></span></a>`;
 
   // ---------------------------------------------------------------- Fenêtres
   function mountOverlay(inner, { onClose } = {}) {
+    // Une fenêtre en train de se fermer disparaît tout de suite : jamais deux fenêtres superposées pendant le fondu.
+    document.querySelectorAll('.overlay.closing').forEach((o) => o.remove());
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
     overlay.innerHTML = inner;
@@ -160,7 +164,7 @@ const UI = (() => {
   function gauge(score, threshold = 60, { dark = true } = {}) {
     const r = 80, c = Math.PI * r;
     const v = Math.max(0, Math.min(100, score));
-    const color = v >= threshold ? (dark ? '#ff5a6e' : '#d7001f') : v >= threshold * 0.66 ? (dark ? '#ffc27a' : '#b26a00') : (dark ? '#c9a3ff' : '#3a1535');
+    const color = v >= threshold ? 'var(--loss)' : v >= threshold * 0.66 ? 'var(--amber)' : (dark ? 'var(--a2)' : 'var(--a1)');
     const a = Math.PI * (1 - threshold / 100);
     const tx = 100 + r * Math.cos(a), ty = 100 - r * Math.sin(a);
     const tx2 = 100 + (r + 14) * Math.cos(a), ty2 = 100 - (r + 14) * Math.sin(a);
@@ -170,8 +174,8 @@ const UI = (() => {
         <path class="g-track" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke-width="14" stroke-linecap="round"/>
         <path class="g-value" id="${id}" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="${color}" stroke-width="14" stroke-linecap="round"
           stroke-dasharray="${c}" stroke-dashoffset="${c}" data-target="${c * (1 - v / 100)}"/>
-        <line x1="${tx}" y1="${ty}" x2="${tx2}" y2="${ty2}" stroke="#f7eff5" stroke-width="2" stroke-linecap="round" opacity=".5"/>
-        <text x="${tx2 + (tx2 > 100 ? 4 : -4)}" y="${ty2 - 2}" font-size="9" fill="#f7eff5" opacity=".5" text-anchor="${tx2 > 100 ? 'start' : 'end'}" font-family="Inter">seuil ${threshold}</text>
+        <line x1="${tx}" y1="${ty}" x2="${tx2}" y2="${ty2}" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <text x="${tx2 + (tx2 > 100 ? 4 : -4)}" y="${ty2 - 2}" font-size="9" fill="var(--ink)" opacity=".5" text-anchor="${tx2 > 100 ? 'start' : 'end'}" font-family="Inter">seuil ${threshold}</text>
       </svg>
       <div class="g-center"><div class="g-score">${v}</div><div class="g-of">sur 100</div></div>
     </div>`;
@@ -184,7 +188,17 @@ const UI = (() => {
   }
 
   // ---------------------------------------------------------------- Graphiques (Chart.js)
-  const C = { red: '#ff4763', ink: '#f7eff5', plum: '#a98bf5', gain: '#4ade96', amber: '#ffb957', gold: '#f5b84a', teal: '#2ec4b6', grid: 'rgba(247,239,245,.08)', muted: 'rgba(247,239,245,.55)' };
+  // Couleurs des graphiques : lues dans le thème de la page (canvas n'accepte pas var(--…)).
+  const css = (name, el = document.documentElement) => getComputedStyle(el).getPropertyValue(name).trim();
+  const C = { inkrgb: css('--ink-rgb'), red: css('--a1'), ink: css('--ink'), plum: css('--a2'), gain: css('--gain'), amber: css('--amber'), gold: css('--a1'), teal: css('--a2'), loss: css('--loss'), bg: css('--bg'), a1rgb: css('--a1-rgb'), grid: `rgba(${css('--ink-rgb')},.08)`, muted: `rgba(${css('--ink-rgb')},.55)` };
+  /** Recalcule les couleurs d'après le canvas lui-même : un graphique posé sur une carte sombre lit l'encre claire, même en mode clair. */
+  const paint = (el) => {
+    if (!el) return C;
+    C.red = css('--a1', el); C.ink = css('--ink', el); C.plum = css('--a2', el); C.gain = css('--gain', el); C.loss = css('--loss', el); C.bg = css('--bg', el);
+    C.a1rgb = css('--a1-rgb', el); C.inkrgb = css('--ink-rgb', el);
+    C.grid = `rgba(${C.inkrgb},.08)`; C.muted = `rgba(${C.inkrgb},.55)`;
+    return C;
+  };
   const charts = new WeakMap();
   const hasChart = () => typeof window.Chart !== 'undefined';
   if (hasChart()) {
@@ -196,7 +210,7 @@ const UI = (() => {
     Chart.defaults.animation.duration = 900;
     Chart.defaults.animation.easing = 'easeOutQuart';
     Object.assign(Chart.defaults.plugins.tooltip, {
-      backgroundColor: '#35243f', titleColor: '#f7f1e8', bodyColor: '#f7f1e8', padding: 10, cornerRadius: 10,
+      backgroundColor: css('--cream-3'), titleColor: css('--ink'), bodyColor: css('--ink'), padding: 10, cornerRadius: 10,
       displayColors: false, titleFont: { weight: '600' }, caretSize: 5,
     });
   }
@@ -210,8 +224,9 @@ const UI = (() => {
       ctx.save();
       ctx.setLineDash([4, 4]);
       ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(247,239,245,.4)';
-      ctx.fillStyle = 'rgba(247,239,245,.65)';
+      const ik = css('--ink-rgb', chart.canvas);
+      ctx.strokeStyle = `rgba(${ik},.4)`;
+      ctx.fillStyle = `rgba(${ik},.65)`;
       ctx.font = "500 11px Inter, sans-serif";
       if (opts.x != null) {
         const x = scales.x.getPixelForValue(opts.x);
@@ -220,7 +235,7 @@ const UI = (() => {
       }
       if (opts.y != null) {
         const y = scales.y.getPixelForValue(opts.y);
-        ctx.strokeStyle = 'rgba(255,107,129,.7)'; ctx.fillStyle = 'rgba(255,143,160,.95)';
+        ctx.strokeStyle = `rgba(${css('--loss-rgb')},.7)`; ctx.fillStyle = css('--loss');
         ctx.beginPath(); ctx.moveTo(a.left, y); ctx.lineTo(a.right, y); ctx.stroke();
         if (opts.yLabel) { ctx.textAlign = 'right'; ctx.fillText(opts.yLabel, a.right, y - 6); }
       }
@@ -235,7 +250,7 @@ const UI = (() => {
       if (!active?.length) return;
       const { ctx, chartArea: a } = chart;
       const x = active[0].element.x;
-      ctx.save(); ctx.strokeStyle = 'rgba(247,239,245,.22)'; ctx.lineWidth = 1;
+      ctx.save(); ctx.strokeStyle = `rgba(${css('--ink-rgb', chart.canvas)},.22)`; ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(x, a.top); ctx.lineTo(x, a.bottom); ctx.stroke(); ctx.restore();
     },
   };
@@ -243,11 +258,18 @@ const UI = (() => {
   function chart(canvas, config) {
     if (!hasChart() || !canvas) return null;
     charts.get(canvas)?.destroy();
+    paint(canvas);
+    config.options = { color: C.muted, borderColor: C.grid, ...config.options };
+    // Couleurs explicites par axe : les valeurs par défaut globales de Chart.js ne suivent pas le thème d'une carte sombre.
+    for (const axis of Object.values(config.options.scales ?? {})) {
+      axis.ticks = { color: C.muted, ...axis.ticks };
+      axis.grid = { color: C.grid, ...axis.grid };
+    }
     const c = new Chart(canvas, config);
     charts.set(canvas, c);
     return c;
   }
-  const rgbOf = (hex) => { const h = hex.replace('#', ''); const f = h.length === 3 ? [...h].map((c) => c + c).join('') : h; return [0, 2, 4].map((k) => parseInt(f.slice(k, k + 2), 16)).join(','); };
+  const rgbOf = (hex) => { if (/^rgb/.test(hex)) return hex.match(/[\d.]+/g).slice(0, 3).join(','); const h = hex.replace('#', ''); const f = h.length === 3 ? [...h].map((c) => c + c).join('') : h; return [0, 2, 4].map((k) => parseInt(f.slice(k, k + 2), 16)).join(','); };
   const fade = (color, top = .22) => (ctx) => {
     const { chart: ch } = ctx;
     if (!ch.chartArea) return 'transparent';
@@ -258,6 +280,7 @@ const UI = (() => {
 
   /** Courbe à aire dégradée. `opts`: { color, format, height, ref, showX, minimal } */
   function area(canvas, labels, values, opts = {}) {
+    paint(canvas);
     const color = opts.color ?? C.red;
     return chart(canvas, {
       type: 'line',
@@ -277,6 +300,7 @@ const UI = (() => {
 
   /** Courbe d'une mise en situation : le passé en encre, la suite réelle en rouge après la décision. */
   function scenario(canvas, context, forward = []) {
+    paint(canvas);
     const all = context.concat(forward.slice(1));
     const labels = all.map((_, i) => i - (context.length - 1));
     const past = all.map((v, i) => (i < context.length ? v : null));
@@ -306,15 +330,16 @@ const UI = (() => {
   const KEYS = ['riskTolerance', 'lossAversion', 'fomo', 'concentration', 'impulsivity', 'newsSensitivity'];
   /** Radar 6 axes : `a` en pointillé encre, `b` en rouge plein. */
   function radar(canvas, a, b, { aLabel = 'Ce que vous dites', bLabel = 'Ce que vous faites' } = {}) {
+    paint(canvas);
     return chart(canvas, {
       type: 'radar',
       data: { labels: RADAR_LABELS, datasets: [
-        { label: aLabel, data: KEYS.map((k) => a?.[k] ?? 50), borderColor: C.ink, borderWidth: 1.6, borderDash: [5, 4], backgroundColor: 'rgba(247,239,245,.05)', pointRadius: 3, pointBackgroundColor: C.ink, pointBorderWidth: 0 },
-        { label: bLabel, data: KEYS.map((k) => b?.[k] ?? 50), borderColor: C.red, borderWidth: 2.2, backgroundColor: 'rgba(255,71,99,.24)', pointRadius: 3.5, pointBackgroundColor: C.red, pointBorderColor: '#1c1123', pointBorderWidth: 1.5 },
+        { label: aLabel, data: KEYS.map((k) => a?.[k] ?? 50), borderColor: C.ink, borderWidth: 1.6, borderDash: [5, 4], backgroundColor: `rgba(${C.inkrgb},.05)`, pointRadius: 3, pointBackgroundColor: C.ink, pointBorderWidth: 0 },
+        { label: bLabel, data: KEYS.map((k) => b?.[k] ?? 50), borderColor: C.red, borderWidth: 2.2, backgroundColor: `rgba(${C.a1rgb},.24)`, pointRadius: 3.5, pointBackgroundColor: C.red, pointBorderColor: C.bg, pointBorderWidth: 1.5 },
       ] },
       options: {
         responsive: true, maintainAspectRatio: false,
-        scales: { r: { min: 0, max: 100, ticks: { display: false, stepSize: 25 }, grid: { color: 'rgba(247,239,245,.10)' }, angleLines: { color: 'rgba(247,239,245,.10)' }, pointLabels: { font: { size: 11.5, weight: '600' }, color: 'rgba(247,239,245,.78)' } } },
+        scales: { r: { min: 0, max: 100, ticks: { display: false, stepSize: 25 }, grid: { color: `rgba(${C.inkrgb},.10)` }, angleLines: { color: `rgba(${C.inkrgb},.10)` }, pointLabels: { font: { size: 11.5, weight: '600' }, color: `rgba(${C.inkrgb},.78)` } } },
         plugins: { tooltip: { displayColors: true, callbacks: { label: (c) => ` ${c.dataset.label} : ${c.parsed.r}` } } },
       },
     });
@@ -322,15 +347,17 @@ const UI = (() => {
 
   /** Anneau de répartition. */
   function donut(canvas, labels, values, colors) {
+    paint(canvas);
     return chart(canvas, {
       type: 'doughnut',
-      data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: '#1c1123', borderWidth: 3, hoverOffset: 6, borderRadius: 4 }] },
+      data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: C.bg, borderWidth: 3, hoverOffset: 6, borderRadius: 4 }] },
       options: { responsive: true, maintainAspectRatio: false, cutout: '74%', plugins: { tooltip: { callbacks: { label: (c) => ` ${c.label} : ${(c.parsed * 100 / c.dataset.data.reduce((s, v) => s + v, 0)).toFixed(0)} %` } } } },
     });
   }
 
   /** Évolution de la dérive ordre après ordre, avec le seuil. */
   function driftLine(canvas, labels, values, threshold, flags = [], opts = {}) {
+    paint(canvas);
     const hot = (v, i) => flags[i] || v >= threshold;
     const sel = opts.selected;
     return chart(canvas, {
@@ -338,7 +365,7 @@ const UI = (() => {
       data: { labels, datasets: [{
         data: values, borderColor: C.plum, borderWidth: 2, cubicInterpolationMode: 'monotone', fill: true, backgroundColor: fade(C.plum, .10),
         pointRadius: values.map((_, i) => (i === sel ? 7 : flags[i] ? 5 : 3.5)), pointHoverRadius: 7,
-        pointBackgroundColor: values.map((v, i) => (hot(v, i) ? C.red : '#1c1123')), pointBorderColor: values.map((v, i) => (hot(v, i) ? C.red : C.plum)),
+        pointBackgroundColor: values.map((v, i) => (hot(v, i) ? C.red : C.bg)), pointBorderColor: values.map((v, i) => (hot(v, i) ? C.red : C.plum)),
         pointBorderWidth: values.map((_, i) => (i === sel ? 3 : 1.8)),
       }] },
       options: {
@@ -358,13 +385,13 @@ const UI = (() => {
   // ---------------------------------------------------------------- Les agents de l'enquête
   /** L'équipe d'agents de WorthKnowing, dans l'ordre où ils travaillent sur un ordre. */
   const AGENTS = {
-    marche: { name: 'Marché', role: 'Prix et volatilité', icon: 'chart', color: '#f5b84a' },
-    nouvelles: { name: 'Nouvelles', role: 'Manchettes · 7 jours', icon: 'news', color: '#2ec4b6' },
-    gouvernance: { name: 'Gouvernance', role: 'Vos règles', icon: 'shield', color: '#8f6bf0' },
-    comportement: { name: 'Comportement', role: 'Écarts au profil', icon: 'activity', color: '#ff7a59' },
-    influence: { name: 'Influence', role: 'IA · Amazon Bedrock', icon: 'spark', color: '#f0243f', ai: true },
-    profil: { name: 'Profil', role: 'Mise à jour', icon: 'target', color: '#3ccf8e' },
-    explication: { name: 'Explicabilité', role: 'Synthèse et sources', icon: 'book', color: '#9aa3c7' },
+    marche: { name: 'Marché', role: 'Prix et volatilité', icon: 'chart', color: 'var(--a1)' },
+    nouvelles: { name: 'Nouvelles', role: 'Manchettes · 7 jours', icon: 'news', color: 'var(--a1)' },
+    gouvernance: { name: 'Gouvernance', role: 'Vos règles', icon: 'shield', color: 'var(--a1)' },
+    comportement: { name: 'Comportement', role: 'Écarts au profil', icon: 'activity', color: 'var(--a1)' },
+    influence: { name: 'Influence', role: 'IA · Amazon Bedrock', icon: 'spark', color: 'var(--a2)', ai: true },
+    profil: { name: 'Profil', role: 'Mise à jour', icon: 'target', color: 'var(--a1)' },
+    explication: { name: 'Explicabilité', role: 'Synthèse et sources', icon: 'book', color: 'var(--a1)' },
   };
   /** Retrouve l'agent à partir du libellé d'une étape renvoyée par le serveur (« Agent marché », …). */
   const agentKey = (label = '') => {
@@ -445,8 +472,64 @@ const UI = (() => {
     </svg>`;
   }
 
+  // Chaque graphique retient comment il a été construit : au changement de thème, il est refait avec les nouvelles couleurs.
+  const rebuilders = new Map();
+  const remember = (fn) => (canvas, ...args) => { if (canvas) rebuilders.set(canvas, () => fn(canvas, ...args)); return fn(canvas, ...args); };
+  function repaintCharts() {
+    Object.assign(C, { inkrgb: css('--ink-rgb'), red: css('--a1'), ink: css('--ink'), plum: css('--a2'), gain: css('--gain'), amber: css('--amber'), gold: css('--a1'), teal: css('--a2'), loss: css('--loss'), bg: css('--bg') });
+    for (const [canvas, rebuild] of [...rebuilders]) {
+      if (!canvas.isConnected) { rebuilders.delete(canvas); continue; }
+      try { rebuild(); } catch { /* graphique retiré entre-temps */ }
+    }
+  }
+
   return {
+    repaintCharts,
     icon, logo, borealMark, wkMark, modal, sheet, confirm, alert, toast, swap, countUp, initials,
-    gauge, animateGauges, chart, area, scenario, radar, donut, driftLine, AGENTS, agentKey, agents, paths: PATHS, archetypeOf, portrait, ARCHETYPES, KEYS, C,
+    gauge, animateGauges, chart, area: remember(area), scenario: remember(scenario), radar: remember(radar), donut: remember(donut), driftLine: remember(driftLine), AGENTS, agentKey, agents, paths: PATHS, archetypeOf, portrait, ARCHETYPES, KEYS, C,
   };
+})();
+
+/* ---------------------------------------------------------------- Mode sombre / mode clair
+   Choix mémorisé dans le navigateur, séparément pour chaque application ; clair par défaut.
+   La bascule est immédiate, sans rechargement : la page garde son état (questionnaire en cours, ordre en préparation…).
+   Les graphiques sont reconstruits avec les couleurs du nouveau thème ; l'événement « themechange » prévient les pages. */
+(function () {
+  const KEY = 'wk-theme';
+  const read = () => {
+    try { return localStorage.getItem(KEY) === 'dark' ? 'dark' : 'light'; } catch { return 'light'; }
+  };
+  // Chaque application garde son propre thème (stockage propre à son origine) ; l'ancien témoin partagé est effacé.
+  try { document.cookie = `${KEY}=; path=/; max-age=0`; } catch { /* ignoré */ }
+  let theme = read();
+  document.documentElement.dataset.theme = theme;
+  const dress = (b) => {
+    b.title = theme === 'light' ? 'Passer en mode sombre' : 'Passer en mode clair';
+    b.setAttribute('aria-label', b.title);
+    b.innerHTML = UI.icon(theme === 'light' ? 'moon' : 'sun', 'sm');
+  };
+  const apply = (next) => {
+    theme = next;
+    try { localStorage.setItem(KEY, theme); } catch { /* ignoré */ }
+    document.documentElement.dataset.theme = theme;
+    const b = document.getElementById('themeToggle');
+    if (b) dress(b);
+    UI.repaintCharts();
+    window.dispatchEvent(new CustomEvent('themechange', { detail: theme }));
+  };
+  const place = () => {
+    const out = document.getElementById('logout');
+    if (!out || document.getElementById('themeToggle')) return !!out;
+    const b = document.createElement('button');
+    b.id = 'themeToggle'; b.className = 'btn soft icon-only'; b.type = 'button';
+    dress(b);
+    b.onclick = () => apply(theme === 'light' ? 'dark' : 'light');
+    out.before(b);
+    return true;
+  };
+  if (!place()) new MutationObserver((_, obs) => { if (place()) obs.disconnect(); }).observe(document.body, { childList: true, subtree: true });
+  // Le thème choisi dans un autre onglet de la même application est repris au retour sur la page.
+  const sync = () => { const t = read(); if (t !== theme) apply(t); };
+  window.addEventListener('pageshow', sync);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) sync(); });
 })();

@@ -61,11 +61,12 @@ function showSelf() {
         const set = v !== undefined;
         const val = set ? v : (q.scale.min + q.scale.max) / 2;
         return `<div class="scale ${set ? 'set' : ''}" data-id="${esc(q.id)}">
-          <div class="scale-head"><label for="s-${esc(q.id)}">${esc(q.text)}</label>
-            <output for="s-${esc(q.id)}">${set ? v : '—'}</output></div>
+          <label for="s-${esc(q.id)}">${esc(q.text)}</label>
+          <span class="scale-end low">${esc(q.scale.low)}</span>
           <input class="range ${set ? '' : 'unset'}" type="range" id="s-${esc(q.id)}" min="${q.scale.min}" max="${q.scale.max}" step="1" value="${val}"
             style="--fill:${((val - q.scale.min) / (q.scale.max - q.scale.min)) * 100}%">
-          <div class="scale-ends"><span>${esc(q.scale.low)}</span><span>${esc(q.scale.high)}</span></div>
+          <span class="scale-end high">${esc(q.scale.high)}</span>
+          <output for="s-${esc(q.id)}">${set ? v : '—'}</output>
         </div>`;
       }).join('')}
       </div>
@@ -242,6 +243,8 @@ async function startSimulations(answers) {
  * `onTick(valeur, index)` à chaque image ; `onDone()` quand toute la courbe est affichée. Renvoie { skip }.
  */
 function liveChart(canvas, series, { duration = 2600, onTick, onDone } = {}) {
+  // Le canvas n'accepte pas var(--…) : on lit les couleurs du thème (clair ou sombre) sur l'élément lui-même.
+  const sv = (n) => getComputedStyle(canvas).getPropertyValue(n).trim();
   const ctx = canvas.getContext('2d');
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const n = series.length;
@@ -279,15 +282,15 @@ function liveChart(canvas, series, { duration = 2600, onTick, onDone } = {}) {
     ctx.font = '500 11px Inter, sans-serif'; ctx.textBaseline = 'middle';
     for (let g = 0; g <= 4; g++) {
       const v = lo + ((hi - lo) * g) / 4, y = Y(v);
-      ctx.strokeStyle = 'rgba(247,239,245,.07)'; ctx.lineWidth = 1; ctx.setLineDash([]);
+      ctx.strokeStyle = `rgba(${sv('--ink-rgb')},.07)`; ctx.lineWidth = 1; ctx.setLineDash([]);
       ctx.beginPath(); ctx.moveTo(P.l, y); ctx.lineTo(w - P.r, y); ctx.stroke();
-      ctx.fillStyle = 'rgba(247,239,245,.42)'; ctx.textAlign = 'left'; ctx.fillText(v.toFixed(0), w - P.r + 10, y);
+      ctx.fillStyle = `rgba(${sv('--ink-rgb')},.42)`; ctx.textAlign = 'left'; ctx.fillText(v.toFixed(0), w - P.r + 10, y);
     }
     if (100 > lo && 100 < hi) {
-      ctx.setLineDash([2, 5]); ctx.strokeStyle = 'rgba(247,239,245,.28)';
+      ctx.setLineDash([2, 5]); ctx.strokeStyle = `rgba(${sv('--ink-rgb')},.28)`;
       ctx.beginPath(); ctx.moveTo(P.l, Y(100)); ctx.lineTo(w - P.r, Y(100)); ctx.stroke(); ctx.setLineDash([]);
     }
-    ctx.fillStyle = 'rgba(247,239,245,.42)'; ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = `rgba(${sv('--ink-rgb')},.42)`; ctx.textBaseline = 'alphabetic';
     [[0, `−${n - 1} séances`, 'left'], [Math.round((n - 1) / 3), `−${Math.round(((n - 1) * 2) / 3)}`, 'center'], [Math.round(((n - 1) * 2) / 3), `−${Math.round((n - 1) / 3)}`, 'center'], [n - 1, 'maintenant', 'right']]
       .forEach(([i, label, align]) => { ctx.textAlign = align; ctx.fillText(label, X(i), h - 6); });
 
@@ -306,24 +309,24 @@ function liveChart(canvas, series, { duration = 2600, onTick, onDone } = {}) {
     ctx.setLineDash([4, 4]); ctx.strokeStyle = `rgba(${rgb},.55)`; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(w - P.r, hy); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = `rgb(${rgb})`; ctx.beginPath(); ctx.roundRect(w - P.r + 4, hy - 10, P.r - 6, 20, 6); ctx.fill();
-    ctx.fillStyle = '#12091a'; ctx.font = '700 11px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = sv('--bg'); ctx.font = '700 11px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText(head.toFixed(1), w - P.r + 4 + (P.r - 6) / 2, hy + 0.5);
     const pulse = (Math.sin(now / 300) + 1) / 2;
     ctx.beginPath(); ctx.arc(hx, hy, 5 + pulse * 8, 0, Math.PI * 2); ctx.fillStyle = `rgba(${rgb},${0.26 - pulse * 0.2})`; ctx.fill();
     ctx.beginPath(); ctx.arc(hx, hy, 4.5, 0, Math.PI * 2); ctx.fillStyle = `rgb(${rgb})`; ctx.fill();
-    ctx.lineWidth = 2; ctx.strokeStyle = '#12091a'; ctx.stroke();
+    ctx.lineWidth = 2; ctx.strokeStyle = sv('--bg'); ctx.stroke();
 
     // Lecture au survol (une fois la courbe complète)
     if (done && hover) {
       const i = Math.max(0, Math.min(n - 1, Math.round(((hover.x - P.l) / (w - P.l - P.r)) * (n - 1))));
       const x = X(i), y = Y(series[i]);
-      ctx.strokeStyle = 'rgba(247,239,245,.28)'; ctx.lineWidth = 1;
+      ctx.strokeStyle = `rgba(${sv('--ink-rgb')},.28)`; ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(x, P.t); ctx.lineTo(x, h - P.b); ctx.stroke();
       ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fillStyle = '#fff'; ctx.fill();
       const text = `${i === n - 1 ? 'maintenant' : `il y a ${n - 1 - i} séances`} · ${series[i].toFixed(1)}`;
       ctx.font = '600 11.5px Inter, sans-serif';
       const tw = ctx.measureText(text).width + 16, tx = Math.max(P.l, Math.min(w - P.r - tw, x - tw / 2));
-      ctx.fillStyle = '#35243f'; ctx.beginPath(); ctx.roundRect(tx, P.t, tw, 22, 7); ctx.fill();
+      ctx.fillStyle = sv('--cream-3'); ctx.beginPath(); ctx.roundRect(tx, P.t, tw, 22, 7); ctx.fill();
       ctx.fillStyle = '#f7eff5'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillText(text, tx + 8, P.t + 11.5);
     }
     requestAnimationFrame(frame);
