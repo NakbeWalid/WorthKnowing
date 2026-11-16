@@ -198,6 +198,42 @@ body.wk-auth { background: linear-gradient(140deg, #24102b 0%, #1a0f1f 45%, #100
 .headline-card { margin: 0 0 14px; padding: 14px 16px; background: linear-gradient(100deg, rgba(240, 36, 63, .26), rgba(143, 107, 240, .10) 70%, transparent); border-radius: 16px; }
 .headline-card q { font: italic 400 17px/1.35 var(--serif); quotes: none; }
 
+/* Mise en situation jouée comme une séance de marché */
+.sim { position: relative; background: radial-gradient(80% 70% at 0% 0%, rgba(143, 107, 240, .22), transparent 60%), radial-gradient(70% 70% at 100% 100%, rgba(240, 36, 63, .20), transparent 60%), linear-gradient(160deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025)); }
+.sim-bar { flex: none; display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.sim-dots { flex: 1; display: flex; gap: 5px; }
+.sim-dots i { flex: 1; height: 4px; border-radius: 2px; background: var(--ink-08); }
+.sim-dots i.done { background: linear-gradient(90deg, #8f6bf0, #c9a3ff); }
+.sim-dots i.on { background: linear-gradient(90deg, #ffb957, #f0243f); animation: blink 1.4s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .45; } }
+.sim-quote { flex: none; display: flex; justify-content: space-between; align-items: flex-end; }
+.sim-price { font: 500 44px/1.05 var(--serif); letter-spacing: -.035em; font-variant-numeric: tabular-nums; }
+.sim-price small { font: 500 12px var(--sans); color: var(--ink-45); letter-spacing: 0; margin-left: 8px; }
+.sim-chart { margin-top: 8px; min-height: 170px; cursor: pointer; background-image: linear-gradient(90deg, rgba(247, 239, 245, .035) 1px, transparent 1px); background-size: 48px 100%; border-radius: 12px; }
+.sim-chart canvas { width: 100%; height: 100%; }
+.sim-stats { flex: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.sim-stats .stat-tile { padding: 8px 10px; }
+.sim-stats .kpi { font-size: 16px; }
+.sim-stats .kpi-label { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.flash, .position { opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease-out), transform .5s var(--ease-out); }
+.flash.in, .position.in { opacity: 1; transform: none; }
+.position { transition-delay: .12s; }
+.flash { padding: 14px 16px; border-radius: 18px; background: linear-gradient(110deg, rgba(240, 36, 63, .40), rgba(255, 122, 89, .16) 60%, rgba(143, 107, 240, .14)); margin-bottom: 12px; }
+.flash-tag { display: flex; align-items: center; gap: 8px; font: 700 10.5px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: #ffd0d6; margin-bottom: 6px; }
+.flash-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: #ff4763; animation: pulse 1.6s infinite; color: #ff4763; }
+.flash-tag em { margin-left: auto; font: 500 10.5px var(--sans); letter-spacing: 0; text-transform: none; color: rgba(255, 255, 255, .6); font-style: normal; }
+.flash q { font: italic 400 18px/1.32 var(--serif); quotes: none; }
+.position { padding: 14px 16px; border-radius: 18px; background: rgba(255, 255, 255, .055); margin-bottom: 14px; }
+.position p { margin-top: 6px; font-size: 14.5px; line-height: 1.5; font-weight: 500; }
+#simTicket .eyebrow { display: flex; align-items: center; }
+#simTicket.locked .options { opacity: .35; filter: grayscale(.6); pointer-events: none; }
+#simTicket .options { transition: opacity .5s, filter .5s; }
+#simTicket:not(.locked) #choiceRow .option { animation: unlock .6s var(--ease-out) both; }
+#simTicket:not(.locked) #choiceRow .option:nth-child(2) { animation-delay: .07s; }
+#simTicket:not(.locked) #choiceRow .option:nth-child(3) { animation-delay: .14s; }
+@keyframes unlock { 0% { transform: scale(.94); box-shadow: 0 0 0 0 rgba(255, 122, 89, .6); } 60% { box-shadow: 0 0 0 10px rgba(255, 122, 89, 0); } 100% { transform: none; } }
+.sim-stamp { position: absolute; inset: 0; z-index: 3; display: grid; place-content: center; justify-items: center; gap: 4px; border-radius: inherit; background: rgba(19, 11, 24, .72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fade-in .2s both; }
+.sim-stamp b { font: 500 22px var(--serif); }
 /* Révélation : bandeau de résultat, frise des situations, puis une décision en grand. */
 .rv { display: grid; grid-template-rows: auto auto minmax(0, 1fr); gap: 12px; min-height: 0; }
 .rv-top { display: flex; align-items: center; gap: 24px; padding: 16px 24px; border-radius: 24px; background: var(--g-night); border: 1px solid rgba(255, 255, 255, .08); }
@@ -304,6 +340,8 @@ body.wk-auth { background: linear-gradient(140deg, #24102b 0%, #1a0f1f 45%, #100
 @media (max-width: 1000px), (max-height: 560px) {
   .inv-body, .sc-grid, .scales, .pd, .onb-split { grid-template-columns: 1fr !important; }
   .rv, .rv-top, .rv-detail { display: flex; flex-direction: column; align-items: stretch; }
+  .sim-chart { height: 240px; flex: none; }
+  .sim-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .rv-left .chart-box { height: 220px; flex: none; }
   .inv-concl { border-right: 0; border-bottom: 1px solid var(--line); }
   .inv-team { overflow-x: auto; } .inv-team .agents { min-width: 560px; }
