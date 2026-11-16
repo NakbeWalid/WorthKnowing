@@ -305,6 +305,8 @@ function showScenario() {
 }
 
 // ------------------------------------------------------------------ Étape 3 : révélation
+// Une décision à la fois, en grand : la frise du haut permet de passer d'une situation à l'autre (ou ← →).
+let revealIndex = 0;
 async function showReveal() {
   setStep(3);
   if (!state.result) {
@@ -317,36 +319,73 @@ async function showReveal() {
   }
   const r = state.result;
   const best = r.reveals.filter((x) => x.chosenId === x.bestId).length;
-  render(`<div class="onb-split reveal-split">
-    <div class="step-card night reveal-hero">
+  const mine = (x) => x.options.find((o) => o.id === x.chosenId) ?? { pnl: 0, label: '—' };
+  const amount = (v) => `${v >= 0 ? '+' : '−'}${money(Math.abs(v))}`;
+  const letter = (i) => String.fromCharCode(65 + i);
+  revealIndex = Math.min(revealIndex, r.reveals.length - 1);
+
+  render(`<div class="rv">
+    <div class="rv-top">
       <div>
-        <span class="eyebrow" style="color:rgba(255,255,255,.6)">Étape 3 · 60 séances plus tard</span>
-        <div class="kpi" style="margin-top:14px;color:${r.totalPnl >= 0 ? '#8fe0b5' : '#ff8a98'}" id="pnl">0 $</div>
-        <p class="lead">sur ${r.reveals.length} décisions, avec une mise fictive de ${money(state.session.stake)} chacune.</p>
-        <div class="row wrap" style="margin-top:16px"><span class="pill glass">${UI.icon('check', 'sm')}${best} / ${r.reveals.length} meilleurs choix</span></div>
+        <span class="eyebrow">Étape 3 · ce qui s’est vraiment passé, 60 séances plus tard</span>
+        <div class="row" style="align-items:baseline;gap:14px;margin-top:4px"><div class="kpi rv-pnl ${r.totalPnl >= 0 ? 'gain' : 'loss'}" id="pnl">0 $</div>
+          <span class="small muted">sur ${r.reveals.length} décisions · mise fictive de ${money(state.session.stake)} chacune</span></div>
+        <p class="tiny faint" style="margin-top:4px;max-width:70ch">${esc(r.note)}</p>
       </div>
-      <div>
-        <p class="tiny faint" style="margin-bottom:16px">${esc(r.note)}</p>
-        <button class="btn primary lg block" id="next">Voir mon profil ${UI.icon('arrowRight', 'sm')}</button>
-      </div>
+      <span class="grow"></span>
+      <div class="rv-score"><b>${best}<span> / ${r.reveals.length}</span></b><small>meilleurs choix</small></div>
+      <button class="btn primary lg" id="next">Voir mon profil ${UI.icon('arrowRight', 'sm')}</button>
     </div>
-    <div class="reveal-scroll stagger">
-    ${r.reveals.map((x, i) => `
-      <div class="widget reveal-card">
-        <div class="row between"><span class="tiny faint">${esc(x.alias)} · ${esc(x.testsLabel)}</span><span class="tiny faint">${x.decisionSeconds} s</span></div>
-        <h3 style="font:500 17px var(--serif);margin-top:4px">${esc(x.reveal.name)} <span class="faint" style="font:400 11.5px var(--sans)">${esc(x.reveal.ticker)} · ${esc(day(x.reveal.decisionDate + 'T12:00:00'))}</span></h3>
-        <div class="chart-box"><canvas id="rv${i}"></canvas></div>
-        <div class="outcomes">
-          ${x.options.map((o) => `<div class="outcome ${o.id === x.chosenId ? 'chosen' : ''}">
-            ${o.id === x.bestId ? `<span class="pill gain best">${UI.icon('check', 'sm')}</span>` : ''}
-            <span class="tiny faint">${esc(o.label)}${o.id === x.chosenId ? ' · vous' : ''}</span><b>${signed(o.pnl)}</b></div>`).join('')}
-        </div>
-        <p class="small muted" style="margin-top:10px">${esc(x.sentence)}</p>
-      </div>`).join('')}
+    <div class="rv-tabs" role="tablist" aria-label="Les situations">
+      ${r.reveals.map((x, i) => `<button class="rv-tab" role="tab" data-i="${i}" title="${esc(x.reveal.name)}">
+        <span class="l"><span>Situation ${letter(i)}</span>${x.chosenId === x.bestId ? `<span class="gain">${UI.icon('check', 'sm')}</span>` : ''}</span>
+        <span class="n">${esc(x.reveal.name)}</span><b class="${mine(x).pnl >= 0 ? 'gain' : 'loss'}">${amount(mine(x).pnl)}</b></button>`).join('')}
     </div>
+    <div class="widget rv-detail" id="rvDetail"></div>
   </div>`);
-  UI.countUp($('#pnl'), r.totalPnl, (v) => `${v >= 0 ? '+' : '−'}${money(Math.abs(v))}`, 1200);
-  r.reveals.forEach((x, i) => UI.scenario($('#rv' + i), x.context, x.forward));
+  UI.countUp($('#pnl'), r.totalPnl, amount, 1200);
+
+  const show = (i, animate = true) => {
+    revealIndex = (i + r.reveals.length) % r.reveals.length;
+    const x = r.reveals[revealIndex];
+    const chosen = mine(x);
+    const bestOpt = x.options.find((o) => o.id === x.bestId);
+    const max = Math.max(1, ...x.options.map((o) => Math.abs(o.pnl)));
+    view.querySelectorAll('.rv-tab').forEach((b, k) => { b.classList.toggle('on', k === revealIndex); b.setAttribute('aria-selected', String(k === revealIndex)); });
+    view.querySelector('.rv-tab.on')?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    const html = `<div class="rv-left">
+        <div class="row" style="gap:14px"><span class="rv-letter">${letter(revealIndex)}</span>
+          <div class="grow"><div class="eyebrow">C’était « ${esc(x.alias)} » · ${esc(day(x.reveal.decisionDate + 'T12:00:00'))}</div>
+            <h2>${esc(x.reveal.name)} <span class="faint" style="font:400 13px var(--sans)">${esc(x.reveal.ticker)}</span></h2></div>
+          <span class="pill outline">Trait observé : ${esc(x.testsLabel.toLowerCase())}</span></div>
+        <div class="chart-box fill" style="margin-top:12px;min-height:170px"><canvas id="rvChart"></canvas></div>
+        <div class="legend" style="margin-top:8px"><span><i style="background:var(--ink)"></i>Ce que vous voyiez</span><span><i style="background:var(--red)"></i>Ce qui s’est passé ensuite</span></div>
+      </div>
+      <div class="rv-right">
+        <div><div class="eyebrow">Votre décision · prise en ${x.decisionSeconds} s</div>
+          <div class="row wrap" style="margin-top:4px;gap:12px"><span class="rv-choice">${esc(chosen.label)}</span>
+            ${x.chosenId === x.bestId ? `<span class="pill gain">${UI.icon('check', 'sm')}le meilleur choix</span>` : `<span class="pill outline">le meilleur était : ${esc(bestOpt?.label ?? '—')}</span>`}</div></div>
+        <div class="rv-outs">${x.options.map((o) => `<div class="rv-out ${o.id === x.chosenId ? 'chosen' : ''}">
+            <span class="lab">${esc(o.label)}${o.id === x.chosenId ? ' <em>vous</em>' : ''}</span>
+            <span class="track"><i class="${o.pnl >= 0 ? 'pos' : 'neg'}" style="width:${Math.max(2, (Math.abs(o.pnl) / max) * 100)}%"></i></span>
+            <b class="${o.pnl >= 0 ? 'gain' : 'loss'}">${amount(o.pnl)}</b></div>`).join('')}</div>
+        <p class="rv-sentence">${esc(x.sentence)}</p>
+        <div class="row between"><button class="btn soft sm" data-nav="-1">${UI.icon('arrowLeft', 'sm')} Précédente</button>
+          <span class="tiny faint num">${revealIndex + 1} / ${r.reveals.length}</span>
+          <button class="btn soft sm" data-nav="1">Suivante ${UI.icon('arrowRight', 'sm')}</button></div>
+      </div>`;
+    const box = $('#rvDetail');
+    if (animate) UI.swap(box, html); else box.innerHTML = html;
+    UI.scenario($('#rvChart'), x.context, x.forward);
+    box.querySelectorAll('[data-nav]').forEach((b) => (b.onclick = () => show(revealIndex + Number(b.dataset.nav))));
+  };
+  view.querySelectorAll('.rv-tab').forEach((b) => (b.onclick = () => show(Number(b.dataset.i))));
+  document.onkeydown = (e) => {
+    if (!$('#rvDetail') || e.target.matches('input, textarea, select')) return;
+    if (e.key === 'ArrowRight') show(revealIndex + 1);
+    if (e.key === 'ArrowLeft') show(revealIndex - 1);
+  };
+  show(revealIndex, false);
   $('#next').onclick = () => showRules().catch((err) => showError(err, showRules));
 }
 

@@ -146,9 +146,7 @@
       <polygon id="observed" fill="url(#obs)" fill-opacity=".34" stroke="#ff4a5e" stroke-width="2.4" stroke-linejoin="round"/>
       <g id="dots"></g>
       ${pos.map(([x, y], i) => { const a = UI.AGENTS[keys[i]]; const below = y >= cy; return `<g class="node" style="--d:${(i * -1.1).toFixed(1)}s">
-        <circle class="ring" cx="${x}" cy="${y}" r="35" stroke="${a.color}"/>
-        <circle cx="${x}" cy="${y}" r="27" fill="${a.color}"/>
-        <ellipse cx="${x - 6}" cy="${y - 10}" rx="15" ry="9" fill="#fff" opacity=".22"/>
+        <circle cx="${x}" cy="${y}" r="26" fill="${a.color}" fill-opacity=".22" stroke="${a.color}" stroke-opacity=".7" stroke-width="1.2"/>
         <g transform="translate(${x - 11} ${y - 11}) scale(.92)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${UI.paths[a.icon]}</g>
         <text x="${x}" y="${below ? y + 54 : y - 44}" text-anchor="middle">${a.name}</text></g>`; }).join('')}`;
 

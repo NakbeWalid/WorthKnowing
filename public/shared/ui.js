@@ -62,9 +62,9 @@ const UI = (() => {
     <rect x="20" y="7" width="4" height="18" rx="2" fill="${light ? '#d7001f' : '#fff'}"/></svg>`;
   /** WorthKnowing : un cercle coupé par un axe ; à gauche ce que vous dites, à droite ce que vous faites. */
   const wkMark = (light = false) => `<svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-    <circle cx="16" cy="16" r="13" fill="none" stroke="${light ? '#fff' : '#1d1420'}" stroke-width="2"/>
+    <circle cx="16" cy="16" r="13" fill="none" stroke="${light ? '#fff' : '#f7eff5'}" stroke-width="2"/>
     <path d="M16 3a13 13 0 0 1 0 26z" fill="${light ? '#fff' : '#d7001f'}"/>
-    <path d="M16 1v30" stroke="${light ? '#fff' : '#1d1420'}" stroke-width="2"/></svg>`;
+    <path d="M16 1v30" stroke="${light ? '#fff' : '#f7eff5'}" stroke-width="2"/></svg>`;
   const logo = (app, { href = '/', light = false, size = '' } = {}) => app === 'boreal'
     ? `<a class="logo ${light ? 'light' : ''} ${size}" href="${href}" aria-label="Boréal Courtage">${borealMark(light)}<span class="logo-word">Boréal <i>Courtage</i></span></a>`
     : `<a class="logo ${light ? 'light' : ''} ${size}" href="${href}" aria-label="WorthKnowing">${wkMark(light)}<span class="logo-word">Worth<i>Knowing</i></span></a>`;
@@ -157,10 +157,10 @@ const UI = (() => {
 
   // ---------------------------------------------------------------- Jauge de dérive
   /** Demi-cercle 0–100 avec repère du seuil. */
-  function gauge(score, threshold = 60, { dark = false } = {}) {
+  function gauge(score, threshold = 60, { dark = true } = {}) {
     const r = 80, c = Math.PI * r;
     const v = Math.max(0, Math.min(100, score));
-    const color = v >= threshold ? (dark ? '#ff5a6e' : '#d7001f') : v >= threshold * 0.66 ? (dark ? '#ffc27a' : '#b26a00') : (dark ? '#fff' : '#3a1535');
+    const color = v >= threshold ? (dark ? '#ff5a6e' : '#d7001f') : v >= threshold * 0.66 ? (dark ? '#ffc27a' : '#b26a00') : (dark ? '#c9a3ff' : '#3a1535');
     const a = Math.PI * (1 - threshold / 100);
     const tx = 100 + r * Math.cos(a), ty = 100 - r * Math.sin(a);
     const tx2 = 100 + (r + 14) * Math.cos(a), ty2 = 100 - (r + 14) * Math.sin(a);
@@ -170,8 +170,8 @@ const UI = (() => {
         <path class="g-track" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke-width="14" stroke-linecap="round"/>
         <path class="g-value" id="${id}" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="${color}" stroke-width="14" stroke-linecap="round"
           stroke-dasharray="${c}" stroke-dashoffset="${c}" data-target="${c * (1 - v / 100)}"/>
-        <line x1="${tx}" y1="${ty}" x2="${tx2}" y2="${ty2}" stroke="#1d1420" stroke-width="2" stroke-linecap="round" opacity=".5"/>
-        <text x="${tx2 + (tx2 > 100 ? 4 : -4)}" y="${ty2 - 2}" font-size="9" fill="#1d1420" opacity=".5" text-anchor="${tx2 > 100 ? 'start' : 'end'}" font-family="Inter">seuil ${threshold}</text>
+        <line x1="${tx}" y1="${ty}" x2="${tx2}" y2="${ty2}" stroke="#f7eff5" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <text x="${tx2 + (tx2 > 100 ? 4 : -4)}" y="${ty2 - 2}" font-size="9" fill="#f7eff5" opacity=".5" text-anchor="${tx2 > 100 ? 'start' : 'end'}" font-family="Inter">seuil ${threshold}</text>
       </svg>
       <div class="g-center"><div class="g-score">${v}</div><div class="g-of">sur 100</div></div>
     </div>`;
@@ -184,7 +184,7 @@ const UI = (() => {
   }
 
   // ---------------------------------------------------------------- Graphiques (Chart.js)
-  const C = { red: '#d7001f', ink: '#1d1420', plum: '#3a1535', gain: '#1c7a4c', amber: '#b26a00', gold: '#c98a2b', teal: '#14716f', grid: 'rgba(29,20,32,.07)', muted: 'rgba(29,20,32,.46)' };
+  const C = { red: '#ff4763', ink: '#f7eff5', plum: '#a98bf5', gain: '#4ade96', amber: '#ffb957', gold: '#f5b84a', teal: '#2ec4b6', grid: 'rgba(247,239,245,.08)', muted: 'rgba(247,239,245,.55)' };
   const charts = new WeakMap();
   const hasChart = () => typeof window.Chart !== 'undefined';
   if (hasChart()) {
@@ -196,7 +196,7 @@ const UI = (() => {
     Chart.defaults.animation.duration = 900;
     Chart.defaults.animation.easing = 'easeOutQuart';
     Object.assign(Chart.defaults.plugins.tooltip, {
-      backgroundColor: '#1d1420', titleColor: '#f7f1e8', bodyColor: '#f7f1e8', padding: 10, cornerRadius: 10,
+      backgroundColor: '#35243f', titleColor: '#f7f1e8', bodyColor: '#f7f1e8', padding: 10, cornerRadius: 10,
       displayColors: false, titleFont: { weight: '600' }, caretSize: 5,
     });
   }
@@ -210,8 +210,8 @@ const UI = (() => {
       ctx.save();
       ctx.setLineDash([4, 4]);
       ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(29,20,32,.35)';
-      ctx.fillStyle = 'rgba(29,20,32,.55)';
+      ctx.strokeStyle = 'rgba(247,239,245,.4)';
+      ctx.fillStyle = 'rgba(247,239,245,.65)';
       ctx.font = "500 11px Inter, sans-serif";
       if (opts.x != null) {
         const x = scales.x.getPixelForValue(opts.x);
@@ -220,7 +220,7 @@ const UI = (() => {
       }
       if (opts.y != null) {
         const y = scales.y.getPixelForValue(opts.y);
-        ctx.strokeStyle = 'rgba(215,0,31,.55)'; ctx.fillStyle = 'rgba(215,0,31,.8)';
+        ctx.strokeStyle = 'rgba(255,107,129,.7)'; ctx.fillStyle = 'rgba(255,143,160,.95)';
         ctx.beginPath(); ctx.moveTo(a.left, y); ctx.lineTo(a.right, y); ctx.stroke();
         if (opts.yLabel) { ctx.textAlign = 'right'; ctx.fillText(opts.yLabel, a.right, y - 6); }
       }
@@ -235,7 +235,7 @@ const UI = (() => {
       if (!active?.length) return;
       const { ctx, chartArea: a } = chart;
       const x = active[0].element.x;
-      ctx.save(); ctx.strokeStyle = 'rgba(29,20,32,.18)'; ctx.lineWidth = 1;
+      ctx.save(); ctx.strokeStyle = 'rgba(247,239,245,.22)'; ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(x, a.top); ctx.lineTo(x, a.bottom); ctx.stroke(); ctx.restore();
     },
   };
@@ -309,12 +309,12 @@ const UI = (() => {
     return chart(canvas, {
       type: 'radar',
       data: { labels: RADAR_LABELS, datasets: [
-        { label: aLabel, data: KEYS.map((k) => a?.[k] ?? 50), borderColor: C.ink, borderWidth: 1.6, borderDash: [5, 4], backgroundColor: 'rgba(29,20,32,.04)', pointRadius: 3, pointBackgroundColor: C.ink, pointBorderWidth: 0 },
-        { label: bLabel, data: KEYS.map((k) => b?.[k] ?? 50), borderColor: C.red, borderWidth: 2.2, backgroundColor: 'rgba(215,0,31,.13)', pointRadius: 3.5, pointBackgroundColor: C.red, pointBorderColor: '#fff', pointBorderWidth: 1.5 },
+        { label: aLabel, data: KEYS.map((k) => a?.[k] ?? 50), borderColor: C.ink, borderWidth: 1.6, borderDash: [5, 4], backgroundColor: 'rgba(247,239,245,.05)', pointRadius: 3, pointBackgroundColor: C.ink, pointBorderWidth: 0 },
+        { label: bLabel, data: KEYS.map((k) => b?.[k] ?? 50), borderColor: C.red, borderWidth: 2.2, backgroundColor: 'rgba(255,71,99,.24)', pointRadius: 3.5, pointBackgroundColor: C.red, pointBorderColor: '#1c1123', pointBorderWidth: 1.5 },
       ] },
       options: {
         responsive: true, maintainAspectRatio: false,
-        scales: { r: { min: 0, max: 100, ticks: { display: false, stepSize: 25 }, grid: { color: 'rgba(29,20,32,.08)' }, angleLines: { color: 'rgba(29,20,32,.08)' }, pointLabels: { font: { size: 11.5, weight: '600' }, color: 'rgba(29,20,32,.7)' } } },
+        scales: { r: { min: 0, max: 100, ticks: { display: false, stepSize: 25 }, grid: { color: 'rgba(247,239,245,.10)' }, angleLines: { color: 'rgba(247,239,245,.10)' }, pointLabels: { font: { size: 11.5, weight: '600' }, color: 'rgba(247,239,245,.78)' } } },
         plugins: { tooltip: { displayColors: true, callbacks: { label: (c) => ` ${c.dataset.label} : ${c.parsed.r}` } } },
       },
     });
@@ -324,7 +324,7 @@ const UI = (() => {
   function donut(canvas, labels, values, colors) {
     return chart(canvas, {
       type: 'doughnut',
-      data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: '#fffdf9', borderWidth: 3, hoverOffset: 6, borderRadius: 4 }] },
+      data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: '#1c1123', borderWidth: 3, hoverOffset: 6, borderRadius: 4 }] },
       options: { responsive: true, maintainAspectRatio: false, cutout: '74%', plugins: { tooltip: { callbacks: { label: (c) => ` ${c.label} : ${(c.parsed * 100 / c.dataset.data.reduce((s, v) => s + v, 0)).toFixed(0)} %` } } } },
     });
   }
@@ -338,7 +338,7 @@ const UI = (() => {
       data: { labels, datasets: [{
         data: values, borderColor: C.plum, borderWidth: 2, cubicInterpolationMode: 'monotone', fill: true, backgroundColor: fade(C.plum, .10),
         pointRadius: values.map((_, i) => (i === sel ? 7 : flags[i] ? 5 : 3.5)), pointHoverRadius: 7,
-        pointBackgroundColor: values.map((v, i) => (hot(v, i) ? C.red : '#fffdf9')), pointBorderColor: values.map((v, i) => (hot(v, i) ? C.red : C.plum)),
+        pointBackgroundColor: values.map((v, i) => (hot(v, i) ? C.red : '#1c1123')), pointBorderColor: values.map((v, i) => (hot(v, i) ? C.red : C.plum)),
         pointBorderWidth: values.map((_, i) => (i === sel ? 3 : 1.8)),
       }] },
       options: {
@@ -358,13 +358,13 @@ const UI = (() => {
   // ---------------------------------------------------------------- Les agents de l'enquête
   /** L'équipe d'agents de WorthKnowing, dans l'ordre où ils travaillent sur un ordre. */
   const AGENTS = {
-    marche: { name: 'Marché', role: 'Prix et volatilité', icon: 'chart', color: '#c98a2b' },
-    nouvelles: { name: 'Nouvelles', role: 'Manchettes · 7 jours', icon: 'news', color: '#14716f' },
-    gouvernance: { name: 'Gouvernance', role: 'Vos règles', icon: 'shield', color: '#6a3fa0' },
-    comportement: { name: 'Comportement', role: 'Écarts au profil', icon: 'activity', color: '#e2552f' },
-    influence: { name: 'Influence', role: 'IA · Amazon Bedrock', icon: 'spark', color: '#d7001f', ai: true },
-    profil: { name: 'Profil', role: 'Mise à jour', icon: 'target', color: '#1c7a4c' },
-    explication: { name: 'Explicabilité', role: 'Synthèse et sources', icon: 'book', color: '#3a1535' },
+    marche: { name: 'Marché', role: 'Prix et volatilité', icon: 'chart', color: '#f5b84a' },
+    nouvelles: { name: 'Nouvelles', role: 'Manchettes · 7 jours', icon: 'news', color: '#2ec4b6' },
+    gouvernance: { name: 'Gouvernance', role: 'Vos règles', icon: 'shield', color: '#8f6bf0' },
+    comportement: { name: 'Comportement', role: 'Écarts au profil', icon: 'activity', color: '#ff7a59' },
+    influence: { name: 'Influence', role: 'IA · Amazon Bedrock', icon: 'spark', color: '#f0243f', ai: true },
+    profil: { name: 'Profil', role: 'Mise à jour', icon: 'target', color: '#3ccf8e' },
+    explication: { name: 'Explicabilité', role: 'Synthèse et sources', icon: 'book', color: '#9aa3c7' },
   };
   /** Retrouve l'agent à partir du libellé d'une étape renvoyée par le serveur (« Agent marché », …). */
   const agentKey = (label = '') => {

@@ -51,9 +51,9 @@ class HealthController {
  */
 @Module({
   imports: [ServeStaticModule.forRoot(
-    // Système de design commun aux deux applications (polices, couleurs, composants, graphiques).
-    { rootPath: join(process.cwd(), 'node_modules', 'chart.js', 'dist'), serveRoot: '/shared/vendor/chartjs', exclude: ['/api/(.*)'] },
-    { rootPath: join(process.cwd(), 'public', 'shared'), serveRoot: '/shared', exclude: ['/api/(.*)'] },
+    // Système de design commun aux deux applications (couleurs, composants, graphiques ; Chart.js y est rangé dans vendor/).
+    // renderPath inatteignable : un fichier absent de /shared ne doit pas chercher un index.html (il n'y en a pas).
+    { rootPath: join(process.cwd(), 'public', 'shared'), serveRoot: '/shared', renderPath: '/__aucun__', exclude: ['/api/(.*)'] },
     { rootPath: join(process.cwd(), 'public', 'miroir'), exclude: ['/api/(.*)'] },
   )],
   controllers: [

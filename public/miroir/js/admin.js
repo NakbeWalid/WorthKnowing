@@ -24,7 +24,7 @@ function setLive(ok, text) {
 const EVENT_STYLE = {
   'trade.received': ['arrowDown', '#c98a2b'], 'investigation.completed': ['spark', '#d7001f'], 'profile.updated': ['target', '#1c7a4c'],
   'rule.respected': ['shield', '#6a3fa0'], 'rules.updated': ['edit', '#6a3fa0'], 'evaluation.completed': ['check', '#14716f'],
-  'user.registered': ['user', '#3a1535'], 'link.created': ['link', '#14716f'], 'link.revoked': ['unlink', '#84102f'], 'drift.reset': ['refresh', '#1c7a4c'],
+  'user.registered': ['user', '#9aa3c7'], 'link.created': ['link', '#14716f'], 'link.revoked': ['unlink', '#84102f'], 'drift.reset': ['refresh', '#1c7a4c'],
 };
 
 // ------------------------------------------------------------------ Galerie
@@ -68,14 +68,14 @@ function renderGallery(flashId) {
     .filter((k) => archFilter === 'all' || k === archFilter)
     .map((k) => [k, users.filter((u) => u.arch.key === k)])
     .filter(([, list]) => list.length);
-  $('#gallery').innerHTML = groups.map(([k, list]) => {
+  $('#gallery').innerHTML = '<div class="arch-wrap">' + groups.map(([k, list]) => {
     const a = UI.ARCHETYPES[k];
-    return `<section class="arch-section">
+    return `<section class="arch-section" style="--n:${Math.min(list.length, 5)}">
       <div class="arch-head"><div class="emblem" style="--c:${a.color}">${UI.icon(a.glyph)}</div>
         <div><h3>${esc(a.name)}</h3><p>${esc(a.line)}</p></div><span class="count">${list.length}</span></div>
       <div class="persona-grid ${animated ? '' : 'stagger'}">${list.map((u) => personaCard(u, flashId)).join('')}</div>
     </section>`;
-  }).join('');
+  }).join('') + '</div>';
   animated = true;
   document.querySelectorAll('.persona-card').forEach((c) => {
     const open = () => openDetail(c.dataset.id);
@@ -124,7 +124,7 @@ function renderDetail() {
   const expertise = { novice: 'novice', intermediate: 'intermédiaire', advanced: 'avancée' }[user.cvProfile?.expertise];
   const tabs = [['enquetes', `Enquêtes · ${trades.length}`], ['profil', 'Profil'], ['regles', `Règles · ${user.rules.length}`]];
   detail.el.querySelector('#pd').innerHTML = `
-    <aside class="pd-side">
+    <aside class="pd-side night">
       <div class="row" style="gap:14px"><span class="portrait">${UI.portrait(detail.id, arch, 64)}</span>
         <div><div class="eyebrow" style="color:rgba(255,255,255,.6)">${esc(arch.name)}</div><h2>${esc(user.name)}</h2></div></div>
       <p class="tiny muted">${esc(arch.line)}.</p>
@@ -249,7 +249,7 @@ function connect() {
     try { event = JSON.parse(message.data); } catch { return; }
     const feed = $('#feed');
     feed.querySelector('.empty-state')?.remove();
-    const [ico, color] = EVENT_STYLE[event.type] ?? ['activity', '#3a1535'];
+    const [ico, color] = EVENT_STYLE[event.type] ?? ['activity', '#9aa3c7'];
     feed.insertAdjacentHTML('afterbegin', `<div class="feed-item"><span class="ft" style="--c:${color}">${UI.icon(ico)}</span><div>
       <time>${new Date(event.at).toLocaleTimeString('fr-CA')}</time><b>${esc(event.userName)}</b> <span class="muted">${esc(event.message)}</span></div></div>`);
     while (feed.children.length > 100) feed.lastElementChild.remove(); // le fil ne grossit pas sans fin

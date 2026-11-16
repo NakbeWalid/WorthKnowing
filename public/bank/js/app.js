@@ -22,7 +22,7 @@ const PARAM_LABELS = {
 };
 /** Les agents de WorthKnowing qui enquêtent sur chaque ordre (la plateforme n'en reçoit que la conclusion). */
 const WK_AGENTS = ['marche', 'nouvelles', 'gouvernance', 'comportement', 'influence', 'profil'];
-const ALLOC_COLORS = ['#d7001f', '#3a1535', '#ff8a6b', '#c98a2b', '#84102f', '#14716f', '#f2b3bb', '#6a3fa0'];
+const ALLOC_COLORS = ['#ff4763', '#a98bf5', '#f5b84a', '#2ec4b6', '#ff7a59', '#5b8def', '#f2b3bb', '#3ccf8e'];
 const shortDate = (d) => new Date(d + 'T12:00:00').toLocaleDateString('fr-CA', { day: 'numeric', month: 'short' });
 const wkLogo = () => `<span class="logo">${UI.wkMark(true)}<span class="logo-word">Worth<i>Knowing</i></span></span>`;
 const sideIcon = (side) => `<div class="side-icon ${side}">${UI.icon(side === 'buy' ? 'arrowDown' : 'arrowUp', 'sm')}</div>`;
@@ -90,7 +90,7 @@ function renderAllocation(pf) {
   const rest = pf.positions.slice(5).reduce((s, p) => s + p.value, 0);
   const labels = [...top.map((p) => p.ticker), ...(rest ? ['Autres'] : []), 'Liquidités'];
   const values = [...top.map((p) => p.value), ...(rest ? [rest] : []), pf.cash];
-  const colors = labels.map((l, i) => (l === 'Liquidités' ? '#e5d7c4' : ALLOC_COLORS[i % ALLOC_COLORS.length]));
+  const colors = labels.map((l, i) => (l === 'Liquidités' ? 'rgba(247,239,245,.20)' : ALLOC_COLORS[i % ALLOC_COLORS.length]));
   UI.donut($('#allocChart'), labels, values, colors);
   $('#allocCash').textContent = `${Math.round((pf.cash / pf.total) * 100)} %`;
   $('#allocCount').textContent = `${pf.positions.length} actif${pf.positions.length > 1 ? 's' : ''}`;
