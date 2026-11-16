@@ -22,8 +22,8 @@ body.wk-auth { background: linear-gradient(140deg, #24102b 0%, #1a0f1f 45%, #100
 .verdict-chip b { display: block; font-size: 13px; }
 .verdict-chip span { font-size: 11px; color: rgba(255, 255, 255, .68); }
 .verdict-chip.v1 { right: 0; top: 6%; }
-.verdict-chip.v2 { left: 0; bottom: 20%; animation-delay: 4s; }
-.verdict-chip.v3 { right: 2%; bottom: 4%; animation-delay: 8s; }
+.verdict-chip.v2 { left: 0; top: 44%; animation-delay: 4s; }
+.verdict-chip.v3 { right: 0; top: 50%; animation-delay: 8s; }
 @keyframes chip { 0%, 4% { opacity: 0; transform: translateY(10px) scale(.96); } 9%, 36% { opacity: 1; transform: none; } 42%, 100% { opacity: 0; transform: translateY(-8px); } }
 .partner-card { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 16px; background: var(--g-warm); border: 1px solid var(--red-10); margin-top: 18px; font-size: 13.5px; }
 .demo-hint { margin-top: 20px; font-size: 12px; color: var(--ink-45); text-align: center; }
@@ -32,12 +32,14 @@ body.wk-auth { background: linear-gradient(140deg, #24102b 0%, #1a0f1f 45%, #100
 /* ---------------------------------------------------------------- Tableau de bord */
 .dash {
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1.06fr) minmax(0, 1fr);
   grid-template-areas:
     "head head head head head head head head head head head head"
     "drift drift drift radar radar radar radar bars bars bars bars bars"
     "time time time time last last last last last rules rules rules";
 }
+.dash .mirror { padding: 4px 0; }
+.dash .mirror .m-label { margin-bottom: 2px; }
 .drift-card .gauge { max-width: 210px; margin-top: auto; }
 .drift-card .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, .13); font-size: 12.5px; }
 .last-inv { cursor: pointer; transition: transform .25s var(--ease), box-shadow .25s; }
@@ -120,7 +122,20 @@ body.wk-auth { background: linear-gradient(140deg, #24102b 0%, #1a0f1f 45%, #100
 .switch input:focus-visible + span { outline: 2px solid var(--red); outline-offset: 2px; }
 
 /* ---------------------------------------------------------------- Compte */
-.account { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1.4fr); grid-template-rows: auto minmax(0, 1fr); grid-template-areas: "head head head" "id key pf"; }
+.account { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1.4fr); grid-template-rows: auto auto minmax(0, 1fr); grid-template-areas: "head head head" "id key pf" "flow flow flow"; }
+.flow { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(180px, .8fr) minmax(0, 1fr) minmax(0, 2fr); gap: 18px; align-items: center; }
+.flow-node { display: grid; justify-items: center; gap: 8px; text-align: center; padding: 18px; border-radius: 20px; background: var(--white); border: 1px solid var(--line); }
+.flow-node .ticker-badge { width: 52px; height: 52px; border-radius: 16px; font-size: 13px; }
+.flow-wk { border-radius: 20px; background: var(--g-night); color: var(--cream); padding: 16px 18px; }
+.flow-wk .logo, .flow-wk .logo-word { color: var(--cream); font-size: 16px; } .flow-wk .logo-word i { color: #ff8a98; } .flow-wk .logo-mark { width: 22px; height: 22px; }
+.flow-arrows { display: grid; gap: 18px; }
+.flow-arrow { display: grid; gap: 5px; font-size: 12.5px; }
+.flow-arrow b { font-weight: 600; }
+.flow-arrow i { display: block; height: 2px; background: repeating-linear-gradient(90deg, var(--c) 0 6px, transparent 6px 12px); background-size: 24px 2px; animation: flow 1s linear infinite; position: relative; }
+.flow-arrow i::after { content: ""; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left-color: var(--c); }
+.flow-arrow.back i { animation-direction: reverse; }
+.flow-arrow.back i::after { right: auto; left: -1px; border-left-color: transparent; border-right-color: var(--c); }
+.flow-arrow.back { text-align: right; }
 .key-box { display: flex; align-items: center; gap: 8px; background: var(--g-night); color: var(--cream); border-radius: 14px; padding: 8px 8px 8px 16px; }
 .key-box code { background: none; color: inherit; word-break: break-all; flex: 1; }
 

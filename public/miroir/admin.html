@@ -6,22 +6,22 @@
   <link rel="stylesheet" href="/shared/ui.css">
   <link rel="stylesheet" href="/css/app.css">
 </head>
-<body class="wk">
+<body class="app wk">
 <header class="nav"></header>
-<main class="page">
-  <div class="section-head"><h1>Les <em>personas</em></h1><span class="muted small" id="updated"></span></div>
-  <div class="grid g-4 stagger" id="kpis"></div>
+<main class="shell">
+  <section class="view adm">
+    <div class="adm-kpis stagger" id="kpis" style="grid-area:kpis"></div>
 
-  <div class="admin-layout section">
-    <div>
-      <div class="arch-filter" id="archFilter"></div>
-      <div id="gallery"><div class="persona-grid"></div></div>
+    <div class="widget" style="grid-area:gallery">
+      <div class="widget-head"><h3>Personas, regroupés par caractère</h3><div class="chips" id="archFilter"></div></div>
+      <div class="widget-body scroll" id="gallery"></div>
     </div>
-    <aside class="widget sticky-feed" style="position:sticky;top:88px">
-      <div class="widget-head"><h3>Activité en direct</h3><span class="pill red" id="live"><span class="dot live"></span>en direct</span></div>
-      <div class="feed" id="feed"><div class="empty-state"><p>En attente d’événements…</p></div></div>
-    </aside>
-  </div>
+
+    <div class="widget" style="grid-area:feed">
+      <div class="widget-head"><h3>Activité des agents, en direct</h3><span class="pill red" id="live"><span class="dot live"></span>en direct</span></div>
+      <div class="widget-body scroll" id="feed"><div class="empty-state" id="feedEmpty"></div></div>
+    </div>
+  </section>
 </main>
 <script src="/shared/vendor/chartjs/chart.umd.js"></script>
 <script src="/shared/ui.js"></script>

@@ -389,10 +389,10 @@ body.app { height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-
 .close-x:hover { background: var(--ink-15); transform: rotate(90deg); }
 .close-x.on-dark { background: rgba(255, 255, 255, .14); color: #fff; }
 
-dl.facts { display: grid; grid-template-columns: max-content 1fr; margin: 0; }
+dl.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); margin: 0; }
 dl.facts dt, dl.facts dd { padding: 9px 0; border-top: 1px solid var(--line); margin: 0; font-size: 13.5px; }
 dl.facts dt { color: var(--ink-60); padding-right: 20px; }
-dl.facts dd { text-align: right; font-weight: 500; font-variant-numeric: tabular-nums; }
+dl.facts dd { text-align: right; font-weight: 500; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 dl.facts dt:first-of-type, dl.facts dd:first-of-type { border-top: 0; }
 
 .toasts { position: fixed; z-index: 200; left: 50%; bottom: 22px; transform: translateX(-50%); display: grid; gap: 8px; width: min(440px, calc(100vw - 28px)); }

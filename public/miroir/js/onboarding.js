@@ -2,6 +2,7 @@
 // -> simulations -> révélation -> règles.
 // Sert aussi à la réévaluation (l'étape 1 est alors sautée).
 // L'évaluation en cours est mémorisée dans l'onglet : recharger la page reprend là où on en était.
+// Chaque écran tient dans la fenêtre : seules les listes longues défilent, à l'intérieur de leur carte.
 
 const view = $('#view');
 const state = { questions: [], answers: {}, session: null, index: 0, shownAt: 0, result: null, cv: null };
@@ -31,30 +32,30 @@ function setStep(n) {
     el.classList.toggle('on', i === n - 1);
     el.classList.toggle('done', i < n - 1);
   });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 /** Remplace la vue avec l'animation d'entrée. */
 const render = (html) => UI.swap(view, html);
 
 /** Écran d'erreur avec bouton « Réessayer » : une panne réseau ne laisse jamais la page figée. */
 function showError(err, retry) {
-  render(`<div class="step-card"><h1>Un problème est survenu</h1>
+  render(`<div class="onb-center"><div class="step-card"><h1>Un problème est survenu</h1>
     <p class="error" style="margin-top:14px">${esc(err.message)}</p>
-    <div class="step-actions"><button class="btn primary" id="retry">${UI.icon('refresh', 'sm')} Réessayer</button></div></div>`);
+    <div class="step-actions"><span></span><button class="btn primary" id="retry">${UI.icon('refresh', 'sm')} Réessayer</button></div></div></div>`);
   $('#retry').onclick = retry;
 }
 
 // ------------------------------------------------------------------ Étape 1a : se noter de 0 à 10
+const cvLabel = () => (state.cv ? `${UI.icon('check', 'sm')} CV ajouté` : `${UI.icon('upload', 'sm')} Ajouter mon CV (facultatif)`);
 function showSelf() {
   setStep(1);
   const qs = selfQuestions();
-  render(`
-    ${partner ? `<div class="partner-card" style="margin:0 0 18px"><div class="avatar">${UI.icon('link', 'sm')}</div>
-      <div>Vous venez de <b>${esc(partner)}</b>. Environ 10 minutes, puis retour automatique.</div></div>` : ''}
-    <div class="step-card">
-      <span class="eyebrow">Étape 1</span>
-      <h1 style="margin-top:8px">Comment vous <em>voyez-vous</em> ?</h1>
-      <p class="lead">Notez-vous de 0 à 10. Aucune note n’est meilleure qu’une autre.</p>
+  render(`<div class="step-card">
+      <div class="row between wrap" style="align-items:flex-start"><div>
+        <span class="eyebrow">Étape 1</span>
+        <h1 style="margin-top:6px">Comment vous <em class="g-text">voyez-vous</em> ?</h1>
+        <p class="lead">Notez-vous de 0 à 10 sur ces six traits. Aucune note n’est meilleure qu’une autre.</p></div>
+        ${partner ? `<span class="pill red">${UI.icon('link', 'sm')}Vous venez de ${esc(partner)} · retour automatique</span>` : ''}</div>
+      <div class="scales">
       ${qs.map((q) => {
         const v = state.answers[q.id];
         const set = v !== undefined;
@@ -67,16 +68,13 @@ function showSelf() {
           <div class="scale-ends"><span>${esc(q.scale.low)}</span><span>${esc(q.scale.high)}</span></div>
         </div>`;
       }).join('')}
+      </div>
       <div class="error" id="error" role="alert"></div>
       <div class="step-actions">
         <div class="persona-fill">Démo : ${Object.keys(PERSONAS).map((p) => `<button class="chip" data-persona="${p}">${p}</button>`).join('')}</div>
-        <button class="btn primary lg" id="next">Continuer ${UI.icon('arrowRight', 'sm')}</button>
+        <div class="row"><button class="btn ghost" id="cvBtn">${cvLabel()}</button>
+          <button class="btn primary lg" id="next">Continuer ${UI.icon('arrowRight', 'sm')}</button></div>
       </div>
-    </div>
-    <div class="step-card" style="padding-top:26px;padding-bottom:26px">
-      <div class="row between wrap"><div><h2>CV <span class="faint" style="font-weight:400">· facultatif</span></h2>
-        <p class="small muted" style="margin-top:4px">Sert uniquement à situer votre expertise. N’entre jamais dans votre profil.</p></div></div>
-      <div id="cvBox" style="margin-top:16px">${cvBoxHtml(state.cv)}</div>
     </div>`);
 
   // Une note n'est enregistrée que si la personne a touché le curseur : la position de départ n'est pas une réponse.
@@ -111,7 +109,7 @@ function showSelf() {
     state.answers = { ...PERSONAS[b.dataset.persona] };
     showSelf();
   }));
-  setupCvBox();
+  $('#cvBtn').onclick = openCv;
 }
 
 // ------------------------------------------------------------------ Étape 1b : quelques questions
@@ -126,11 +124,10 @@ function showQuestion() {
     state.index < qs.length ? showQuestion() : startSimulations(state.answers);
   };
 
-  render(`
-    <div class="step-card">
+  render(`<div class="onb-center"><div class="step-card">
       <div class="progress-line"><i style="width:${(state.index / qs.length) * 100}%"></i></div>
       <span class="counter">Question ${state.index + 1} / ${qs.length}</span>
-      <h1 style="margin-top:10px">${esc(q.text)}</h1>
+      <h1 style="margin-top:8px">${esc(q.text)}</h1>
       <div class="options">
         ${q.options.map((o) => `<button class="option ${state.answers[q.id] === o.id ? 'on' : ''}" data-id="${esc(o.id)}"><span class="radio"></span>${esc(o.label)}</button>`).join('')}
       </div>
@@ -138,7 +135,7 @@ function showQuestion() {
         <button class="btn link" id="back">${UI.icon('arrowLeft', 'sm')} Retour</button>
         ${state.answers[q.id] !== undefined ? `<button class="btn primary" id="btnNextQuestion">${isLast ? 'Aux mises en situation' : 'Suivant'} ${UI.icon('arrowRight', 'sm')}</button>` : ''}
       </div>
-    </div>`);
+    </div></div>`);
   requestAnimationFrame(() => { const bar = view.querySelector('.progress-line i'); if (bar) bar.style.width = `${((state.index + 1) / qs.length) * 100}%`; });
 
   view.querySelectorAll('.option').forEach((b) => (b.onclick = () => {
@@ -154,7 +151,7 @@ function showQuestion() {
   };
 }
 
-// CV facultatif : analysé côté serveur, conservé à part, jamais utilisé pour remplir les réponses.
+// CV facultatif (dans une fenêtre) : analysé côté serveur, conservé à part, jamais utilisé pour remplir les réponses.
 function cvBoxHtml(cv) {
   if (cv) {
     return `<div class="notice ink">${UI.icon('check', 'sm')}<div class="grow"><b>CV pris en compte</b>
@@ -165,42 +162,50 @@ function cvBoxHtml(cv) {
   return `<label class="cv-drop">${UI.icon('upload', 'lg')}
       <div class="grow"><b class="small" id="cvName">Choisir un fichier</b><div class="tiny faint">PDF ou texte, 5 Mo max.</div></div>
       <input type="file" id="cvFile" accept=".pdf,.txt,.md,.json" aria-label="Fichier du CV"></label>
-    <div class="row" style="margin-top:12px"><button class="btn soft sm" id="cvSend">Analyser</button></div>
-    <div class="error" id="cvError" role="alert"></div>`;
+    <div class="error" id="cvError" role="alert"></div>
+    <div class="modal-actions"><button class="btn ghost" data-close>Plus tard</button><button class="btn primary" id="cvSend">Analyser</button></div>`;
 }
-
-function setupCvBox() {
-  if ($('#cvRemove')) $('#cvRemove').onclick = async () => {
-    await api('DELETE', '/parser/cv').catch((err) => UI.alert('Erreur', esc(err.message)));
-    state.cv = null;
-    $('#cvBox').innerHTML = cvBoxHtml(null);
-    setupCvBox();
+function openCv() {
+  const s = UI.sheet(`<div class="modal-head"><h2>Votre CV <span class="faint" style="font:400 15px var(--sans)">· facultatif</span></h2>
+      <button class="close-x" data-close aria-label="Fermer">${UI.icon('x', 'sm')}</button></div>
+    <p class="small muted" style="margin-bottom:16px">Il sert uniquement à situer votre expertise en trading, pour mettre en contexte l’analyse de vos ordres.
+      Il ne remplit aucune réponse, n’entre jamais dans votre profil, et son texte n’est pas conservé.</p>
+    <div id="cvBox">${cvBoxHtml(state.cv)}</div>`, { onClose: () => { if ($('#cvBtn')) $('#cvBtn').innerHTML = cvLabel(); } });
+  const wire = () => {
+    s.el.querySelectorAll('[data-close]').forEach((b) => (b.onclick = () => s.close()));
+    if ($('#cvRemove')) $('#cvRemove').onclick = async () => {
+      await api('DELETE', '/parser/cv').catch((err) => UI.toast(esc(err.message)));
+      state.cv = null;
+      $('#cvBox').innerHTML = cvBoxHtml(null);
+      wire();
+    };
+    if (!$('#cvSend')) return;
+    $('#cvFile').onchange = () => { $('#cvName').textContent = $('#cvFile').files?.[0]?.name ?? 'Choisir un fichier'; $('#cvError').textContent = ''; };
+    $('#cvSend').onclick = async () => {
+      const file = $('#cvFile').files?.[0];
+      if (!file) return ($('#cvError').textContent = 'Choisissez un fichier, ou continuez sans CV.');
+      if (file.size > 5 * 1024 * 1024) return ($('#cvError').textContent = 'Fichier trop volumineux (5 Mo maximum).');
+      $('#cvSend').disabled = true;
+      $('#cvSend').innerHTML = '<span class="spinner" style="border-color:#fff;border-top-color:transparent"></span> Analyse…';
+      try {
+        const isText = /\.(txt|md|json)$/i.test(file.name);
+        const data = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          isText ? reader.readAsText(file) : reader.readAsDataURL(file);
+        });
+        state.cv = await api('POST', '/parser/cv', isText ? { text: data, filename: file.name } : { base64: data, filename: file.name });
+        UI.swap($('#cvBox'), cvBoxHtml(state.cv));
+        wire();
+      } catch (err) {
+        $('#cvError').textContent = err.message;
+        $('#cvSend').disabled = false;
+        $('#cvSend').textContent = 'Analyser';
+      }
+    };
   };
-  if (!$('#cvSend')) return;
-  $('#cvFile').onchange = () => { $('#cvName').textContent = $('#cvFile').files?.[0]?.name ?? 'Choisir un fichier'; $('#cvError').textContent = ''; };
-  $('#cvSend').onclick = async () => {
-    const file = $('#cvFile').files?.[0];
-    if (!file) return ($('#cvError').textContent = 'Choisissez un fichier, ou continuez sans CV.');
-    if (file.size > 5 * 1024 * 1024) return ($('#cvError').textContent = 'Fichier trop volumineux (5 Mo maximum).');
-    $('#cvSend').disabled = true;
-    $('#cvSend').innerHTML = '<span class="spinner"></span> Analyse…';
-    try {
-      const isText = /\.(txt|md|json)$/i.test(file.name);
-      const data = await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        isText ? reader.readAsText(file) : reader.readAsDataURL(file);
-      });
-      state.cv = await api('POST', '/parser/cv', isText ? { text: data, filename: file.name } : { base64: data, filename: file.name });
-      UI.swap($('#cvBox'), cvBoxHtml(state.cv));
-      setupCvBox();
-    } catch (err) {
-      $('#cvError').textContent = err.message;
-      $('#cvSend').disabled = false;
-      $('#cvSend').textContent = 'Analyser';
-    }
-  };
+  wire();
 }
 
 // ------------------------------------------------------------------ Étape 2 : simulations
@@ -214,18 +219,19 @@ async function startSimulations(answers) {
   state.index = 0;
   setStep(2);
   const n = state.session.scenarios.length;
-  render(`
-    <div class="step-card" style="text-align:center;padding:52px 40px">
-      <div class="avatar" style="width:56px;height:56px;margin:0 auto 18px">${UI.icon('chart', 'lg')}</div>
+  const point = (icon, title, text) => `<div class="stat-tile" style="text-align:left;padding:16px"><span class="avatar soft" style="margin-bottom:10px">${UI.icon(icon, 'sm')}</span>
+    <div><b class="small">${title}</b><p class="tiny muted" style="margin-top:2px">${text}</p></div></div>`;
+  render(`<div class="onb-center"><div class="step-card" style="text-align:center;padding:40px">
       <span class="eyebrow">Étape 2</span>
-      <h1 style="margin-top:8px">${n} mises en <em>situation</em></h1>
-      <div class="grid g-3" style="margin:28px 0 8px;text-align:left">
-        <div class="widget tint"><b class="small">Courbes réelles</b><p class="tiny muted" style="margin-top:4px">Tirées des cinq dernières années.</p></div>
-        <div class="widget tint"><b class="small">Noms masqués</b><p class="tiny muted" style="margin-top:4px">Pour que vous ne reconnaissiez pas l’épisode.</p></div>
-        <div class="widget tint"><b class="small">Aucune bonne réponse</b><p class="tiny muted" style="margin-top:4px">On observe votre comportement.</p></div>
+      <h1 style="margin-top:8px">${n} mises en <em class="g-text">situation</em></h1>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Décidez comme avec votre propre argent. À la fin, on vous montre ce qui s’est réellement passé.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px">
+        ${point('chart', 'Courbes réelles', 'Tirées des cinq dernières années.')}
+        ${point('eye', 'Noms masqués', 'Vous ne reconnaîtrez pas l’épisode.')}
+        ${point('scale', 'Aucune bonne réponse', 'On observe votre comportement.')}
       </div>
-      <button class="btn primary lg" id="go" style="margin-top:20px">Commencer ${UI.icon('arrowRight', 'sm')}</button>
-    </div>`);
+      <div class="step-actions" style="justify-content:center"><button class="btn primary lg" id="go">Commencer ${UI.icon('arrowRight', 'sm')}</button></div>
+    </div></div>`);
   $('#go').onclick = showScenario;
 }
 
@@ -238,24 +244,29 @@ function showScenario() {
   state.shownAt = Date.now(); // sert à mesurer le temps de décision
   s.decisionTimeMs = undefined;
   let chosen = null;
-  render(`
-    <div class="step-card">
+  render(`<div class="step-card">
       <div class="progress-line"><i style="width:${(state.index / total) * 100}%"></i></div>
-      <div class="row between"><span class="counter">Situation ${state.index + 1} / ${total}</span><span class="pill outline">${esc(s.maskLabel)}</span></div>
-      <h1 style="margin-top:10px">${esc(s.alias)}</h1>
-      <div class="chart-box scenario-chart"><canvas id="scChart" aria-label="Prix sur les 90 dernières séances, base 100"></canvas></div>
-      <p class="tiny faint">90 dernières séances · base 100</p>
-      <div class="headline-card"><q>${esc(s.headline)}</q><div class="tiny faint" style="margin-top:6px">Manchette fictive</div></div>
-      <p style="font-size:16px"><b>${esc(s.situation)}</b></p>
-      <div class="options trio" id="choiceRow">${s.choices.map((c) => {
-        const [ico, sub] = CHOICE_ICONS[c.id] ?? ['chevron', ''];
-        return `<button class="option" data-id="${esc(c.id)}" aria-pressed="false"><span class="opt-icon">${UI.icon(ico)}</span>${esc(c.label)}<small>${sub}</small></button>`;
-      }).join('')}</div>
-      <div id="confidenceBox" class="hidden" style="margin-top:22px">
-        <p class="small muted">Votre niveau de confiance ?</p>
-        <div class="options trio conf" id="confidenceRow" style="margin-top:10px">${CONFIDENCES.map(([id, label]) => `<button class="option" data-confidence="${id}">${esc(label)}</button>`).join('')}</div>
+      <div class="sc-grid">
+        <div class="sc-left">
+          <div class="row between"><span class="counter">Situation ${state.index + 1} / ${total}</span><span class="pill outline">${esc(s.maskLabel)}</span></div>
+          <h1 style="margin-top:6px">${esc(s.alias)}</h1>
+          <div class="chart-box fill" style="margin-top:10px;min-height:160px"><canvas id="scChart" aria-label="Prix sur les 90 dernières séances, base 100"></canvas></div>
+          <p class="tiny faint" style="margin-top:6px">90 dernières séances · base 100</p>
+        </div>
+        <div class="sc-right">
+          <div class="headline-card"><q>${esc(s.headline)}</q><div class="tiny faint" style="margin-top:6px">Manchette fictive</div></div>
+          <p style="font-size:15.5px"><b>${esc(s.situation)}</b></p>
+          <div class="options trio" id="choiceRow">${s.choices.map((c) => {
+            const [ico, sub] = CHOICE_ICONS[c.id] ?? ['chevron', ''];
+            return `<button class="option" data-id="${esc(c.id)}" aria-pressed="false"><span class="opt-icon">${UI.icon(ico)}</span>${esc(c.label)}<small>${sub}</small></button>`;
+          }).join('')}</div>
+          <div id="confidenceBox" style="margin-top:16px;visibility:hidden">
+            <p class="small muted">Votre niveau de confiance ?</p>
+            <div class="options trio conf" id="confidenceRow" style="margin-top:8px">${CONFIDENCES.map(([id, label]) => `<button class="option" data-confidence="${id}">${esc(label)}</button>`).join('')}</div>
+          </div>
+          <div class="error" id="error" role="alert"></div>
+        </div>
       </div>
-      <div class="error" id="error" role="alert"></div>
     </div>`);
   UI.scenario($('#scChart'), s.context);
   requestAnimationFrame(() => { const bar = view.querySelector('.progress-line i'); if (bar) bar.style.width = `${((state.index + 1) / total) * 100}%`; });
@@ -272,7 +283,7 @@ function showScenario() {
       x.setAttribute('aria-pressed', String(x === b));
     });
     const box = $('#confidenceBox');
-    if (box.classList.contains('hidden')) { box.classList.remove('hidden'); box.classList.add('view-enter'); }
+    if (box.style.visibility === 'hidden') { box.style.visibility = ''; box.classList.add('view-enter'); }
   }));
   // 2. La confiance : envoie la réponse. En cas d'échec réseau, on peut renvoyer sans fausser le temps de décision.
   confidenceButtons.forEach((b) => (b.onclick = async () => {
@@ -297,40 +308,43 @@ function showScenario() {
 async function showReveal() {
   setStep(3);
   if (!state.result) {
-    render(`<div class="step-card" style="text-align:center;padding:60px 30px"><span class="spinner" style="width:28px;height:28px;border-width:3px"></span>
-      <p class="muted" style="margin-top:16px">Calcul de votre révélation…</p></div>`);
+    render(`<div class="onb-center"><div class="step-card" style="text-align:center;padding:50px 30px">
+      ${UI.agents(['marche', 'comportement', 'profil', 'explication'], { mode: 'working' })}
+      <p class="muted" style="margin-top:16px">Calcul de votre révélation…</p></div></div>`);
     try {
       state.result = await api('POST', `/evaluation/${state.session.evaluationId}/complete`);
     } catch (err) { return showError(err, showReveal); }
   }
   const r = state.result;
   const best = r.reveals.filter((x) => x.chosenId === x.bestId).length;
-  render(`
-    <div class="step-card reveal-hero">
-      <span class="eyebrow">Étape 3 · 60 séances plus tard</span>
-      <div class="kpi ${r.totalPnl >= 0 ? 'gain' : 'loss'}" style="margin-top:14px" id="pnl">0 $</div>
-      <p class="muted" style="margin-top:8px">sur ${r.reveals.length} décisions, mise fictive de ${money(state.session.stake)} chacune</p>
-      <div class="row" style="justify-content:center;margin-top:18px;gap:8px">
-        <span class="pill ink">${best} / ${r.reveals.length} meilleur choix</span>
+  render(`<div class="onb-split reveal-split">
+    <div class="step-card night reveal-hero">
+      <div>
+        <span class="eyebrow" style="color:rgba(255,255,255,.6)">Étape 3 · 60 séances plus tard</span>
+        <div class="kpi" style="margin-top:14px;color:${r.totalPnl >= 0 ? '#8fe0b5' : '#ff8a98'}" id="pnl">0 $</div>
+        <p class="lead">sur ${r.reveals.length} décisions, avec une mise fictive de ${money(state.session.stake)} chacune.</p>
+        <div class="row wrap" style="margin-top:16px"><span class="pill glass">${UI.icon('check', 'sm')}${best} / ${r.reveals.length} meilleurs choix</span></div>
       </div>
-      <p class="tiny faint" style="margin:18px auto 0;max-width:52ch">${esc(r.note)}</p>
+      <div>
+        <p class="tiny faint" style="margin-bottom:16px">${esc(r.note)}</p>
+        <button class="btn primary lg block" id="next">Voir mon profil ${UI.icon('arrowRight', 'sm')}</button>
+      </div>
     </div>
-    <div class="reveal-grid stagger">
+    <div class="reveal-scroll stagger">
     ${r.reveals.map((x, i) => `
       <div class="widget reveal-card">
         <div class="row between"><span class="tiny faint">${esc(x.alias)} · ${esc(x.testsLabel)}</span><span class="tiny faint">${x.decisionSeconds} s</span></div>
-        <h3 style="font:500 18px var(--serif);margin-top:6px">${esc(x.reveal.name)} <span class="faint" style="font-family:var(--sans);font-size:12px">${esc(x.reveal.ticker)}</span></h3>
-        <p class="tiny faint">${esc(day(x.reveal.decisionDate + 'T12:00:00'))}</p>
-        <div class="chart-box scenario-chart"><canvas id="rv${i}"></canvas></div>
+        <h3 style="font:500 17px var(--serif);margin-top:4px">${esc(x.reveal.name)} <span class="faint" style="font:400 11.5px var(--sans)">${esc(x.reveal.ticker)} · ${esc(day(x.reveal.decisionDate + 'T12:00:00'))}</span></h3>
+        <div class="chart-box"><canvas id="rv${i}"></canvas></div>
         <div class="outcomes">
           ${x.options.map((o) => `<div class="outcome ${o.id === x.chosenId ? 'chosen' : ''}">
             ${o.id === x.bestId ? `<span class="pill gain best">${UI.icon('check', 'sm')}</span>` : ''}
-            <span class="tiny faint">${esc(o.label)}</span><b>${signed(o.pnl)}</b></div>`).join('')}
+            <span class="tiny faint">${esc(o.label)}${o.id === x.chosenId ? ' · vous' : ''}</span><b>${signed(o.pnl)}</b></div>`).join('')}
         </div>
-        <p class="small muted" style="margin-top:12px">${esc(x.sentence)}</p>
+        <p class="small muted" style="margin-top:10px">${esc(x.sentence)}</p>
       </div>`).join('')}
     </div>
-    <div class="step-actions" style="justify-content:flex-end"><button class="btn primary lg" id="next">Voir mon profil ${UI.icon('arrowRight', 'sm')}</button></div>`);
+  </div>`);
   UI.countUp($('#pnl'), r.totalPnl, (v) => `${v >= 0 ? '+' : '−'}${money(Math.abs(v))}`, 1200);
   r.reveals.forEach((x, i) => UI.scenario($('#rv' + i), x.context, x.forward));
   $('#next').onclick = () => showRules().catch((err) => showError(err, showRules));
@@ -340,18 +354,18 @@ async function showReveal() {
 /** Une règle dans l'écran de fin d'évaluation : un interrupteur, le comportement encadré et une phrase libre. */
 function ruleRowHtml(row, params) {
   const p = params.find((x) => x.param === row.param);
-  return `<div class="rule-card ${row.risk ? 'risk' : ''} ${row.on ? '' : 'off'}" data-param="${esc(row.param ?? '')}">
+  return `<div class="rule-card stacked ${row.risk ? 'risk' : ''} ${row.on ? '' : 'off'}" data-param="${esc(row.param ?? '')}">
     <div class="rule-toggle">
       <label class="switch"><input type="checkbox" class="on" ${row.on ? 'checked' : ''} aria-label="Activer cette règle"><span></span></label>
       ${row.custom
-        ? `<select class="param input" style="max-width:280px;padding:9px 36px 9px 12px" aria-label="Comportement encadré">${params.map((x) => `<option value="${x.param}">${esc(x.label)}</option>`).join('')}</select>`
+        ? `<select class="param input" style="max-width:280px;padding:8px 36px 8px 12px" aria-label="Comportement encadré">${params.map((x) => `<option value="${x.param}">${esc(x.label)}</option>`).join('')}</select>`
         : `<b class="grow">${esc(p.label)}</b>`}
       ${row.risk ? '<span class="pill red">à encadrer</span>' : ''}
     </div>
     <div class="editor">
       ${row.reason ? `<p class="tiny muted" style="margin-top:8px">${esc(row.reason)}</p>` : ''}
-      <div class="field" style="margin-top:0"><textarea class="text" rows="2" maxlength="300" placeholder="Écrivez votre règle, avec vos mots." aria-label="Texte de la règle">${esc(row.text)}</textarea></div>
-      <p class="trigger when" style="margin-top:8px"></p>
+      <div class="field" style="margin-top:8px"><textarea class="text" rows="2" maxlength="300" placeholder="Écrivez votre règle, avec vos mots." aria-label="Texte de la règle">${esc(row.text)}</textarea></div>
+      <p class="trigger when" style="margin-top:6px"></p>
     </div>
   </div>`;
 }
@@ -373,35 +387,29 @@ async function showRules() {
   });
   const rel = state.result.reliability;
 
-  render(`
-    <div class="step-card">
-      <span class="eyebrow">Étape 4</span>
-      <h1 style="margin-top:8px">Votre <em>reflet</em></h1>
-      <div class="grid g-2" style="margin-top:22px;align-items:center">
-        <div>
-          ${canvasBox('radar', 300)}
-          <div class="legend" style="justify-content:center;margin-top:8px"><span><i class="dash"></i>Vous disiez</span><span><i style="background:var(--red)"></i>Vous avez fait</span></div>
-        </div>
-        <div>
-          ${mirrorHead('Vous disiez', 'Vous avez fait')}
-          ${params.map((p) => mirror(esc(p.label), p.declared, p.observed, p.reliability ? `fiabilité ${esc(p.reliability.label)}` : '')).join('')}
-        </div>
-      </div>
-      ${rel ? `<div class="notice ink" style="margin-top:18px">${UI.icon('info', 'sm')}<span><b>Fiabilité : ${esc(rel.label)}.</b> <span class="muted">${esc(rel.summary)}</span></span></div>` : ''}
+  render(`<div class="onb-split rules-split">
+    <div class="step-card" style="overflow:auto">
+      <div class="row between"><div><span class="eyebrow">Étape 4</span><h1 style="margin-top:4px">Votre <em class="g-text">reflet</em></h1></div>
+        <div class="legend"><span><i class="dash"></i>Vous disiez</span><span><i style="background:var(--red)"></i>Vous avez fait</span></div></div>
+      <div class="chart-box" style="height:230px;flex:none;margin:6px 0 10px"><canvas id="radar"></canvas></div>
+      ${mirrorHead('Vous disiez', 'Vous avez fait')}
+      ${params.map((p) => mirror(esc(p.label), p.declared, p.observed, p.reliability ? `fiabilité ${esc(p.reliability.label)}` : '')).join('')}
+      ${rel ? `<div class="notice ink" style="margin-top:12px">${UI.icon('info', 'sm')}<span><b>Fiabilité : ${esc(rel.label)}.</b> <span class="muted">${esc(rel.summary)}</span></span></div>` : ''}
     </div>
     <div class="step-card">
-      <h2 style="font:500 24px var(--serif)">Vos règles</h2>
-      <p class="lead">Activez celles qui comptent, écrivez-les avec vos mots. ${partner ? `${esc(partner)} vous les rappellera` : 'Elles vous seront rappelées'} avant chaque ordre concerné.</p>
-      <div id="ruleRows" style="margin-top:20px">${rows.map((r) => ruleRowHtml(r, params)).join('')}</div>
-      <button class="btn soft sm" id="addRule" style="margin-top:14px">${UI.icon('plus', 'sm')} Ajouter une règle</button>
+      <div class="row between"><h2 style="font:500 24px var(--serif)">Vos règles</h2>
+        <button class="btn soft sm" id="addRule">${UI.icon('plus', 'sm')} Ajouter</button></div>
+      <p class="lead">Activez celles qui comptent et écrivez-les avec vos mots. ${partner ? `${esc(partner)} vous les rappellera` : 'Elles vous seront rappelées'} avant chaque ordre concerné.</p>
+      <div id="ruleRows" class="scroll" style="flex:1;margin:14px -8px 0 0;padding-right:8px">${rows.map((r) => ruleRowHtml(r, params)).join('')}</div>
       <div class="error" id="error" role="alert"></div>
-      ${partner && pending.get()?.link ? `<p class="tiny faint" style="margin-top:22px">En continuant, vous autorisez ${esc(partner)} à envoyer vos ordres et votre portefeuille à WorthKnowing,
+      ${partner && pending.get()?.link ? `<p class="tiny faint" style="margin-top:10px">En continuant, vous autorisez ${esc(partner)} à envoyer vos ordres et votre portefeuille à WorthKnowing,
         et à recevoir l’état de votre profil, votre dérive et le texte de vos règles.</p>` : ''}
       <div class="step-actions">
         <button class="btn link" id="backToReveal">${UI.icon('arrowLeft', 'sm')} Révélation</button>
         <button class="btn primary lg" id="save">${partner ? `Activer et retourner à ${esc(partner)}` : 'Activer mon profil'} ${UI.icon('arrowRight', 'sm')}</button>
       </div>
-    </div>`);
+    </div>
+  </div>`);
   UI.radar($('#radar'), declaredScores, observedScores, { aLabel: 'Vous disiez', bLabel: 'Vous avez fait' });
 
   const wire = (el) => {
@@ -409,7 +417,7 @@ async function showRules() {
     const select = el.querySelector('.param');
     const paramOf = () => (select ? select.value : el.dataset.param);
     const when = () => {
-      el.querySelector('.when').innerHTML = `${UI.icon('clock', 'sm')} Rappelée avant : ${esc(params.find((p) => p.param === paramOf()).suggestedRule.trigger)}.`;
+      el.querySelector('.when').innerHTML = `${UI.icon('clock', 'sm')}<span>Rappelée avant : ${esc(params.find((p) => p.param === paramOf()).suggestedRule.trigger)}.</span>`;
     };
     box.onchange = () => el.classList.toggle('off', !box.checked);
     if (select) select.onchange = when;
@@ -421,6 +429,7 @@ async function showRules() {
     const el = $('#ruleRows').lastElementChild;
     el.classList.add('view-enter');
     wire(el);
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     el.querySelector('.text').focus();
   };
 
@@ -473,14 +482,14 @@ async function init() {
   if (me.profile) {
     setStep(2);
     const required = me.status === 'reevaluation_required';
-    render(`<div class="step-card" style="text-align:center;padding:52px 40px">
-      ${UI.gauge(me.drift.score, me.driftThreshold)}
-      <h1 style="margin-top:20px">Réévaluation</h1>
-      <p class="lead" style="margin:10px auto 0">${required
+    render(`<div class="onb-center"><div class="step-card night" style="text-align:center;padding:40px">
+      ${UI.gauge(me.drift.score, me.driftThreshold, { dark: true })}
+      <h1 style="margin-top:18px;color:#fff">Réévaluation</h1>
+      <p class="lead" style="margin:8px auto 0">${required
         ? 'Votre comportement récent s’est éloigné de votre profil. De nouvelles situations vous attendent ; votre dérive repartira de zéro.'
         : 'Refaites le point quand vous voulez. Votre dérive repartira de zéro.'}</p>
-      <div class="row" style="justify-content:center;margin-top:28px"><button class="btn ghost" onclick="location.href='/profile.html'">Plus tard</button>
-        <button class="btn primary lg" id="go">Commencer ${UI.icon('arrowRight', 'sm')}</button></div></div>`);
+      <div class="row" style="justify-content:center;margin-top:24px"><button class="btn glass" onclick="location.href='/profile.html'">Plus tard</button>
+        <button class="btn primary lg" id="go">Commencer ${UI.icon('arrowRight', 'sm')}</button></div></div></div>`);
     UI.animateGauges(view);
     $('#go').onclick = () => startSimulations(null);
   } else {

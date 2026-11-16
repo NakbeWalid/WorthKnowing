@@ -135,6 +135,16 @@ async function refresh() {
     <dt>Évaluations</dt><dd>${me.profile.evaluationCount}</dd>
     <dt>Dernière évaluation</dt><dd>${esc(day(me.profile.evaluatedAt))}</dd>
     <dt>État</dt><dd>${statusBadge(me.status)}</dd>`;
+  // Schéma des échanges avec la plateforme de courtage (ce à quoi vous avez consenti).
+  $('#flow').innerHTML = `<div class="flow-node"><div class="ticker-badge">${esc(UI.initials(me.link?.partner ?? '?'))}</div>
+      <b>${esc(me.link?.partner ?? 'Aucun courtier lié')}</b><span class="tiny faint">${me.link ? 'Votre plateforme de courtage' : 'Activez WorthKnowing depuis votre courtier'}</span></div>
+    <div class="flow-arrows">
+      <div class="flow-arrow" style="--c:var(--red)"><span><b>Vos ordres</b> et la composition de votre portefeuille</span><i></i></div>
+      <div class="flow-arrow back" style="--c:var(--plum)"><i></i><span><b>Votre score de dérive</b> et le texte de vos règles</span></div>
+    </div>
+    <div class="flow-wk"><div class="row between">${UI.logo('wk', { light: true })}<span class="pill glass">6 agents + explicabilité</span></div>
+      <div style="margin:8px -8px 0">${UI.agents(Object.keys(UI.AGENTS), { size: 'sm', dark: true, mode: 'working' })}</div>
+      <p class="tiny" style="margin-top:8px;color:rgba(255,255,255,.65)">Votre profil détaillé et les rapports des agents restent ici : votre courtier n’en reçoit que la conclusion.</p></div>`;
 }
 
 // ------------------------------------------------------------------ Enquêtes : liste à gauche, enquête complète à droite
