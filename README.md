@@ -13,6 +13,23 @@ Ce dépôt contient **deux applications web distinctes**, qui ne se parlent que 
 
 > Le nom de code interne du service est resté « Miroir » dans le code (`src/miroir`, `public/miroir`, variables `MIROIR_*`) : c'est le même produit que « WorthKnowing » à l'écran.
 
+## Services AWS utilisés
+
+| Service | Utilisé pour |
+| --- | --- |
+| **Amazon Bedrock** (Claude Haiku 4.5) | Les agents IA : nouvelles, influence, explicabilité |
+| **Amazon DynamoDB** | Profils, évaluations, ordres et enquêtes (WorthKnowing) ; comptes et ordres (Boréal), dans des tables séparées |
+| **Amazon Cognito** | Comptes WorthKnowing, jetons JWT, groupe `admin` |
+| **Amazon S3** | Jeu de données de prix, scénarios, corpus de nouvelles |
+| **Amazon ECS Fargate** + **Application Load Balancer** | Exécution des deux applications (une tâche, deux conteneurs) |
+| **Amazon CloudFront** | HTTPS, une distribution par application |
+| **AWS Secrets Manager** | Clé partenaire, secrets de signature, mot de passe admin |
+| **Amazon ECR** + **AWS CodeBuild** | Construction et stockage de l'image Docker |
+| **Amazon CloudWatch Logs** | Journaux des conteneurs |
+| **AWS CDK** (TypeScript) | Toute l'infrastructure en code (`infra/`) |
+
+Le détail (pourquoi chaque service, ce qui a été écarté, schéma d'architecture) est plus bas, dans [Services AWS](#services-aws).
+
 ## Aperçu
 
 <table>
