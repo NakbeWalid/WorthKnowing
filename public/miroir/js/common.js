@@ -104,7 +104,7 @@ const canvasBox = (id, height = 220) => `<div class="chart-box" style="height:${
 function mountNav(tabsHtml = '', extra = '') {
   const nav = document.querySelector('header.nav');
   nav.innerHTML = `${UI.logo('wk', { href: '/' })}${tabsHtml ? `<nav class="nav-links" role="tablist">${tabsHtml}</nav>` : ''}
-    <span class="spacer"></span>${extra}
+    <span class="spacer"></span><span class="pill outline demo-pill" title="Aucune transaction réelle, aucun conseil financier">Simulation</span>${extra}
     <div class="user-chip"><span id="hello"></span><div class="avatar ink" id="avatar">·</div></div>
     <button class="btn soft icon-only" id="logout" title="Déconnexion" aria-label="Déconnexion">${UI.icon('logout', 'sm')}</button>`;
   $('#logout').onclick = () => session.clear();

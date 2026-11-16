@@ -6,67 +6,76 @@
   <link rel="stylesheet" href="/shared/ui.css">
   <link rel="stylesheet" href="/css/app.css">
 </head>
-<body class="wk">
+<body class="app wk">
 <header class="nav"></header>
-<main class="page">
+<main class="shell">
   <div id="top"></div>
 
   <!-- ================================================ Tableau de bord -->
-  <section id="tab-reflet" class="view">
-    <div class="section-head"><h1 id="greeting">Bonjour</h1><span class="muted" id="evaluated"></span></div>
+  <section id="tab-reflet" class="view dash">
+    <div class="view-head" style="grid-area:head"><h1 id="greeting">Bonjour</h1><span class="spacer"></span><span class="small muted row" id="evaluated"></span></div>
 
-    <div class="grid g-side stagger">
-      <div class="widget">
-        <div class="widget-head"><h3>Score de dérive</h3><span id="driftPill"></span></div>
-        <div id="gauge"></div>
-        <p class="small muted" style="text-align:center;margin-top:12px" id="driftText"></p>
-      </div>
-      <div class="widget">
-        <div class="widget-head"><h3>Ce que vous dites, ce que vous faites</h3>
-          <div class="legend"><span><i class="dash"></i>Déclaré</span><span><i style="background:var(--red)"></i>Aujourd’hui</span></div></div>
-        <div class="grid g-2" style="align-items:center">
-          <div class="chart-box" style="height:280px"><canvas id="radar"></canvas></div>
-          <div id="params"></div>
-        </div>
-      </div>
+    <div class="widget night drift-card" style="grid-area:drift">
+      <div class="widget-head"><h3>Score de dérive</h3><span id="driftPill"></span></div>
+      <div id="gauge"></div>
+      <p class="small muted" style="text-align:center;margin-top:8px" id="driftText"></p>
+      <div class="foot"><span id="driftFoot"></span><button class="btn link sm" onclick="location.href='/onboarding.html'">Réévaluer ›</button></div>
     </div>
 
-    <div class="grid g-side section stagger">
-      <div class="widget">
-        <div class="widget-head"><h3>Mes règles</h3><button class="btn link sm" data-goto="regles">Gérer ›</button></div>
-        <div id="rulesSummary"></div>
-      </div>
-      <div class="widget">
-        <div class="widget-head"><h3>Suivi de mes ordres</h3>
-          <div class="legend"><span><i style="background:var(--ink)"></i>Dérive</span><span><i style="background:var(--red)"></i>Règle outrepassée</span></div></div>
-        <div id="driftChartBox" class="chart-box hidden" style="height:200px;margin-bottom:12px"><canvas id="driftChart"></canvas></div>
-        <div class="list" id="history"></div>
-      </div>
+    <div class="widget" style="grid-area:radar">
+      <div class="widget-head"><h3>Ce que vous dites, ce que vous faites</h3>
+        <div class="legend"><span><i class="dash"></i>Déclaré</span><span><i style="background:var(--red)"></i>Aujourd’hui</span></div></div>
+      <div class="chart-box fill"><canvas id="radar"></canvas></div>
+    </div>
+
+    <div class="widget" style="grid-area:bars">
+      <div class="widget-head"><h3>Depuis votre dernière évaluation</h3><span class="tiny faint">écart ≥ 10 en rouge</span></div>
+      <div class="widget-body scroll" id="params"></div>
+    </div>
+
+    <div class="widget" style="grid-area:time">
+      <div class="widget-head"><h3>Dérive, ordre après ordre</h3><span class="tiny faint">cliquez un point</span></div>
+      <div class="chart-box fill"><canvas id="driftChart"></canvas><div class="empty-state hidden" id="driftEmpty"></div></div>
+    </div>
+
+    <div class="widget tint last-inv" id="lastInv" style="grid-area:last" tabindex="0"></div>
+
+    <div class="widget" style="grid-area:rules">
+      <div class="widget-head"><h3>Mes règles</h3><button class="btn link sm" data-goto="regles">Gérer ›</button></div>
+      <div class="widget-body scroll" id="rulesSummary"></div>
     </div>
   </section>
 
+  <!-- ================================================ Enquêtes : visibles en un clic -->
+  <section id="tab-enquetes" class="view enq hidden">
+    <div class="widget" style="grid-area:list">
+      <div class="widget-head"><h3>Ordres enquêtés</h3><span class="pill outline" id="enqCount"></span></div>
+      <div class="widget-body scroll list" id="enqList"></div>
+    </div>
+    <div class="widget inv-widget" id="enqDetail" style="grid-area:detail"></div>
+  </section>
+
   <!-- ================================================ Mes règles -->
-  <section id="tab-regles" class="view hidden">
-    <div class="section-head"><h1>Mes <em>règles</em></h1>
+  <section id="tab-regles" class="view rules-view hidden">
+    <div class="view-head" style="grid-area:head"><h1>Mes <em>règles</em></h1><span class="small muted" id="rulesMeta"></span><span class="spacer"></span>
       <button class="btn primary" id="addRuleBtn"></button></div>
-    <p class="muted" style="margin:-4px 0 22px;max-width:60ch">Des phrases écrites pour vous-même, rappelées avant chaque ordre concerné.</p>
-    <div class="grid g-main">
-      <div id="rules"></div>
-      <aside id="ruleSuggestions"></aside>
+    <div class="widget" style="grid-area:list">
+      <div class="widget-head"><h3>Des phrases écrites pour vous-même, rappelées avant chaque ordre concerné</h3></div>
+      <div class="widget-body scroll" id="rules"></div>
+    </div>
+    <div class="widget tint" style="grid-area:sugg">
+      <div class="widget-head"><h3>Suggérées pour vous</h3><span id="suggIcon"></span></div>
+      <div class="widget-body scroll" id="ruleSuggestions"></div>
     </div>
   </section>
 
   <!-- ================================================ Compte -->
-  <section id="tab-profil" class="view hidden">
-    <div class="section-head"><h1>Mon <em>compte</em></h1></div>
-    <div class="grid g-2 stagger">
-      <div class="widget"><div class="widget-head"><h3>Identité</h3></div><dl class="facts" id="account"></dl></div>
-      <div class="widget"><div class="widget-head"><h3>Ma clé WorthKnowing</h3><span class="icon"></span></div><div id="token"></div></div>
-      <div class="widget span-2"><div class="widget-head"><h3>Mes plateformes de trading</h3></div><div id="platforms"></div></div>
-    </div>
+  <section id="tab-profil" class="view account hidden">
+    <div class="view-head" style="grid-area:head"><h1>Mon <em>compte</em></h1></div>
+    <div class="widget" style="grid-area:id"><div class="widget-head"><h3>Identité</h3></div><dl class="facts" id="account"></dl></div>
+    <div class="widget" style="grid-area:key"><div class="widget-head"><h3>Ma clé WorthKnowing</h3></div><div id="token"></div></div>
+    <div class="widget" style="grid-area:pf"><div class="widget-head"><h3>Mes plateformes de trading</h3></div><div class="widget-body scroll" id="platforms"></div></div>
   </section>
-
-  <p class="footer-note">Simulation uniquement · aucun conseil financier</p>
 </main>
 <script src="/shared/vendor/chartjs/chart.umd.js"></script>
 <script src="/shared/ui.js"></script>

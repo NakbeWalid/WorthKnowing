@@ -6,44 +6,36 @@
   <link rel="stylesheet" href="/shared/ui.css">
   <link rel="stylesheet" href="/css/app.css">
 </head>
-<body class="wk">
+<body class="auth-page wk-auth">
+<div class="auth-bg" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+  <div class="mesh"></div><div class="grain"></div>
+</div>
+
 <div class="auth">
-  <section class="auth-art wk-art" aria-hidden="true">
-    <svg class="art-bg" viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice">
-      <rect width="800" height="900" fill="#1d1714"/>
-      <circle class="glow" cx="560" cy="300" r="220"/>
-      <g class="spin-slow">
-        <circle class="ring" cx="400" cy="450" r="300" stroke-dasharray="2 10"/>
-        <circle class="ring" cx="400" cy="450" r="360"/>
-      </g>
-      <g class="spin-rev"><circle class="ring" cx="400" cy="450" r="420" stroke-dasharray="40 30"/></g>
-      <g fill="none" stroke="rgba(247,241,232,.09)">
-        <polygon points="400,392 450,421 450,479 400,508 350,479 350,421"/>
-        <polygon points="400,335 500,392 500,508 400,565 300,508 300,392"/>
-        <polygon points="400,278 549,364 549,536 400,622 251,536 251,364"/>
-        <polygon points="400,220 599,335 599,565 400,680 201,565 201,335" stroke="rgba(247,241,232,.16)"/>
-        <path d="M400 450 L400 220 M400 450 L599 335 M400 450 L599 565 M400 450 L400 680 M400 450 L201 565 M400 450 L201 335"/>
-      </g>
-      <polygon class="declared" points="400,284 510,387 484,498 400,593 324,494 296,390"/>
-      <polygon class="observed" points="400,248 464,413 559,542 400,565 253,535 312,399"/>
-      <circle class="node" cx="400" cy="248" r="5"/><circle class="node" cx="559" cy="542" r="5"/><circle class="node" cx="253" cy="535" r="5"/>
-      <line class="axisline" x1="400" y1="0" x2="400" y2="900"/>
-    </svg>
+  <section class="auth-stage">
     <div id="artLogo"></div>
-    <div class="pitch">
-      <h1>Ce que vous dites.<br><em>Ce que vous faites.</em></h1>
-      <p>Votre profil d’investisseur, mesuré sur vos vraies décisions.</p>
-      <div class="art-legend"><span><i></i>Déclaré</span><span><i class="solid"></i>Observé</span></div>
+    <div class="stage-main">
+      <div class="pitch">
+        <h1>Ce que vous dites.<br><em>Ce que vous faites.</em></h1>
+        <p>Six agents enquêtent sur chacun de vos ordres et tiennent votre profil d’investisseur à jour.</p>
+      </div>
+      <div class="visual" aria-hidden="true">
+        <!-- Constellation d'agents : chacun envoie ses constats au profil central (dessinée par le script) -->
+        <svg id="constellation" viewBox="0 0 680 500" preserveAspectRatio="xMidYMid meet"></svg>
+        <div class="verdict-chip glass v1"><i style="background:#ff5a6e"></i><div><b>Influence externe possible</b><span>Agent Influence · IA</span></div></div>
+        <div class="verdict-chip glass v2"><i style="background:#b48cf0"></i><div><b>Règle rappelée avant l’ordre</b><span>Agent Gouvernance</span></div></div>
+        <div class="verdict-chip glass v3"><i style="background:#8fe0b5"></i><div><b>Dérive 12 → 18</b><span>Agent Profil</span></div></div>
+      </div>
     </div>
-    <p class="art-foot">Simulation uniquement · aucun conseil financier</p>
+    <div class="foot"><span id="f1"></span><span id="f2"></span><span>Simulation uniquement · aucun conseil financier</span></div>
   </section>
 
-  <section class="auth-form">
-    <div class="form-card">
-      <div class="mobile-logo" id="mobileLogo"></div>
+  <section class="auth-panel">
+    <div class="auth-card">
       <div id="formHead" class="swap">
         <h2 id="title">Connexion</h2>
-        <p class="lead" id="lead">Retrouvez votre profil et vos règles.</p>
+        <p class="lead" id="lead">Retrouvez votre profil, vos règles et vos enquêtes.</p>
       </div>
       <div class="partner-card hidden" id="partnerCard"></div>
       <form id="form" novalidate>
@@ -52,21 +44,24 @@
         <div class="field"><label for="password">Mot de passe</label><input id="password" type="password" minlength="8" autocomplete="current-password" required placeholder="••••••••">
           <span class="hint hidden" id="passwordHint">8 caractères, une minuscule et un chiffre</span></div>
         <div class="error" id="error" role="alert"></div>
-        <button class="btn lg block" style="margin-top:24px" id="submit">Se connecter</button>
+        <button class="btn primary lg block" style="margin-top:22px" id="submit">Se connecter</button>
       </form>
       <p class="auth-switch"><span id="switchText">Pas encore de compte ?</span> <button type="button" id="switch">Créer un compte</button></p>
       <p class="demo-hint hidden" id="demoHint">Démo locale · admin <code>admin@miroir.local</code> / <code>admin123</code></p>
     </div>
   </section>
 </div>
+
 <script src="/shared/ui.js"></script>
 <script src="/js/common.js"></script>
 <script>
   $('#artLogo').innerHTML = UI.logo('wk', { light: true });
-  $('#mobileLogo').innerHTML = UI.logo('wk');
+  $('#f1').innerHTML = UI.icon('spark', 'sm') + ' Agents propulsés par Amazon Bedrock';
+  $('#f2').innerHTML = UI.icon('shield', 'sm') + ' Vos règles, vos mots';
   // Identifiants de démo affichés seulement en local (jamais sur l'environnement déployé).
   if (['localhost', '127.0.0.1'].includes(location.hostname)) $('#demoHint').classList.remove('hidden');
 
+  // ---------------------------------------------------------------- Formulaire
   let registering = false;
   const submitLabel = () => (registering ? 'Créer mon compte' : 'Se connecter');
   function setMode(register) {
@@ -75,7 +70,7 @@
     $('#passwordHint').classList.toggle('hidden', !registering);
     $('#password').autocomplete = registering ? 'new-password' : 'current-password';
     $('#title').textContent = registering ? 'Créer un compte' : 'Connexion';
-    $('#lead').textContent = registering ? 'Dix minutes pour découvrir votre vrai profil.' : 'Retrouvez votre profil et vos règles.';
+    $('#lead').textContent = registering ? 'Dix minutes pour découvrir votre vrai profil.' : 'Retrouvez votre profil, vos règles et vos enquêtes.';
     $('#submit').textContent = submitLabel();
     $('#switchText').textContent = registering ? 'Déjà un compte ?' : 'Pas encore de compte ?';
     $('#switch').textContent = registering ? 'Se connecter' : 'Créer un compte';
@@ -88,7 +83,7 @@
     e.preventDefault();
     if (!$('#form').reportValidity()) return;
     $('#submit').disabled = true;
-    $('#submit').innerHTML = '<span class="spinner" style="border-color:#f7f1e8;border-top-color:transparent"></span>';
+    $('#submit').innerHTML = '<span class="spinner" style="border-color:#fff;border-top-color:transparent"></span>';
     try {
       const data = await api('POST', registering ? '/auth/register' : '/auth/login',
         { email: $('#email').value, password: $('#password').value, name: $('#name').value });
@@ -126,6 +121,49 @@
     }
     // Déjà connecté : on poursuit directement.
     if (session.token) api('GET', '/me').then(route).catch(() => {});
+  })();
+
+  // ---------------------------------------------------------------- Scène : la constellation d'agents (décorative)
+  (() => {
+    const svg = $('#constellation');
+    const cx = 340, cy = 250, R = 86, rx = 262, ry = 190;
+    const keys = ['marche', 'nouvelles', 'gouvernance', 'comportement', 'influence', 'profil'];
+    const pos = keys.map((_, i) => { const a = (-90 + i * 60) * Math.PI / 180; return [cx + rx * Math.cos(a), cy + ry * Math.sin(a)]; });
+    const hex = (k) => Array.from({ length: 6 }, (_, i) => { const a = (-90 + i * 60) * Math.PI / 180; return `${(cx + R * k * Math.cos(a)).toFixed(1)},${(cy + R * k * Math.sin(a)).toFixed(1)}`; }).join(' ');
+    svg.innerHTML = `
+      <defs>
+        <radialGradient id="core"><stop offset="0" stop-color="#ff3048" stop-opacity=".55"/><stop offset="1" stop-color="#ff3048" stop-opacity="0"/></radialGradient>
+        <linearGradient id="obs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a6b"/><stop offset="1" stop-color="#d7001f"/></linearGradient>
+      </defs>
+      <ellipse class="orbit o1" cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}"/>
+      <ellipse class="orbit o2" cx="${cx}" cy="${cy}" rx="${rx - 70}" ry="${ry - 52}"/>
+      <circle cx="${cx}" cy="${cy}" r="150" fill="url(#core)"/>
+      ${pos.map(([x, y]) => `<line class="beam" x1="${x}" y1="${y}" x2="${cx}" y2="${cy}"/>`).join('')}
+      ${pos.map(([x, y], i) => `<circle r="3.6" fill="${UI.AGENTS[keys[i]].color}" class="pulse"><animateMotion dur="2.8s" begin="${(i * 0.47).toFixed(2)}s" repeatCount="indefinite" path="M${x} ${y} L${cx} ${cy}"/>
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.12;.8;1" dur="2.8s" begin="${(i * 0.47).toFixed(2)}s" repeatCount="indefinite"/></circle>`).join('')}
+      <g fill="none" stroke="rgba(255,255,255,.14)">${[0.34, 0.67, 1].map((k) => `<polygon points="${hex(k)}"/>`).join('')}</g>
+      <polygon id="declared" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.7)" stroke-width="1.6" stroke-dasharray="6 5"/>
+      <polygon id="observed" fill="url(#obs)" fill-opacity=".34" stroke="#ff4a5e" stroke-width="2.4" stroke-linejoin="round"/>
+      <g id="dots"></g>
+      ${pos.map(([x, y], i) => { const a = UI.AGENTS[keys[i]]; const below = y >= cy; return `<g class="node" style="--d:${(i * -1.1).toFixed(1)}s">
+        <circle class="ring" cx="${x}" cy="${y}" r="35" stroke="${a.color}"/>
+        <circle cx="${x}" cy="${y}" r="27" fill="${a.color}"/>
+        <ellipse cx="${x - 6}" cy="${y - 10}" rx="15" ry="9" fill="#fff" opacity=".22"/>
+        <g transform="translate(${x - 11} ${y - 11}) scale(.92)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${UI.paths[a.icon]}</g>
+        <text x="${x}" y="${below ? y + 54 : y - 44}" text-anchor="middle">${a.name}</text></g>`; }).join('')}`;
+
+    // Le profil « observé » respire : chaque axe oscille doucement autour de sa valeur.
+    const base = [0.86, 0.38, 0.72, 0.5, 0.78, 0.42], declared = [0.62, 0.55, 0.42, 0.6, 0.4, 0.52];
+    const pt = (i, k) => { const a = (-90 + i * 60) * Math.PI / 180; return [cx + R * k * Math.cos(a), cy + R * k * Math.sin(a)]; };
+    $('#declared').setAttribute('points', declared.map((k, i) => pt(i, k).map((n) => n.toFixed(1)).join(',')).join(' '));
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function frame(t) {
+      const pts = base.map((b, i) => pt(i, Math.max(0.18, Math.min(1, b + 0.13 * Math.sin(t / 1300 + i * 1.7)))));
+      $('#observed').setAttribute('points', pts.map((p) => p.map((n) => n.toFixed(1)).join(',')).join(' '));
+      $('#dots').innerHTML = pts.map(([x, y]) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="#ff4a5e" stroke="#fff" stroke-width="1.5"/>`).join('');
+      if (!still) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
   })();
 </script>
 </body>

@@ -62,17 +62,17 @@ const UI = (() => {
     <rect x="20" y="7" width="4" height="18" rx="2" fill="${light ? '#d7001f' : '#fff'}"/></svg>`;
   /** WorthKnowing : un cercle coupé par un axe ; à gauche ce que vous dites, à droite ce que vous faites. */
   const wkMark = (light = false) => `<svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-    <circle cx="16" cy="16" r="13" fill="none" stroke="${light ? '#fff' : '#1d1714'}" stroke-width="2"/>
+    <circle cx="16" cy="16" r="13" fill="none" stroke="${light ? '#fff' : '#1d1420'}" stroke-width="2"/>
     <path d="M16 3a13 13 0 0 1 0 26z" fill="${light ? '#fff' : '#d7001f'}"/>
-    <path d="M16 1v30" stroke="${light ? '#fff' : '#1d1714'}" stroke-width="2"/></svg>`;
+    <path d="M16 1v30" stroke="${light ? '#fff' : '#1d1420'}" stroke-width="2"/></svg>`;
   const logo = (app, { href = '/', light = false, size = '' } = {}) => app === 'boreal'
     ? `<a class="logo ${light ? 'light' : ''} ${size}" href="${href}" aria-label="Boréal Courtage">${borealMark(light)}<span class="logo-word">Boréal <i>Courtage</i></span></a>`
     : `<a class="logo ${light ? 'light' : ''} ${size}" href="${href}" aria-label="WorthKnowing">${wkMark(light)}<span class="logo-word">Worth<i>Knowing</i></span></a>`;
 
   // ---------------------------------------------------------------- Fenêtres
-  function mountOverlay(inner, { drawer = false, onClose } = {}) {
+  function mountOverlay(inner, { onClose } = {}) {
     const overlay = document.createElement('div');
-    overlay.className = 'overlay' + (drawer ? ' drawer-overlay' : '');
+    overlay.className = 'overlay';
     overlay.innerHTML = inner;
     document.body.append(overlay);
     document.body.style.overflow = 'hidden';
@@ -115,17 +115,10 @@ const UI = (() => {
     });
   }
   /** Modale personnalisable : renvoie { el, close } pour la piloter (formulaires, mises à jour en direct). */
-  const sheet = (html, opts = {}) => mountOverlay(`<div class="modal ${opts.wide ? 'wide' : ''}" role="dialog" aria-modal="true">${html}</div>`, opts);
+  const sheet = (html, opts = {}) => mountOverlay(`<div class="modal ${opts.size ?? (opts.wide ? 'wide' : '')}" role="dialog" aria-modal="true">${html}</div>`, opts);
   const confirm = (title, body, { ok = 'Confirmer', cancel = 'Annuler', danger = false } = {}) =>
     modal({ title, body: `<p class="muted">${body}</p>`, actions: [{ label: cancel, value: false }, { label: ok, value: true, kind: danger ? 'primary' : '' }] }).then(Boolean);
   const alert = (title, body) => modal({ title, body: `<p class="muted">${body}</p>`, actions: [{ label: 'Compris', value: true, kind: '' }] });
-
-  /** Tiroir latéral pour les détails (enquête d'un ordre, fiche d'un persona). */
-  function drawer(head, body) {
-    return mountOverlay(`<aside class="drawer" role="dialog" aria-modal="true">
-      <div class="drawer-head">${head}<span class="grow"></span><button class="close-x" data-close aria-label="Fermer">${icon('x', 'sm')}</button></div>
-      <div class="drawer-body">${body}</div></aside>`, { drawer: true });
-  }
 
   function toast(message, kind = '') {
     let box = document.querySelector('.toasts');
@@ -164,10 +157,10 @@ const UI = (() => {
 
   // ---------------------------------------------------------------- Jauge de dérive
   /** Demi-cercle 0–100 avec repère du seuil. */
-  function gauge(score, threshold = 60) {
+  function gauge(score, threshold = 60, { dark = false } = {}) {
     const r = 80, c = Math.PI * r;
     const v = Math.max(0, Math.min(100, score));
-    const color = v >= threshold ? '#d7001f' : v >= threshold * 0.66 ? '#b26a00' : '#1d1714';
+    const color = v >= threshold ? (dark ? '#ff5a6e' : '#d7001f') : v >= threshold * 0.66 ? (dark ? '#ffc27a' : '#b26a00') : (dark ? '#fff' : '#3a1535');
     const a = Math.PI * (1 - threshold / 100);
     const tx = 100 + r * Math.cos(a), ty = 100 - r * Math.sin(a);
     const tx2 = 100 + (r + 14) * Math.cos(a), ty2 = 100 - (r + 14) * Math.sin(a);
@@ -177,8 +170,8 @@ const UI = (() => {
         <path class="g-track" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke-width="14" stroke-linecap="round"/>
         <path class="g-value" id="${id}" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="${color}" stroke-width="14" stroke-linecap="round"
           stroke-dasharray="${c}" stroke-dashoffset="${c}" data-target="${c * (1 - v / 100)}"/>
-        <line x1="${tx}" y1="${ty}" x2="${tx2}" y2="${ty2}" stroke="#1d1714" stroke-width="2" stroke-linecap="round" opacity=".5"/>
-        <text x="${tx2 + (tx2 > 100 ? 4 : -4)}" y="${ty2 - 2}" font-size="9" fill="#1d1714" opacity=".5" text-anchor="${tx2 > 100 ? 'start' : 'end'}" font-family="Inter">seuil ${threshold}</text>
+        <line x1="${tx}" y1="${ty}" x2="${tx2}" y2="${ty2}" stroke="#1d1420" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+        <text x="${tx2 + (tx2 > 100 ? 4 : -4)}" y="${ty2 - 2}" font-size="9" fill="#1d1420" opacity=".5" text-anchor="${tx2 > 100 ? 'start' : 'end'}" font-family="Inter">seuil ${threshold}</text>
       </svg>
       <div class="g-center"><div class="g-score">${v}</div><div class="g-of">sur 100</div></div>
     </div>`;
@@ -191,7 +184,7 @@ const UI = (() => {
   }
 
   // ---------------------------------------------------------------- Graphiques (Chart.js)
-  const C = { red: '#d7001f', ink: '#1d1714', gain: '#1c7a4c', amber: '#b26a00', grid: 'rgba(29,23,20,.07)', muted: 'rgba(29,23,20,.45)' };
+  const C = { red: '#d7001f', ink: '#1d1420', plum: '#3a1535', gain: '#1c7a4c', amber: '#b26a00', gold: '#c98a2b', teal: '#14716f', grid: 'rgba(29,20,32,.07)', muted: 'rgba(29,20,32,.46)' };
   const charts = new WeakMap();
   const hasChart = () => typeof window.Chart !== 'undefined';
   if (hasChart()) {
@@ -203,7 +196,7 @@ const UI = (() => {
     Chart.defaults.animation.duration = 900;
     Chart.defaults.animation.easing = 'easeOutQuart';
     Object.assign(Chart.defaults.plugins.tooltip, {
-      backgroundColor: '#1d1714', titleColor: '#f7f1e8', bodyColor: '#f7f1e8', padding: 10, cornerRadius: 10,
+      backgroundColor: '#1d1420', titleColor: '#f7f1e8', bodyColor: '#f7f1e8', padding: 10, cornerRadius: 10,
       displayColors: false, titleFont: { weight: '600' }, caretSize: 5,
     });
   }
@@ -217,8 +210,8 @@ const UI = (() => {
       ctx.save();
       ctx.setLineDash([4, 4]);
       ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(29,23,20,.35)';
-      ctx.fillStyle = 'rgba(29,23,20,.55)';
+      ctx.strokeStyle = 'rgba(29,20,32,.35)';
+      ctx.fillStyle = 'rgba(29,20,32,.55)';
       ctx.font = "500 11px Inter, sans-serif";
       if (opts.x != null) {
         const x = scales.x.getPixelForValue(opts.x);
@@ -242,7 +235,7 @@ const UI = (() => {
       if (!active?.length) return;
       const { ctx, chartArea: a } = chart;
       const x = active[0].element.x;
-      ctx.save(); ctx.strokeStyle = 'rgba(29,23,20,.18)'; ctx.lineWidth = 1;
+      ctx.save(); ctx.strokeStyle = 'rgba(29,20,32,.18)'; ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(x, a.top); ctx.lineTo(x, a.bottom); ctx.stroke(); ctx.restore();
     },
   };
@@ -254,12 +247,12 @@ const UI = (() => {
     charts.set(canvas, c);
     return c;
   }
+  const rgbOf = (hex) => { const h = hex.replace('#', ''); const f = h.length === 3 ? [...h].map((c) => c + c).join('') : h; return [0, 2, 4].map((k) => parseInt(f.slice(k, k + 2), 16)).join(','); };
   const fade = (color, top = .22) => (ctx) => {
     const { chart: ch } = ctx;
     if (!ch.chartArea) return 'transparent';
     const g = ch.ctx.createLinearGradient(0, ch.chartArea.top, 0, ch.chartArea.bottom);
-    const rgb = color === C.red ? '215,0,31' : color === C.gain ? '28,122,76' : '29,23,20';
-    g.addColorStop(0, `rgba(${rgb},${top})`); g.addColorStop(1, `rgba(${rgb},0)`);
+    g.addColorStop(0, `rgba(${rgbOf(color)},${top})`); g.addColorStop(1, `rgba(${rgbOf(color)},0)`);
     return g;
   };
 
@@ -268,13 +261,13 @@ const UI = (() => {
     const color = opts.color ?? C.red;
     return chart(canvas, {
       type: 'line',
-      data: { labels, datasets: [{ data: values, borderColor: color, borderWidth: 2.2, fill: true, backgroundColor: fade(color), pointRadius: 0, pointHoverRadius: 5, pointHoverBackgroundColor: color, pointHoverBorderColor: '#fff', pointHoverBorderWidth: 2, tension: .35 }] },
+      data: { labels, datasets: [{ data: values, borderColor: color, borderWidth: opts.width ?? 2.2, fill: true, backgroundColor: fade(color, opts.fill ?? .22), pointRadius: 0, pointHoverRadius: 5, pointHoverBackgroundColor: color, pointHoverBorderColor: '#fff', pointHoverBorderWidth: 2, tension: .35 }] },
       options: {
         responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
         layout: { padding: { top: 6 } },
         scales: {
-          x: { display: !opts.minimal && opts.showX !== false, grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 6, maxRotation: 0, autoSkipPadding: 24 } },
-          y: { display: !opts.minimal, position: 'right', grid: { color: C.grid }, border: { display: false }, ticks: { maxTicksLimit: 4, callback: opts.format ?? ((v) => v) }, grace: '8%' },
+          x: { display: !opts.minimal && opts.showX !== false, grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 6, maxRotation: 0, autoSkipPadding: 24, ...(opts.tick ? { color: opts.tick } : {}) } },
+          y: { display: !opts.minimal, position: 'right', grid: { color: opts.grid ?? C.grid }, border: { display: false }, ticks: { maxTicksLimit: 4, callback: opts.format ?? ((v) => v), ...(opts.tick ? { color: opts.tick } : {}) }, grace: '8%' },
         },
         plugins: { tooltip: { enabled: !opts.minimal, callbacks: { label: (c) => (opts.format ?? ((v) => v))(c.parsed.y) } }, refLines: opts.ref },
       },
@@ -316,12 +309,12 @@ const UI = (() => {
     return chart(canvas, {
       type: 'radar',
       data: { labels: RADAR_LABELS, datasets: [
-        { label: aLabel, data: KEYS.map((k) => a?.[k] ?? 50), borderColor: C.ink, borderWidth: 1.6, borderDash: [5, 4], backgroundColor: 'rgba(29,23,20,.04)', pointRadius: 3, pointBackgroundColor: C.ink, pointBorderWidth: 0 },
+        { label: aLabel, data: KEYS.map((k) => a?.[k] ?? 50), borderColor: C.ink, borderWidth: 1.6, borderDash: [5, 4], backgroundColor: 'rgba(29,20,32,.04)', pointRadius: 3, pointBackgroundColor: C.ink, pointBorderWidth: 0 },
         { label: bLabel, data: KEYS.map((k) => b?.[k] ?? 50), borderColor: C.red, borderWidth: 2.2, backgroundColor: 'rgba(215,0,31,.13)', pointRadius: 3.5, pointBackgroundColor: C.red, pointBorderColor: '#fff', pointBorderWidth: 1.5 },
       ] },
       options: {
         responsive: true, maintainAspectRatio: false,
-        scales: { r: { min: 0, max: 100, ticks: { display: false, stepSize: 25 }, grid: { color: 'rgba(29,23,20,.08)' }, angleLines: { color: 'rgba(29,23,20,.08)' }, pointLabels: { font: { size: 11.5, weight: '600' }, color: 'rgba(29,23,20,.7)' } } },
+        scales: { r: { min: 0, max: 100, ticks: { display: false, stepSize: 25 }, grid: { color: 'rgba(29,20,32,.08)' }, angleLines: { color: 'rgba(29,20,32,.08)' }, pointLabels: { font: { size: 11.5, weight: '600' }, color: 'rgba(29,20,32,.7)' } } },
         plugins: { tooltip: { displayColors: true, callbacks: { label: (c) => ` ${c.dataset.label} : ${c.parsed.r}` } } },
       },
     });
@@ -331,22 +324,27 @@ const UI = (() => {
   function donut(canvas, labels, values, colors) {
     return chart(canvas, {
       type: 'doughnut',
-      data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: '#fffcf7', borderWidth: 3, hoverOffset: 6, borderRadius: 4 }] },
+      data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: '#fffdf9', borderWidth: 3, hoverOffset: 6, borderRadius: 4 }] },
       options: { responsive: true, maintainAspectRatio: false, cutout: '74%', plugins: { tooltip: { callbacks: { label: (c) => ` ${c.label} : ${(c.parsed * 100 / c.dataset.data.reduce((s, v) => s + v, 0)).toFixed(0)} %` } } } },
     });
   }
 
   /** Évolution de la dérive ordre après ordre, avec le seuil. */
-  function driftLine(canvas, labels, values, threshold, flags = []) {
+  function driftLine(canvas, labels, values, threshold, flags = [], opts = {}) {
+    const hot = (v, i) => flags[i] || v >= threshold;
+    const sel = opts.selected;
     return chart(canvas, {
       type: 'line',
       data: { labels, datasets: [{
-        data: values, borderColor: C.ink, borderWidth: 2, cubicInterpolationMode: 'monotone', fill: true, backgroundColor: fade(C.ink, .07),
-        pointRadius: values.map((_, i) => (flags[i] ? 5.5 : 3.5)), pointHoverRadius: 6,
-        pointBackgroundColor: values.map((v, i) => (flags[i] || v >= threshold ? C.red : '#fffcf7')), pointBorderColor: values.map((v, i) => (flags[i] || v >= threshold ? C.red : C.ink)), pointBorderWidth: 1.8,
+        data: values, borderColor: C.plum, borderWidth: 2, cubicInterpolationMode: 'monotone', fill: true, backgroundColor: fade(C.plum, .10),
+        pointRadius: values.map((_, i) => (i === sel ? 7 : flags[i] ? 5 : 3.5)), pointHoverRadius: 7,
+        pointBackgroundColor: values.map((v, i) => (hot(v, i) ? C.red : '#fffdf9')), pointBorderColor: values.map((v, i) => (hot(v, i) ? C.red : C.plum)),
+        pointBorderWidth: values.map((_, i) => (i === sel ? 3 : 1.8)),
       }] },
       options: {
         responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+        onClick: (_e, els) => { if (els.length && opts.onSelect) opts.onSelect(els[0].index); },
+        onHover: (e, els) => { if (opts.onSelect) e.native.target.style.cursor = els.length ? 'pointer' : ''; },
         scales: {
           x: { grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 8, maxRotation: 0, autoSkipPadding: 24 } },
           y: { min: 0, max: 100, position: 'right', grid: { color: C.grid }, border: { display: false }, ticks: { stepSize: 25 } },
@@ -355,6 +353,37 @@ const UI = (() => {
       },
       plugins: [refLines, crosshair],
     });
+  }
+
+  // ---------------------------------------------------------------- Les agents de l'enquête
+  /** L'équipe d'agents de WorthKnowing, dans l'ordre où ils travaillent sur un ordre. */
+  const AGENTS = {
+    marche: { name: 'Marché', role: 'Prix et volatilité', icon: 'chart', color: '#c98a2b' },
+    nouvelles: { name: 'Nouvelles', role: 'Manchettes · 7 jours', icon: 'news', color: '#14716f' },
+    gouvernance: { name: 'Gouvernance', role: 'Vos règles', icon: 'shield', color: '#6a3fa0' },
+    comportement: { name: 'Comportement', role: 'Écarts au profil', icon: 'activity', color: '#e2552f' },
+    influence: { name: 'Influence', role: 'IA · Amazon Bedrock', icon: 'spark', color: '#d7001f', ai: true },
+    profil: { name: 'Profil', role: 'Mise à jour', icon: 'target', color: '#1c7a4c' },
+    explication: { name: 'Explicabilité', role: 'Synthèse et sources', icon: 'book', color: '#3a1535' },
+  };
+  /** Retrouve l'agent à partir du libellé d'une étape renvoyée par le serveur (« Agent marché », …). */
+  const agentKey = (label = '') => {
+    const t = label.toLowerCase();
+    return t.includes('march') ? 'marche' : t.includes('nouvelle') ? 'nouvelles' : t.includes('gouvern') ? 'gouvernance'
+      : t.includes('comportement') ? 'comportement' : t.includes('influence') ? 'influence' : t.includes('profil') ? 'profil' : 'explication';
+  };
+  /**
+   * Rangée d'agents reliés. mode 'done' : ils rendent leur rapport l'un après l'autre (coche) ;
+   * mode 'working' : ils s'allument à tour de rôle. `clickable` en fait des onglets (data-agent).
+   */
+  function agents(keys = Object.keys(AGENTS), { mode = 'done', selected = null, size = '', clickable = false, dark = false } = {}) {
+    return `<div class="agents ${mode === 'working' ? 'working' : 'play'} ${size} ${dark ? 'on-dark' : ''}" ${clickable ? 'role="tablist"' : 'role="img"'} aria-label="Agents de l’enquête">${keys.map((k, i) => {
+      const a = AGENTS[k];
+      const tag = clickable ? 'button' : 'div';
+      return `<${tag} class="agent" style="--c:${a.color};--i:${i}" ${clickable ? `type="button" role="tab" data-agent="${k}" aria-selected="${k === selected}"` : ''}>
+        <span class="agent-orb">${icon(a.icon)}${a.ai ? '<span class="agent-ai">IA</span>' : ''}<span class="agent-check">${icon('check')}</span></span>
+        <b>${a.name}</b><small>${a.role}</small></${tag}>`;
+    }).join('')}</div>`;
   }
 
   // ---------------------------------------------------------------- Portraits de personas
@@ -387,7 +416,7 @@ const UI = (() => {
   }
   const hash = (s = '') => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
   const SKIN = ['#f1d5bd', '#e2b48f', '#c58c63', '#8f5e3c', '#f6dfcb'];
-  const HAIR = ['#2a1d16', '#5a3a22', '#1d1714', '#8a5a33', '#b9b2a8'];
+  const HAIR = ['#2a1d16', '#5a3a22', '#1d1420', '#8a5a33', '#b9b2a8'];
   /** Portrait illustré : buste dans la couleur du caractère, coiffure et teint propres à la personne, emblème du caractère. */
   function portrait(seed, arch, size = 72) {
     const h = hash(seed);
@@ -405,19 +434,19 @@ const UI = (() => {
         <rect width="120" height="120" fill="${arch.tint}"/>
         <circle cx="60" cy="60" r="44" fill="${arch.color}" opacity=".08"/>
         <path d="M18 124c0-26 18-42 42-42s42 16 42 42z" fill="${arch.color}"/>
-        <path d="M50 82h20l-10 12z" fill="#fffcf7" opacity=".9"/>
+        <path d="M50 82h20l-10 12z" fill="#fffdf9" opacity=".9"/>
         <rect x="53" y="66" width="14" height="18" rx="6" fill="${skin}"/>
         <ellipse cx="60" cy="54" rx="20" ry="23" fill="${skin}"/>
         ${hairs[style]}
       </g>
-      <circle cx="96" cy="96" r="17" fill="#fffcf7"/>
+      <circle cx="96" cy="96" r="17" fill="#fffdf9"/>
       <circle cx="96" cy="96" r="14" fill="${arch.color}"/>
       <g transform="translate(86 86) scale(.84)" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">${PATHS[g]}</g>
     </svg>`;
   }
 
   return {
-    icon, logo, borealMark, wkMark, modal, sheet, confirm, alert, drawer, toast, swap, countUp, initials,
-    gauge, animateGauges, chart, area, scenario, radar, donut, driftLine, archetypeOf, portrait, ARCHETYPES, KEYS, C,
+    icon, logo, borealMark, wkMark, modal, sheet, confirm, alert, toast, swap, countUp, initials,
+    gauge, animateGauges, chart, area, scenario, radar, donut, driftLine, AGENTS, agentKey, agents, paths: PATHS, archetypeOf, portrait, ARCHETYPES, KEYS, C,
   };
 })();

@@ -1,12 +1,18 @@
-// Espace WorthKnowing, en trois onglets :
-//   Tableau de bord — score de dérive, profil d'investisseur, suivi des ordres analysés ;
+// Espace WorthKnowing, en quatre onglets (la page ne défile jamais, ce sont les widgets qui défilent) :
+//   Tableau de bord — score de dérive, profil d'investisseur, dernière enquête ;
+//   Enquêtes        — chaque ordre et le rapport de chaque agent, visibles en un clic ;
 //   Mes règles      — ajouter, modifier, retirer ses règles (des phrases, sans seuil) ;
 //   Compte          — le compte, la clé WorthKnowing (user id) et les plateformes de trading.
 
-// ------------------------------------------------------------------ Onglets (mémorisés dans l'adresse : #regles, #profil)
-const TABS = ['reflet', 'regles', 'profil'];
+let me = null;
+let trades = [];
+let selectedId = null; // ordre affiché dans l'onglet Enquêtes
+
+// ------------------------------------------------------------------ Onglets (mémorisés dans l'adresse : #enquetes, #regles, #profil)
+const TABS = ['reflet', 'enquetes', 'regles', 'profil'];
 mountNav(`<button role="tab" data-tab="reflet">Tableau de bord</button>
-  <button role="tab" data-tab="regles">Mes règles<span class="count" id="rulesCount"></span></button>
+  <button role="tab" data-tab="enquetes">Enquêtes<span class="count" id="enqBadge"></span></button>
+  <button role="tab" data-tab="regles">Mes règles</button>
   <button role="tab" data-tab="profil">Compte</button>`);
 function showTab(name, push = true) {
   const tab = TABS.includes(name) ? name : 'reflet';
@@ -18,42 +24,56 @@ function showTab(name, push = true) {
     document.querySelector(`.nav-links [data-tab="${t}"]`).setAttribute('aria-selected', String(on));
   });
   if (push) history.replaceState(null, '', tab === 'reflet' ? location.pathname : '#' + tab);
+  if (tab === 'enquetes') renderEnquetes();
+}
+/** Lit l'adresse : #enquete=<id> ouvre directement l'enquête d'un ordre (lien envoyé par la plateforme de courtage). */
+function readHash() {
+  const h = location.hash.slice(1);
+  if (h.startsWith('enquete=')) { selectedId = decodeURIComponent(h.slice(8)) || selectedId; return showTab('enquetes'); }
+  showTab(h, false);
 }
 document.querySelectorAll('.nav-links [data-tab]').forEach((b) => (b.onclick = () => showTab(b.dataset.tab)));
 document.addEventListener('click', (e) => {
   const go = e.target.closest('[data-goto]');
-  if (go) { showTab(go.dataset.goto); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  if (go) showTab(go.dataset.goto);
 });
-window.addEventListener('hashchange', () => showTab(location.hash.slice(1), false));
-showTab(location.hash.slice(1), false);
+window.addEventListener('hashchange', readHash);
+showTab(TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'reflet', false); // état initial, avant le chargement des données
+
+/** Ouvre l'onglet Enquêtes sur un ordre précis. */
+function openInvestigation(id) {
+  selectedId = id;
+  showTab('enquetes');
+}
 
 // ------------------------------------------------------------------ Tableau de bord
 async function refresh() {
-  const me = await api('GET', '/me');
+  me = await api('GET', '/me');
   if (me.role === 'admin' || !me.profile) return route(me);
-  const trades = await api('GET', '/trades');
+  trades = await api('GET', '/trades');
   const p = pending.get();
 
   setUser(me.name);
-  $('#greeting').innerHTML = `Bonjour, <em>${esc(me.name)}</em>`;
+  $('#greeting').innerHTML = `Bonjour, <em class="g-text">${esc(me.name)}</em>`;
+  $('#enqBadge').textContent = trades.length || '';
 
   // Bandeau du haut : demande de liaison en attente, réévaluation exigée, ou retour au courtier.
   let top = '';
   if (p?.link) {
-    top = `<div class="banner rise" style="background-color:var(--ink)">${UI.icon('link', 'lg')}
+    top = `<div class="banner night rise">${UI.icon('link', 'lg')}
       <div class="grow"><h3>${esc(p.partner)} demande à lier votre profil</h3>
         <p>Il enverra vos ordres et votre portefeuille ; il recevra votre dérive et le texte de vos règles. Rien d’autre.</p>
         <div class="error" id="linkError" role="alert"></div></div>
-      <button class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.3)" id="refuse">Refuser</button>
-      <button class="btn primary" id="allow">Autoriser ${UI.icon('arrowRight', 'sm')}</button></div>`;
+      <button class="btn glass sm" id="refuse">Refuser</button>
+      <button class="btn primary sm" id="allow">Autoriser ${UI.icon('arrowRight', 'sm')}</button></div>`;
   } else if (me.status === 'reevaluation_required' || me.drift.score >= me.driftThreshold) {
     top = `<div class="banner rise">${UI.icon('alert', 'lg')}
       <div class="grow"><h3>Seuil de dérive dépassé</h3>
         <p>Vos ordres sont suspendus chez votre courtier jusqu’à votre réévaluation.</p></div>
-      <button class="btn white" onclick="location.href='/onboarding.html'">Refaire l’évaluation ${UI.icon('arrowRight', 'sm')}</button></div>`;
+      <button class="btn white sm" onclick="location.href='/onboarding.html'">Refaire l’évaluation ${UI.icon('arrowRight', 'sm')}</button></div>`;
   } else if (p) {
-    top = `<div class="notice ink rise" style="margin-bottom:24px;align-items:center">${UI.icon('check')}<span class="grow">Votre profil est à jour.</span>
-      <button class="btn primary sm" id="goBack">Retourner à ${esc(p.partner)}</button></div>`;
+    top = `<div class="banner night rise">${UI.icon('check', 'lg')}<div class="grow"><h3>Votre profil est à jour</h3></div>
+      <button class="btn primary sm" id="goBack">Retourner à ${esc(p.partner)} ${UI.icon('arrowRight', 'sm')}</button></div>`;
   }
   $('#top').innerHTML = top;
   if ($('#allow')) {
@@ -63,10 +83,11 @@ async function refresh() {
   if ($('#goBack')) $('#goBack').onclick = () => finishAndReturn();
 
   // Score de dérive
-  $('#gauge').innerHTML = UI.gauge(me.drift.score, me.driftThreshold);
+  $('#gauge').innerHTML = UI.gauge(me.drift.score, me.driftThreshold, { dark: true });
   UI.animateGauges($('#gauge'));
-  $('#driftPill').innerHTML = statusBadge(me.status);
-  $('#driftText').textContent = `Écart avec votre dernière évaluation.${me.drift.overrides ? ` ${me.drift.overrides} règle(s) outrepassée(s).` : ''}`;
+  $('#driftPill').innerHTML = `<span class="pill glass"><span class="dot"></span>${STATUS[me.status][0]}</span>`;
+  $('#driftText').textContent = `Écart entre vos ordres récents et votre dernière évaluation. Réévaluation à ${me.driftThreshold}.`;
+  $('#driftFoot').textContent = me.drift.overrides ? `${me.drift.overrides} règle(s) outrepassée(s)` : 'Aucune règle outrepassée';
 
   // Radar (déclaré / aujourd'hui) et barres miroir (référence / aujourd'hui)
   const { current, baseline, declared } = me.profile;
@@ -75,15 +96,36 @@ async function refresh() {
     + Object.keys(PARAM_LABELS).map((k) => mirror(PARAM_LABELS[k], baseline[k], current[k])).join('');
   const expertise = { novice: 'novice', intermediate: 'intermédiaire', advanced: 'avancée' }[me.cvProfile?.expertise];
   $('#evaluated').innerHTML = `${UI.icon('calendar', 'sm')} Évalué le ${esc(day(me.profile.evaluatedAt))}${expertise ? ` · expertise ${expertise}` : ''}
-    <button class="btn soft sm" style="margin-left:10px" onclick="location.href='/onboarding.html'">${UI.icon('refresh', 'sm')} Réévaluer</button>`;
+    ${me.link ? `<span class="pill gain"><span class="dot live"></span>lié à ${esc(me.link.partner)}</span>` : ''}`;
 
-  // Suivi des ordres : courbe de dérive + liste compacte (détail dans un tiroir)
-  $('#driftChartBox').classList.toggle('hidden', !trades.length);
-  driftTimeline($('#driftChart'), trades, me.driftThreshold);
-  $('#history').innerHTML = trades.length
-    ? trades.map((t) => tradeRow(t)).join('')
-    : `<div class="empty-state">${UI.icon('activity')}<p>Aucun ordre analysé. ${me.link ? `Passez un ordre chez ${esc(me.link.partner)}.` : ''}</p></div>`;
-  bindTradeRows($('#history'), trades);
+  // Dérive dans le temps : cliquer un point ouvre l'enquête de l'ordre.
+  $('#driftEmpty').classList.toggle('hidden', trades.length > 0);
+  $('#driftEmpty').innerHTML = `${UI.icon('activity')}<p>La courbe se dessinera à votre premier ordre.</p>`;
+  if (trades.length) driftTimeline($('#driftChart'), trades, me.driftThreshold, { onSelect: openInvestigation });
+
+  // Dernière enquête : les agents et leur conclusion, un clic pour tout lire.
+  const last = trades[0];
+  const el = $('#lastInv');
+  if (last) {
+    const { keys } = agentsOf(last.investigation);
+    el.innerHTML = `<div class="widget-head"><h3>Dernière enquête</h3>${driftPill(last.investigation)}</div>
+      <div class="row">${sideIcon(last.side)}<div class="grow"><div class="title" style="font-weight:600">${tradeTitle(last)} <span class="faint" style="font-weight:400">${money(last.amount)}</span></div>
+        <div class="tiny faint">${esc(day(last.marketDate + 'T12:00:00'))}</div></div>
+        ${last.overrodeRules ? `<span class="pill red">${UI.icon('alert', 'sm')}règle outrepassée</span>` : ''}</div>
+      ${UI.agents(keys, { size: 'sm' })}
+      <p class="summary">${esc(last.investigation.explanation.summary)}</p>
+      <div class="row between" style="margin-top:auto;padding-top:10px"><span class="tiny faint">${trades.length} ordre${trades.length > 1 ? 's' : ''} enquêté${trades.length > 1 ? 's' : ''}</span>
+        <span class="btn sm">Ouvrir l’enquête ${UI.icon('arrowRight', 'sm')}</span></div>`;
+    el.onclick = () => openInvestigation(last.id);
+    el.onkeydown = (e) => { if (e.key === 'Enter') openInvestigation(last.id); };
+  } else {
+    el.innerHTML = `<div class="widget-head"><h3>Dernière enquête</h3></div>
+      ${agentsIdle(me.link ? `Passez un ordre chez ${esc(me.link.partner)} : six agents enquêteront dessus et leur rapport s’affichera ici.`
+        : 'Activez WorthKnowing depuis votre plateforme de courtage : chaque ordre sera enquêté ici.')}`;
+    el.onclick = null;
+  }
+
+  if (!$('#tab-enquetes').classList.contains('hidden')) renderEnquetes();
 
   // Onglet Compte
   $('#account').innerHTML = `
@@ -91,7 +133,23 @@ async function refresh() {
     <dt>Courriel</dt><dd>${esc(me.email)}</dd>
     <dt>Inscrit le</dt><dd>${esc(day(me.createdAt))}</dd>
     <dt>Évaluations</dt><dd>${me.profile.evaluationCount}</dd>
+    <dt>Dernière évaluation</dt><dd>${esc(day(me.profile.evaluatedAt))}</dd>
     <dt>État</dt><dd>${statusBadge(me.status)}</dd>`;
+}
+
+// ------------------------------------------------------------------ Enquêtes : liste à gauche, enquête complète à droite
+function renderEnquetes() {
+  if (!me) return;
+  if (!trades.some((t) => t.id === selectedId)) selectedId = trades[0]?.id ?? null;
+  $('#enqCount').textContent = `${trades.length} ordre${trades.length > 1 ? 's' : ''}`;
+  $('#enqList').innerHTML = trades.length ? trades.map((t) => tradeRow(t, selectedId)).join('')
+    : `<div class="empty-state">${UI.icon('list')}<p>Aucun ordre pour l’instant.</p></div>`;
+  bindTradeRows($('#enqList'), (id) => { selectedId = id; renderEnquetes(); });
+  const t = trades.find((x) => x.id === selectedId);
+  if (t) mountInvestigation($('#enqDetail'), t);
+  else $('#enqDetail').innerHTML = agentsIdle(me.link ? `Passez un ordre chez ${esc(me.link.partner)} : son enquête apparaîtra ici.`
+    : 'Activez WorthKnowing depuis votre plateforme de courtage pour que vos ordres soient enquêtés.');
+  $('#enqList .selected')?.scrollIntoView({ block: 'nearest' });
 }
 
 // ------------------------------------------------------------------ Mes règles : ajouter, modifier, retirer
@@ -105,31 +163,31 @@ async function loadRules() {
 function renderRules() {
   const { rules, suggestions, maxRules } = rulesData;
   const full = rules.length >= maxRules;
-  $('#rulesCount').textContent = rules.length || '';
+  $('#rulesMeta').textContent = `${rules.length} sur ${maxRules}`;
   $('#addRuleBtn').innerHTML = `${UI.icon('plus', 'sm')} Nouvelle règle`;
   $('#addRuleBtn').disabled = full;
   $('#addRuleBtn').title = full ? `Maximum de ${maxRules} règles atteint` : '';
   $('#addRuleBtn').onclick = () => ruleForm();
+  $('#suggIcon').innerHTML = UI.icon('spark', 'sm');
 
   // Résumé sur le tableau de bord
   $('#rulesSummary').innerHTML = rules.length
-    ? rules.slice(0, 4).map((r) => `<div class="list-item"><span class="avatar soft" style="width:30px;height:30px">${UI.icon('shield', 'sm')}</span>
-        <div class="grow"><div class="small">${esc(r.text)}</div><div class="sub">${esc(r.label)}</div></div></div>`).join('')
-      + (rules.length > 4 ? `<p class="tiny faint" style="margin-top:8px">+ ${rules.length - 4} autre(s)</p>` : '')
-    : `<div class="empty-state">${UI.icon('shield')}<p>Aucune règle.</p><button class="btn soft sm" style="margin-top:12px" data-goto="regles">Créer une règle</button></div>`;
+    ? rules.map((r) => `<div class="rule-mini"><span class="avatar soft">${UI.icon('shield', 'sm')}</span>
+        <div class="grow"><div>${esc(r.text)}</div><div class="sub">${esc(r.label)}</div></div></div>`).join('')
+    : `<div class="empty-state">${UI.icon('shield')}<p>Aucune règle.</p><button class="btn soft sm" data-goto="regles">Créer une règle</button></div>`;
 
   // Liste complète
   $('#rules').innerHTML = rules.length
-    ? `<div class="stagger">${rules.map((r) => `<div class="rule-card" data-id="${esc(r.id)}">
+    ? `<div class="rules-grid stagger">${rules.map((r) => `<div class="rule-card" data-id="${esc(r.id)}">
         <span class="pill">${esc(r.label)}</span>
         <q>${esc(r.text)}</q>
-        <div class="trigger">${UI.icon('clock', 'sm')} Rappelée avant : ${esc(r.trigger)}</div>
+        <div class="trigger">${UI.icon('clock', 'sm')}<span>Rappelée avant : ${esc(r.trigger)}</span></div>
         <div class="rule-actions">
           <button class="btn soft icon-only sm" data-edit title="Modifier" aria-label="Modifier">${UI.icon('edit', 'sm')}</button>
           <button class="btn soft icon-only sm" data-remove title="Retirer" aria-label="Retirer">${UI.icon('trash', 'sm')}</button></div>
       </div>`).join('')}</div>
       <p class="tiny faint" style="margin-top:14px">Modifier vos règles ne change pas votre score de dérive.</p>`
-    : `<div class="widget flat"><div class="empty-state">${UI.icon('shield')}<p>Aucune règle pour l’instant.</p></div></div>`;
+    : `<div class="empty-state">${UI.icon('shield')}<p>Aucune règle pour l’instant. Créez-en une, ou partez d’une suggestion.</p></div>`;
 
   $('#rules').querySelectorAll('.rule-card').forEach((el) => {
     const rule = rules.find((r) => r.id === el.dataset.id);
@@ -145,16 +203,15 @@ function renderRules() {
   });
 
   // Règles proposées : les comportements marqués qui n'ont pas encore de règle
-  const proposed = suggestions.filter((s) => s.suggestion.recommended);
-  $('#ruleSuggestions').innerHTML = proposed.length && !full ? `<div class="widget tint">
-      <div class="widget-head"><h3>Suggérées pour vous</h3>${UI.icon('spark', 'sm')}</div>
-      ${proposed.map((s) => `<div class="rule-card risk" style="margin-top:10px">
+  const proposed = full ? [] : suggestions.filter((s) => s.suggestion.recommended);
+  $('#ruleSuggestions').innerHTML = proposed.length ? proposed.map((s) => `<div class="rule-card risk stacked">
         <span class="pill red">${esc(s.label)}</span>
         <q style="font-size:15px">${esc(s.suggestion.text)}</q>
         <p class="tiny muted">${esc(s.suggestion.rationale)}</p>
-        <div class="row" style="margin-top:12px"><button class="btn primary sm" data-adopt="${s.param}">${UI.icon('plus', 'sm')} Ajouter</button>
+        <div class="row" style="margin-top:10px"><button class="btn primary sm" data-adopt="${s.param}">${UI.icon('plus', 'sm')} Ajouter</button>
           <button class="btn ghost sm" data-adapt="${s.param}">Adapter</button></div>
-      </div>`).join('')}</div>` : '';
+      </div>`).join('')
+    : `<div class="empty-state">${UI.icon('check')}<p>${full ? `Vous avez ${maxRules} règles, le maximum.` : 'Rien à suggérer : vos comportements marqués sont déjà encadrés.'}</p></div>`;
   $('#ruleSuggestions').querySelectorAll('[data-adopt]').forEach((b) => (b.onclick = async () => {
     const s = suggestions.find((x) => x.param === b.dataset.adopt);
     b.disabled = true;
@@ -211,11 +268,11 @@ function ruleForm(rule = null, preset = {}) {
 async function renderConnect() {
   const c = await api('GET', '/connect');
   $('#token').innerHTML = c.token
-    ? `<div class="row" style="background:var(--cream);border-radius:12px;padding:6px 6px 6px 14px">
-        <code class="grow small" style="word-break:break-all">${esc(c.token.value)}</code>
-        <button class="btn soft icon-only sm" id="copyToken" title="Copier" aria-label="Copier">${UI.icon('copy', 'sm')}</button></div>
+    ? `<p class="small muted" style="margin-bottom:12px">Elle vous représente auprès des plateformes qui font analyser vos ordres.</p>
+       <div class="key-box"><code class="small">${esc(c.token.value)}</code>
+        <button class="btn glass icon-only sm" id="copyToken" title="Copier" aria-label="Copier">${UI.icon('copy', 'sm')}</button></div>
        <p class="tiny faint" style="margin-top:10px">Créée le ${esc(day(c.token.createdAt))}. À ne donner qu’à vos plateformes.</p>
-       <button class="btn ghost sm" id="regenToken" style="margin-top:14px">${UI.icon('refresh', 'sm')} Régénérer</button><div class="error" id="tokenError" role="alert"></div>`
+       <button class="btn ghost sm" id="regenToken" style="margin-top:14px;align-self:flex-start">${UI.icon('refresh', 'sm')} Régénérer</button><div class="error" id="tokenError" role="alert"></div>`
     : `<div class="empty-state">${UI.icon('key')}<p>Créée automatiquement à la fin de votre évaluation.</p></div>`;
   if ($('#copyToken')) $('#copyToken').onclick = () => navigator.clipboard.writeText(c.token.value).then(() => UI.toast('Clé copiée.', 'ok'));
   if ($('#regenToken')) $('#regenToken').onclick = async () => {
@@ -235,11 +292,13 @@ async function renderConnect() {
           <div class="sub">Identifiant : <code>${esc(p.accountId)}</code></div></div>
         ${p.source === 'link' ? `<button class="btn ghost sm" data-unlink="${esc(p.name)}">${UI.icon('unlink', 'sm')} Retirer l’accès</button>`
           : `<button class="btn ghost sm" data-remove="${esc(p.id)}">Retirer</button>`}</div>`).join('')}</div>`
-      : `<div class="empty-state">${UI.icon('link')}<p>Aucune plateforme. Activez WorthKnowing depuis votre courtier, ou ajoutez-en une.</p></div>`}
-    ${c.token ? `<form id="addPlatform" class="row wrap" style="margin-top:18px;align-items:flex-end;gap:12px">
-      <div class="field grow" style="margin:0;min-width:180px"><label for="pfName">Plateforme</label><input id="pfName" maxlength="60" placeholder="ex. Wealthsimple" required></div>
-      <div class="field grow" style="margin:0;min-width:180px"><label for="pfAccount">Mon identifiant chez elle</label><input id="pfAccount" maxlength="100" required></div>
-      <button class="btn">${UI.icon('plus', 'sm')} Ajouter</button>
+      : `<div class="empty-state" style="height:auto">${UI.icon('link')}<p>Aucune plateforme. Activez WorthKnowing depuis votre courtier, ou ajoutez-en une.</p></div>`}
+    ${c.token ? `<form id="addPlatform" style="margin-top:16px;padding-top:16px;border-top:1px solid var(--line)">
+      <div class="eyebrow" style="margin-bottom:10px">Ajouter une plateforme</div>
+      <div class="row wrap" style="align-items:flex-end;gap:10px">
+        <div class="field grow" style="margin:0;min-width:150px"><label for="pfName">Plateforme</label><input id="pfName" maxlength="60" placeholder="ex. Wealthsimple" required></div>
+        <div class="field grow" style="margin:0;min-width:150px"><label for="pfAccount">Mon identifiant chez elle</label><input id="pfAccount" maxlength="100" required></div>
+        <button class="btn">${UI.icon('plus', 'sm')} Ajouter</button></div>
     </form><div class="error" id="pfError" role="alert"></div>` : ''}`;
   $('#platforms').querySelectorAll('[data-unlink]').forEach((b) => (b.onclick = async () => {
     if (!(await UI.confirm(`Retirer l’accès de ${esc(b.dataset.unlink)} ?`, 'Vos ordres n’y seront plus analysés.', { ok: 'Retirer', danger: true }))) return;
@@ -266,9 +325,10 @@ async function renderConnect() {
   if (!session.token) return (location.href = '/');
   try {
     await refresh();
+    readHash();
     await Promise.all([loadRules(), renderConnect()]);
   } catch (err) {
     $('#top').innerHTML = `<div class="banner">${UI.icon('alert', 'lg')}<div class="grow"><h3>Chargement impossible</h3><p>${esc(err.message)}</p></div>
-      <button class="btn white" onclick="location.reload()">Réessayer</button></div>`;
+      <button class="btn white sm" onclick="location.reload()">Réessayer</button></div>`;
   }
 })();
