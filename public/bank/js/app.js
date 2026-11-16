@@ -278,6 +278,14 @@ function renderOrderDetail() {
     </div>
     <div class="od-wk">${wkBlock(t)}</div>`;
   drawOrderChart(t);
+  el.querySelector('[data-backfill]')?.addEventListener('click', async (e) => {
+    e.currentTarget.disabled = true;
+    try {
+      const r = await api('POST', '/miroir/backfill');
+      toast(r.started ? 'Analyse relancée : le résultat s’affichera ici dès qu’elle est terminée.' : 'Rien à analyser.', 'ok');
+      refresh().catch(() => {});
+    } catch (err) { toast(err.message); e.currentTarget.disabled = false; }
+  });
   el.querySelector('[data-miroir-start]')?.addEventListener('click', async () => {
     try { location.href = (await api('POST', '/miroir/link/start')).redirectUrl; } catch (err) { toast(err.message); }
   });
@@ -303,13 +311,16 @@ function wkBlock(t) {
     <p class="summary" style="margin-top:6px">Cet ordre n’a pas été analysé : WorthKnowing n’était pas actif.</p>
     <p class="small muted">Une fois activé, six agents enquêtent sur chaque ordre : marché, nouvelles, vos règles, votre comportement, influence externe, mise à jour du profil.</p>
     ${UI.agents(WK_AGENTS, { size: 'sm', dark: true, mode: 'working' })}
-    ${me.miroir.status !== 'linked' ? `<div class="wk-cta"><span></span><button class="btn primary sm" data-miroir-start>Activer WorthKnowing ${UI.icon('arrowRight', 'sm')}</button></div>` : ''}`;
+    ${me.miroir.status !== 'linked'
+      ? `<div class="wk-cta"><span></span><button class="btn primary sm" data-miroir-start>Activer WorthKnowing ${UI.icon('arrowRight', 'sm')}</button></div>`
+      : `<div class="wk-cta"><span class="tiny muted">WorthKnowing est actif maintenant : cet ordre peut être analysé après coup.</span><button class="btn primary sm" data-backfill>Analyser maintenant</button></div>`}`;
   if (m.status === 'pending') return `${head('<span class="pill glass"><span class="dot live"></span>enquête en cours</span>')}
     <p class="summary" style="margin-top:6px">Vos agents enquêtent sur cet ordre…</p>
     ${UI.agents(WK_AGENTS, { size: 'sm', dark: true, mode: 'working' })}
     <p class="small muted">Le résultat s’affichera ici automatiquement, en général en quelques secondes.</p>`;
   if (m.status === 'unavailable') return `${head()}
-    <p class="summary" style="margin-top:6px">WorthKnowing n’a pas répondu : cet ordre est exécuté, mais n’a pas été analysé.</p>`;
+    <p class="summary" style="margin-top:6px">WorthKnowing n’a pas répondu : cet ordre est exécuté, mais n’a pas été analysé.</p>
+    ${me.miroir.status === 'linked' ? `<div class="wk-cta"><span></span><button class="btn primary sm" data-backfill>Réessayer l’analyse</button></div>` : ''}`;
   return `${head(m.overrodeRules ? `<span class="pill" style="background:#ff5a6e;color:#fff">${UI.icon('alert', 'sm')}règle outrepassée</span>` : '<span class="pill glass">enquête terminée</span>')}
     ${UI.agents(WK_AGENTS, { size: 'sm', dark: true })}
     <div class="drift-move"><span class="muted">${m.driftBefore}</span>${UI.icon('arrowRight')}<span style="color:${m.driftAfter > m.driftBefore ? '#ff8a98' : m.driftAfter < m.driftBefore ? '#8fe0b5' : '#fff'}">${m.driftAfter}</span><small>score de dérive</small></div>
@@ -326,7 +337,8 @@ function syncClock() {
   const min = me.clock ?? market.firstDate;
   $('#date').min = min;
   $('#date').max = market.lastDate;
-  if (!$('#date').value || $('#date').value < min) $('#date').value = min;
+  // Par défaut : la séance la plus récente (nouvelles et cours d'actualité). L'horloge ne recule jamais ensuite.
+  if (!$('#date').value || $('#date').value < min) $('#date').value = me.clock ?? market.lastDate;
 }
 
 const ticket = () => ({
@@ -514,10 +526,11 @@ $('#ticket').onsubmit = async (e) => {
   if (query.get('code')) {
     history.replaceState(null, '', '/app.html'); // le code ne reste pas dans la barre d'adresse ni dans l'historique
     try {
-      await api('POST', '/miroir/link/complete', { code: query.get('code'), state: query.get('state') });
+      const done = await api('POST', '/miroir/link/complete', { code: query.get('code'), state: query.get('state') });
       UI.modal({
         title: 'WorthKnowing est activé',
         body: `<p class="muted">Vos règles vous seront rappelées avant chaque ordre concerné, et six agents enquêteront sur chaque ordre.</p>
+          ${done.backfilled ? `<p class="muted" style="margin-top:10px">${done.backfilled} ordre(s) passé(s) avant l’activation sont analysés maintenant, un par un ; les résultats apparaissent dans Activité.</p>` : ''}
           <div style="margin-top:16px">${UI.agents(WK_AGENTS, { size: 'sm' })}</div>`,
         actions: [{ label: 'Parfait', value: true, kind: 'primary' }],
       });

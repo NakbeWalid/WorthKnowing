@@ -218,7 +218,7 @@ body.app { height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-
   border: 1px solid transparent; background: var(--ink); color: var(--on-ink); text-decoration: none; white-space: nowrap;
   transition: transform .15s var(--ease), background .2s, box-shadow .2s, opacity .2s, color .2s, border-color .2s, filter .2s;
 }
-.btn:hover { transform: translateY(-1px); }
+.btn:hover { filter: brightness(1.05); } /* pas de déplacement au survol : le bouton glisserait sous le curseur et clignoterait */
 .btn:active { transform: translateY(0) scale(.98); }
 .btn.primary { background: linear-gradient(120deg, #ff7a59, #f0243f 45%, #b0124a); color: #fff; box-shadow: 0 10px 26px -10px rgba(240, 36, 63, .9); }
 .btn.primary:hover { filter: brightness(1.07); }
@@ -230,7 +230,7 @@ body.app { height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-
 .btn.glass { background: rgba(255, 255, 255, .14); color: #fff; border-color: rgba(255, 255, 255, .25); }
 .btn.glass:hover { background: rgba(255, 255, 255, .24); }
 .btn.link { background: none; padding: 4px 0; color: var(--ink-60); border-radius: 4px; font-weight: 500; }
-.btn.link:hover { color: var(--ink); transform: none; }
+.btn.link:hover { color: var(--ink); filter: none; }
 .night .btn.link, .brand .btn.link { color: rgba(255, 255, 255, .7); }
 .night .btn.link:hover, .brand .btn.link:hover { color: #fff; }
 .btn.sm { padding: 7px 13px; font-size: 12.5px; }
@@ -390,7 +390,7 @@ body.app { height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-
 .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 22px; flex-wrap: wrap; }
 .modal-actions .btn { flex: 1; }
 .close-x { border: 0; background: var(--ink-08); width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; color: var(--ink-60); flex: none; transition: background .2s, transform .2s; }
-.close-x:hover { background: var(--ink-15); transform: rotate(90deg); }
+.close-x:hover { background: var(--ink-15); }
 .close-x.on-dark { background: rgba(255, 255, 255, .14); color: #fff; }
 
 dl.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); margin: 0; }
@@ -478,7 +478,7 @@ div.agent { cursor: default; }
 .agent-check, .agent-ai { display: none; }
 .agent b { font: 500 11.5px var(--sans); color: var(--ink-60); transition: color .2s; }
 .agent small { display: none; }
-button.agent:hover .agent-orb { transform: translateY(-2px); background: color-mix(in srgb, var(--c) 34%, transparent); }
+button.agent:hover .agent-orb { background: color-mix(in srgb, var(--c) 34%, transparent); }
 .agent[aria-selected=true] .agent-orb { background: var(--c); color: #fff; border-color: transparent; box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 26%, transparent), 0 10px 24px -8px var(--c); }
 .agent[aria-selected=true] b { color: var(--ink); font-weight: 600; }
 .agents.play .agent { animation: agent-in .45s var(--ease-out) both; animation-delay: calc(var(--i) * .08s); }
@@ -489,7 +489,9 @@ button.agent:hover .agent-orb { transform: translateY(-2px); background: color-m
 .agents.sm .agent-orb { width: 32px; height: 32px; }
 .agents.sm .agent-orb .icon { width: 15px; height: 15px; }
 .agents.sm .agent::before { top: 22px; right: calc(50% + 20px); width: calc(100% - 40px); }
-.agents.sm .agent b { font-size: 10px; }
+.agents.sm .agent { padding-inline: 0; }
+.agents.sm .agent b { font-size: 9.5px; letter-spacing: -.2px; white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.agent b { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
 
 /* ============================================================================
    Pages de connexion : scène animée plein écran + carte de formulaire
@@ -534,3 +536,15 @@ body.auth-page { height: 100vh; height: 100dvh; overflow: hidden; color: #fff; b
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* ============================================================================
+   Application, pas document : on ne sélectionne pas le texte de l'interface et le curseur reste une flèche.
+   Seuls restent sélectionnables les champs de saisie et ce qu'on doit pouvoir copier (clés, identifiants).
+   ============================================================================ */
+body { -webkit-user-select: none; user-select: none; cursor: default; caret-color: transparent; -webkit-touch-callout: none; }
+input, textarea, select, [contenteditable], code, .selectable { -webkit-user-select: text; user-select: text; }
+input, textarea, [contenteditable] { cursor: text; caret-color: auto; }
+code, .selectable { cursor: text; }
+button, a, [role=button], [role=tab], select, label[for], summary, .clickable { cursor: pointer; }
+:disabled { cursor: not-allowed; }
+::selection { background: color-mix(in srgb, var(--red) 28%, transparent); }

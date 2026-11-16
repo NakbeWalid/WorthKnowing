@@ -106,6 +106,7 @@ async function refresh() {
   // Dernière enquête : les agents et leur conclusion, un clic pour tout lire.
   const last = trades[0];
   const el = $('#lastInv');
+  el.classList.toggle('empty', !last);
   if (last) {
     const { keys } = agentsOf(last.investigation);
     el.innerHTML = `<div class="widget-head"><h3>Dernière enquête</h3>${driftPill(last.investigation)}</div>

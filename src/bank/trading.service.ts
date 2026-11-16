@@ -1,6 +1,7 @@
-import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, Logger } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { MarketService } from '../shared/market.service';
+import { config } from './config';
 import { EventsService } from './events.service';
 import { MiroirLinkService } from './miroir-link.service';
 import { MiroirCheck, MiroirClient, MiroirError, MiroirTradePayload, MiroirVerdict } from './miroir.client';
@@ -25,6 +26,10 @@ type Precheck =
  */
 @Injectable()
 export class TradingService {
+  private log = new Logger('Trading');
+  /** Enquêtes en cours dans CE processus (une enquête « pending » absente d'ici a été perdue, ex. redémarrage). */
+  private inFlight = new Set<string>();
+
   constructor(
     private store: BankStore,
     private market: MarketService,
@@ -99,13 +104,17 @@ export class TradingService {
     // [3] Envoi à Miroir pour enquête, SANS bloquer la réponse : l'ordre est déjà exécuté et confirmé
     // au client (ci-dessous) ; l'enquête (jusqu'à 50 s) se termine en arrière-plan et le résultat est
     // notifié par SSE (investigate() sauvegarde le trade mis à jour et émet l'événement correspondant).
-    if (linked) this.investigate(account, trade, { ...payload, externalId: trade.id });
+    if (linked) {
+      this.inFlight.add(trade.id);
+      void this.investigate(account, trade, { ...payload, externalId: trade.id });
+    }
 
     return { trade, portfolio: this.portfolio(account) };
   }
 
   /** Enquête Miroir en arrière-plan : met à jour et sauvegarde le trade, puis notifie le navigateur (SSE). */
   private async investigate(account: Account, trade: BankTrade, payload: MiroirTradePayload) {
+    this.inFlight.add(trade.id);
     try {
       const verdict: MiroirVerdict = await this.miroir.submit(account.miroir.personaCode!, payload);
       trade.miroir = {
@@ -114,11 +123,59 @@ export class TradingService {
         reevaluationRequired: verdict.reevaluationRequired,
       } satisfies TradeMiroirResult;
     } catch (err) {
+      this.log.warn(`Enquête Miroir impossible pour l'ordre ${trade.id} (${trade.side} ${trade.ticker}) : ${(err as Error).message}`);
       trade.miroir = { status: 'unavailable' };
       await this.links.handleRevoked(account, err).catch(() => {});
+    } finally {
+      this.inFlight.delete(trade.id);
     }
     await this.store.saveTrade(trade);
     this.events.emit(trade);
+  }
+
+  /**
+   * Rattrapage : analyse les ordres que Miroir n'a pas (ou pas encore) vus — passés avant la liaison du compte,
+   * pendant une panne, ou perdus en route (redémarrage pendant l'enquête). Rejoués dans l'ordre chronologique
+   * pour que le score de dérive évolue comme il l'aurait fait. Miroir ignore un ordre déjà reçu (externalId),
+   * donc relancer est sans danger. Rend le nombre d'ordres relancés ; l'enquête se poursuit en arrière-plan.
+   */
+  async backfill(account: Account): Promise<{ started: number }> {
+    if (account.miroir.status !== 'linked') throw new ConflictException('WorthKnowing n’est pas activé sur ce compte.');
+    const stale = Date.now() - 3 * 60_000;
+    const todo = (await this.store.listTrades(account.id))
+      .filter((t) => ['not_linked', 'unavailable'].includes(t.miroir.status)
+        || (t.miroir.status === 'pending' && !this.inFlight.has(t.id) && new Date(t.createdAt).getTime() < stale))
+      .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+    if (!todo.length) return { started: 0 };
+    const all = (await this.store.listTrades(account.id)).sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+    const jobs = todo.map((trade) => {
+      trade.miroir = { status: 'pending' };
+      return { trade, payload: { ...this.payloadBefore(all, trade), externalId: trade.id } };
+    });
+    for (const { trade } of jobs) await this.store.saveTrade(trade);
+    for (const { trade } of jobs) this.inFlight.add(trade.id);
+    void (async () => { // séquentiel : chaque verdict met à jour le profil utilisé par le suivant
+      for (const { trade, payload } of jobs) await this.investigate(account, trade, payload);
+    })();
+    return { started: jobs.length };
+  }
+
+  /** Reconstitue ce que Miroir aurait reçu : l'ordre et le portefeuille AVANT lui (rejeu des ordres précédents). */
+  private payloadBefore(sorted: BankTrade[], trade: BankTrade): MiroirTradePayload {
+    let cash = config.startingCash;
+    const qty: Record<string, number> = {};
+    for (const t of sorted) {
+      if (t.id === trade.id) break;
+      cash += t.side === 'buy' ? -t.amount : t.amount;
+      qty[t.ticker] = (qty[t.ticker] ?? 0) + (t.side === 'buy' ? t.qty : -t.qty);
+    }
+    const positions = Object.entries(qty)
+      .map(([ticker, q]) => ({ ticker, value: q > 1e-9 ? q * this.market.priceAt(ticker, trade.marketDate) : 0 }))
+      .filter((p) => p.value > 0.005);
+    return {
+      ticker: trade.ticker, side: trade.side, amount: trade.amount, marketDate: trade.marketDate,
+      decisionTimeMs: trade.decisionTimeMs, note: trade.note, portfolio: { cash, positions },
+    };
   }
 
   history(account: Account) { return this.store.listTrades(account.id); }

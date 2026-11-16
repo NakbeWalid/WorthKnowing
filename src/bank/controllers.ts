@@ -79,7 +79,7 @@ export class TradingController {
 @Controller('api/miroir')
 @UseGuards(BankAuthGuard)
 export class MiroirController {
-  constructor(private links: MiroirLinkService) {}
+  constructor(private links: MiroirLinkService, private trading: TradingService) {}
 
   @Get('persona')
   persona(@Req() req: { account: Account }) { return this.links.persona(req.account).then((persona) => ({ persona })); }
@@ -95,8 +95,17 @@ export class MiroirController {
   @Post('link/complete')
   @HttpCode(200)
   complete(@Req() req: { account: Account }, @Body() body: { code: string; state: string }) {
-    return this.links.complete(req.account, body?.code, body?.state);
+    // Les ordres passés avant la liaison sont analysés dans la foulée (en arrière-plan, sans bloquer le retour).
+    return this.links.complete(req.account, body?.code, body?.state).then(async (done) => {
+      const caught = await this.trading.backfill(req.account).catch(() => ({ started: 0 }));
+      return { ...done, backfilled: caught.started };
+    });
   }
+
+  /** Relance l'analyse des ordres non analysés (non liés à l'époque, Miroir indisponible ou enquête perdue). */
+  @Post('backfill')
+  @HttpCode(200)
+  backfill(@Req() req: { account: Account }) { return this.trading.backfill(req.account); }
 
   @Post('unlink')
   @HttpCode(200)
